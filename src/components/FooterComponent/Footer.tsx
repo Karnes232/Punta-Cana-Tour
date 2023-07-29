@@ -13,7 +13,7 @@ const Footer = () => {
   return (
     <footer
       style={FooterStyles}
-      className="h-48 bg-contain md:bg-cover bg-bottom bg-no-repeat"
+      className="h-48 bg-cover bg-left md:bg-bottom bg-no-repeat"
     >
       {/* <div className="mx-5 flex max-w-6xl flex-col justify-between xl:mx-auto">
         <SocialMedia classes="border-b border-gray-500 md:border-none" />

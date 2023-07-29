@@ -8,7 +8,7 @@ import { graphql } from "gatsby"
 const IndexPage = ({ data }) => {
   let carouselPhotos = []
 
-  data.allContentfulSwiperPhotoCarousel.edges[0].node.photoList.forEach(e => {
+  data?.allContentfulSwiperPhotoCarousel.edges[0].node.photoList.forEach(e => {
     let photoList = {
       title: e.fields.title.en_US,
       image: e.fields.file.en_US.url
@@ -16,7 +16,7 @@ const IndexPage = ({ data }) => {
     carouselPhotos.push(photoList)
   })
 
-  const { title, paragraph1, paragraph2, paragraph3, paragraph4, paragraph5, paragraph6 } = data.allContentfulIndexPageContent.edges[0].node
+  const { title, paragraph1, paragraph2, paragraph3, paragraph4, paragraph5, paragraph6 } = data?.allContentfulIndexPageContent.edges[0].node
 
   return (
     <Layout>
