@@ -4,7 +4,7 @@ import { useStaticImageRequest } from "../../staticQueryHooks/useStaticImageRequ
 import { Link } from "gatsby"
 const HeroComponet = () => {
   const imageFile = useStaticImageRequest()
-  const image = imageFile.indexHero.file.url
+  const image = imageFile?.indexHero.file.url
 
   return (
     <>

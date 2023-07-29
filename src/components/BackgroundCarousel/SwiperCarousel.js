@@ -12,7 +12,6 @@ const SwiperCarousel = ({ className, photoList }) => {
   useEffect(() => {
     setScreenWidth(window.innerWidth)
   }, [])
-
   return (
     <>
       <Swiper
@@ -29,9 +28,9 @@ const SwiperCarousel = ({ className, photoList }) => {
           <SwiperSlide className="relative" key={index}>
             <img
               //src={screenWidth > 600 ? image.image : image.mobile}
-              src={image}
+              src={image.image}
               className=" h-[35vh] md:h-[45vh] lg:h-[65vh] object-cover w-full brightness-90"
-              alt=""
+              alt={image.title}
               // loading="lazy"
               width={screenWidth > 600 ? 1920 : 640}
               height={screenWidth > 600 ? 1280 : 427}

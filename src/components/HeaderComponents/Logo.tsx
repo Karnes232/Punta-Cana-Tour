@@ -12,7 +12,7 @@ const Logo = () => {
         <Link to="/" className="no-underline" aria-label="Home">
           <div className="cursor-pointer flex items-center mt-2 md:mt-5 xl:mt-10 w-20 md:w-32">
             <img
-              src={imageFile.logo.file.url}
+              src={imageFile?.logo.file.url}
               className="w-20 md:w-32"
               alt=""
             />

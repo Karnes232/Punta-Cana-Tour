@@ -7,7 +7,7 @@ import { useStaticImageRequest } from "../../staticQueryHooks/useStaticImageRequ
 const Footer = () => {
   const imageFile = useStaticImageRequest()
   const FooterStyles = {
-    backgroundImage: "url(http:" + imageFile.footerBackground.file.url + ")",
+    backgroundImage: "url(http:" + imageFile?.footerBackground.file.url + ")",
   }
 
   return (
