@@ -1,0 +1,7 @@
+.navLinks {
+  @apply hidden text-white font-lato uppercase h-6 md:inline-flex cursor-pointer hover:scale-105 transition-all duration-150 ease-out lg:text-lg xl:text-xl;
+}
+
+.hamburger {
+  @apply no-underline font-lato uppercase text-lg;
+}
