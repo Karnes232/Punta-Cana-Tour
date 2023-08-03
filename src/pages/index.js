@@ -4,6 +4,7 @@ import HeroComponet from "../components/HeroComponent/HeroComponet"
 import TextComponent from "../components/TextComponent/TextComponent"
 import SwiperCarousel from "../components/BackgroundCarousel/SwiperCarousel"
 import { graphql } from "gatsby"
+import FeaturedTours from "../components/FeaturedToursComponent/FeaturedTours"
 
 const IndexPage = ({ data }) => {
   let carouselPhotos = []
@@ -48,6 +49,7 @@ const IndexPage = ({ data }) => {
         paragraph={paragraph6.paragraph6}
         pClassName="mb-4 lg:mb-0"
       />
+      <FeaturedTours />
       <section className="h-screen"></section>
     </Layout>
   )
