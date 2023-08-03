@@ -27,5 +27,5 @@ export const useStaticImageRequest = () => {
     }
   `)
 
-  return images.allContentfulIndexPageImages?.edges[0].node
+  return images?.allContentfulIndexPageImages?.edges[0].node
 }
