@@ -17,7 +17,7 @@ const IndexPage = ({ data }) => {
     carouselPhotos.push(photoList)
   })
 
-  const { title, paragraph1, paragraph2, paragraph3, paragraph4, paragraph5, paragraph6 } = data?.allContentfulIndexPageContent.edges[0].node
+  const { title, paragraph1, paragraph2, paragraph3, paragraph4, paragraph5, paragraph6 } = data.allContentfulIndexPageContent.edges[0].node
 
   return (
     <Layout>
