@@ -1,9 +1,12 @@
+import { Link } from "gatsby";
 import React from "react";
 
 const TourCard = ({ tour }) => {
-  const { name, price, mainImage, description1 } = tour.node;
+  const { name, price, mainImage, description1, url } = tour.node;
+  console.log(url)
   return (
     <>
+     <Link to={`tours/${url}`}>
       <div className="max-w-sm my-5 mx-2 rounded-lg overflow-hidden shadow-lg">
         <img
           className="w-full object-cover h-64"
@@ -29,6 +32,7 @@ const TourCard = ({ tour }) => {
           </span>
         </div>
       </div>
+      </Link>
     </>
   );
 };

@@ -121,6 +121,7 @@ export const query = graphql`
     allContentfulTour(filter: { featured: { eq: true } }) {
       edges {
         node {
+          url
           name
           price
           mainImage {
