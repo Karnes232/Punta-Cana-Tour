@@ -2,9 +2,10 @@ import React from "react"
 import Copyright from "./Copyright"
 import Sitemap from "./Sitemap"
 import SocialMedia from "./SocialMedia"
-const Footer = () => {
+import { graphql, useStaticQuery } from "gatsby"
+const Footer = ({footerBackground}) => {
   const FooterStyles = {
-    backgroundImage: "url(https://images.ctfassets.net/h9wjlzs95u7s/1EllUw76VmryHKJx9QPzJd/b59d4211e6aa01ff559ae6af56faeb16/footer_bg.jpg)",
+    backgroundImage: "url("+footerBackground+")",
   }
 
   return (

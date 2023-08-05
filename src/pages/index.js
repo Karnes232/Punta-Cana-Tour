@@ -4,13 +4,12 @@ import HeroComponet from "../components/HeroComponent/HeroComponet"
 import TextComponent from "../components/TextComponent/TextComponent"
 import SwiperCarousel from "../components/BackgroundCarousel/SwiperCarousel"
 import { graphql } from "gatsby"
-
+import FeaturedTours from '../components/FeaturedToursComponent/FeaturedTours'
 
 const IndexPage = ({data}) => {
  
-
   return (
-    <Layout>
+    <Layout logo={data.allContentfulIndexPageImages.edges[0].node.logo.url} footerBackground={data.allContentfulIndexPageImages.edges[0].node.footerBackground.url}>
       <HeroComponet image={data.allContentfulIndexPageImages.edges[0].node.indexHero.url}/>
       <TextComponent
         title={data.allContentfulIndexPageContent.edges[0].node.title}
@@ -39,6 +38,7 @@ const IndexPage = ({data}) => {
         paragraph={data.allContentfulIndexPageContent.edges[0].node.paragraph6.paragraph6}
         pClassName="mb-4 lg:mb-0"
       />
+      <FeaturedTours />
       <section className="h-screen"></section>
     </Layout>
   )
@@ -83,12 +83,18 @@ query MyQuery {
   allContentfulIndexPageImages {
     edges {
       node {
+        footerBackground {
+          url
+        }
         indexHero {
           url
         }
+        logo {
+          url
+        }
+      }
       }
     }
-  }
 }
 `
 
