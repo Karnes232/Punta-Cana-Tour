@@ -6,15 +6,15 @@ import SwiperCarousel from "../components/BackgroundCarousel/SwiperCarousel"
 import { graphql } from "gatsby"
 
 const IndexPage = ({ data }) => {
-  let carouselPhotos = []
+  // let carouselPhotos = []
 
-  data?.allContentfulSwiperPhotoCarousel.edges[0].node.photoList.forEach(e => {
-    let photoList = {
-      title: e.title,
-      image: e.url
-    }
-    carouselPhotos.push(photoList)
-  })
+  // data?.allContentfulSwiperPhotoCarousel.edges[0].node.photoList.forEach(e => {
+  //   let photoList = {
+  //     title: e.title,
+  //     image: e.url
+  //   }
+  //   carouselPhotos.push(photoList)
+  // })
   console.log(data)
   const { title, paragraph1, paragraph2, paragraph3, paragraph4, paragraph5, paragraph6 } = data?.allContentfulIndexPageContent?.edges[0]?.node
 
@@ -30,7 +30,7 @@ const IndexPage = ({ data }) => {
       <TextComponent
         paragraph={paragraph2.paragraph2}
       />
-      <SwiperCarousel className="mt-5" photoList={carouselPhotos} />
+      {/* <SwiperCarousel className="mt-5" photoList={carouselPhotos} /> */}
       <TextComponent
         paragraph={paragraph3.paragraph3}
         className="mt-5"
@@ -84,16 +84,7 @@ export const query = graphql`
         }
       }
     }
-    allContentfulSwiperPhotoCarousel {
-      edges {
-        node {
-          photoList {
-            title
-            url
-          }
-        }
-      }
-    }
+  
   }
 `
 
