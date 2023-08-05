@@ -11,7 +11,7 @@ const IndexPage = ({ data }) => {
   data?.allContentfulSwiperPhotoCarousel.edges[0].node.photoList.forEach(e => {
     let photoList = {
       title: e.title,
-      image: e.file.url
+      image: e.url
     }
     carouselPhotos.push(photoList)
   })
@@ -88,10 +88,8 @@ export const query = graphql`
       edges {
         node {
           photoList {
-            file {
-              url
-            }
             title
+            url
           }
         }
       }
