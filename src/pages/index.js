@@ -7,6 +7,7 @@ import { graphql } from "gatsby";
 import FeaturedTours from "../components/FeaturedToursComponent/FeaturedTours";
 
 const IndexPage = ({ data }) => {
+  console.log(data.allContentfulTour)
   return (
     <Layout
       logo={data.allContentfulIndexPageImages.edges[0].node.logo.url}
