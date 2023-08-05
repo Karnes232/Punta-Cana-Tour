@@ -3,7 +3,6 @@ import React from "react";
 
 const TourCard = ({ tour }) => {
   const { name, price, mainImage, description1, url } = tour.node;
-  console.log(url)
   return (
     <>
      <Link to={`tours/${url}`}>

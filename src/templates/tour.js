@@ -1,11 +1,12 @@
 import React from "react";
 import Layout from "../components/layout";
+import HeroImage from "../components/TourPageComponents/HeroImage";
 const tour = ({ pageContext }) => {
   const { tour, logo, footerBackground } = pageContext;
-  console.log(tour);
+
   return (
     <Layout logo={logo} footerBackground={footerBackground}>
-      tour
+      <HeroImage image={tour.mainImage.file.url} />
     </Layout>
   );
 };
