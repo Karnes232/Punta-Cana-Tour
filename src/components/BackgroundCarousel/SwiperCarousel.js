@@ -12,6 +12,14 @@ const SwiperCarousel = ({ className, photoList }) => {
   useEffect(() => {
     setScreenWidth(window.innerWidth)
   }, [])
+  let photoListEdited = []
+  photoList.forEach(e => {
+    let image = {
+      title: e.title,
+      image: e.url
+    }
+    photoListEdited.push(image)
+  })
   return (
     <>
       <Swiper
@@ -24,7 +32,7 @@ const SwiperCarousel = ({ className, photoList }) => {
         modules={[Autoplay, EffectFade]}
         className={`mySwiper mt-3 h-[35vh] md:h-[45vh] lg:h-[65vh] w-full mx-0 ${className}`}
       >
-        {photoList.map((image, index) => (
+        {photoListEdited.map((image, index) => (
           <SwiperSlide className="relative" key={index}>
             <img
               //src={screenWidth > 600 ? image.image : image.mobile}

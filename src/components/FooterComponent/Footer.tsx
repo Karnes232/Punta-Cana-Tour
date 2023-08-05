@@ -1,13 +1,10 @@
 import React from "react"
-import { graphql, useStaticQuery } from "gatsby"
 import Copyright from "./Copyright"
 import Sitemap from "./Sitemap"
 import SocialMedia from "./SocialMedia"
-import { useStaticImageRequest } from "../../staticQueryHooks/useStaticImageRequest"
 const Footer = () => {
-  const imageFile = useStaticImageRequest()
   const FooterStyles = {
-    backgroundImage: "url(http:" + imageFile?.footerBackground.file.url + ")",
+    backgroundImage: "url(https://images.ctfassets.net/h9wjlzs95u7s/1EllUw76VmryHKJx9QPzJd/b59d4211e6aa01ff559ae6af56faeb16/footer_bg.jpg)",
   }
 
   return (

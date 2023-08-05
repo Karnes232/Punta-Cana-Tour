@@ -1,11 +1,7 @@
 import React from "react"
 import BackgroundImage from "react-background-image"
-import { useStaticImageRequest } from "../../staticQueryHooks/useStaticImageRequest"
 import { Link } from "gatsby"
-const HeroComponet = () => {
-  const imageFile = useStaticImageRequest()
-  const image = imageFile?.indexHero.file.url
-
+const HeroComponet = ({image}) => {
   return (
     <>
       <div className="absolute top-0 w-full h-[50vh] lg:h-[80vh] xl:h-screen">

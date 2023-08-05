@@ -5,47 +5,38 @@ import TextComponent from "../components/TextComponent/TextComponent"
 import SwiperCarousel from "../components/BackgroundCarousel/SwiperCarousel"
 import { graphql } from "gatsby"
 
-const IndexPage = ({ data }) => {
-  // let carouselPhotos = []
 
-  // data?.allContentfulSwiperPhotoCarousel.edges[0].node.photoList.forEach(e => {
-  //   let photoList = {
-  //     title: e.title,
-  //     image: e.url
-  //   }
-  //   carouselPhotos.push(photoList)
-  // })
-  console.log(data)
-  const { title, paragraph1, paragraph2, paragraph3, paragraph4, paragraph5, paragraph6 } = data?.allContentfulIndexPageContent?.edges[0]?.node
+const IndexPage = ({data}) => {
+ 
 
   return (
     <Layout>
-      <HeroComponet />
+      <HeroComponet image={data.allContentfulIndexPageImages.edges[0].node.indexHero.url}/>
       <TextComponent
-        title={title}
-        paragraph={paragraph1.paragraph1}
+        title={data.allContentfulIndexPageContent.edges[0].node.title}
+        paragraph={data.allContentfulIndexPageContent.edges[0].node.paragraph1.paragraph1}
         className="my-5 2xl:my-2"
         pClassName="mb-4 lg:mb-0"
       />
       <TextComponent
-        paragraph={paragraph2.paragraph2}
+        paragraph={data.allContentfulIndexPageContent.edges[0].node.paragraph2.paragraph2}
       />
-      {/* <SwiperCarousel className="mt-5" photoList={carouselPhotos} /> */}
+      <SwiperCarousel className="mt-5" photoList={data.allContentfulSwiperPhotoCarousel.edges[0].node.photoList} />
       <TextComponent
-        paragraph={paragraph3.paragraph3}
+        paragraph={data.allContentfulIndexPageContent.edges[0].node.paragraph3.paragraph3}
         className="mt-5"
         pClassName="mb-4 lg:mb-0"
       />
       <TextComponent
-        paragraph={paragraph4.paragraph4}
+        paragraph={data.allContentfulIndexPageContent.edges[0].node.paragraph4.paragraph4}
         pClassName="mb-4 lg:mb-0"
       />
       <TextComponent
-        paragraph={paragraph5.paragraph5}
+        paragraph={data.allContentfulIndexPageContent.edges[0].node.paragraph5.paragraph5}
         pClassName="mb-4 lg:mb-0"
       />
       <TextComponent
-        paragraph={paragraph6.paragraph6}
+        paragraph={data.allContentfulIndexPageContent.edges[0].node.paragraph6.paragraph6}
         pClassName="mb-4 lg:mb-0"
       />
       <section className="h-screen"></section>
@@ -53,39 +44,54 @@ const IndexPage = ({ data }) => {
   )
 }
 
-
-export const Head = () => <title>Home Page</title>
-
-
 export const query = graphql`
-  query MyQuery {
-    allContentfulIndexPageContent {
-      edges {
-        node {
-          title
-          paragraph1 {
-            paragraph1
-          }
-          paragraph2 {
-            paragraph2
-          }
-          paragraph3 {
-            paragraph3
-          }
-          paragraph4 {
-            paragraph4
-          }
-          paragraph5 {
-            paragraph5
-          }
-          paragraph6 {
-            paragraph6
-          }
+query MyQuery {
+  allContentfulIndexPageContent {
+    edges {
+      node {
+        title
+        paragraph1 {
+          paragraph1
+        }
+        paragraph2 {
+          paragraph2
+        }
+        paragraph3 {
+          paragraph3
+        }
+        paragraph4 {
+          paragraph4
+        }
+        paragraph5 {
+          paragraph5
+        }
+        paragraph6 {
+          paragraph6
         }
       }
     }
-  
   }
+  allContentfulSwiperPhotoCarousel {
+    edges {
+      node {
+        photoList {
+          url
+        }
+      }
+    }
+  }
+  allContentfulIndexPageImages {
+    edges {
+      node {
+        indexHero {
+          url
+        }
+      }
+    }
+  }
+}
 `
+
+export const Head = () => <title>Home Page</title>
 
 export default IndexPage
