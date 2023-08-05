@@ -1,7 +1,7 @@
 /**
  * @type {import('gatsby').GatsbyConfig}
  */
-require("dotenv").config()
+require("dotenv").config();
 module.exports = {
   siteMetadata: {
     title: `ThrillQuest`,
@@ -56,4 +56,4 @@ module.exports = {
       __key: "images",
     },
   ],
-}
+};

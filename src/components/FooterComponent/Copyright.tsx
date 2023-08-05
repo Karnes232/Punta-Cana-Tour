@@ -1,5 +1,5 @@
-import { Link } from "gatsby"
-import React from "react"
+import { Link } from "gatsby";
+import React from "react";
 
 const Copyright = () => {
   return (
@@ -10,7 +10,7 @@ const Copyright = () => {
         </p>
       </Link>
     </div>
-  )
-}
+  );
+};
 
-export default Copyright
+export default Copyright;

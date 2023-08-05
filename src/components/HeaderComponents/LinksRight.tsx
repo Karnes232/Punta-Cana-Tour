@@ -1,6 +1,6 @@
-import React from "react"
+import React from "react";
 
-import { Link } from "gatsby"
+import { Link } from "gatsby";
 
 const LinksRight = () => {
   return (
@@ -18,7 +18,7 @@ const LinksRight = () => {
         <button className="navLinks">Contact</button>
       </Link>
     </div>
-  )
-}
+  );
+};
 
-export default LinksRight
+export default LinksRight;

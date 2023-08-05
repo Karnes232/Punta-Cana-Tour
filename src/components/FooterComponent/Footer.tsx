@@ -1,12 +1,12 @@
-import React from "react"
-import Copyright from "./Copyright"
-import Sitemap from "./Sitemap"
-import SocialMedia from "./SocialMedia"
-import { graphql, useStaticQuery } from "gatsby"
-const Footer = ({footerBackground}) => {
+import React from "react";
+import Copyright from "./Copyright";
+import Sitemap from "./Sitemap";
+import SocialMedia from "./SocialMedia";
+import { graphql, useStaticQuery } from "gatsby";
+const Footer = ({ footerBackground }) => {
   const FooterStyles = {
-    backgroundImage: "url("+footerBackground+")",
-  }
+    backgroundImage: "url(" + footerBackground + ")",
+  };
 
   return (
     <footer
@@ -21,7 +21,7 @@ const Footer = ({footerBackground}) => {
         </div>
       </div> */}
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

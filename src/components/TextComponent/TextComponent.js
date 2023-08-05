@@ -1,5 +1,5 @@
-import React from "react"
-import { motion } from "framer-motion"
+import React from "react";
+import { motion } from "framer-motion";
 const TextComponent = ({ title, paragraph, className, pClassName }) => {
   return (
     <div className="relative">
@@ -13,7 +13,9 @@ const TextComponent = ({ title, paragraph, className, pClassName }) => {
         }}
         className="flex flex-col items-center justify-center text-center max-w-5xl mx-5 lg:p-2 xl:mx-auto"
       >
-        <h1 className={`font-lato tracking-wider text-3xl font-semibold ${className} md:text-4xl`}>
+        <h1
+          className={`font-lato tracking-wider text-3xl font-semibold ${className} md:text-4xl`}
+        >
           {title}
         </h1>
         <p
@@ -22,7 +24,7 @@ const TextComponent = ({ title, paragraph, className, pClassName }) => {
         ></p>
       </motion.div>
     </div>
-  )
-}
+  );
+};
 
-export default TextComponent
+export default TextComponent;

@@ -1,10 +1,10 @@
-import React from "react"
-import { Bars3Icon } from "@heroicons/react/24/outline"
-import loadable from "@loadable/component"
-const SideBarMenu = loadable(() => import("./SideBarMenu"))
+import React from "react";
+import { Bars3Icon } from "@heroicons/react/24/outline";
+import loadable from "@loadable/component";
+const SideBarMenu = loadable(() => import("./SideBarMenu"));
 
 const HamburgerMenu = () => {
-  const [toggled, setToggled] = React.useState(false)
+  const [toggled, setToggled] = React.useState(false);
 
   return (
     <>
@@ -22,7 +22,7 @@ const HamburgerMenu = () => {
         </main>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default HamburgerMenu
+export default HamburgerMenu;

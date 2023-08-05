@@ -1,6 +1,6 @@
-import { Link } from "gatsby"
+import { Link } from "gatsby";
 
-import React from "react"
+import React from "react";
 
 const Sitemap = () => {
   return (
@@ -20,7 +20,7 @@ const Sitemap = () => {
         </Link>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Sitemap
+export default Sitemap;

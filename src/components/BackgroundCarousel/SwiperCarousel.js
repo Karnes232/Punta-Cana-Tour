@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react";
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react"
+import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
-import "swiper/css"
-import "swiper/css/effect-fade"
-import { Autoplay, EffectFade } from "swiper/modules"
+import "swiper/css";
+import "swiper/css/effect-fade";
+import { Autoplay, EffectFade } from "swiper/modules";
 
 const SwiperCarousel = ({ className, photoList }) => {
-  const [screenWidth, setScreenWidth] = useState(undefined)
+  const [screenWidth, setScreenWidth] = useState(undefined);
   useEffect(() => {
-    setScreenWidth(window.innerWidth)
-  }, [])
-  let photoListEdited = []
-  photoList.forEach(e => {
+    setScreenWidth(window.innerWidth);
+  }, []);
+  let photoListEdited = [];
+  photoList.forEach((e) => {
     let image = {
       title: e.title,
-      image: e.url
-    }
-    photoListEdited.push(image)
-  })
+      image: e.url,
+    };
+    photoListEdited.push(image);
+  });
   return (
     <>
       <Swiper
@@ -47,7 +47,7 @@ const SwiperCarousel = ({ className, photoList }) => {
         ))}
       </Swiper>
     </>
-  )
-}
+  );
+};
 
-export default SwiperCarousel
+export default SwiperCarousel;

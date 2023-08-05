@@ -1,13 +1,13 @@
-import React from "react"
+import React from "react";
 import {
   Sidebar,
   menuClasses,
   Menu,
   MenuItem,
   SubMenu,
-} from "react-pro-sidebar"
-import { Link } from "gatsby"
-import SocialMedia from "../FooterComponent/SocialMedia"
+} from "react-pro-sidebar";
+import { Link } from "gatsby";
+import SocialMedia from "../FooterComponent/SocialMedia";
 
 const SideBarMenu = ({ toggled, setToggled }) => {
   return (
@@ -47,7 +47,7 @@ const SideBarMenu = ({ toggled, setToggled }) => {
         </div>
       </Sidebar>
     </>
-  )
-}
+  );
+};
 
-export default SideBarMenu
+export default SideBarMenu;

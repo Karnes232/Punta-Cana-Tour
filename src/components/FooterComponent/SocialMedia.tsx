@@ -1,7 +1,7 @@
-import React from "react"
+import React from "react";
 
-import { FaFacebookF, FaInstagram } from "react-icons/fa"
-import { GrMail } from "react-icons/gr"
+import { FaFacebookF, FaInstagram } from "react-icons/fa";
+import { GrMail } from "react-icons/gr";
 
 const SocialMedia = ({ classes }) => {
   return (
@@ -34,7 +34,7 @@ const SocialMedia = ({ classes }) => {
         </a>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SocialMedia
+export default SocialMedia;

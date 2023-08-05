@@ -1,12 +1,13 @@
-import React from 'react'
-
+import React from "react";
+import Layout from "../components/layout";
 const tour = ({ pageContext }) => {
-    
-    const {tour} = pageContext
-    console.log(tour)
+  const { tour, logo, footerBackground } = pageContext;
+  console.log(tour);
   return (
-    <div>tour</div>
-  )
-}
+    <Layout logo={logo} footerBackground={footerBackground}>
+      tour
+    </Layout>
+  );
+};
 
-export default tour
+export default tour;
