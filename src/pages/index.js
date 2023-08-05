@@ -7,7 +7,7 @@ import { graphql } from "gatsby"
 import FeaturedTours from '../components/FeaturedToursComponent/FeaturedTours'
 
 const IndexPage = ({data}) => {
- 
+
   return (
     <Layout logo={data.allContentfulIndexPageImages.edges[0].node.logo.url} footerBackground={data.allContentfulIndexPageImages.edges[0].node.footerBackground.url}>
       <HeroComponet image={data.allContentfulIndexPageImages.edges[0].node.indexHero.url}/>
@@ -38,7 +38,7 @@ const IndexPage = ({data}) => {
         paragraph={data.allContentfulIndexPageContent.edges[0].node.paragraph6.paragraph6}
         pClassName="mb-4 lg:mb-0"
       />
-      <FeaturedTours />
+      <FeaturedTours tours={data.allContentfulTour.edges}/>
       <section className="h-screen"></section>
     </Layout>
   )
@@ -93,6 +93,22 @@ query MyQuery {
           url
         }
       }
+      }
+    }
+    allContentfulTour(filter: {featured: {eq: true}}) {
+      edges {
+        node {
+          name
+          price
+          mainImage {
+            file {
+              url
+            }
+          }
+          description1 {
+            description1
+          }
+        }
       }
     }
 }
