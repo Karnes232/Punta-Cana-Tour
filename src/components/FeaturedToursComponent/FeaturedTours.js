@@ -9,7 +9,7 @@ const FeaturedTours = ({ tours }) => {
         Featured Tours
       </h3>
 
-      <div>
+      <div className="flex flex-col">
         {tourList.map((tour, index) => (
           <TourCard tour={tour} key={index} />
         ))}

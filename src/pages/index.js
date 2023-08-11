@@ -151,6 +151,7 @@ export const query = graphql`
           name
           price
           mainImage {
+            gatsbyImage(width: 400, formats: WEBP)
             file {
               url
             }

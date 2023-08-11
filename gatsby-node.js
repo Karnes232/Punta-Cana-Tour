@@ -9,6 +9,7 @@ exports.createPages = async ({ graphql, actions }) => {
           name
           price
           mainImage {
+            gatsbyImage(width: 3500, formats: WEBP)
             file {
               url
             }

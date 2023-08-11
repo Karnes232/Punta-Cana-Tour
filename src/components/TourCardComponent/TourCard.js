@@ -1,16 +1,23 @@
 import { Link } from "gatsby";
 import React from "react";
-
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 const TourCard = ({ tour }) => {
   const { name, price, mainImage, description1, url } = tour.node;
+  const image = getImage(tour.node.mainImage.gatsbyImage);
+  console.log(image);
   return (
     <>
       <Link to={`tours/${url}`}>
         <div className="max-w-sm my-5 mx-2 rounded-lg overflow-hidden shadow-lg">
-          <img
+          {/* <img
             className="w-full object-cover h-64"
-            src={mainImage.file.url}
+            src={mainImage?.file.url}
             alt={name}
+          /> */}
+          <GatsbyImage
+            image={image}
+            alt=""
+            className="w-full object-cover h-64"
           />
           <div className="px-6 py-4">
             <div className="font-bold text-xl mb-2 flex justify-between">
