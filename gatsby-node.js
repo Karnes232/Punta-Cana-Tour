@@ -29,6 +29,9 @@ exports.createPages = async ({ graphql, actions }) => {
       allContentfulIndexPageImages {
         edges {
           node {
+            email
+            facebook
+            instagram
             footerBackground {
               url
             }
@@ -53,6 +56,13 @@ exports.createPages = async ({ graphql, actions }) => {
         footerBackground:
           queryResults.data.allContentfulIndexPageImages.edges[0].node
             .footerBackground.url,
+        facebook:
+          queryResults.data.allContentfulIndexPageImages.edges[0].node.facebook,
+        instagram:
+          queryResults.data.allContentfulIndexPageImages.edges[0].node
+            .instagram,
+        email:
+          queryResults.data.allContentfulIndexPageImages.edges[0].node.email,
       },
     });
   });

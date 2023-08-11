@@ -7,13 +7,16 @@ import { graphql } from "gatsby";
 import FeaturedTours from "../components/FeaturedToursComponent/FeaturedTours";
 
 const IndexPage = ({ data }) => {
-  const tourList = Array.from(data.allContentfulTour.edges, (x) => x)
+  const tourList = Array.from(data.allContentfulTour.edges, (x) => x);
   return (
     <Layout
       logo={data.allContentfulIndexPageImages.edges[0].node.logo.url}
       footerBackground={
         data.allContentfulIndexPageImages.edges[0].node.footerBackground.url
       }
+      facebook={data.allContentfulIndexPageImages.edges[0].node.facebook}
+      instagram={data.allContentfulIndexPageImages.edges[0].node.instagram}
+      email={data.allContentfulIndexPageImages.edges[0].node.email}
     >
       <HeroComponet
         image={data.allContentfulIndexPageImages.edges[0].node.indexHero.url}
@@ -63,7 +66,20 @@ const IndexPage = ({ data }) => {
         pClassName="mb-4 lg:mb-0"
       />
       <FeaturedTours tours={tourList} />
-      <section className="h-screen"></section>
+      <TextComponent
+        paragraph={
+          data.allContentfulIndexPageContent.edges[0].node.paragraph7.paragraph7
+        }
+        className="mt-5"
+        pClassName="mb-4 lg:mb-0"
+      />
+      <TextComponent
+        paragraph={
+          data.allContentfulIndexPageContent.edges[0].node.paragraph8.paragraph8
+        }
+        className="mt-5"
+        pClassName="mb-4 lg:mb-0"
+      />
     </Layout>
   );
 };
@@ -92,6 +108,12 @@ export const query = graphql`
           paragraph6 {
             paragraph6
           }
+          paragraph7 {
+            paragraph7
+          }
+          paragraph8 {
+            paragraph8
+          }
         }
       }
     }
@@ -107,6 +129,9 @@ export const query = graphql`
     allContentfulIndexPageImages {
       edges {
         node {
+          email
+          facebook
+          instagram
           footerBackground {
             url
           }

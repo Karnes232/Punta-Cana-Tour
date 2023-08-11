@@ -3,35 +3,39 @@ import React from "react";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { GrMail } from "react-icons/gr";
 
-const SocialMedia = ({ classes }) => {
+const SocialMedia = ({ classes, facebook, instagram, email }) => {
   return (
     <div className="">
       <div
         className={`mx-8 flex justify-around py-4 md:mx-auto md:max-w-md ${classes}`}
       >
-        <a
-          href="https://www.facebook.com/profile.php?id=100092903240260"
-          target="_blank"
-          aria-label="Facebook"
-          rel="noreferrer"
-        >
-          <FaFacebookF className="footerIcons" />
-        </a>
-        <a
-          href="https://instagram.com/greeceeventspc"
-          target="_blank"
-          aria-label="Instagram"
-          rel="noreferrer"
-        >
-          <FaInstagram className="footerIcons" />
-        </a>
-        <a
-          href="mailto:greeceeventspc@gmail.com"
-          aria-label="Gmail"
-          rel="noreferrer"
-        >
-          <GrMail className="footerIcons" />
-        </a>
+        {facebook && (
+          <a
+            href={facebook}
+            target="_blank"
+            aria-label="Facebook"
+            rel="noreferrer"
+          >
+            <FaFacebookF className="footerIcons" />
+          </a>
+        )}
+
+        {instagram && (
+          <a
+            href={instagram}
+            target="_blank"
+            aria-label="Instagram"
+            rel="noreferrer"
+          >
+            <FaInstagram className="footerIcons" />
+          </a>
+        )}
+
+        {email && (
+          <a href={`mailto:${email}`} aria-label="Gmail" rel="noreferrer">
+            <GrMail className="footerIcons" />
+          </a>
+        )}
       </div>
     </div>
   );

@@ -20,7 +20,7 @@ const HeroComponet = ({ image }) => {
             </h2>
             <br />
             <button className="relative inline-block z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-28 md:w-28 lg:w-32 text-sm bg-white opacity-75 hover:opacity-100 text-black py-2 px-2 md:px-3 rounded-md mt-5 md:mt-12 tracking-wider font-lato font-bold">
-              <Link to="/contact">Explore!</Link>
+              <Link to="#featured-Tours">Explore!</Link>
             </button>
           </BackgroundImage>
         )}
