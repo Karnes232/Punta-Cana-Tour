@@ -7,7 +7,7 @@ import { graphql } from "gatsby";
 import FeaturedTours from "../components/FeaturedToursComponent/FeaturedTours";
 
 const IndexPage = ({ data }) => {
-  console.log(data.allContentfulTour)
+  const tourList = Array.from(data.allContentfulTour.edges, (x) => x)
   return (
     <Layout
       logo={data.allContentfulIndexPageImages.edges[0].node.logo.url}
@@ -62,7 +62,7 @@ const IndexPage = ({ data }) => {
         }
         pClassName="mb-4 lg:mb-0"
       />
-      <FeaturedTours tours={data.allContentfulTour.edges} />
+      <FeaturedTours tours={tourList} />
       <section className="h-screen"></section>
     </Layout>
   );
