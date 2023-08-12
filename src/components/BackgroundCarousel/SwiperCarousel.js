@@ -6,17 +6,18 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import { Autoplay, EffectFade } from "swiper/modules";
-
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 const SwiperCarousel = ({ className, photoList }) => {
   const [screenWidth, setScreenWidth] = useState(undefined);
   useEffect(() => {
     setScreenWidth(window.innerWidth);
   }, []);
+
   let photoListEdited = [];
   photoList.forEach((e) => {
     let image = {
       title: e.title,
-      image: e.url,
+      image: getImage(e.gatsbyImage),
     };
     photoListEdited.push(image);
   });
@@ -32,19 +33,19 @@ const SwiperCarousel = ({ className, photoList }) => {
         modules={[Autoplay, EffectFade]}
         className={`mySwiper mt-3 h-[35vh] md:h-[45vh] lg:h-[65vh] w-full mx-0 ${className}`}
       >
-        {photoListEdited.map((image, index) => (
-          <SwiperSlide className="relative" key={index}>
-            <img
-              //src={screenWidth > 600 ? image.image : image.mobile}
-              src={image.image}
-              className=" h-[35vh] md:h-[45vh] lg:h-[65vh] object-cover w-full brightness-90"
-              alt={image.title}
-              // loading="lazy"
-              width={screenWidth > 600 ? 1920 : 640}
-              height={screenWidth > 600 ? 1280 : 427}
-            />
-          </SwiperSlide>
-        ))}
+        {photoListEdited.map((image, index) => {
+          return (
+            <SwiperSlide className="relative" key={index}>
+              <GatsbyImage
+                image={image.image}
+                alt={image.title}
+                className="h-[35vh] md:h-[45vh] lg:h-[65vh] object-cover w-full brightness-90"
+                width={screenWidth > 600 ? 1920 : 640}
+                height={screenWidth > 600 ? 1280 : 427}
+              />
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </>
   );

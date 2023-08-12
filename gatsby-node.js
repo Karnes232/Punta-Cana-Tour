@@ -37,6 +37,7 @@ exports.createPages = async ({ graphql, actions }) => {
               url
             }
             logo {
+              gatsbyImage(formats: WEBP, width: 150)
               url
             }
           }
@@ -53,7 +54,7 @@ exports.createPages = async ({ graphql, actions }) => {
         // This time the entire product is passed down as context
         tour: node,
         logo: queryResults.data.allContentfulIndexPageImages.edges[0].node.logo
-          .url,
+          .gatsbyImage,
         footerBackground:
           queryResults.data.allContentfulIndexPageImages.edges[0].node
             .footerBackground.url,

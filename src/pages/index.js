@@ -10,7 +10,7 @@ const IndexPage = ({ data }) => {
   const tourList = Array.from(data.allContentfulTour.edges, (x) => x);
   return (
     <Layout
-      logo={data.allContentfulIndexPageImages.edges[0].node.logo.url}
+      logo={data.allContentfulIndexPageImages.edges[0].node.logo.gatsbyImage}
       footerBackground={
         data.allContentfulIndexPageImages.edges[0].node.footerBackground.url
       }
@@ -121,6 +121,7 @@ export const query = graphql`
       edges {
         node {
           photoList {
+            gatsbyImage(width: 1920, formats: WEBP)
             url
           }
         }
@@ -139,6 +140,7 @@ export const query = graphql`
             url
           }
           logo {
+            gatsbyImage(formats: WEBP, width: 150)
             url
           }
         }
