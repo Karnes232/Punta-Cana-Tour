@@ -11,7 +11,7 @@ const FeaturedTours = ({ tours }) => {
 
       <div className="flex flex-col md:flex-row md:flex-wrap md:justify-evenly max-w-5xl xl:max-w-6xl mx-auto">
         {tourList.map((tour, index) => (
-          <TourCard tour={tour} key={index} />
+          <TourCard tour={tour} key={index} featured />
         ))}
       </div>
     </div>

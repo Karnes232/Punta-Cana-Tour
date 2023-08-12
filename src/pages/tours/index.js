@@ -1,6 +1,9 @@
 import React from 'react'
 import { graphql } from "gatsby";
 import Layout from "../../components/layout";
+import TourHeroComponent from '../../components/HeroComponent/TourHeroComponet';
+import TextComponent from '../../components/TextComponent/TextComponent';
+import TourCard from '../../components/TourCardComponent/TourCard';
 const index = ({ data }) => {
   return (
     <Layout
@@ -12,7 +15,23 @@ const index = ({ data }) => {
       instagram={data.allContentfulLayout.edges[0].node.instagram}
       email={data.allContentfulLayout.edges[0].node.email}
     >
-        Tours
+    <TourHeroComponent
+        image={data.allContentfulTourPageContent.edges[0].node.mainImage.fields.file.en_US.url}
+      />
+      <TextComponent
+        title={data.allContentfulTourPageContent.edges[0].node.title}
+        paragraph={
+          data.allContentfulTourPageContent.edges[0].node.paragraph1.paragraph1
+        }
+        className="my-5 2xl:my-2"
+        pClassName="mb-4 lg:mb-0"
+      />
+      <div className="flex flex-col md:flex-row md:flex-wrap md:justify-evenly max-w-5xl xl:max-w-6xl mx-auto">
+        {data.allContentfulTour.edges.map((tour, index) => (
+          <TourCard tour={tour} key={index} />
+        ))}
+      </div>
+  
     </Layout>
   )
 }
@@ -34,7 +53,45 @@ export const query = graphql`
         }
       }
     }
+    allContentfulTour {
+      edges {
+        node {
+          url
+          name
+          price
+          category
+          mainImage {
+            gatsbyImage(width: 400, formats: WEBP)
+            file {
+              url
+            }
+          }
+          description1 {
+            description1
+        }
+      }
+    }
   }
+  allContentfulTourPageContent {
+    edges {
+      node {
+        mainImage {
+          fields {
+            file {
+              en_US {
+                url
+              }
+            }
+          }
+        }
+        title
+        paragraph1 {
+          paragraph1
+        }
+      }
+    }
+  }
+}
 `;
 
 export const Head = () => <title>About Page</title>;
