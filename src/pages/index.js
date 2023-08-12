@@ -19,7 +19,9 @@ const IndexPage = ({ data }) => {
       email={data.allContentfulIndexPageImages.edges[0].node.email}
     >
       <HeroComponet
-        image={data.allContentfulIndexPageImages.edges[0].node.indexHero.url}
+        image={data.allContentfulIndexPageContent.edges[0].node.indexHero.url}
+        heroText={data.allContentfulIndexPageContent.edges[0].node.heroText1}
+        heroText2={data.allContentfulIndexPageContent.edges[0].node.heroText2}
       />
       <TextComponent
         title={data.allContentfulIndexPageContent.edges[0].node.title}
@@ -87,7 +89,7 @@ const IndexPage = ({ data }) => {
 export const query = graphql`
   query MyQuery {
     allContentfulIndexPageContent {
-      edges {
+      edges {           
         node {
           title
           paragraph1 {
@@ -114,13 +116,19 @@ export const query = graphql`
           paragraph8 {
             paragraph8
           }
+          indexHero {
+            url
+          }
+          heroText1
+          heroText2
         }
       }
     }
-    allContentfulSwiperPhotoCarousel {
+    allContentfulSwiperPhotoCarousel (filter: {page: {eq: "Index"}}){
       edges {
         node {
           photoList {
+            title
             gatsbyImage(width: 1920, formats: WEBP)
             url
           }
@@ -133,10 +141,14 @@ export const query = graphql`
           email
           facebook
           instagram
+          heroText1
+          heroText2
           footerBackground {
+            gatsbyImageData(width: 1920)
             url
           }
           indexHero {
+            gatsbyImageData(width: 1920)
             url
           }
           logo {
@@ -152,6 +164,7 @@ export const query = graphql`
           url
           name
           price
+          category
           mainImage {
             gatsbyImage(width: 400, formats: WEBP)
             file {

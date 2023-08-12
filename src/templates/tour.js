@@ -4,7 +4,7 @@ import HeroImage from "../components/TourPageComponents/HeroImage";
 const tour = ({ pageContext }) => {
   const { tour, logo, footerBackground, facebook, instagram, email } =
     pageContext;
-
+  console.log(tour)
   return (
     <Layout
       logo={logo}
