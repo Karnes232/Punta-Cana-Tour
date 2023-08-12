@@ -53,18 +53,18 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         // This time the entire product is passed down as context
         tour: node,
-        logo: queryResults.data.allContentfulIndexPageImages.edges[0].node.logo
+        logo: queryResults.data.allContentfulLayout.edges[0].node.logo
           .gatsbyImage,
         footerBackground:
-          queryResults.data.allContentfulIndexPageImages.edges[0].node
+          queryResults.data.allContentfulLayout.edges[0].node
             .footerBackground.url,
         facebook:
-          queryResults.data.allContentfulIndexPageImages.edges[0].node.facebook,
+          queryResults.data.allContentfulLayout.edges[0].node.facebook,
         instagram:
-          queryResults.data.allContentfulIndexPageImages.edges[0].node
+          queryResults.data.allContentfulLayout.edges[0].node
             .instagram,
         email:
-          queryResults.data.allContentfulIndexPageImages.edges[0].node.email,
+          queryResults.data.allContentfulLayout.edges[0].node.email,
       },
     });
   });
