@@ -4,13 +4,13 @@ import Layout from "../../components/layout";
 const index = ({ data }) => {
   return (
     <Layout
-      logo={data.allContentfulIndexPageImages.edges[0].node.logo.gatsbyImage}
+      logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
       footerBackground={
-        data.allContentfulIndexPageImages.edges[0].node.footerBackground.url
+        data.allContentfulLayout.edges[0].node.footerBackground.url
       }
-      facebook={data.allContentfulIndexPageImages.edges[0].node.facebook}
-      instagram={data.allContentfulIndexPageImages.edges[0].node.instagram}
-      email={data.allContentfulIndexPageImages.edges[0].node.email}
+      facebook={data.allContentfulLayout.edges[0].node.facebook}
+      instagram={data.allContentfulLayout.edges[0].node.instagram}
+      email={data.allContentfulLayout.edges[0].node.email}
     >
         Contact
     </Layout>
@@ -19,26 +19,18 @@ const index = ({ data }) => {
 
 export const query = graphql`
   query MyQuery {
-    allContentfulIndexPageImages {
+    allContentfulLayout {
       edges {
         node {
+          logo {
+            gatsbyImage(width: 150, formats: WEBP)
+          }
+          footerBackground {
+            url
+          }
           email
           facebook
           instagram
-          heroText1
-          heroText2
-          footerBackground {
-            gatsbyImageData(width: 1920)
-            url
-          }
-          indexHero {
-            gatsbyImageData(width: 1920)
-            url
-          }
-          logo {
-            gatsbyImage(formats: WEBP, width: 150)
-            url
-          }
         }
       }
     }
