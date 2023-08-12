@@ -10,13 +10,13 @@ const IndexPage = ({ data }) => {
   const tourList = Array.from(data.allContentfulTour.edges, (x) => x);
   return (
     <Layout
-      logo={data.allContentfulIndexPageImages.edges[0].node.logo.gatsbyImage}
+      logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
       footerBackground={
-        data.allContentfulIndexPageImages.edges[0].node.footerBackground.url
+        data.allContentfulLayout.edges[0].node.footerBackground.url
       }
-      facebook={data.allContentfulIndexPageImages.edges[0].node.facebook}
-      instagram={data.allContentfulIndexPageImages.edges[0].node.instagram}
-      email={data.allContentfulIndexPageImages.edges[0].node.email}
+      facebook={data.allContentfulLayout.edges[0].node.facebook}
+      instagram={data.allContentfulLayout.edges[0].node.instagram}
+      email={data.allContentfulLayout.edges[0].node.email}
     >
       <HeroComponet
         image={data.allContentfulIndexPageContent.edges[0].node.indexHero.url}
@@ -135,26 +135,18 @@ export const query = graphql`
         }
       }
     }
-    allContentfulIndexPageImages {
+    allContentfulLayout {
       edges {
         node {
+          logo {
+            gatsbyImage(width: 150, formats: WEBP)
+          }
+          footerBackground {
+            url
+          }
           email
           facebook
           instagram
-          heroText1
-          heroText2
-          footerBackground {
-            gatsbyImageData(width: 1920)
-            url
-          }
-          indexHero {
-            gatsbyImageData(width: 1920)
-            url
-          }
-          logo {
-            gatsbyImage(formats: WEBP, width: 150)
-            url
-          }
         }
       }
     }

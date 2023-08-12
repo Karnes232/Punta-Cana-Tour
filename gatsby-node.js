@@ -28,19 +28,18 @@ exports.createPages = async ({ graphql, actions }) => {
           url
         }
       }
-      allContentfulIndexPageImages {
+      allContentfulLayout {
         edges {
           node {
-            email
-            facebook
-            instagram
+            logo {
+              gatsbyImage(width: 150, formats: WEBP)
+            }
             footerBackground {
               url
             }
-            logo {
-              gatsbyImage(formats: WEBP, width: 150)
-              url
-            }
+            email
+            facebook
+            instagram
           }
         }
       }
