@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../components/layout";
-import HeroImage from "../components/TourPageComponents/HeroImage";
+import HeroComponent from "../components/HeroComponent/HeroComponent";
 const tour = ({ pageContext }) => {
   const { tour, logo, footerBackground, facebook, instagram, email } =
     pageContext;
@@ -13,7 +13,18 @@ const tour = ({ pageContext }) => {
       instagram={instagram}
       email={email}
     >
-      <HeroImage image={tour.mainImage?.url} />
+      <HeroComponent
+        imageUrl={
+          tour.mainImage?.url
+        }
+        gImage={
+          tour.mainImage?.gatsbyImage
+        }
+        heroText=""
+        heroText2=""
+        button={false}
+      />
+    
       <h1 className="mt-5">{tour.name}</h1>
       <h1>{tour.price}</h1>
       <h1>{tour.included}</h1>
