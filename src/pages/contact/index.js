@@ -1,6 +1,8 @@
 import React from "react";
 import { graphql } from "gatsby";
 import Layout from "../../components/layout";
+import HeroComponent from "../../components/HeroComponent/HeroComponent";
+import ContactForm from "../../components/ContactFormComponent/ContactForm";
 const index = ({ data }) => {
   return (
     <Layout
@@ -11,8 +13,18 @@ const index = ({ data }) => {
       facebook={data.allContentfulLayout.edges[0].node.facebook}
       instagram={data.allContentfulLayout.edges[0].node.instagram}
       email={data.allContentfulLayout.edges[0].node.email}
-    >
-      Contact
+    ><HeroComponent
+        imageUrl={
+          data.allContentfulAboutPageContent.edges[0].node.aboutHero.file.url
+        }
+        gImage={
+          data.allContentfulAboutPageContent.edges[0].node.aboutHero.gatsbyImage
+        }
+        heroText=""
+        heroText2=""
+        button={false}
+      />
+      <ContactForm />
     </Layout>
   );
 };
@@ -34,9 +46,21 @@ export const query = graphql`
         }
       }
     }
+    allContentfulAboutPageContent {
+      edges {
+        node {
+          aboutHero {
+            gatsbyImage(width: 1920, formats: WEBP)
+            file {
+              url
+            }
+          }
+        }
+      }
+    }
   }
 `;
 
-export const Head = () => <title>About Page</title>;
+export const Head = () => <title>Contact Page</title>;
 
 export default index;

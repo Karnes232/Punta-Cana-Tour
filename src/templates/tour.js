@@ -60,3 +60,5 @@ const tour = ({ pageContext }) => {
 };
 
 export default tour;
+
+export const Head = ({ pageContext }) => <title>{pageContext.tour.name} Page</title>;

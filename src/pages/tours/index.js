@@ -99,6 +99,6 @@ export const query = graphql`
   }
 `;
 
-export const Head = () => <title>About Page</title>;
+export const Head = () => <title>Tour Page</title>;
 
 export default index;
