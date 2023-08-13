@@ -4,8 +4,8 @@
 require("dotenv").config();
 module.exports = {
   siteMetadata: {
-    title: `ThrillQuest`,
-    siteUrl: `https://www.thrillquestpuntacana.com`,
+    title: `Punta Cana Tour Store`,
+    siteUrl: `https://puntacanatourstore.com/`,
   },
   plugins: [
     "gatsby-plugin-image",
