@@ -2,7 +2,6 @@ import React from "react";
 import BackgroundImage from "react-background-image";
 import { Link } from "gatsby";
 const HeroComponet = ({ image, heroText, heroText2 }) => {
-
   return (
     <>
       <div className="absolute top-0 w-full h-[50vh] lg:h-[80vh] xl:h-screen">

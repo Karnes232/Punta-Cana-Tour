@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { graphql } from "gatsby";
 import Layout from "../../components/layout";
 const index = ({ data }) => {
@@ -12,10 +12,10 @@ const index = ({ data }) => {
       instagram={data.allContentfulLayout.edges[0].node.instagram}
       email={data.allContentfulLayout.edges[0].node.email}
     >
-        Contact
+      Contact
     </Layout>
-  )
-}
+  );
+};
 
 export const query = graphql`
   query MyQuery {
@@ -39,4 +39,4 @@ export const query = graphql`
 
 export const Head = () => <title>About Page</title>;
 
-export default index
+export default index;

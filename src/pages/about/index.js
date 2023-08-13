@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 import { graphql } from "gatsby";
 import Layout from "../../components/layout";
-import HeroComponet from '../../components/HeroComponent/HeroComponet';
-import TextComponent from '../../components/TextComponent/TextComponent';
-import SwiperCarousel from '../../components/BackgroundCarousel/SwiperCarousel';
+import HeroComponet from "../../components/HeroComponent/HeroComponet";
+import TextComponent from "../../components/TextComponent/TextComponent";
+import SwiperCarousel from "../../components/BackgroundCarousel/SwiperCarousel";
+import HeroComponent from "../../components/HeroComponent/HeroComponent";
 const index = ({ data }) => {
-  
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -16,10 +16,16 @@ const index = ({ data }) => {
       instagram={data.allContentfulLayout.edges[0].node.instagram}
       email={data.allContentfulLayout.edges[0].node.email}
     >
-    <HeroComponet
-       image={data.allContentfulAboutPageContent.edges[0].node.aboutHero.file.url}
+      <HeroComponent
+        imageUrl={
+          data.allContentfulAboutPageContent.edges[0].node.aboutHero.file.url
+        }
+        gImage={
+          data.allContentfulAboutPageContent.edges[0].node.aboutHero.gatsbyImage
+        }
         heroText={data.allContentfulAboutPageContent.edges[0].node.heroText1}
         heroText2={data.allContentfulAboutPageContent.edges[0].node.heroText2}
+        button={false}
       />
       <TextComponent
         title={data.allContentfulAboutPageContent.edges[0].node.title}
@@ -53,8 +59,8 @@ const index = ({ data }) => {
         }
       />
     </Layout>
-  )
-}
+  );
+};
 
 export const query = graphql`
   query MyQuery {
@@ -92,6 +98,7 @@ export const query = graphql`
           heroText1
           heroText2
           aboutHero {
+            gatsbyImage(width: 1920, formats: WEBP)
             file {
               url
             }
@@ -99,7 +106,7 @@ export const query = graphql`
         }
       }
     }
-    allContentfulSwiperPhotoCarousel(filter: {page: {eq: "About"}}) {
+    allContentfulSwiperPhotoCarousel(filter: { page: { eq: "About" } }) {
       edges {
         node {
           photoList {
@@ -115,4 +122,4 @@ export const query = graphql`
 
 export const Head = () => <title>About Page</title>;
 
-export default index
+export default index;

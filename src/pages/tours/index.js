@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 import { graphql } from "gatsby";
 import Layout from "../../components/layout";
-import TourHeroComponent from '../../components/HeroComponent/TourHeroComponet';
-import TextComponent from '../../components/TextComponent/TextComponent';
-import TourCard from '../../components/TourCardComponent/TourCard';
+import TourHeroComponent from "../../components/HeroComponent/TourHeroComponet";
+import TextComponent from "../../components/TextComponent/TextComponent";
+import TourCard from "../../components/TourCardComponent/TourCard";
 const index = ({ data }) => {
   return (
     <Layout
@@ -15,8 +15,10 @@ const index = ({ data }) => {
       instagram={data.allContentfulLayout.edges[0].node.instagram}
       email={data.allContentfulLayout.edges[0].node.email}
     >
-    <TourHeroComponent
-        image={data.allContentfulTourPageContent.edges[0].node.mainImage.fields.file.en_US.url}
+      <TourHeroComponent
+        image={
+          data.allContentfulTourPageContent.edges[0].node.mainImage.file.url
+        }
       />
       <TextComponent
         title={data.allContentfulTourPageContent.edges[0].node.title}
@@ -31,10 +33,9 @@ const index = ({ data }) => {
           <TourCard tour={tour} key={index} />
         ))}
       </div>
-  
     </Layout>
-  )
-}
+  );
+};
 
 export const query = graphql`
   query MyQuery {
@@ -68,32 +69,28 @@ export const query = graphql`
           }
           description1 {
             description1
-        }
-      }
-    }
-  }
-  allContentfulTourPageContent {
-    edges {
-      node {
-        mainImage {
-          fields {
-            file {
-              en_US {
-                url
-              }
-            }
           }
         }
-        title
-        paragraph1 {
-          paragraph1
+      }
+    }
+    allContentfulTourPageContent {
+      edges {
+        node {
+          mainImage {
+            file {
+              url
+            }
+          }
+          title
+          paragraph1 {
+            paragraph1
+          }
         }
       }
     }
   }
-}
 `;
 
 export const Head = () => <title>About Page</title>;
 
-export default index
+export default index;

@@ -5,6 +5,7 @@ import TextComponent from "../components/TextComponent/TextComponent";
 import SwiperCarousel from "../components/BackgroundCarousel/SwiperCarousel";
 import { graphql } from "gatsby";
 import FeaturedTours from "../components/FeaturedToursComponent/FeaturedTours";
+import HeroComponent from "../components/HeroComponent/HeroComponent";
 
 const IndexPage = ({ data }) => {
   const tourList = Array.from(data.allContentfulTour.edges, (x) => x);
@@ -18,10 +19,16 @@ const IndexPage = ({ data }) => {
       instagram={data.allContentfulLayout.edges[0].node.instagram}
       email={data.allContentfulLayout.edges[0].node.email}
     >
-      <HeroComponet
-        image={data.allContentfulIndexPageContent.edges[0].node.indexHero.url}
+      <HeroComponent
+        imageUrl={
+          data.allContentfulIndexPageContent.edges[0].node.indexHero.url
+        }
+        gImage={
+          data.allContentfulIndexPageContent.edges[0].node.indexHero.gatsbyImage
+        }
         heroText={data.allContentfulIndexPageContent.edges[0].node.heroText1}
         heroText2={data.allContentfulIndexPageContent.edges[0].node.heroText2}
+        button={true}
       />
       <TextComponent
         title={data.allContentfulIndexPageContent.edges[0].node.title}
@@ -89,7 +96,7 @@ const IndexPage = ({ data }) => {
 export const query = graphql`
   query MyQuery {
     allContentfulIndexPageContent {
-      edges {           
+      edges {
         node {
           title
           paragraph1 {
@@ -118,13 +125,14 @@ export const query = graphql`
           }
           indexHero {
             url
+            gatsbyImage(width: 1920, formats: WEBP)
           }
           heroText1
           heroText2
         }
       }
     }
-    allContentfulSwiperPhotoCarousel (filter: {page: {eq: "Index"}}){
+    allContentfulSwiperPhotoCarousel(filter: { page: { eq: "Index" } }) {
       edges {
         node {
           photoList {

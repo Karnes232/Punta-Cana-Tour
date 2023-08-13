@@ -23,11 +23,14 @@ const TourCard = ({ tour, featured }) => {
             </p>
           </div>
           <div className="px-6 pt-4 h-24 pb-2 flex items-end flex-wrap">
-          {category.map((category, index) => (
-            <span className="flex justify-center items-center h-7 min-w-fit bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2" key={index}>
-              {category}
-            </span>
-        ))}
+            {category.map((category, index) => (
+              <span
+                className="flex justify-center items-center h-7 min-w-fit bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+                key={index}
+              >
+                {category}
+              </span>
+            ))}
           </div>
         </div>
       </Link>

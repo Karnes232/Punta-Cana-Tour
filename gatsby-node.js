@@ -8,24 +8,29 @@ exports.createPages = async ({ graphql, actions }) => {
         nodes {
           name
           price
+          url
+          included
+          importantNotes
+          duration1
+          featured
+          category
+          images {
+            url
+            gatsbyImage(width: 1920, formats: WEBP)
+          }
           mainImage {
-            gatsbyImage(width: 2000, formats: WEBP)
-            file {
-              url
-            }
+            url
+            gatsbyImage(width: 1920, formats: WEBP)
           }
           description1 {
             description1
           }
-          included
-          duration1
-          images {
-            gatsbyImage(width: 2000, formats: WEBP)
-            file {
-              url
-            }
+          tourPageDescription1 {
+            tourPageDescription1
           }
-          url
+          tourPageDescription2 {
+            tourPageDescription2
+          }
         }
       }
       allContentfulLayout {
@@ -56,15 +61,12 @@ exports.createPages = async ({ graphql, actions }) => {
         logo: queryResults.data.allContentfulLayout.edges[0].node.logo
           .gatsbyImage,
         footerBackground:
-          queryResults.data.allContentfulLayout.edges[0].node
-            .footerBackground.url,
-        facebook:
-          queryResults.data.allContentfulLayout.edges[0].node.facebook,
+          queryResults.data.allContentfulLayout.edges[0].node.footerBackground
+            .url,
+        facebook: queryResults.data.allContentfulLayout.edges[0].node.facebook,
         instagram:
-          queryResults.data.allContentfulLayout.edges[0].node
-            .instagram,
-        email:
-          queryResults.data.allContentfulLayout.edges[0].node.email,
+          queryResults.data.allContentfulLayout.edges[0].node.instagram,
+        email: queryResults.data.allContentfulLayout.edges[0].node.email,
       },
     });
   });
