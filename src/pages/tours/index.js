@@ -1,9 +1,9 @@
 import React from "react";
 import { graphql } from "gatsby";
 import Layout from "../../components/layout";
-import TourHeroComponent from "../../components/HeroComponent/TourHeroComponet";
 import TextComponent from "../../components/TextComponent/TextComponent";
 import TourCard from "../../components/TourCardComponent/TourCard";
+import HeroComponent from "../../components/HeroComponent/HeroComponent";
 const index = ({ data }) => {
   return (
     <Layout
@@ -14,12 +14,19 @@ const index = ({ data }) => {
       facebook={data.allContentfulLayout.edges[0].node.facebook}
       instagram={data.allContentfulLayout.edges[0].node.instagram}
       email={data.allContentfulLayout.edges[0].node.email}
-    >
-      <TourHeroComponent
-        image={
+    > 
+     <HeroComponent
+        imageUrl={
           data.allContentfulTourPageContent.edges[0].node.mainImage.file.url
         }
+        gImage={
+          data.allContentfulTourPageContent.edges[0].node.mainImage.gatsbyImage
+        }
+        heroText=""
+        heroText2=""
+        button={false}
       />
+    
       <TextComponent
         title={data.allContentfulTourPageContent.edges[0].node.title}
         paragraph={
@@ -77,6 +84,7 @@ export const query = graphql`
       edges {
         node {
           mainImage {
+            gatsbyImage(width: 1920, formats: WEBP)
             file {
               url
             }
