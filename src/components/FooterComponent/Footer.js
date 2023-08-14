@@ -2,11 +2,28 @@ import React from "react";
 import Copyright from "./Copyright";
 import Sitemap from "./Sitemap";
 import SocialMedia from "./SocialMedia";
+import useWindowWidth from "../../customHooks/useWindowWidth";
 const Footer = ({ footerBackground, facebook, instagram, email, gImage }) => {
-  console.log(gImage);
-  const FooterStyles = {
-    backgroundImage: "url(" + footerBackground + ")",
-  };
+  const windowWidth = useWindowWidth();
+  let image = gImage.images.fallback.srcSet.split(",");
+  const imageSrc = [];
+
+  image.forEach((element) => {
+    const image = element.split(" ");
+    const imageObject = { imageSrc: image[0], imageWidth: image[1] };
+    imageSrc.push(imageObject);
+  });
+  let FooterStyles = {};
+
+  if (windowWidth < 1500) {
+    FooterStyles = {
+      backgroundImage: "url(" + imageSrc[1].imageSrc + ")",
+    };
+  } else {
+    FooterStyles = {
+      backgroundImage: "url(" + imageSrc[2].imageSrc + ")",
+    };
+  }
   return (
     <footer
       style={FooterStyles}
