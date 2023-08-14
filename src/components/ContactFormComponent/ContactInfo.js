@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 const ContactInfo = ({ name, setName }) => {
   return (
@@ -12,7 +12,7 @@ const ContactInfo = ({ name, setName }) => {
           placeholder=" "
           required
           value={name}
-          onChange={e => setName(e.target.value)}
+          onChange={(e) => setName(e.target.value)}
         />
         <label htmlFor="name" className="contactFormLabel">
           Full Name
@@ -31,11 +31,9 @@ const ContactInfo = ({ name, setName }) => {
           Email address
         </label>
       </div>
-      <div className="relative z-0 mb-6 w-full group">
-  
-      </div>
+      <div className="relative z-0 mb-6 w-full group"></div>
     </>
-  )
-}
+  );
+};
 
-export default ContactInfo
+export default ContactInfo;

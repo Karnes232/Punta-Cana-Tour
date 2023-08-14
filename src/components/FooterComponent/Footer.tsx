@@ -2,7 +2,8 @@ import React from "react";
 import Copyright from "./Copyright";
 import Sitemap from "./Sitemap";
 import SocialMedia from "./SocialMedia";
-const Footer = ({ footerBackground, facebook, instagram, email }) => {
+const Footer = ({ footerBackground, facebook, instagram, email, gImage }) => {
+  console.log(gImage);
   const FooterStyles = {
     backgroundImage: "url(" + footerBackground + ")",
   };

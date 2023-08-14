@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 const MoreInfo = () => {
   return (
@@ -19,7 +19,7 @@ const MoreInfo = () => {
         ></textarea>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default MoreInfo
+export default MoreInfo;

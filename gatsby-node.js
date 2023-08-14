@@ -41,6 +41,7 @@ exports.createPages = async ({ graphql, actions }) => {
             }
             footerBackground {
               url
+              gatsbyImage(width: 1920, formats: WEBP)
             }
             email
             facebook
@@ -67,6 +68,9 @@ exports.createPages = async ({ graphql, actions }) => {
         instagram:
           queryResults.data.allContentfulLayout.edges[0].node.instagram,
         email: queryResults.data.allContentfulLayout.edges[0].node.email,
+        gImage:
+          queryResults.data.allContentfulLayout.edges[0].node.footerBackground
+            .gatsbyImage,
       },
     });
   });

@@ -1,9 +1,9 @@
-import React, { useState } from "react"
-import ContactInfo from "./ContactInfo"
-import MoreInfo from "./MoreInfo"
+import React, { useState } from "react";
+import ContactInfo from "./ContactInfo";
+import MoreInfo from "./MoreInfo";
 
 const ContactForm = () => {
-  const [name, setName] = useState("")
+  const [name, setName] = useState("");
   return (
     <>
       <form
@@ -28,7 +28,7 @@ const ContactForm = () => {
         </button>
       </form>
     </>
-  )
-}
+  );
+};
 
-export default ContactForm
+export default ContactForm;

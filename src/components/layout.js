@@ -9,6 +9,7 @@ export default function Layout({
   facebook,
   instagram,
   email,
+  gImage,
 }) {
   return (
     <div className="min-h-screen font-montserrat flex flex-col justify-between overflow-x-hidden">
@@ -19,6 +20,7 @@ export default function Layout({
         facebook={facebook}
         instagram={instagram}
         email={email}
+        gImage={gImage}
       />
     </div>
   );

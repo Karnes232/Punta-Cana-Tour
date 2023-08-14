@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../components/layout";
 import HeroComponent from "../components/HeroComponent/HeroComponent";
 const tour = ({ pageContext }) => {
-  const { tour, logo, footerBackground, facebook, instagram, email } =
+  const { tour, logo, footerBackground, facebook, instagram, email, gImage } =
     pageContext;
   console.log(tour);
   return (
@@ -12,19 +12,16 @@ const tour = ({ pageContext }) => {
       facebook={facebook}
       instagram={instagram}
       email={email}
+      gImage={gImage}
     >
       <HeroComponent
-        imageUrl={
-          tour.mainImage?.url
-        }
-        gImage={
-          tour.mainImage?.gatsbyImage
-        }
+        imageUrl={tour.mainImage?.url}
+        gImage={tour.mainImage?.gatsbyImage}
         heroText=""
         heroText2=""
         button={false}
       />
-    
+
       <h1 className="mt-5">{tour.name}</h1>
       <h1>{tour.price}</h1>
       <h1>{tour.included}</h1>
@@ -61,4 +58,6 @@ const tour = ({ pageContext }) => {
 
 export default tour;
 
-export const Head = ({ pageContext }) => <title>{pageContext.tour.name} Page</title>;
+export const Head = ({ pageContext }) => (
+  <title>{pageContext.tour.name} Page</title>
+);
