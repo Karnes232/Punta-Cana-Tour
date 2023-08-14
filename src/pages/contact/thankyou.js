@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const thankyou = () => {
+const Thankyou = () => {
   const [name, setName] = useState("")
   useEffect(() => {
     const searchParams = new URLSearchParams(document.location.search)
@@ -9,4 +9,4 @@ const thankyou = () => {
   return <div>{name}</div>;
 };
 
-export default thankyou;
+export default Thankyou;
