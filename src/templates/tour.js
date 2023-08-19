@@ -30,15 +30,18 @@ const tour = ({ pageContext }) => {
         
           <TourInfo name={tour.name} category={tour.category} />
           <Button text="Book Now" customClass="mb-2" />
-          <Price price={tour.price} />
+          <Price price={tour.price} duration={tour.duration1}/>
           <TextComponent
-            paragraph={tour.tourPageDescription1.tourPageDescription1}
+            paragraph={tour.description1.description1}
           />
    
       </div>
       <SwiperCarousel className="mt-5" photoList={tour.images} />
       <div className="max-w-6xl my-5 mx-5 md:mx-10 xl:mx-auto">
       <TextComponent
+            paragraph={tour.tourPageDescription1.tourPageDescription1}
+          />
+          <TextComponent
             paragraph={tour.tourPageDescription2.tourPageDescription2}
           />
       </div>
