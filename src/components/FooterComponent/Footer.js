@@ -5,10 +5,10 @@ import SocialMedia from "./SocialMedia";
 import useWindowWidth from "../../customHooks/useWindowWidth";
 const Footer = ({ footerBackground, facebook, instagram, email, gImage }) => {
   const windowWidth = useWindowWidth();
-  let image = gImage.images.fallback.srcSet.split(",");
+  let image = gImage?.images.fallback.srcSet.split(",");
   const imageSrc = [];
 
-  image.forEach((element) => {
+  image?.forEach((element) => {
     const image = element.split(" ");
     const imageObject = { imageSrc: image[0], imageWidth: image[1] };
     imageSrc.push(imageObject);
@@ -17,11 +17,11 @@ const Footer = ({ footerBackground, facebook, instagram, email, gImage }) => {
 
   if (windowWidth < 1500) {
     FooterStyles = {
-      backgroundImage: "url(" + imageSrc[1].imageSrc + ")",
+      backgroundImage: "url(" + imageSrc[1]?.imageSrc + ")",
     };
   } else {
     FooterStyles = {
-      backgroundImage: "url(" + imageSrc[2].imageSrc + ")",
+      backgroundImage: "url(" + imageSrc[2]?.imageSrc + ")",
     };
   }
   return (

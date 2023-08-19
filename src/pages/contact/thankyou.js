@@ -2,12 +2,12 @@ import { graphql } from "gatsby";
 import React, { useEffect, useState } from "react";
 import Layout from "../../components/layout";
 
-const Thankyou = ({data}) => {
-  const [name, setName] = useState("")
+const Thankyou = ({ data }) => {
+  const [name, setName] = useState("");
   useEffect(() => {
-    const searchParams = new URLSearchParams(document.location.search)
-    setName(searchParams.get("name"))
-  }, [])
+    const searchParams = new URLSearchParams(document.location.search);
+    setName(searchParams.get("name"));
+  }, []);
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -21,9 +21,9 @@ const Thankyou = ({data}) => {
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
     >
-    {name}
+      {name}
     </Layout>
-  )
+  );
 };
 
 export const query = graphql`

@@ -10,6 +10,7 @@ exports.createPages = async ({ graphql, actions }) => {
           price
           url
           included
+          whatToBring
           importantNotes
           duration1
           featured
