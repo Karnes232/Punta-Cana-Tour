@@ -6,6 +6,7 @@ import Price from "../components/TourPageComponents/Price";
 import TourInfo from "../components/TourPageComponents/TourInfo";
 import TextComponent from "../components/TourPageComponents/TextComponent";
 import SwiperCarousel from "../components/TourPageComponents/SwiperCarousel";
+import ListGroup from "../components/TourPageComponents/ListGroup";
 const tour = ({ pageContext }) => {
   const { tour, logo, footerBackground, facebook, instagram, email, gImage } =
     pageContext;
@@ -27,25 +28,23 @@ const tour = ({ pageContext }) => {
         button={false}
       />
       <div className="max-w-6xl my-5 mx-5 md:mx-10 xl:mx-auto">
-        
-          <TourInfo name={tour.name} category={tour.category} />
-          <Button text="Book Now" customClass="mb-2" />
-          <Price price={tour.price} duration={tour.duration1}/>
-          <TextComponent
-            paragraph={tour.description1.description1}
-          />
-   
+        <TourInfo name={tour.name} category={tour.category} />
+        <Button text="Book Now" customClass="mb-2" />
+        <Price price={tour.price} duration={tour.duration1} />
+        <TextComponent paragraph={tour.description1.description1} />
       </div>
       <SwiperCarousel className="mt-5" photoList={tour.images} />
       <div className="max-w-6xl my-5 mx-5 md:mx-10 xl:mx-auto">
-      <TextComponent
-            paragraph={tour.tourPageDescription1.tourPageDescription1}
-          />
-          <TextComponent
-            paragraph={tour.tourPageDescription2.tourPageDescription2}
-          />
+        <TextComponent
+          paragraph={tour.tourPageDescription1.tourPageDescription1}
+        />
+        <TextComponent
+          paragraph={tour.tourPageDescription2.tourPageDescription2}
+        />
+        
+         <ListGroup tour={tour} />
+       
       </div>
-      <div className="min-h-screen"></div>
     </Layout>
   );
 };
