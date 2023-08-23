@@ -19,15 +19,19 @@ const Index = ({ data }) => {
     "Wellness & Spa",
     "Nightlife",
   ];
+
+
+  
   
   const setFilter = (e) => {
-    setSelectedCategory(e.target.value)
+
+    setSelectedCategory(e.target.dataset.category)
     const filteredTourList = backendTourList.filter(tour => {
       if (e.target.innerText === "All Tours") {
         return tour
       }
       const categoryList = tour.node.category
-    return categoryList.includes(e.target.value)
+    return categoryList.includes(e.target.dataset.category)
     });
     setTourList(filteredTourList.sort(() => Math.random() - 0.5));
 
@@ -70,7 +74,6 @@ const Index = ({ data }) => {
         <nav className="flex flex-row items-center overflow-x-scroll xl:overflow-x-auto whitespace-nowrap mx-5 xl:justify-center">
           {/* <button onClick={()=>setFilter('All')}>All</button> */}
           {categories.map((category, index) => {
-            console.log(category)
             let active = "";
             if (category === selectedCategory) {
               active = "font-extrabold";
@@ -81,7 +84,8 @@ const Index = ({ data }) => {
                 data-category={category}
                 onClick={setFilter}
                 value={category}
-                className={`cursor-pointer no-underline flex items-center px-5 h-10 ${active} transition-all duration-300`}
+                translate="no"
+                className={`cursor-pointer no-underline flex items-center px-5 h-10 ${active} transition-all duration-300 translatedText `}
               >
                 {category}
               </button>
