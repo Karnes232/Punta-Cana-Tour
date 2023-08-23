@@ -6,7 +6,9 @@ import TourCard from "../../components/TourCardComponent/TourCard";
 import HeroComponent from "../../components/HeroComponent/HeroComponent";
 const Index = ({ data }) => {
   const [tourList, setTourList] = useState(data.allContentfulTour.edges);
+  const [selectedCategory, setSelectedCategory] = useState("All Tours");
   const categories = [
+    "All Tours",
     "Water Sports",
     "Land & Adventure",
     "Sightseeing & Cultural",
@@ -14,6 +16,9 @@ const Index = ({ data }) => {
     "Wellness & Spa",
     "Nightlife",
   ];
+  const setFilter = (e) => {
+    setSelectedCategory(e.target.innerText)
+  };
   // const filteredTourList = tourList.filter(tour => {
   //   return tour.node.category
   // })
@@ -54,12 +59,18 @@ const Index = ({ data }) => {
       <div>
         <nav className="flex flex-row items-center overflow-x-scroll xl:overflow-x-auto whitespace-nowrap mx-5 xl:justify-center">
           {/* <button onClick={()=>setFilter('All')}>All</button> */}
-          <button className="cursor-pointer no-underline flex items-center px-5 h-10">
-            All Tours
-          </button>
           {categories.map((category, index) => {
+            let active = "";
+            if (category === selectedCategory) {
+              active = "font-extrabold";
+            }
             return (
-              <button key={index} className="cursor-pointer no-underline flex items-center px-5 h-10">
+              <button
+                key={index}
+                // data-category={category}
+                onClick={setFilter}
+                className={`cursor-pointer no-underline flex items-center px-5 h-10 ${active} transition-all duration-300`}
+              >
                 {category}
               </button>
             );
