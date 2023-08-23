@@ -11,7 +11,6 @@ import Seo from "../components/seo";
 const tour = ({ pageContext }) => {
   const { tour, logo, footerBackground, facebook, instagram, email, gImage } =
     pageContext;
-  console.log(tour);
   return (
     <Layout
       logo={logo}
@@ -57,7 +56,7 @@ export const Head = ({ pageContext }) => {
     <Seo
       title={pageContext.tour.name}
       description={pageContext.tour.description1.description1}
-      //keywords={keywords.join(', ')}
+      keywords={pageContext.tour.keywords?.join(', ')}
     />
     <link rel="canonical" href={`https://puntacanatourstore.com/tours/${pageContext.tour.url}`} />
 

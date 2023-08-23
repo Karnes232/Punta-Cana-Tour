@@ -195,7 +195,6 @@ export const query = graphql`
 
 export const Head = ({data}) => {
   const { title, description, keywords } = data.allContentfulSeo.nodes[0]
-  console.log(keywords.join(', '))
 return (
   <>
 

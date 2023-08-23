@@ -15,6 +15,7 @@ exports.createPages = async ({ graphql, actions }) => {
           duration1
           featured
           category
+          keywords
           images {
             url
             gatsbyImage(width: 1920, formats: WEBP)
