@@ -21,14 +21,13 @@ const Index = ({ data }) => {
   ];
   
   const setFilter = (e) => {
-    console.log(e.target.dataset.category)
-    setSelectedCategory(e.target.dataset.category)
+    setSelectedCategory(e.target.value)
     const filteredTourList = backendTourList.filter(tour => {
       if (e.target.innerText === "All Tours") {
         return tour
       }
       const categoryList = tour.node.category
-    return categoryList.includes(e.target.dataset.category)
+    return categoryList.includes(e.target.value)
     });
     setTourList(filteredTourList.sort(() => Math.random() - 0.5));
 
@@ -71,6 +70,7 @@ const Index = ({ data }) => {
         <nav className="flex flex-row items-center overflow-x-scroll xl:overflow-x-auto whitespace-nowrap mx-5 xl:justify-center">
           {/* <button onClick={()=>setFilter('All')}>All</button> */}
           {categories.map((category, index) => {
+            console.log(category)
             let active = "";
             if (category === selectedCategory) {
               active = "font-extrabold";
@@ -80,6 +80,7 @@ const Index = ({ data }) => {
                 key={index}
                 data-category={category}
                 onClick={setFilter}
+                value={category}
                 className={`cursor-pointer no-underline flex items-center px-5 h-10 ${active} transition-all duration-300`}
               >
                 {category}
