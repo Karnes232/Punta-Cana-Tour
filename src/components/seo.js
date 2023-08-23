@@ -26,7 +26,7 @@ function Seo({ description, title, keywords, children, schemaMarkup }) {
 
   return (
     <>
-      <title>{defaultTitle ? `${defaultTitle} | ${title}` : title}</title>
+      <title>{defaultTitle ? `${title} | ${defaultTitle}` : title}</title>
       <meta name="description" content={description} />
       <meta property="og:title" content={defaultTitle} />
       <meta property="og:description" content={description} />
