@@ -4,7 +4,10 @@ import Layout from "../../components/layout";
 import TextComponent from "../../components/TextComponent/TextComponent";
 import TourCard from "../../components/TourCardComponent/TourCard";
 import HeroComponent from "../../components/HeroComponent/HeroComponent";
+
+
 const Index = ({ data }) => {
+  const backendTourList = data.allContentfulTour.edges
   const [tourList, setTourList] = useState(data.allContentfulTour.edges);
   const [selectedCategory, setSelectedCategory] = useState("All Tours");
   const categories = [
@@ -16,13 +19,20 @@ const Index = ({ data }) => {
     "Wellness & Spa",
     "Nightlife",
   ];
+  
   const setFilter = (e) => {
     setSelectedCategory(e.target.innerText)
-  };
-  // const filteredTourList = tourList.filter(tour => {
-  //   return tour.node.category
-  // })
-  // console.log(filteredTourList)
+    const filteredTourList = backendTourList.filter(tour => {
+      if (e.target.innerText === "All Tours") {
+        return tour
+      }
+      const categoryList = tour.node.category
+    return categoryList.includes(e.target.innerText)
+    });
+    setTourList(filteredTourList);
+
+    };
+
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
