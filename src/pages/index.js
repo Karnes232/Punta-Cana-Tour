@@ -1,6 +1,5 @@
 import * as React from "react";
 import Layout from "../components/layout";
-import HeroComponet from "../components/HeroComponent/HeroComponet";
 import TextComponent from "../components/TextComponent/TextComponent";
 import SwiperCarousel from "../components/BackgroundCarousel/SwiperCarousel";
 import { graphql } from "gatsby";

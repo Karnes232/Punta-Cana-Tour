@@ -7,6 +7,7 @@ import TourInfo from "../components/TourPageComponents/TourInfo";
 import TextComponent from "../components/TourPageComponents/TextComponent";
 import SwiperCarousel from "../components/TourPageComponents/SwiperCarousel";
 import ListGroup from "../components/TourPageComponents/ListGroup";
+import Seo from "../components/seo";
 const tour = ({ pageContext }) => {
   const { tour, logo, footerBackground, facebook, instagram, email, gImage } =
     pageContext;
@@ -50,6 +51,15 @@ const tour = ({ pageContext }) => {
 
 export default tour;
 
-export const Head = ({ pageContext }) => (
-  <title>{pageContext.tour.name} Page</title>
-);
+export const Head = ({ pageContext }) => {
+  return(
+  <>
+    <Seo
+      title={pageContext.tour.name}
+      description={pageContext.tour.description1.description1}
+      //keywords={keywords.join(', ')}
+    />
+    <link rel="canonical" href={`https://puntacanatourstore.com/tours/${pageContext.tour.url}`} />
+
+  </>
+)}
