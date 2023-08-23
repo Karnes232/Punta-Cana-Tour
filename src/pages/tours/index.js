@@ -52,7 +52,7 @@ const Index = ({ data }) => {
         pClassName="mb-4 lg:mb-0"
       />
       <div>
-        <nav className="flex flex-row items-center overflow-x-auto whitespace-nowrap mx-5 2xl:justify-center">
+        <nav className="flex flex-row items-center overflow-x-scroll whitespace-nowrap mx-5 2xl:justify-center">
           {/* <button onClick={()=>setFilter('All')}>All</button> */}
           <button className="cursor-pointer no-underline flex items-center px-5 h-10">
             All Tours
