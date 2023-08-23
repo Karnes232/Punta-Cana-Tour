@@ -8,7 +8,7 @@ import HeroComponent from "../../components/HeroComponent/HeroComponent";
 
 const Index = ({ data }) => {
   const backendTourList = data.allContentfulTour.edges
-  const [tourList, setTourList] = useState(data.allContentfulTour.edges);
+  const [tourList, setTourList] = useState(data.allContentfulTour.edges.sort(() => Math.random() - 0.5));
   const [selectedCategory, setSelectedCategory] = useState("All Tours");
   const categories = [
     "All Tours",
@@ -29,7 +29,7 @@ const Index = ({ data }) => {
       const categoryList = tour.node.category
     return categoryList.includes(e.target.innerText)
     });
-    setTourList(filteredTourList);
+    setTourList(filteredTourList.sort(() => Math.random() - 0.5));
 
     };
 

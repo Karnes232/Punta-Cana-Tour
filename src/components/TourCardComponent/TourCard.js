@@ -15,7 +15,7 @@ const TourCard = ({ tour, featured }) => {
           />
           <div className="px-6 py-4">
             <div className="font-bold h-10 text-lg mb-2 flex justify-between">
-              <div className="truncate">{name}</div>
+              <div className="truncate mr-3">{name}</div>
               <div>${price}</div>
             </div>
             <p className="text-gray-700 h-32 text-base">
