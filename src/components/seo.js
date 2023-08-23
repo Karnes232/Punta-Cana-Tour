@@ -5,24 +5,22 @@
  * See: https://www.gatsbyjs.com/docs/how-to/querying-data/use-static-query/
  */
 
-import * as React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import * as React from "react";
+import { useStaticQuery, graphql } from "gatsby";
 
 function Seo({ description, title, keywords, children, schemaMarkup }) {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            author
-          }
+  const { site } = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          title
+          author
         }
       }
-    `
-  )
+    }
+  `);
 
-  const defaultTitle = site.siteMetadata?.title
+  const defaultTitle = site.siteMetadata?.title;
 
   return (
     <>
@@ -43,7 +41,7 @@ function Seo({ description, title, keywords, children, schemaMarkup }) {
         </script>
       )}
     </>
-  )
+  );
 }
 
-export default Seo
+export default Seo;

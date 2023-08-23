@@ -12,7 +12,5 @@ export const schema = {
     contactType: "customer service",
     availableLanguage: ["en", "es"],
   },
-  sameAs: [
-    "https://puntacanatourstore.com/",
-  ],
-}
+  sameAs: ["https://puntacanatourstore.com/"],
+};

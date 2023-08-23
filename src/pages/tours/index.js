@@ -5,10 +5,11 @@ import TextComponent from "../../components/TextComponent/TextComponent";
 import TourCard from "../../components/TourCardComponent/TourCard";
 import HeroComponent from "../../components/HeroComponent/HeroComponent";
 
-
 const Index = ({ data }) => {
-  const backendTourList = data.allContentfulTour.edges
-  const [tourList, setTourList] = useState(data.allContentfulTour.edges.sort(() => Math.random() - 0.5));
+  const backendTourList = data.allContentfulTour.edges;
+  const [tourList, setTourList] = useState(
+    data.allContentfulTour.edges.sort(() => Math.random() - 0.5),
+  );
   const [selectedCategory, setSelectedCategory] = useState("All Tours");
   const categories = [
     "All Tours",
@@ -20,22 +21,18 @@ const Index = ({ data }) => {
     "Nightlife",
   ];
 
-
-  
-  
   const setFilter = (e) => {
-    console.log(e)
-    setSelectedCategory(e.target.dataset.category)
-    const filteredTourList = backendTourList.filter(tour => {
+    console.log(e);
+    setSelectedCategory(e.target.dataset.category);
+    const filteredTourList = backendTourList.filter((tour) => {
       if (e.target.innerText === "All Tours") {
-        return tour
+        return tour;
       }
-      const categoryList = tour.node.category
-    return categoryList.includes(e.target.dataset.category)
+      const categoryList = tour.node.category;
+      return categoryList.includes(e.target.dataset.category);
     });
     setTourList(filteredTourList.sort(() => Math.random() - 0.5));
-
-    };
+  };
 
   return (
     <Layout

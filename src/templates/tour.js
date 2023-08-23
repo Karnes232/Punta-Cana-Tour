@@ -51,14 +51,17 @@ const tour = ({ pageContext }) => {
 export default tour;
 
 export const Head = ({ pageContext }) => {
-  return(
-  <>
-    <Seo
-      title={pageContext.tour.name}
-      description={pageContext.tour.description1.description1}
-      keywords={pageContext.tour.keywords?.join(', ')}
-    />
-    <link rel="canonical" href={`https://puntacanatourstore.com/tours/${pageContext.tour.url}`} />
-
-  </>
-)}
+  return (
+    <>
+      <Seo
+        title={pageContext.tour.name}
+        description={pageContext.tour.description1.description1}
+        keywords={pageContext.tour.keywords?.join(", ")}
+      />
+      <link
+        rel="canonical"
+        href={`https://puntacanatourstore.com/tours/${pageContext.tour.url}`}
+      />
+    </>
+  );
+};
