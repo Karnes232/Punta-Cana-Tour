@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { graphql } from "gatsby";
 import Layout from "../../components/layout";
 import TextComponent from "../../components/TextComponent/TextComponent";
 import TourCard from "../../components/TourCardComponent/TourCard";
 import HeroComponent from "../../components/HeroComponent/HeroComponent";
-const index = ({ data }) => {
+const Index = ({ data }) => {
+  const [tourList, setTourList] = useState(data.allContentfulTour.edges)
+  console.log(tourList)
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -39,9 +41,11 @@ const index = ({ data }) => {
         pClassName="mb-4 lg:mb-0"
       />
       <div className="flex flex-col md:flex-row md:flex-wrap md:justify-evenly max-w-5xl xl:max-w-6xl mx-auto">
-        {data.allContentfulTour.edges.map((tour, index) => (
+        {tourList.map((tour, index) => {
+          
+          return(
           <TourCard tour={tour} key={index} />
-        ))}
+        )})}
       </div>
     </Layout>
   );
@@ -105,4 +109,4 @@ export const query = graphql`
 
 export const Head = () => <title>Tour Page</title>;
 
-export default index;
+export default Index;
