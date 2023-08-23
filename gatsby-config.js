@@ -5,6 +5,7 @@ require("dotenv").config();
 module.exports = {
   siteMetadata: {
     title: `Punta Cana Tour Store`,
+    author: `@karnes232`,
     siteUrl: `https://puntacanatourstore.com/`,
   },
   plugins: [
@@ -44,6 +45,9 @@ module.exports = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
+        name: "Punta-Cana-Tour-Store",
+        short_name: `PC-Tour-Store`,
+        start_url: `/`,
         icon: "src/images/TourLogo.png",
       },
     },

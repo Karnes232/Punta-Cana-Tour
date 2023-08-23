@@ -6,7 +6,8 @@ import SwiperCarousel from "../components/BackgroundCarousel/SwiperCarousel";
 import { graphql } from "gatsby";
 import FeaturedTours from "../components/FeaturedToursComponent/FeaturedTours";
 import HeroComponent from "../components/HeroComponent/HeroComponent";
-
+import { schema } from '../data/schema'
+import Seo from "../components/seo";
 const IndexPage = ({ data }) => {
   const tourList = Array.from(data.allContentfulTour.edges, (x) => x);
   return (
@@ -181,9 +182,50 @@ export const query = graphql`
         }
       }
     }
+    allContentfulSeo(filter: {page: {eq: "Index"}}) {
+      nodes {
+        title
+        keywords
+        description {
+          description
+        }
+      }
+    }
   }
 `;
 
-export const Head = () => <title>Home Page</title>;
+export const Head = ({data}) => {
+  const { title, description, keywords } = data.allContentfulSeo.nodes[0]
+  console.log(keywords.join(', '))
+return (
+  <>
+
+<Seo
+      title={title}
+      description={description.description}
+      keywords={keywords.join(', ')}
+      schemaMarkup={schema}
+    />
+    <link rel="canonical" href="https://puntacanatourstore.com/" />
+</>
+)}
+
+
+// export const Head = ({data}) => {
+//   const { title1, description1 } = data.allContentfulSeo.edges[0].node
+//   return (
+//   <>
+//     <Seo
+//       title={title1}
+//       description={description1.description1}
+//       schemaMarkup={schema}
+//     />
+//     <link rel="canonical" href="https://greeceeventspc.com/" />
+//     <meta
+//       name="google-site-verification"
+//       content="sN5dEuZZzj940eKwcVwd4RXMUzeZXQOqqHhjLXNFoHE"
+//     />
+//   </>
+// )}
 
 export default IndexPage;
