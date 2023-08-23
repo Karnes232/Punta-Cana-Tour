@@ -3,7 +3,7 @@ import React from "react";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 const TourCard = ({ tour, featured }) => {
   const { name, price, mainImage, description1, url, category } = tour.node;
-  const image = getImage(mainImage.gatsbyImage);
+  const image = getImage(mainImage?.gatsbyImage);
   return (
     <>
       <Link to={featured ? `tours/${url}` : `${url}`}>
@@ -15,7 +15,7 @@ const TourCard = ({ tour, featured }) => {
           />
           <div className="px-6 py-4">
             <div className="font-bold h-10 text-lg mb-2 flex justify-between">
-              <div>{name}</div>
+              <div className="truncate">{name}</div>
               <div>${price}</div>
             </div>
             <p className="text-gray-700 h-32 text-base">
