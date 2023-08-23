@@ -41,9 +41,8 @@ const tour = ({ pageContext }) => {
         <TextComponent
           paragraph={tour.tourPageDescription2.tourPageDescription2}
         />
-        
-         <ListGroup tour={tour} />
-       
+
+        <ListGroup tour={tour} />
       </div>
     </Layout>
   );

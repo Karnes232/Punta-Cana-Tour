@@ -5,8 +5,19 @@ import TextComponent from "../../components/TextComponent/TextComponent";
 import TourCard from "../../components/TourCardComponent/TourCard";
 import HeroComponent from "../../components/HeroComponent/HeroComponent";
 const Index = ({ data }) => {
-  const [tourList, setTourList] = useState(data.allContentfulTour.edges)
-  console.log(tourList)
+  const [tourList, setTourList] = useState(data.allContentfulTour.edges);
+  const categories = [
+    "Water Sports",
+    "Land & Adventure",
+    "Sightseeing & Cultural",
+    "Boat & Yacht",
+    "Wellness & Spa",
+    "Nightlife",
+  ];
+  // const filteredTourList = tourList.filter(tour => {
+  //   return tour.node.category
+  // })
+  // console.log(filteredTourList)
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -40,12 +51,25 @@ const Index = ({ data }) => {
         className="my-5 2xl:my-2"
         pClassName="mb-4 lg:mb-0"
       />
-      <div className="flex flex-col md:flex-row md:flex-wrap md:justify-evenly max-w-5xl xl:max-w-6xl mx-auto">
-        {tourList.map((tour, index) => {
-          
-          return(
-          <TourCard tour={tour} key={index} />
-        )})}
+      <div>
+        <nav className="flex flex-row items-center overflow-x-auto whitespace-nowrap mx-5 2xl:justify-center">
+          {/* <button onClick={()=>setFilter('All')}>All</button> */}
+          <button className="cursor-pointer no-underline flex items-center px-5 h-10">
+            All Tours
+          </button>
+          {categories.map((category, index) => {
+            return (
+              <button key={index} className="cursor-pointer no-underline flex items-center px-5 h-10">
+                {category}
+              </button>
+            );
+          })}
+        </nav>
+        <div className="flex flex-col md:flex-row md:flex-wrap md:justify-evenly max-w-5xl xl:max-w-6xl mx-auto">
+          {tourList.map((tour, index) => {
+            return <TourCard tour={tour} key={index} />;
+          })}
+        </div>
       </div>
     </Layout>
   );
