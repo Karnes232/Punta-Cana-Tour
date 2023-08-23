@@ -21,13 +21,14 @@ const Index = ({ data }) => {
   ];
   
   const setFilter = (e) => {
-    setSelectedCategory(e.target.innerText)
+    console.log(e.target.dataset.category)
+    setSelectedCategory(e.target.dataset.category)
     const filteredTourList = backendTourList.filter(tour => {
       if (e.target.innerText === "All Tours") {
         return tour
       }
       const categoryList = tour.node.category
-    return categoryList.includes(e.target.innerText)
+    return categoryList.includes(e.target.dataset.category)
     });
     setTourList(filteredTourList.sort(() => Math.random() - 0.5));
 
@@ -77,7 +78,7 @@ const Index = ({ data }) => {
             return (
               <button
                 key={index}
-                // data-category={category}
+                data-category={category}
                 onClick={setFilter}
                 className={`cursor-pointer no-underline flex items-center px-5 h-10 ${active} transition-all duration-300`}
               >
