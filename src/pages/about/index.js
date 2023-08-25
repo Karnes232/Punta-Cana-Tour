@@ -5,6 +5,7 @@ import HeroComponet from "../../components/HeroComponent/HeroComponet";
 import TextComponent from "../../components/TextComponent/TextComponent";
 import SwiperCarousel from "../../components/BackgroundCarousel/SwiperCarousel";
 import HeroComponent from "../../components/HeroComponent/HeroComponent";
+import Seo from "../../components/seo";
 const index = ({ data }) => {
   return (
     <Layout
