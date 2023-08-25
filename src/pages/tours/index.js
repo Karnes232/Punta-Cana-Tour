@@ -4,6 +4,7 @@ import Layout from "../../components/layout";
 import TextComponent from "../../components/TextComponent/TextComponent";
 import TourCard from "../../components/TourCardComponent/TourCard";
 import HeroComponent from "../../components/HeroComponent/HeroComponent";
+import Seo from "../../components/seo";
 
 const Index = ({ data }) => {
   const backendTourList = data.allContentfulTour.edges;
@@ -152,9 +153,30 @@ export const query = graphql`
         }
       }
     }
+    allContentfulSeo(filter: { page: { eq: "Tours Page" } }) {
+      nodes {
+        title
+        keywords
+        description {
+          description
+        }
+      }
+    }
   }
 `;
 
-export const Head = () => <title>Tour Page</title>;
+export const Head = ({ data }) => {
+  const { title, description, keywords } = data.allContentfulSeo.nodes[0];
+  return (
+    <>
+      <Seo
+        title={title}
+        description={description.description}
+        keywords={keywords.join(", ")}
+      />
+      <link rel="canonical" href="https://puntacanatourstore.com/tours/" />
+    </>
+  );
+};
 
 export default Index;

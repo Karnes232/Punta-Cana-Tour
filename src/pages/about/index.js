@@ -121,9 +121,31 @@ export const query = graphql`
         }
       }
     }
+    allContentfulSeo(filter: { page: { eq: "About" } }) {
+      nodes {
+        title
+        keywords
+        description {
+          description
+        }
+      }
+    }
   }
 `;
 
-export const Head = () => <title>About Page</title>;
+export const Head = ({ data }) => {
+  const { title, description, keywords } = data.allContentfulSeo.nodes[0];
+  return (
+    <>
+      <Seo
+        title={title}
+        description={description.description}
+        keywords={keywords.join(", ")}
+      />
+      <link rel="canonical" href="https://puntacanatourstore.com/about/" />
+    </>
+  );
+};
+
 
 export default index;

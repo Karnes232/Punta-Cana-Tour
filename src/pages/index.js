@@ -208,21 +208,5 @@ export const Head = ({ data }) => {
   );
 };
 
-// export const Head = ({data}) => {
-//   const { title1, description1 } = data.allContentfulSeo.edges[0].node
-//   return (
-//   <>
-//     <Seo
-//       title={title1}
-//       description={description1.description1}
-//       schemaMarkup={schema}
-//     />
-//     <link rel="canonical" href="https://greeceeventspc.com/" />
-//     <meta
-//       name="google-site-verification"
-//       content="sN5dEuZZzj940eKwcVwd4RXMUzeZXQOqqHhjLXNFoHE"
-//     />
-//   </>
-// )}
 
 export default IndexPage;
