@@ -29,7 +29,7 @@ const tour = ({ pageContext }) => {
       />
       <div className="max-w-6xl my-5 mx-5 md:mx-10 xl:mx-auto">
         <TourInfo name={tour.name} category={tour.category} />
-        <Button text="Book Now" customClass="mb-2" />
+        <Button text="Book Now" customClass="mb-2" tour={tour}/>
         <Price price={tour.price} duration={tour.duration1} />
         <TextComponent paragraph={tour.description1.description1} />
       </div>

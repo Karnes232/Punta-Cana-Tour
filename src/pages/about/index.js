@@ -148,5 +148,4 @@ export const Head = ({ data }) => {
   );
 };
 
-
 export default index;

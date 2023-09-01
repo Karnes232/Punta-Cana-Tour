@@ -208,5 +208,4 @@ export const Head = ({ data }) => {
   );
 };
 
-
 export default IndexPage;
