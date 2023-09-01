@@ -2,10 +2,10 @@ import React from "react";
 import { useContext, useEffect, useState } from 'react'
 import { CartContext } from "../../context/cart"; 
 const Button = ({ text, customClass, tour }) => {
-  // const { cartItems, addToCart } = useContext(CartContext)
+  const { cartItems, addToCart } = useContext(CartContext)
   function handleClick(e) {
     e.preventDefault()
-    // addToCart(tour)
+    addToCart(tour)
     // addVariantToCart(variantId, quantity)
   }
   return (
