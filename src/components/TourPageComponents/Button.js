@@ -2,7 +2,7 @@ import React from "react";
 import { useContext, useEffect, useState } from 'react'
 import { CartContext } from "../../context/cart"; 
 const Button = ({ text, customClass, tour }) => {
-  const { addToCart } = useContext(CartContext)
+  const { cartItems=null, addToCart=null } = useContext(CartContext)
   function handleClick(e) {
     e.preventDefault()
     addToCart(tour)
