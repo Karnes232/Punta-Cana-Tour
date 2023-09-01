@@ -4,8 +4,13 @@ import { createContext, useState, useEffect } from 'react'
 export const CartContext = createContext()
 
 export const CartProvider = ({ children }) => {
-    const [cartItems, setCartItems] = useState(localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [])
+    const [cartItems, setCartItems] = useState([])
   
+    useEffect(() => {
+      setCartItems(localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [])
+    }, []);
+
+
     const addToCart = (item) => {
       const isItemInCart = cartItems.find((cartItem) => cartItem.name === item.name);
       console.log(isItemInCart)
