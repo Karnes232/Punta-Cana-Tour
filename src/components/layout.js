@@ -11,11 +11,11 @@ export default function Layout({
   email,
   gImage,
 }) {
-  // const { cartItems } = useContext(CartContext);
+  const { cartItems } = useContext(CartContext);
   
-  // if (cartItems.length !== 0) {
-  //   console.log(cartItems)
-  // }
+  if (cartItems.length !== 0) {
+    console.log(cartItems)
+  }
   return (
 
       <div className="min-h-screen font-montserrat flex flex-col justify-between overflow-x-hidden">

@@ -5,11 +5,11 @@ import "./src/components/FooterComponent/footer.css";
 import "./src/components/HeroComponent/HeroComponent.css";
 import "./src/components/BackgroundCarousel/swiperCarousel.css";
 import "./src/components/ContactFormComponent/contact.css";
-import { CartProvider } from "./src/context/cart";
 
+import WrapRootElement from "./src/context/wrap-root-element";
 
 
 
 export const wrapRootElement = ({ element }) => (
-    <CartProvider>{element}</CartProvider>
-  )
+  <WrapRootElement>{element}</WrapRootElement>
+)
