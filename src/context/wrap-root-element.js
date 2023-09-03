@@ -1,8 +1,8 @@
-import * as React from "react"
-import { CartProvider } from "./cart"
+import * as React from "react";
+import { CartProvider } from "./cart";
 
 const WrapRootElement = ({ children }) => (
   <CartProvider>{children}</CartProvider>
-)
+);
 
-export default WrapRootElement
+export default WrapRootElement;
