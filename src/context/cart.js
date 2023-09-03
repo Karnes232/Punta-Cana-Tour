@@ -5,11 +5,11 @@ export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
-  if (typeof window !== 'undefined') {
-    setCartItems(localStorage.getItem("cartItems")
-    ? JSON.parse(localStorage.getItem("cartItems"))
-    : [],)
-  }
+  // if (typeof window !== 'undefined') {
+  //   setCartItems(localStorage.getItem("cartItems")
+  //   ? JSON.parse(localStorage.getItem("cartItems"))
+  //   : [],)
+  // }
 
   const addToCart = (item) => {
     const isItemInCart = cartItems.find(
