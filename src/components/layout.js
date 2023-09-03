@@ -13,16 +13,17 @@ export default function Layout({
 }) {
   return (
     <CartProvider>
-    <div className="min-h-screen font-montserrat flex flex-col justify-between overflow-x-hidden">
-      <Header logo={logo} />
-      {children}
-      <Footer
-        footerBackground={footerBackground}
-        facebook={facebook}
-        instagram={instagram}
-        email={email}
-        gImage={gImage}
-      />
-    </div></CartProvider>
+      <div className="min-h-screen font-montserrat flex flex-col justify-between overflow-x-hidden">
+        <Header logo={logo} />
+        {children}
+        <Footer
+          footerBackground={footerBackground}
+          facebook={facebook}
+          instagram={instagram}
+          email={email}
+          gImage={gImage}
+        />
+      </div>
+    </CartProvider>
   );
 }
