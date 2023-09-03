@@ -1,14 +1,15 @@
 import React from "react";
 import CartComponent from "../components/CartComponent/CartComponent";
-import { CartProvider } from "../context/cart";
+
+import Layout from "../components/layout";
 
 const Cart = () => {
   return (
-    <CartProvider>
+    <Layout>
       <div>
         <CartComponent />
       </div>
-    </CartProvider>
+    </Layout>
   );
 };
 
