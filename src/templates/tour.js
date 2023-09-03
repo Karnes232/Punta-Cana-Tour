@@ -8,9 +8,41 @@ import TextComponent from "../components/TourPageComponents/TextComponent";
 import SwiperCarousel from "../components/TourPageComponents/SwiperCarousel";
 import ListGroup from "../components/TourPageComponents/ListGroup";
 import Seo from "../components/seo";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const tour = ({ pageContext }) => {
   const { tour, logo, footerBackground, facebook, instagram, email, gImage } =
     pageContext;
+
+  const notifyAddedToCart = (tour) =>
+    toast.success(`${tour.name} added to cart!`, {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "colored",
+      style: {
+        backgroundColor: "#fff",
+        color: "#000",
+      },
+    });
+
+  const notifyRemovedFromCart = (tour) =>
+    toast.error(`${tour.name} removed from cart!`, {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "colored",
+      style: {
+        backgroundColor: "#000",
+        color: "#fff",
+      },
+    });
   return (
     <Layout
       logo={logo}
@@ -20,6 +52,7 @@ const tour = ({ pageContext }) => {
       email={email}
       gImage={gImage}
     >
+      <ToastContainer />
       <HeroComponent
         imageUrl={tour.mainImage?.url}
         gImage={tour.mainImage?.gatsbyImage}
@@ -29,7 +62,13 @@ const tour = ({ pageContext }) => {
       />
       <div className="max-w-6xl my-5 mx-5 md:mx-10 xl:mx-auto">
         <TourInfo name={tour.name} category={tour.category} />
-        <Button text="Book Now" customClass="" tour={tour} />
+        <Button
+          text="Book Now"
+          customClass=""
+          tour={tour}
+          notifyAddedToCart={notifyAddedToCart}
+          notifyRemovedFromCart={notifyRemovedFromCart}
+        />
         <Price price={tour.price} duration={tour.duration1} />
         <TextComponent paragraph={tour.description1.description1} />
       </div>

@@ -1,11 +1,18 @@
 import React from "react";
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../context/cart";
-const Button = ({ text, customClass, tour }) => {
+const Button = ({
+  text,
+  customClass,
+  tour,
+  notifyAddedToCart,
+  notifyRemovedFromCart,
+}) => {
   const { cartItems, addToCart, removeFromCart } = useContext(CartContext);
   function handleClick(e) {
     e.preventDefault();
     addToCart(tour);
+    notifyAddedToCart(tour);
     // addVariantToCart(variantId, quantity)
   }
   console.log(cartItems);
@@ -35,14 +42,16 @@ const Button = ({ text, customClass, tour }) => {
           <button
             type="submit"
             onClick={() => {
-                        const cartItem = cartItems.find((item) => item.name === tour.name);
-                        if (cartItem.quantity === 1) {
-                          //handleRemoveFromCart(product);
-                          removeFromCart(tour);
-                        } else {
-                          removeFromCart(tour);
-                        }
-                      }}
+              const cartItem = cartItems.find(
+                (item) => item.name === tour.name,
+              );
+              if (cartItem.quantity === 1) {
+                notifyRemovedFromCart(tour);
+                removeFromCart(tour);
+              } else {
+                removeFromCart(tour);
+              }
+            }}
             className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded ${customClass}`}
           >
             -
