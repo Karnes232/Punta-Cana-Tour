@@ -15,8 +15,7 @@ const Button = ({
     notifyAddedToCart(tour);
     // addVariantToCart(variantId, quantity)
   }
-  console.log(cartItems);
-  console.log(tour);
+ 
   return (
     <div className="mb-2">
       {!cartItems.find((item) => item.name === tour.name) ? (

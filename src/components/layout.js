@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import Header from "../components/HeaderComponents/Header";
 import Footer from "./FooterComponent/Footer";
-import { CartProvider } from "../context/cart";
+import { CartContext } from "../context/cart";
 export default function Layout({
   children,
   logo,
@@ -11,8 +11,13 @@ export default function Layout({
   email,
   gImage,
 }) {
+  const { cartItems } = useContext(CartContext);
+  
+  if (cartItems.length !== 0) {
+    console.log(cartItems)
+  }
   return (
-    <CartProvider>
+
       <div className="min-h-screen font-montserrat flex flex-col justify-between overflow-x-hidden">
         <Header logo={logo} />
         {children}
@@ -24,6 +29,6 @@ export default function Layout({
           gImage={gImage}
         />
       </div>
-    </CartProvider>
+
   );
 }
