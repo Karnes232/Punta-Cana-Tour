@@ -15,7 +15,7 @@ const FeaturedTours = ({ tours }) => {
           <TourCard tour={tour} key={index} featured />
         ))}
       </div>
-      <div className="flex flex-col md:flex-row md:flex-wrap md:justify-evenly max-w-5xl xl:max-w-6xl mx-auto">
+      <div className="flex flex-col justify-center items-center max-w-5xl xl:max-w-6xl mx-auto">
       <Link to="/tours/" className="no-underline text-2xl font-medium">More Tours</Link></div>
     </div>
   );
