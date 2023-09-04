@@ -3,9 +3,9 @@ import { Bars3Icon } from "@heroicons/react/24/outline";
 import loadable from "@loadable/component";
 const SideBarMenu = loadable(() => import("./SideBarMenu"));
 
-const HamburgerMenu = () => {
+const HamburgerMenu = ({ color }) => {
   const [toggled, setToggled] = React.useState(false);
-
+ 
   return (
     <>
       <div className="flex lg:hidden">
@@ -13,10 +13,10 @@ const HamburgerMenu = () => {
         <main className="flex p-3">
           <div>
             <button
-              className="sb-button border border-white opacity-80 rounded"
+              className={`sb-button border border-${color} ${color === 'black' ? "opacity-100" : "opacity-80"} rounded`}
               onClick={() => setToggled(!toggled)}
             >
-              <Bars3Icon className="h-7 md:h-9 text-white opacity-80" />
+              <Bars3Icon className={`h-7 md:h-9 text-${color} ${color === 'black' ? "opacity-100" : "opacity-80"}`} />
             </button>
           </div>
         </main>

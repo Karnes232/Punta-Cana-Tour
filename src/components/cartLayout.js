@@ -3,7 +3,7 @@ import Header from "../components/HeaderComponents/Header";
 import Footer from "./FooterComponent/Footer";
 import { CartContext, CartProvider } from "../context/cart";
 import FloatingCartButton from "./FloatingCartButton/FloatingCartButton";
-export default function Layout({
+export default function CartLayout({
   children,
   logo,
   footerBackground,
@@ -16,7 +16,7 @@ export default function Layout({
   return (
     <CartProvider>
       <div className="min-h-screen font-montserrat flex flex-col justify-between overflow-x-hidden">
-        <Header logo={logo} color='white'/>
+        <Header logo={logo} color='black'/>
         {children}
         <Footer
           footerBackground={footerBackground}
@@ -25,7 +25,6 @@ export default function Layout({
           email={email}
           gImage={gImage}
         />
-        <FloatingCartButton />
       </div>
     </CartProvider>
   );

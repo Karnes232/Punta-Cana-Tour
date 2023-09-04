@@ -16,7 +16,10 @@ const FeaturedTours = ({ tours }) => {
         ))}
       </div>
       <div className="flex flex-col justify-center items-center max-w-5xl xl:max-w-6xl mx-auto">
-      <Link to="/tours/" className="no-underline text-2xl font-medium">More Tours</Link></div>
+        <Link to="/tours/" className="no-underline text-2xl font-medium">
+          More Tours
+        </Link>
+      </div>
     </div>
   );
 };
