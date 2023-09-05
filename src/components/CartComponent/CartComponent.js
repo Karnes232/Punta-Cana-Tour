@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { CartContext } from "../../context/cart";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,7 +9,7 @@ export default function Cart() {
   const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } =
     useContext(CartContext);
   let searchParams = "";
-
+const [name, setName] = useState("")
   cartItems.forEach((tour) => {
     let newParams = `tour=${tour.name}&price=${tour.price}&quantity=${tour.quantity}&`;
     searchParams = searchParams + newParams;
@@ -85,6 +85,16 @@ export default function Cart() {
                       id="tourPax"
                       
                     />
+                    <input
+          type="name"
+          name="name"
+          id="name"
+          className="contactFormInput peer"
+          placeholder=" "
+          required
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
                     <p className="text-gray-600 text-end flex items-center justify-end">
                       ${tour.price}
                     </p>
