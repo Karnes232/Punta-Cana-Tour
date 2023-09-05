@@ -20,7 +20,12 @@ const Form = () => {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(formData).toString(),
     })
-      .then(() => console.log("Form successfully submitted"))
+      .then(() => {
+        clearCart()
+        if(typeof window !== 'undefined') {
+          window.location.href = `/contact/thankyou/?name=${name}`;
+        }
+      })
       .catch((error) => alert(error));
   };
 
