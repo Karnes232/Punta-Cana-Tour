@@ -1,13 +1,11 @@
 import React from "react";
 
-
 import { graphql } from "gatsby";
 import CartLayout from "../components/cartLayout";
 
 import Form from "../components/CartComponent/Form";
 
 const Cart = ({ data }) => {
-  
   return (
     <CartLayout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -21,7 +19,7 @@ const Cart = ({ data }) => {
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
     >
-     <Form/>
+      <Form />
     </CartLayout>
   );
 };

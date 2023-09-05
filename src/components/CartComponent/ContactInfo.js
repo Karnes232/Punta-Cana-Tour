@@ -32,7 +32,7 @@ const ContactInfo = ({ name, setName }) => {
         </label>
       </div>
       <div className="relative z-0 mb-6 w-full group">
-      <input
+        <input
           type="tel"
           name="phone"
           id="phone"

@@ -8,7 +8,6 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 export default function Cart() {
   const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } =
     useContext(CartContext);
- 
 
   const emptyCart = cartItems.length === 0;
   const notifyRemovedFromCart = (tour) =>
@@ -65,7 +64,9 @@ export default function Cart() {
                 />
                 <div className="flex flex-col md:justify-around lg:flex-row w-40 md:w-72 lg:w-[30rem] xl:w-[25rem]">
                   <div className="flex flex-col md:flex-row gap-2 md:gap-8 mb-1 mx-4">
-                    <h1 className="text-lg font-bold truncate lg:whitespace-normal">{tour.name}</h1>
+                    <h1 className="text-lg font-bold truncate lg:whitespace-normal">
+                      {tour.name}
+                    </h1>
                     <p className="text-gray-600 text-end flex items-center justify-end">
                       ${tour.price}
                     </p>
@@ -111,8 +112,6 @@ export default function Cart() {
       {cartItems.length > 0 ? (
         <div className="flex flex-col justify-between items-center mt-5">
           <h1 className="text-lg font-bold mb-3">Total: ${getCartTotal()}</h1>
-
-          
 
           <button
             className="px-4 py-2 bg-[#002447] text-[#FFB24C] text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"

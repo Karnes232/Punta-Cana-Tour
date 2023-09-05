@@ -4,22 +4,21 @@ import DatePickerComponent from "./DatePickerComponent";
 const MoreInfo = () => {
   return (
     <>
-    <div className="relative z-0 mb-6 w-full group">
+      <div className="relative z-0 mb-6 w-full group">
         <input
           type="location"
           name="location"
           id="location"
           className="contactFormInput peer"
           placeholder=" "
-
         />
         <label htmlFor="location" className="contactFormLabel">
           Pick Up Location
         </label>
       </div>
       <div className="relative z-10 mb-6 w-full group">
-          <DatePickerComponent />
-        </div>
+        <DatePickerComponent />
+      </div>
       <div className="relative z-0 mb-6 w-full group">
         <label
           htmlFor="additional"
