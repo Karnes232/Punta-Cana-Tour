@@ -126,16 +126,17 @@ export default function Cart() {
       {cartItems.length > 0 ? (
         <div className="flex flex-col justify-between items-center mt-5">
           <h1 className="text-lg font-bold">Total: ${getCartTotal()}</h1>
-          <Link to={`/contact/tour/?${searchParams}`}>
+    
             <button
+              type="submit"
               className="px-4 py-2 my-3 bg-[#FFB24C] text-[#002447] text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
-              onClick={(e) => {
-                e.preventDefault();
+              onClick={() => {
+                
               }}
             >
               Contact Us
             </button>
-          </Link>
+    
           <button
             className="px-4 py-2 bg-[#002447] text-[#FFB24C] text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
             onClick={(e) => {
