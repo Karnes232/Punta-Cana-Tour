@@ -72,15 +72,15 @@ export default function Cart() {
                   <div className="flex flex-col md:flex-row gap-2 md:gap-8 mb-1 mx-4">
                     <h1 className="text-lg font-bold">{tour.name}</h1>
                     <input
-                      type="text"
-                      name="Tour Name"
+                      type="name"
+                      name="TourName"
                       value={tour.name}
                       id="tourName"
                       
                     />
                     <input
-                      type="text"
-                      name='Pax Amount'
+                      type="amount"
+                      name='PaxAmount'
                       value={tour.quantity}
                       id="tourPax"
                       
