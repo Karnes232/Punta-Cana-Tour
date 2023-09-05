@@ -68,7 +68,7 @@ export default function Cart() {
                   alt={tour.name}
                   className="rounded-md w-24 h-24 md:w-32 md:h-32 object-cover"
                 />
-                <div className="flex flex-col md:justify-around lg:flex-row w-40 md:w-72 lg:w-[30rem]">
+                <div className="flex flex-col md:justify-around lg:flex-row w-40 md:w-72 lg:w-[30rem] xl:w-[25rem]">
                   <div className="flex flex-col md:flex-row gap-2 md:gap-8 mb-1 mx-4">
                     <h1 className="text-lg font-bold truncate lg:whitespace-normal">{tour.name}</h1>
                     <p className="text-gray-600 text-end flex items-center justify-end">
