@@ -73,14 +73,14 @@ export default function Cart() {
                     <h1 className="text-lg font-bold">{tour.name}</h1>
                     <input
                       type="text"
-                      name={`Tour Name ${index}`}
+                      name="Tour Name"
                       value={tour.name}
                       id="tourName"
                       
                     />
                     <input
                       type="text"
-                      name={`Pax ${index}`}
+                      name='Pax Amount'
                       value={tour.quantity}
                       id="tourPax"
                       
