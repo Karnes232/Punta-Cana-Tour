@@ -72,16 +72,20 @@ export default function Cart() {
                   <div className="flex flex-col md:flex-row gap-2 md:gap-8 mb-1 mx-4">
                     <h1 className="text-lg font-bold">{tour.name}</h1>
                     <input
-                      type="hidden"
+                      type="text"
                       name={`Tour Name ${index}`}
                       value={tour.name}
                       id="tourName"
+                      className="hidden"
+                      readOnly
                     />
                     <input
-                      type="hidden"
+                      type="text"
                       name={`Pax ${index}`}
                       value={tour.quantity}
                       id="tourPax"
+                      className="hidden"
+                      readOnly
                     />
                     <p className="text-gray-600 text-end flex items-center justify-end">
                       ${tour.price}
