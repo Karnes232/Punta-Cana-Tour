@@ -7,8 +7,7 @@ import CartComponent from "./CartComponent";
 import { CartContext } from "../../context/cart";
 const Form = () => {
   const [name, setName] = useState("");
-  const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } =
-    useContext(CartContext);
+  const { clearCart } = useContext(CartContext);
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -21,8 +20,8 @@ const Form = () => {
       body: new URLSearchParams(formData).toString(),
     })
       .then(() => {
-        clearCart()
-        if(typeof window !== 'undefined') {
+        clearCart();
+        if (typeof window !== "undefined") {
           window.location.href = `/contact/thankyou/?name=${name}`;
         }
       })
@@ -41,7 +40,7 @@ const Form = () => {
       onSubmit={handleSubmit}
     >
       <input type="hidden" name="form-name" value="cart" />
-      
+
       <div className="flex flex-col xl:flex-row-reverse xl:mt-10 xl:gap-12">
         <CartComponent />
         <div className="xl:w-[25rem]">
