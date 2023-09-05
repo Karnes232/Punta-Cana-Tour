@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import CartComponent from "../components/CartComponent/CartComponent";
 
 import { graphql } from "gatsby";
 import CartLayout from "../components/cartLayout";
 import HiddenInputs from "../components/CartComponent/HiddenInputs";
+import ContactInfo from "../components/CartComponent/ContactInfo";
+import MoreInfo from "../components/CartComponent/MoreInfo";
 
 const Cart = ({ data }) => {
+  const [name, setName] = useState("");
   return (
     <CartLayout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -22,8 +25,7 @@ const Cart = ({ data }) => {
       <form
         name="cart"
         method="POST"
-        action={`/contact/thankyou/?name=james`}
-        // action={`/contact/thankyou/?name=${name}`}
+        action={`/contact/thankyou/?name=${name}`}
         data-netlify="true"
         data-netlify-honeypot="bot-field"
         id="cart"
@@ -32,6 +34,15 @@ const Cart = ({ data }) => {
         <input type="hidden" name="form-name" value="cart" />
         <HiddenInputs />
         <CartComponent />
+        <ContactInfo name={name} setName={setName}/>
+        <MoreInfo />
+        <button
+            type="submit"
+            className="px-4 py-2 my-3 bg-[#FFB24C] text-[#002447] text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
+            onClick={() => {}}
+          >
+            Contact Us
+          </button>
       </form>
     </CartLayout>
   );

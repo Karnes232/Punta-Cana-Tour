@@ -52,7 +52,7 @@ export default function Cart() {
   };
 
   return (
-    <div className="flex-col flex items-center justify-center min-h-[70vh]">
+    <div className="flex-col flex items-center justify-center my-10">
       <ToastContainer />
       {emptyCart ? <></> : <h1 className="text-2xl font-bold mb-5">Cart</h1>}
 
@@ -115,15 +115,9 @@ export default function Cart() {
       </div>
       {cartItems.length > 0 ? (
         <div className="flex flex-col justify-between items-center mt-5">
-          <h1 className="text-lg font-bold">Total: ${getCartTotal()}</h1>
+          <h1 className="text-lg font-bold mb-3">Total: ${getCartTotal()}</h1>
 
-          <button
-            type="submit"
-            className="px-4 py-2 my-3 bg-[#FFB24C] text-[#002447] text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
-            onClick={() => {}}
-          >
-            Contact Us
-          </button>
+          
 
           <button
             className="px-4 py-2 bg-[#002447] text-[#FFB24C] text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
