@@ -75,11 +75,13 @@ export default function Cart() {
                       type="hidden"
                       name={`Tour Name ${index}`}
                       value={tour.name}
+                      id="tourName"
                     />
                     <input
                       type="hidden"
                       name={`Pax ${index}`}
                       value={tour.quantity}
+                      id="tourPax"
                     />
                     <p className="text-gray-600 text-end flex items-center justify-end">
                       ${tour.price}
