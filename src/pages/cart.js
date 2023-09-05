@@ -1,7 +1,6 @@
 import React from "react";
 import CartComponent from "../components/CartComponent/CartComponent";
 
-
 import { graphql } from "gatsby";
 import CartLayout from "../components/cartLayout";
 
@@ -19,9 +18,19 @@ const Cart = ({ data }) => {
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
     >
-      <div className="">
+      <form
+        name="cart"
+        method="POST"
+        action={`/contact/thankyou/?name=james`}
+        // action={`/contact/thankyou/?name=${name}`}
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+        id="cart"
+        className="w-64 md:w-full max-w-md flex flex-col justify-center items-center mx-auto my-5"
+      >
+        <input type="hidden" name="form-name" value="cart" />
         <CartComponent />
-      </div>
+      </form>
     </CartLayout>
   );
 };

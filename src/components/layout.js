@@ -12,11 +12,10 @@ export default function Layout({
   email,
   gImage,
 }) {
-
   return (
     <CartProvider>
       <div className="min-h-screen font-montserrat flex flex-col justify-between overflow-x-hidden">
-        <Header logo={logo} color='white'/>
+        <Header logo={logo} color="white" />
         {children}
         <Footer
           footerBackground={footerBackground}

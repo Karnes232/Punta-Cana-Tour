@@ -2,7 +2,7 @@ import React from "react";
 
 import { Link } from "gatsby";
 
-const LinksRight = ({color}) => {
+const LinksRight = ({ color }) => {
   return (
     <div className="hidden lg:flex lg:w-96 xl:w-[35rem] lg:justify-between">
       <Link to="/" className="no-underline">
