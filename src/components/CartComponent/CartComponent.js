@@ -8,12 +8,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 export default function Cart() {
   const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } =
     useContext(CartContext);
-  let searchParams = "";
-
-  cartItems.forEach((tour) => {
-    let newParams = `tour=${tour.name}&price=${tour.price}&quantity=${tour.quantity}&`;
-    searchParams = searchParams + newParams;
-  });
+ 
 
   const emptyCart = cartItems.length === 0;
   const notifyRemovedFromCart = (tour) =>

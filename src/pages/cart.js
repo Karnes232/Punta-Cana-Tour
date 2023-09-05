@@ -6,6 +6,7 @@ import CartLayout from "../components/cartLayout";
 import HiddenInputs from "../components/CartComponent/HiddenInputs";
 import ContactInfo from "../components/CartComponent/ContactInfo";
 import MoreInfo from "../components/CartComponent/MoreInfo";
+import Button from "../components/CartComponent/Button";
 
 const Cart = ({ data }) => {
   const [name, setName] = useState("");
@@ -40,13 +41,7 @@ const Cart = ({ data }) => {
         <MoreInfo /></div>
      
           </div>
-          <button
-            type="submit"
-            className="px-4 py-2 my-3 bg-[#FFB24C] text-[#002447] text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
-            onClick={() => {}}
-          >
-            Contact Us
-          </button>
+         <Button/>
       </form>
     </CartLayout>
   );
