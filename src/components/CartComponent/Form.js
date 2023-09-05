@@ -42,12 +42,13 @@ const Form = () => {
     >
       <input type="hidden" name="form-name" value="cart" />
       <HiddenInputs />
-      <div className="flex flex-col xl:flex-row-reverse xl:mt-10 xl:gap-12">
-        <CartComponent />
-        <div className="xl:w-[25rem]">
+      <div className="flex flex-col-reverse xl:flex-row xl:mt-10 xl:gap-12">
+      <div className="xl:w-[25rem]">
           <ContactInfo name={name} setName={setName} />
           <MoreInfo />
         </div>
+        <CartComponent />
+        
       </div>
       <Button />
     </form>
