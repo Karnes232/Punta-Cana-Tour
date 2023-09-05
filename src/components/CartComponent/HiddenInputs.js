@@ -3,7 +3,6 @@ import { CartContext } from "../../context/cart";
 
 const HiddenInputs = () => {
   const { cartItems } = useContext(CartContext);
-  console.log(cartItems);
   return (
     <div className="hidden">
       <input
