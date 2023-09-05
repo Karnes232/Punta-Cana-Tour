@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { CartContext } from "../../context/cart";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,7 +9,7 @@ export default function Cart() {
   const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } =
     useContext(CartContext);
   let searchParams = "";
-const [name, setName] = useState("")
+
   cartItems.forEach((tour) => {
     let newParams = `tour=${tour.name}&price=${tour.price}&quantity=${tour.quantity}&`;
     searchParams = searchParams + newParams;
@@ -71,30 +71,6 @@ const [name, setName] = useState("")
                 <div className="flex flex-col md: justify-around lg:flex-row">
                   <div className="flex flex-col md:flex-row gap-2 md:gap-8 mb-1 mx-4">
                     <h1 className="text-lg font-bold">{tour.name}</h1>
-                    <input
-                      type="name"
-                      name="TourName"
-                      value={tour.name}
-                      id="tourName"
-                      
-                    />
-                    <input
-                      type="amount"
-                      name='PaxAmount'
-                      value={tour.quantity}
-                      id="tourPax"
-                      
-                    />
-                    <input
-          type="name"
-          name="name"
-          id="name"
-          className="contactFormInput peer"
-          placeholder=" "
-          required
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
                     <p className="text-gray-600 text-end flex items-center justify-end">
                       ${tour.price}
                     </p>
@@ -140,17 +116,15 @@ const [name, setName] = useState("")
       {cartItems.length > 0 ? (
         <div className="flex flex-col justify-between items-center mt-5">
           <h1 className="text-lg font-bold">Total: ${getCartTotal()}</h1>
-    
-            <button
-              type="submit"
-              className="px-4 py-2 my-3 bg-[#FFB24C] text-[#002447] text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
-              onClick={() => {
-                
-              }}
-            >
-              Contact Us
-            </button>
-    
+
+          <button
+            type="submit"
+            className="px-4 py-2 my-3 bg-[#FFB24C] text-[#002447] text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
+            onClick={() => {}}
+          >
+            Contact Us
+          </button>
+
           <button
             className="px-4 py-2 bg-[#002447] text-[#FFB24C] text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
             onClick={(e) => {
