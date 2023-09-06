@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { CartContext } from "../../context/cart";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Link } from "gatsby";

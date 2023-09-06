@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import Header from "../components/HeaderComponents/Header";
 import Footer from "./FooterComponent/Footer";
-import { CartContext, CartProvider } from "../context/cart";
+import { CartProvider } from "../context/cart";
 import FloatingCartButton from "./FloatingCartButton/FloatingCartButton";
 export default function Layout({
   children,

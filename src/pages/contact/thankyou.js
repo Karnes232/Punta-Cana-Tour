@@ -1,6 +1,5 @@
 import { graphql } from "gatsby";
 import React, { useEffect, useState } from "react";
-import Layout from "../../components/layout";
 import Seo from "../../components/seo";
 import CartLayout from "../../components/cartLayout";
 
@@ -23,7 +22,7 @@ const Thankyou = ({ data }) => {
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
     >
-    <main className>
+      <main className>
         <div className="flex flex-col items-center max-w-xs xl:max-w-sm mx-auto">
           <div className>
             <div className="flex flex-col justify-center items-center text-slate-600 ">
@@ -47,7 +46,6 @@ const Thankyou = ({ data }) => {
           </div>
         </div>
       </main>
-
     </CartLayout>
   );
 };

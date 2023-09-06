@@ -1,7 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
 import Layout from "../../components/layout";
-import HeroComponet from "../../components/HeroComponent/HeroComponet";
 import TextComponent from "../../components/TextComponent/TextComponent";
 import SwiperCarousel from "../../components/BackgroundCarousel/SwiperCarousel";
 import HeroComponent from "../../components/HeroComponent/HeroComponent";

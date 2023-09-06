@@ -8,8 +8,6 @@ import "swiper/css/effect-fade";
 import { Autoplay, EffectFade } from "swiper/modules";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 const SwiperCarousel = ({ className, photoList }) => {
-
-
   let photoListEdited = [];
 
   photoList.forEach((e) => {
