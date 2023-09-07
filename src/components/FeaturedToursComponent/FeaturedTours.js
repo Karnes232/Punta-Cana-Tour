@@ -16,7 +16,7 @@ const FeaturedTours = ({ tours }) => {
         ))}
       </div>
       <div className="flex flex-col justify-center items-center max-w-5xl xl:max-w-6xl mx-auto">
-        <Link to="/tours/" className="no-underline text-2xl font-medium">
+        <Link to="/tours/" className="no-underline text-2xl font-medium bg-[#FFB24C] text-[#002447] px-4 py-2 my-3 rounded-xl">
           More Tours
         </Link>
       </div>
