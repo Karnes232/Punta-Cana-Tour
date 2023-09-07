@@ -42,8 +42,9 @@ const Index = ({ data, location }) => {
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
     >
-      <main>
+      <main className="flex flex-col lg:flex-row lg:gap-24 lg:max-w-6xl lg:mx-auto">
         {/* <main className="mt-28 md:mt-32 xl:mt-40"> */}
+        <div className="flex flex-col justify-center">
         <section className="w-64 md:w-full max-w-md flex flex-col justify-center items-center mx-auto my-5">
           <div className="font-lato tracking-wider text-3xl border-b-2 border-gray-400/75 w-full text-center py-2">
             Booking Details
@@ -53,19 +54,21 @@ const Index = ({ data, location }) => {
             <div className="text-gray-500">{clientEmail}</div>
           </div>
         </section>
+        
         <section className="flex flex-col justify-center items-center">
           <CustomPayPal price={totalCost} />
-        </section>
-        <div className="max-w-xs mx-auto">
+        </section></div>
+        <div className="max-w-xs mx-auto lg:mx-0 flex flex-col justify-center">
           {newList.map((tour, index) => {
             return <TourCard tour={tour} key={index} />;
           })}
         </div>
-        <section className="w-40 flex justify-between mx-auto my-5">
+        
+      </main>
+      <section className="w-40 flex justify-between mx-auto my-5">
           <div className="text-lg font-bold">Total Cost</div>
           <div className="text-lg">${totalCost}</div>
         </section>
-      </main>
     </CartLayout>
   );
 };
