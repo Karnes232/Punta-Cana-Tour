@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import CartLayout from "../../components/cartLayout";
 import InfoInputs from "../../components/PaymentComponents/InfoInputs";
 import TourInfo from "../../components/PaymentComponents/TourInfo";
-
+import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 const Create = ({ data }) => {
   const [tourAmount, setTourAmount] = useState(1);
 
@@ -50,8 +50,15 @@ const Create = ({ data }) => {
               <TourInfo tourList={data.allContentfulTour.nodes} key={index} />
             </>
           ))}
-          <button onClick={incrementCount}>Add Component</button>
-          <button onClick={decrementCount}>Remove Component</button>
+          <div className="flex my-4 w-1/3 justify-between">
+            <button onClick={decrementCount}>
+              <AiOutlineMinus size={25} />
+            </button>
+            <button onClick={incrementCount}>
+              <AiOutlinePlus size={25} />
+            </button>
+          </div>
+
           <button
             type="submit"
             className="text-[#002447] bg-[#FFB24C]  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center "

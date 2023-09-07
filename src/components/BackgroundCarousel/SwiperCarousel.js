@@ -31,8 +31,7 @@ const SwiperCarousel = ({ className, photoList }) => {
         className={`mySwiper mt-3 h-[35vh] md:h-[45vh] lg:h-[65vh] w-full max-w-7xl 2xl:max-w-6xl mx-0 ${className}`}
       >
         {photoListEdited.map((image, index) => {
-     
-            /* const imageSrc = [];
+          /* const imageSrc = [];
           const splitList = image.image.images.fallback.srcSet.split(",");
           splitList.forEach((element) => {
             const image = element.split(" ");
@@ -46,7 +45,7 @@ const SwiperCarousel = ({ className, photoList }) => {
           } else {
             newImage = imageSrc[2].imageSrc
           } */
-        
+
           return (
             <SwiperSlide className="relative" key={index}>
               <GatsbyImage
