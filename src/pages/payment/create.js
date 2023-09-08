@@ -61,7 +61,7 @@ const Create = ({ data }) => {
 
           <button
             type="submit"
-            className="text-[#002447] bg-[#FFB24C]  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center "
+            className="text-secondary-color bg-primary-color  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center "
           >
             Submit
           </button>

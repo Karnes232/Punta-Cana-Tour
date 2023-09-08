@@ -38,13 +38,14 @@ const IndexPage = ({ data }) => {
         paragraph={
           data.allContentfulIndexPageContent.edges[0].node.paragraph1.paragraph1
         }
-        className="my-5 2xl:my-2"
+        className="my-5 2xl:mb-2 2xl:mt-10"
         pClassName="mb-4 lg:mb-0"
       />
       <TextComponent
         paragraph={
           data.allContentfulIndexPageContent.edges[0].node.paragraph2.paragraph2
         }
+        pClassName="2xl:mb-10"
       />
       <SwiperCarousel
         className="mt-5"
@@ -56,7 +57,7 @@ const IndexPage = ({ data }) => {
         paragraph={
           data.allContentfulIndexPageContent.edges[0].node.paragraph3.paragraph3
         }
-        className="mt-5"
+        className="mt-5 2xl:mt-10"
         pClassName="mb-4 lg:mb-0"
       />
       <TextComponent
@@ -75,7 +76,7 @@ const IndexPage = ({ data }) => {
         paragraph={
           data.allContentfulIndexPageContent.edges[0].node.paragraph6.paragraph6
         }
-        pClassName="mb-4 lg:mb-0"
+        pClassName="mb-4 2xl:mb-10"
       />
       <FeaturedTours tours={tourList} />
       <TextComponent
@@ -90,7 +91,7 @@ const IndexPage = ({ data }) => {
           data.allContentfulIndexPageContent.edges[0].node.paragraph8.paragraph8
         }
         className="mt-5"
-        pClassName="mb-4 lg:mb-0"
+        pClassName="mb-4  2xl:mb-10"
       />
     </Layout>
   );

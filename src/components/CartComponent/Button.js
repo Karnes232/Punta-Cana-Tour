@@ -6,7 +6,7 @@ const Button = () => {
       {" "}
       <button
         type="submit"
-        className="px-4 py-2 my-3 bg-[#FFB24C] text-[#002447] text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
+        className="px-4 py-2 my-3 bg-primary-color text-secondary-color text-xs font-bold uppercase rounded hover:opacity-70 focus:outline-none focus:bg-gray-700"
         onClick={() => {}}
       >
         Reserve Now

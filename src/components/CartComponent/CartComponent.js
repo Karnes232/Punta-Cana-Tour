@@ -74,7 +74,7 @@ export default function Cart() {
 
                   <div className="flex gap-4 justify-center items-center">
                     <button
-                      className="px-4 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
+                      className="px-4 py-2 bg-secondary-color text-primary-color text-xs font-bold uppercase rounded hover:opacity-70 focus:outline-none focus:bg-gray-700"
                       onClick={(e) => {
                         e.preventDefault();
                         addToCart(tour);
@@ -84,7 +84,7 @@ export default function Cart() {
                     </button>
                     <p className="w-5 text-center">{tour.quantity}</p>
                     <button
-                      className="px-4 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
+                      className="px-4 py-2 bg-secondary-color text-primary-color text-xs font-bold uppercase rounded hover:opacity-70 focus:outline-none focus:bg-gray-700"
                       onClick={(e) => {
                         e.preventDefault();
                         const cartItem = cartItems.find(
@@ -114,7 +114,7 @@ export default function Cart() {
           <h1 className="text-lg font-bold mb-3">Total: ${getCartTotal()}</h1>
 
           <button
-            className="px-4 py-2 bg-[#002447] text-[#FFB24C] text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
+            className="px-4 py-2 bg-secondary-color text-primary-color text-xs font-bold uppercase rounded hover:opacity-70 focus:outline-none focus:bg-gray-700"
             onClick={(e) => {
               e.preventDefault();
               clearCart();
