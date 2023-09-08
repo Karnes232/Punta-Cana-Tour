@@ -131,7 +131,7 @@ export default function Cart() {
             Looks like you haven’t found anything yet. We understand that
             sometimes it’s hard to choose — maybe this helps:
           </p>
-          <Link to="/tours" className="font-medium text-lg text-[#FFB24C]">
+          <Link to="/tours" className="font-medium text-lg text-primary-color">
             View Our Tours
           </Link>
         </div>
