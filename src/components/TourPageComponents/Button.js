@@ -16,7 +16,6 @@ const Button = ({
     // addVariantToCart(variantId, quantity)
   }
 
-
   return (
     <div className="mb-2">
       {!cartItems.find((item) => item.name === tour.name) ? (

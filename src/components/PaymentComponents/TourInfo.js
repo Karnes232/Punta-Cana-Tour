@@ -24,7 +24,6 @@ const TourInfo = ({ tourList }) => {
             );
           })}
         </select>
- 
       </div>
       <div className="relative z-0 mb-6 w-full group">
         <input

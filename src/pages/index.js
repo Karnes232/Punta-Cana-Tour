@@ -8,6 +8,7 @@ import HeroComponent from "../components/HeroComponent/HeroComponent";
 import { schema } from "../data/schema";
 import Seo from "../components/seo";
 import CtaButton from "../components/CtaButton/CtaButton";
+import FaqsComponent from "../components/FaqsComponent/FaqsComponent";
 
 const IndexPage = ({ data }) => {
   const tourList = Array.from(data.allContentfulTour.edges, (x) => x);
@@ -88,16 +89,16 @@ const IndexPage = ({ data }) => {
         className="mt-5"
         pClassName="mb-4 lg:mb-0"
       />
+      <FaqsComponent faqs={data.allContentfulFaqsComponent.edges[0].node}/>
       <TextComponent
-      title={data.allContentfulIndexPageContent.edges[0].node.whyUs}
+        title={data.allContentfulIndexPageContent.edges[0].node.whyUs}
         paragraph={
           data.allContentfulIndexPageContent.edges[0].node.paragraph8.paragraph8
         }
-        className="mt-5 mb-2 text-2xl"
-        pClassName="mb-4  2xl:mb-10"
+        className="mt-5 mb-2 text-2xl md:text-3xl"
+        pClassName="mb-4 2xl:mb-10"
       />
-      <CtaButton text='Book Now'/>
-
+      <CtaButton text="Book Now" link="/tours/" />
     </Layout>
   );
 };
@@ -194,6 +195,24 @@ export const query = graphql`
         keywords
         description {
           description
+        }
+      }
+    }
+    allContentfulFaqsComponent {
+      edges {
+        node {
+          question1
+          answer1 {
+            answer1
+          }
+          question2
+          answer2 {
+            answer2
+          }
+          question3
+          answer3 {
+            answer3
+          }
         }
       }
     }

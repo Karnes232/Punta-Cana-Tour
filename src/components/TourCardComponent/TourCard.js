@@ -22,7 +22,7 @@ const TourCard = ({ tour, featured }) => {
               {description1.description1}
             </p>
           </div>
-          
+
           <div className="px-6 pt-4 h-24 pb-2 flex items-end flex-wrap">
             {category.map((category, index) => (
               <span

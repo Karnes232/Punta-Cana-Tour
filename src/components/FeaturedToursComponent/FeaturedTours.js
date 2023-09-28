@@ -16,7 +16,7 @@ const FeaturedTours = ({ tours }) => {
           <TourCard tour={tour} key={index} featured />
         ))}
       </div>
-      <CtaButton text='More Tours' />
+      <CtaButton text="More Tours" link="/tours/" />
     </div>
   );
 };
