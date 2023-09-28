@@ -48,7 +48,7 @@ module.exports = {
         name: "Punta-Cana-Tour-Store",
         short_name: `PC-Tour-Store`,
         start_url: `/`,
-        icon: "src/images/TourLogo.png",
+        icon: "src/images/TourLogoNew.png",
       },
     },
     {
