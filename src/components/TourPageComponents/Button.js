@@ -15,7 +15,7 @@ const Button = ({
     notifyAddedToCart(tour);
     // addVariantToCart(variantId, quantity)
   }
-  console.log(tour)
+
 
   return (
     <div className="mb-2">

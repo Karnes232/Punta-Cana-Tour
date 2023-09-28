@@ -7,6 +7,8 @@ import FeaturedTours from "../components/FeaturedToursComponent/FeaturedTours";
 import HeroComponent from "../components/HeroComponent/HeroComponent";
 import { schema } from "../data/schema";
 import Seo from "../components/seo";
+import CtaButton from "../components/CtaButton/CtaButton";
+
 const IndexPage = ({ data }) => {
   const tourList = Array.from(data.allContentfulTour.edges, (x) => x);
   return (
@@ -93,6 +95,8 @@ const IndexPage = ({ data }) => {
         className="mt-5"
         pClassName="mb-4  2xl:mb-10"
       />
+      <CtaButton text='Book Now'/>
+
     </Layout>
   );
 };
