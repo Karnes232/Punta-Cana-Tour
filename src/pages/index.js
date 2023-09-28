@@ -40,7 +40,7 @@ const IndexPage = ({ data }) => {
         paragraph={
           data.allContentfulIndexPageContent.edges[0].node.paragraph1.paragraph1
         }
-        className="my-5 2xl:mb-2 2xl:mt-10"
+        className="my-5 2xl:mb-2 2xl:mt-10 text-3xl md:text-4xl"
         pClassName="mb-4 lg:mb-0"
       />
       <TextComponent
@@ -89,10 +89,11 @@ const IndexPage = ({ data }) => {
         pClassName="mb-4 lg:mb-0"
       />
       <TextComponent
+      title={data.allContentfulIndexPageContent.edges[0].node.whyUs}
         paragraph={
           data.allContentfulIndexPageContent.edges[0].node.paragraph8.paragraph8
         }
-        className="mt-5"
+        className="mt-5 mb-2 text-2xl"
         pClassName="mb-4  2xl:mb-10"
       />
       <CtaButton text='Book Now'/>
@@ -107,6 +108,7 @@ export const query = graphql`
       edges {
         node {
           title
+          whyUs
           paragraph1 {
             paragraph1
           }

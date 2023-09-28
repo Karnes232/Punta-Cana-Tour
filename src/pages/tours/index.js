@@ -65,7 +65,7 @@ const Index = ({ data }) => {
         paragraph={
           data.allContentfulTourPageContent.edges[0].node.paragraph1.paragraph1
         }
-        className="my-5 2xl:my-2"
+        className="my-5 2xl:my-2 text-3xl md:text-4xl"
         pClassName="mb-4 lg:mb-0"
       />
       <div>
