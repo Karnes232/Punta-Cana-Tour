@@ -13,7 +13,8 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css}\"",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "kill": "npx kill-port 8000"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",

@@ -9,6 +9,7 @@ import { schema } from "../data/schema";
 import Seo from "../components/seo";
 import CtaButton from "../components/CtaButton/CtaButton";
 import FaqsComponent from "../components/FaqsComponent/FaqsComponent";
+import HowItWorks from "../components/HowItWorksComponent/HowItWorks";
 
 const IndexPage = ({ data }) => {
   const tourList = Array.from(data.allContentfulTour.edges, (x) => x);
@@ -89,7 +90,7 @@ const IndexPage = ({ data }) => {
         className="mt-5"
         pClassName="mb-4 lg:mb-0"
       />
-      <FaqsComponent faqs={data.allContentfulFaqsComponent.edges[0].node}/>
+      <FaqsComponent faqs={data.allContentfulFaqsComponent.edges[0].node} />
       <TextComponent
         title={data.allContentfulIndexPageContent.edges[0].node.whyUs}
         paragraph={
@@ -99,6 +100,7 @@ const IndexPage = ({ data }) => {
         pClassName="mb-4 2xl:mb-10"
       />
       <CtaButton text="Book Now" link="/tours/" />
+      <HowItWorks data={data.allContentfulHowItWorksComponent.edges[0].node} />
     </Layout>
   );
 };
@@ -212,6 +214,33 @@ export const query = graphql`
           question3
           answer3 {
             answer3
+          }
+        }
+      }
+    }
+    allContentfulHowItWorksComponent {
+      edges {
+        node {
+          step1Title
+          step1Description {
+            step1Description
+          }
+          step1Image {
+            gatsbyImage(width: 150, formats: WEBP)
+          }
+          step2Title
+          step2Description {
+            step2Description
+          }
+          step2Image {
+            gatsbyImage(width: 150, formats: WEBP)
+          }
+          step3Title
+          step3Description {
+            step3Description
+          }
+          step3Image {
+            gatsbyImage(width: 150, formats: WEBP)
           }
         }
       }
