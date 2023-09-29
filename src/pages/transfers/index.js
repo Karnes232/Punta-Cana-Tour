@@ -2,6 +2,7 @@ import React from 'react'
 import Seo from '../../components/seo';
 import { graphql } from 'gatsby';
 import Layout from '../../components/layout';
+import TextComponent from '../../components/TextComponent/TextComponent';
 
 const Index = ({data}) => {
   return (
@@ -18,7 +19,12 @@ const Index = ({data}) => {
       }
       color='black'
     >
-        <div>index</div>
+       <TextComponent
+        title='TRANSFERS'
+        paragraph='TRANSFERS TO ANY LOCATION IN THE DOMINICAN REPUBLIC ARE PROVIDED BY COMFORTABLE MINIVANS, BUSES AND LUXURY CARS. OUR VEHICLES ADHERE TO THE HIGHEST STANDARDS, AND OUR SAFETY MEASURES WILL LEAVE YOU WITH A SENSE OF SECURITY.'
+        className="my-5 2xl:mb-2 2xl:mt-10 text-3xl md:text-4xl"
+        pClassName="mb-4 lg:mb-0"
+      />
     </Layout>
     
   )
