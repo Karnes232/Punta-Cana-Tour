@@ -15,14 +15,14 @@ const HeroComponent = ({ imageUrl, gImage, heroText, heroText2, button }) => {
   if (windowWidth < 1500) {
     HeroStyles = {
       backgroundImage:
-        "linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(0, 0, 0, 0.53)), url(" +
+        "linear-gradient(45deg, rgba(245, 246, 252, 0.2), rgba(0, 0, 0, 0.6)), url(" +
         imageSrc[1].imageSrc +
         ")",
     };
   } else {
     HeroStyles = {
       backgroundImage:
-        "linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(0, 0, 0, 0.53)), url(" +
+        "linear-gradient(45deg, rgba(245, 246, 252, 0.52), rgba(0, 0, 0, 0.53)), url(" +
         imageSrc[2].imageSrc +
         ")",
     };
