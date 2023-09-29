@@ -11,11 +11,12 @@ export default function Layout({
   instagram,
   email,
   gImage,
+  color
 }) {
   return (
     <CartProvider>
       <div className="min-h-screen font-montserrat flex flex-col justify-between overflow-x-hidden">
-        <Header logo={logo} color="white" />
+        <Header logo={logo} color={color} />
         {children}
         <Footer
           footerBackground={footerBackground}

@@ -1,10 +1,9 @@
-import React from "react";
-import { graphql } from "gatsby";
-import Layout from "../../components/layout";
-import HeroComponent from "../../components/HeroComponent/HeroComponent";
-import ContactForm from "../../components/ContactFormComponent/ContactForm";
-import Seo from "../../components/seo";
-const index = ({ data }) => {
+import React from 'react'
+import Seo from '../../components/seo';
+import { graphql } from 'gatsby';
+import Layout from '../../components/layout';
+
+const Index = ({data}) => {
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -17,26 +16,17 @@ const index = ({ data }) => {
       gImage={
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
-      color='white'
+      color='black'
     >
-      <HeroComponent
-        imageUrl={
-          data.allContentfulAboutPageContent.edges[0].node.aboutHero.file.url
-        }
-        gImage={
-          data.allContentfulAboutPageContent.edges[0].node.aboutHero.gatsbyImage
-        }
-        heroText=""
-        heroText2=""
-        button={false}
-      />
-      <ContactForm />
+        <div>index</div>
     </Layout>
-  );
-};
+    
+  )
+}
 
 export const query = graphql`
   query MyQuery {
+    
     allContentfulLayout {
       edges {
         node {
@@ -53,19 +43,8 @@ export const query = graphql`
         }
       }
     }
-    allContentfulAboutPageContent {
-      edges {
-        node {
-          aboutHero {
-            gatsbyImage(width: 1920, formats: WEBP)
-            file {
-              url
-            }
-          }
-        }
-      }
-    }
-    allContentfulSeo(filter: { page: { eq: "Contact Page" } }) {
+
+    allContentfulSeo(filter: { page: { eq: "Index" } }) {
       nodes {
         title
         keywords
@@ -74,6 +53,8 @@ export const query = graphql`
         }
       }
     }
+
+
   }
 `;
 
@@ -86,9 +67,9 @@ export const Head = ({ data }) => {
         description={description.description}
         keywords={keywords.join(", ")}
       />
-      <link rel="canonical" href="https://puntacanatourstore.com/contact/" />
+      <link rel="canonical" href="https://puntacanatourstore.com/" />
     </>
   );
 };
 
-export default index;
+export default Index

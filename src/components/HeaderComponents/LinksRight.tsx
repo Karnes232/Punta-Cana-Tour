@@ -11,6 +11,9 @@ const LinksRight = ({ color }) => {
       <Link to="/tours" className="no-underline">
         <button className={`navLinks text-${color}`}>Tours</button>
       </Link>
+      <Link to="/transfers" className="no-underline">
+        <button className={`navLinks text-${color}`}>Transfers</button>
+      </Link>
       <Link to="/about" className="no-underline">
         <button className={`navLinks text-${color}`}>About</button>
       </Link>

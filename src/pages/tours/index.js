@@ -47,6 +47,7 @@ const Index = ({ data }) => {
       gImage={
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
+      color='white'
     >
       <HeroComponent
         imageUrl={
