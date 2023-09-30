@@ -4,6 +4,7 @@ import { graphql } from "gatsby";
 import Layout from "../../components/layout";
 import TextComponent from "../../components/TextComponent/TextComponent";
 import Form from "../../components/TransferComponents/Form";
+import VehicleSelect from "../../components/TransferComponents/VehicleSelect";
 
 const Index = ({ data }) => {
   const [formData, setFormData] = useState({
@@ -12,13 +13,15 @@ const Index = ({ data }) => {
     telephone: "",
     transferType: "",
     passengerCount: "",
+    flightNumber: "",
+    time: "",
+    date: "",
     hotelSelect: "",
-    zone: ""
+    zone: "",
   });
   const handleSubmit = (e) => {
-    e.preventDefault()
-  }
-  console.log(formData)
+    e.preventDefault();
+  };
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -49,7 +52,10 @@ const Index = ({ data }) => {
         hotels={data.allContentfulHotelList.edges}
         handleSubmit={handleSubmit}
       />
-   
+      <VehicleSelect
+        formData={formData}
+        vehicles={data.allContentfulTransferVehicle.edges}
+      />
     </Layout>
   );
 };
@@ -100,6 +106,22 @@ export const query = graphql`
         node {
           zone
           hotelName
+        }
+      }
+    }
+    allContentfulTransferVehicle {
+      edges {
+        node {
+          vehicleType
+          amountOfPassengers
+          description
+          zone1Price
+          zone2Price
+          zone3Price
+          zone4Price
+          vehiclePhoto {
+            gatsbyImage(formats: WEBP, width: 400)
+          }
         }
       }
     }

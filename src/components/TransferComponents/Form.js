@@ -3,18 +3,18 @@ import React from "react";
 import ContactInfo from "./ContactInfo";
 import TransferInfo from "./TransferInfo";
 import HotelSelect from "./HotelSelect";
+import DateTime from "./DateTime";
 
 const Form = ({ data, formData, setFormData, hotels, handleSubmit }) => {
   const image = getImage(data.gatsbyImage);
   const handleChange = ({ target }) => {
-    
     setFormData({
       ...formData,
       [target.name]: target.value,
     });
   };
   return (
-    <div className="flex flex-col lg:flex-row justify-evenly items-center xl:justify-center space-x-20">
+    <div className="flex flex-col lg:flex-row justify-evenly items-center xl:justify-center xl:space-x-20">
       <div className="max-w-xs lg:max-w-lg my-2 mx-2 rounded-lg overflow-hidden shadow-lg">
         <GatsbyImage image={image} alt={data.title} className="w-full" />
       </div>
@@ -35,6 +35,7 @@ const Form = ({ data, formData, setFormData, hotels, handleSubmit }) => {
           setFormData={setFormData}
           hotels={hotels}
         />
+        <DateTime formData={formData} handleChange={handleChange} />
       </form>
     </div>
   );
