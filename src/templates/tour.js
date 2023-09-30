@@ -51,7 +51,7 @@ const tour = ({ pageContext }) => {
       instagram={instagram}
       email={email}
       gImage={gImage}
-      color='white'
+      color="white"
     >
       <ToastContainer />
       <HeroComponent

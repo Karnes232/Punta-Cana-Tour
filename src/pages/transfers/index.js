@@ -1,10 +1,23 @@
-import React from 'react'
-import Seo from '../../components/seo';
-import { graphql } from 'gatsby';
-import Layout from '../../components/layout';
-import TextComponent from '../../components/TextComponent/TextComponent';
+import React, { useState } from "react";
+import Seo from "../../components/seo";
+import { graphql } from "gatsby";
+import Layout from "../../components/layout";
+import TextComponent from "../../components/TextComponent/TextComponent";
+import Form from "../../components/TransferComponents/Form";
 
-const Index = ({data}) => {
+const Index = ({ data }) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    telephone: "",
+    transferType: "",
+    passengerCount: "",
+    hotelSelect: "",
+    zone: ""
+  });
+  const handleSubmit = (e) => {
+    
+  }
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -17,22 +30,30 @@ const Index = ({data}) => {
       gImage={
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
-      color='black'
+      color="black"
     >
-       <TextComponent
-        title='TRANSFERS'
-        paragraph='TRANSFERS TO ANY LOCATION IN THE DOMINICAN REPUBLIC ARE PROVIDED BY COMFORTABLE MINIVANS, BUSES AND LUXURY CARS. OUR VEHICLES ADHERE TO THE HIGHEST STANDARDS, AND OUR SAFETY MEASURES WILL LEAVE YOU WITH A SENSE OF SECURITY.'
-        className="my-5 2xl:mb-2 2xl:mt-10 text-3xl md:text-4xl"
+      <TextComponent
+        title={data.allContentfulTransferPageContent.edges[0].node.title}
+        paragraph={
+          data.allContentfulTransferPageContent.edges[0].node.description
+            .description
+        }
+        className="my-5 2xl:mb-2 2xl:mt-10 text-2xl md:text-4xl"
         pClassName="mb-4 lg:mb-0"
       />
+      <Form
+        data={data.allContentfulTransferPageContent.edges[0].node.airportPhoto}
+        formData={formData}
+        setFormData={setFormData}
+        hotels={data.allContentfulHotelList.edges}
+        onSubmit={handleSubmit}
+      />
     </Layout>
-    
-  )
-}
+  );
+};
 
 export const query = graphql`
   query MyQuery {
-    
     allContentfulLayout {
       edges {
         node {
@@ -49,7 +70,6 @@ export const query = graphql`
         }
       }
     }
-
     allContentfulSeo(filter: { page: { eq: "Index" } }) {
       nodes {
         title
@@ -59,8 +79,28 @@ export const query = graphql`
         }
       }
     }
-
-
+    allContentfulTransferPageContent {
+      edges {
+        node {
+          title
+          description {
+            description
+          }
+          airportPhoto {
+            title
+            gatsbyImage(width: 620, formats: WEBP)
+          }
+        }
+      }
+    }
+    allContentfulHotelList {
+      edges {
+        node {
+          zone
+          hotelName
+        }
+      }
+    }
   }
 `;
 
@@ -78,4 +118,4 @@ export const Head = ({ data }) => {
   );
 };
 
-export default Index
+export default Index;

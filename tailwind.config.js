@@ -10,6 +10,7 @@ module.exports = {
       colors: {
         "primary-color": "var(--primary-color)",
         "secondary-color": "var(--secondary-color)",
+        "primary-bg-color": "var(--primary-bg-color)",
       },
       fontFamily: {
         yellowtail: ["Yellowtail"],

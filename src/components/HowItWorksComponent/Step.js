@@ -1,12 +1,11 @@
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
-import React from 'react'
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import React from "react";
 import { motion } from "framer-motion";
-const Step = ({title, description, image}) => {
-    const icon = getImage(image);
+const Step = ({ title, description, image }) => {
+  const icon = getImage(image);
   return (
-    <div className='flex flex-col justify-center items-center my-2 md:my-4 max-w-sm'>
-        
-        <motion.div
+    <div className="flex flex-col justify-center items-center my-2 md:my-4 max-w-sm">
+      <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -26,8 +25,7 @@ const Step = ({title, description, image}) => {
         ></p>
       </motion.div>
     </div>
-  )
-}
+  );
+};
 
-export default Step
-
+export default Step;

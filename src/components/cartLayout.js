@@ -14,7 +14,7 @@ export default function CartLayout({
 }) {
   return (
     <CartProvider>
-      <div className="min-h-screen font-montserrat flex flex-col justify-between overflow-x-hidden">
+      <div className="min-h-screen font-montserrat flex flex-col justify-between overflow-x-hidden bg-primary-bg-color">
         <Header logo={logo} color="black" />
         {children}
         <Footer
