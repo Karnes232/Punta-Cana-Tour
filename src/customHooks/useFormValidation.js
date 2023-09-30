@@ -1,0 +1,23 @@
+import { useEffect, useState } from "react";
+
+const useFormValidation = (formData) => {
+  console.log(formData);
+  if (
+    formData.name !== "" &&
+    formData.email !== "" &&
+    formData.telephone !== "" &&
+    formData.transferType !== "" &&
+    formData.passengerCount !== "" &&
+    formData.flightNumber !== "" &&
+    formData.hotelSelect !== "" &&
+    formData.time !== "" &&
+    formData.date !== "" &&
+    formData.zone !== ""
+  ) {
+    return false;
+  } else {
+    return true;
+  }
+};
+
+export default useFormValidation;

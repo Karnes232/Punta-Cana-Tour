@@ -14,7 +14,7 @@ const Form = ({ data, formData, setFormData, hotels, handleSubmit }) => {
     });
   };
   return (
-    <div className="flex flex-col lg:flex-row justify-evenly items-center xl:justify-center xl:space-x-20">
+    <div className="flex flex-col lg:flex-row justify-evenly items-center xl:justify-center xl:space-x-24">
       <div className="max-w-xs lg:max-w-lg my-2 mx-2 rounded-lg overflow-hidden shadow-lg">
         <GatsbyImage image={image} alt={data.title} className="w-full" />
       </div>

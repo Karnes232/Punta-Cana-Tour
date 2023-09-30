@@ -109,7 +109,7 @@ export const query = graphql`
         }
       }
     }
-    allContentfulTransferVehicle {
+    allContentfulTransferVehicle(sort: { zone1Price: ASC }) {
       edges {
         node {
           vehicleType
