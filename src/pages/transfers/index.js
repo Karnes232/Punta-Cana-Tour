@@ -16,8 +16,9 @@ const Index = ({ data }) => {
     zone: ""
   });
   const handleSubmit = (e) => {
-    
+    e.preventDefault()
   }
+  console.log(formData)
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -46,8 +47,9 @@ const Index = ({ data }) => {
         formData={formData}
         setFormData={setFormData}
         hotels={data.allContentfulHotelList.edges}
-        onSubmit={handleSubmit}
+        handleSubmit={handleSubmit}
       />
+   
     </Layout>
   );
 };

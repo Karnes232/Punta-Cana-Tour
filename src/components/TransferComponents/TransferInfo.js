@@ -3,33 +3,34 @@ import React from "react";
 const TransferInfo = ({ formData, handleChange }) => {
   return (
     <>
-      <div className="relative z-0 w-full group">
+      
+      <div className="relative z-0 mb-2 xl:mb-0 w-full group">
         <input
           type="radio"
           name="transferType"
-          id="transferType"
+          id="Round"
           className=""
           placeholder=" "
           required
           value="Round"
           onChange={handleChange}
         />
-        <label htmlFor="transferType" className="ml-5 text-gray-500">
+        <label htmlFor="Round" className="ml-5 text-gray-500">
           Round Trip
         </label>
       </div>
-      <div className="relative z-0 w-full group">
+      <div className="relative z-0 mb-2 xl:mb-0 w-full group">
         <input
           type="radio"
           name="transferType"
-          id="transferType"
+          id="Arrival"
           className=""
           placeholder=" "
           required
           value="Arrival"
           onChange={handleChange}
         />
-        <label htmlFor="transferType" className="ml-5 text-gray-500">
+        <label htmlFor="Arrival" className="ml-5 text-gray-500">
           One way - Arrival
         </label>
       </div>
@@ -37,14 +38,14 @@ const TransferInfo = ({ formData, handleChange }) => {
         <input
           type="radio"
           name="transferType"
-          id="transferType"
+          id="Depature"
           className=""
           placeholder=" "
           required
           value="Depature"
           onChange={handleChange}
         />
-        <label htmlFor="transferType" className="ml-5 text-gray-500">
+        <label htmlFor="Depature" className="ml-5 text-gray-500">
           One way - Depature
         </label>
       </div>

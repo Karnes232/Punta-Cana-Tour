@@ -21,8 +21,8 @@ const SideBarMenu = ({ toggled, setToggled }) => {
       >
         <div className="flex flex-col h-full justify-between">
           <div>
-            <div className="mt-7 mb-10 flex justify-center items-center font-yellowtail tracking-wider text-2xl">
-              ThrillQuest
+            <div className="mt-7 mb-10 flex justify-center items-center font-yellowtail tracking-wide text-2xl">
+              Punta Cana Tour Store
             </div>
             <Menu className="ml-4 overflow-hidden">
               <MenuItem component={<Link to="/" className="hamburger" />}>

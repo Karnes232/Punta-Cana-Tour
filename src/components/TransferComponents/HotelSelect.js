@@ -1,23 +1,23 @@
 import React from "react";
 import Select from "react-select";
 const HotelSelect = ({ formData, setFormData, hotels }) => {
-  console.log(formData);
+
   let options = [];
   hotels.map((zone) => {
     return zone.node.hotelName.map((hotel) => {
       let option = {
-        value: zone.node.zone,
+        value: zone.node.zone + ' - ' + hotel,
         label: hotel,
       };
       options.push(option);
     });
   });
   const hotelChange = (e) => {
-
+    let selectedZone = e.value.split(' ')
     setFormData({
         ...formData,
         hotelSelect: e.label,
-        zone: e.value
+        zone: selectedZone[0]
       });
   };
   const style = {
@@ -40,6 +40,7 @@ const HotelSelect = ({ formData, setFormData, hotels }) => {
           onChange={hotelChange}
           placeholder='Hotel'
          styles={style}
+         required
         />
       </div>
     </>

@@ -4,7 +4,7 @@ import { Link } from "gatsby";
 
 const LinksRight = ({ color }) => {
   return (
-    <div className="hidden lg:flex lg:w-96 xl:w-[35rem] lg:justify-between">
+    <div className="hidden lg:flex lg:w-[28rem] xl:w-[35rem] lg:justify-between">
       <Link to="/" className="no-underline">
         <button className={`navLinks text-${color}`}>Home</button>
       </Link>
