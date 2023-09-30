@@ -43,14 +43,18 @@ const VehicleCard = ({ vehicle, formData }) => {
       </div>
 
       <div className="px-6 pb-2 flex items-end flex-wrap">
-        <button
-          disabled={disabled}
-          className={`flex items-center justify-between no-underline w-28 font-medium bg-primary-color text-secondary-color px-4 py-2 md:py-3 my-3 rounded-xl hover:opacity-70 ${
-            disabled ? "opacity-50" : "opacity-100"
-          }`}
+        <Link
+          to={`/transfers/payment/?name=${formData.name}&email=${formData.email}&telephone=${formData.telephone}&transferType=${formData.transferType}&passengerCount=${formData.passengerCount}&flightNumber=${formData.flightNumber}&hotel=${formData.hotelSelect}&time=${formData.time}&date=${formData.date}&price=${price}`}
         >
-          Select <RiArrowRightSLine className="ml-2" />
-        </button>
+          <button
+            disabled={disabled}
+            className={`flex items-center justify-between no-underline w-28 font-medium bg-primary-color text-secondary-color px-4 py-2 md:py-3 my-3 rounded-xl hover:opacity-70 ${
+              disabled ? "opacity-50" : "opacity-100"
+            }`}
+          >
+            Select <RiArrowRightSLine className="ml-2" />
+          </button>
+        </Link>
       </div>
     </div>
   );
