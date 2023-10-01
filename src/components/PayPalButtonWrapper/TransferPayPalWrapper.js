@@ -25,6 +25,7 @@ const TransferPayPalWrapper = ({
   return (
     <>
       <form
+        name="paymentInfo"
         id="paymentInfo"
         className="hidden"
         data-netlify="true"
