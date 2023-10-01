@@ -45,7 +45,7 @@ const TransferPayPalWrapper = ({
         <input type="text" name="hotelSelect" defaultValue={formData.hotelSelect} />
         <input type="time" name="time" defaultValue={formData.time} />
         <input type="date" name="date" defaultValue={formData.date} />
-        <input type="text" name="price" defaultValue={amount} />
+     
       </form>
       {showSpinner && isPending && <div className="spinner" />}
       <PayPalButtons
@@ -77,7 +77,7 @@ const TransferPayPalWrapper = ({
           return actions.order.capture().then(function (details) {
             const form = document.getElementById("transferInfo");
             const newFormData = new FormData(form);
-            console.log(newFormData);
+            newFormData.append("price", details.purchase_units[0].amount.value)
             fetch("/", {
               method: "POST",
               headers: { "Content-Type": "application/x-www-form-urlencoded" },

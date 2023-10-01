@@ -25,6 +25,7 @@ const DateTime = ({ formData, handleChange }) => {
           id="date"
           className="peer transferFormInput"
           placeholder=""
+          // min={"2023-10-15"}
           required
           value={formData.date}
           onChange={handleChange}
