@@ -27,7 +27,7 @@ const TransferPayPalWrapper = ({
       <form
         name="paymentInfo"
         id="paymentInfo"
-        className="hidden"
+        className=""
         data-netlify="true"
         data-netlify-honeypot="bot-field"
       >
