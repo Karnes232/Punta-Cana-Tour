@@ -1,11 +1,9 @@
-import React from 'react'
+import React from "react";
 
-const Payment = ({location}) => {
-    const params = new URLSearchParams(location.search);
-    console.log(params)
-  return (
-    <div>payment</div>
-  )
-}
+const Payment = ({ location }) => {
+  const params = new URLSearchParams(location.search);
+  console.log(params);
+  return <div>payment</div>;
+};
 
-export default Payment
+export default Payment;

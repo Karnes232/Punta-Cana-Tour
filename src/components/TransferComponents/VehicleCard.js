@@ -5,8 +5,6 @@ import { Link } from "gatsby";
 import useFormValidation from "../../customHooks/useFormValidation";
 import TransferPayPalWrapper from "../PayPalButtonWrapper/TransferPayPalWrapper";
 
-
-
 const VehicleCard = ({ vehicle, formData }) => {
   const image = getImage(vehicle.vehiclePhoto.gatsbyImage);
   let price = null;
@@ -58,14 +56,20 @@ const VehicleCard = ({ vehicle, formData }) => {
             Select <RiArrowRightSLine className="ml-2" />
           </button>
         </Link> */}
-        {price ? <> <TransferPayPalWrapper
-          currency="USD"
-          showSpinner={false}
-          amount={price}
-          formData={formData}
-          disabled={disabled}
-        /></> : <></>}
-        
+        {price ? (
+          <>
+            {" "}
+            <TransferPayPalWrapper
+              currency="USD"
+              showSpinner={false}
+              amount={price}
+              formData={formData}
+              disabled={disabled}
+            />
+          </>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );
