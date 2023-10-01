@@ -31,6 +31,7 @@ const TransferPayPalWrapper = ({
         data-netlify="true"
         data-netlify-honeypot="bot-field"
       >
+        <input type="hidden" name="form-name" value="paymentInfo" />
         <input type="text" name="name" value={formData.name} />
         <input type="email" name="email" value={formData.email} />
         <input type="tel" name="telephone" value={formData.telephone} />
