@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const useFormValidation = (formData) => {
-  console.log(formData);
+
   if (
     formData.name !== "" &&
     formData.email !== "" &&

@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import { RiArrowRightSLine } from "react-icons/ri";
 import { Link } from "gatsby";
 import useFormValidation from "../../customHooks/useFormValidation";
+import TransferPayPalWrapper from "../PayPalButtonWrapper/TransferPayPalWrapper";
+
+
 
 const VehicleCard = ({ vehicle, formData }) => {
   const image = getImage(vehicle.vehiclePhoto.gatsbyImage);
@@ -43,7 +46,7 @@ const VehicleCard = ({ vehicle, formData }) => {
       </div>
 
       <div className="px-6 pb-2 flex items-end flex-wrap">
-        <Link
+        {/* <Link
           to={`/transfers/payment/?name=${formData.name}&email=${formData.email}&telephone=${formData.telephone}&transferType=${formData.transferType}&passengerCount=${formData.passengerCount}&flightNumber=${formData.flightNumber}&hotel=${formData.hotelSelect}&time=${formData.time}&date=${formData.date}&price=${price}`}
         >
           <button
@@ -54,7 +57,15 @@ const VehicleCard = ({ vehicle, formData }) => {
           >
             Select <RiArrowRightSLine className="ml-2" />
           </button>
-        </Link>
+        </Link> */}
+        {price ? <> <TransferPayPalWrapper
+          currency="USD"
+          showSpinner={false}
+          amount={price}
+          formData={formData}
+          disabled={disabled}
+        /></> : <></>}
+        
       </div>
     </div>
   );
