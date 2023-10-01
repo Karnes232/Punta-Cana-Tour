@@ -25,13 +25,13 @@ const TransferPayPalWrapper = ({
   return (
     <>
       <form
-        name="paymentInfo"
-        id="paymentInfo"
-        className=""
+        name="transferInfo"
+        id="transferInfo"
+        className="hidden"
         data-netlify="true"
         data-netlify-honeypot="bot-field"
       >
-        <input type="hidden" name="form-name" value="paymentInfo" />
+        <input type="hidden" name="form-name" value="transferInfo" />
         <input type="text" name="name" defaultValue={formData.name} />
         <input type="email" name="email" defaultValue={formData.email} />
         <input type="tel" name="telephone" defaultValue={formData.telephone} />
@@ -74,7 +74,7 @@ const TransferPayPalWrapper = ({
         }}
         onApprove={function (data, actions) {
           return actions.order.capture().then(function (details) {
-            const form = document.getElementById("paymentInfo");
+            const form = document.getElementById("transferInfo");
             const newFormData = new FormData(form);
             console.log(newFormData);
             fetch("/", {
