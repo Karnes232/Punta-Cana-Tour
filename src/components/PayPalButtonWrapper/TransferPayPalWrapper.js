@@ -32,19 +32,19 @@ const TransferPayPalWrapper = ({
         data-netlify-honeypot="bot-field"
       >
         <input type="hidden" name="form-name" value="paymentInfo" />
-        <input type="text" name="name" value={formData.name} />
-        <input type="email" name="email" value={formData.email} />
-        <input type="tel" name="telephone" value={formData.telephone} />
-        <input type="text" name="transferType" value={formData.transferType} />
+        <input type="text" name="name" defaultValue={formData.name} />
+        <input type="email" name="email" defaultValue={formData.email} />
+        <input type="tel" name="telephone" defaultValue={formData.telephone} />
+        <input type="text" name="transferType" defaultValue={formData.transferType} />
         <input
           type="text"
           name="passengerCount"
-          value={formData.passengerCount}
+          defaultValue={formData.passengerCount}
         />
-        <input type="text" name="flightNumber" value={formData.flightNumber} />
-        <input type="text" name="hotelSelect" value={formData.hotelSelect} />
-        <input type="time" name="time" value={formData.time} />
-        <input type="date" name="date" value={formData.date} />
+        <input type="text" name="flightNumber" defaultValue={formData.flightNumber} />
+        <input type="text" name="hotelSelect" defaultValue={formData.hotelSelect} />
+        <input type="time" name="time" defaultValue={formData.time} />
+        <input type="date" name="date" defaultValue={formData.date} />
       </form>
       {showSpinner && isPending && <div className="spinner" />}
       <PayPalButtons

@@ -7,6 +7,7 @@ import TransferPayPalWrapper from "../PayPalButtonWrapper/TransferPayPalWrapper"
 
 const VehicleCard = ({ vehicle, formData }) => {
   const image = getImage(vehicle.vehiclePhoto.gatsbyImage);
+  console.log(formData)
   let price = 1;
   if (formData.zone === "1") {
     price = vehicle.zone1Price;
