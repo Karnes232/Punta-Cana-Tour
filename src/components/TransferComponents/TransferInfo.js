@@ -57,15 +57,15 @@ const TransferInfo = ({ formData, handleChange }) => {
               type="number"
               name="passengerCount"
               id="passengerCount"
-              className="peer contactFormInput"
-              placeholder=""
+              className="peer transferFormInput"
+              placeholder=" "
               min="0"
               max="100"
               required
               value={formData.passengerCount}
               onChange={handleChange}
             />
-            <label htmlFor="passengerCount" className="contactFormLabel">
+            <label htmlFor="passengerCount" className="transferFormLabel">
               Passengers
             </label>
           </div>
@@ -74,13 +74,13 @@ const TransferInfo = ({ formData, handleChange }) => {
               type="text"
               name="flightNumber"
               id="flightNumber"
-              className="peer contactFormInput"
-              placeholder=""
+              className="peer transferFormInput"
+              placeholder=" "
               required
               value={formData.flightNumber}
               onChange={handleChange}
             />
-            <label htmlFor="flightNumber" className="contactFormLabel">
+            <label htmlFor="flightNumber" className="transferFormLabel">
               Flight Number
             </label>
           </div>

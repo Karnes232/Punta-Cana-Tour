@@ -8,13 +8,13 @@ const DateTime = ({ formData, handleChange }) => {
           type="time"
           name="time"
           id="time"
-          className="peer contactFormInput"
+          className="peer transferFormInput"
           placeholder=""
           required
           value={formData.time}
           onChange={handleChange}
         />
-        <label htmlFor="time" className="contactFormLabel">
+        <label htmlFor="time" className="transferFormLabel">
           Pick Up Time
         </label>
       </div>
@@ -23,14 +23,14 @@ const DateTime = ({ formData, handleChange }) => {
           type="date"
           name="date"
           id="date"
-          className="peer contactFormInput"
+          className="peer transferFormInput"
           placeholder=""
           // min={"2023-10-15"}
           required
           value={formData.date}
           onChange={handleChange}
         />
-        <label htmlFor="date" className="contactFormLabel">
+        <label htmlFor="date" className="transferFormLabel">
           Date
         </label>
       </div>
