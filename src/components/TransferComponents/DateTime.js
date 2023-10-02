@@ -31,7 +31,7 @@ const DateTime = ({ formData, handleChange }) => {
           onChange={handleChange}
         />
         <label htmlFor="date" className="transferFormLabel">
-          Date
+          Date 1
         </label>
       </div>
     </div>
