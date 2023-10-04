@@ -1,6 +1,7 @@
 import React from "react";
 
 const DateTime = ({ formData, handleChange }) => {
+
   return (
     <div className="flex flex-col mt-6 lg:flex-row lg:gap-10 lg:justify-between w-full">
       <div className="relative z-0 mb-6 w-full lg:w-1/2 group">
@@ -25,7 +26,7 @@ const DateTime = ({ formData, handleChange }) => {
           id="date"
           className="peer transferFormInput"
           placeholder=""
-          // min={"2023-10-15"}
+         //min={"2023-10-15"}
           required
           value={formData.date}
           onChange={handleChange}
