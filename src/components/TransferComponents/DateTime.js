@@ -1,7 +1,7 @@
 import React from "react";
-import DatePickerComponent from "../CartComponent/DatePickerComponent";
+import DatePickerComponent from "./DatePickerComponent";
 
-const DateTime = ({ formData, handleChange }) => {
+const DateTime = ({ formData, handleChange, setFormData }) => {
   //set minDate to a future date
   const futureDays = 2;
   const date = new Date();
@@ -40,7 +40,7 @@ const DateTime = ({ formData, handleChange }) => {
         <label htmlFor="date" className="transferFormLabel">
           Date
         </label> */}
-        <DatePickerComponent />
+        <DatePickerComponent formData={formData} handleChange={handleChange} setFormData={setFormData} />
       </div>
     </div>
   );

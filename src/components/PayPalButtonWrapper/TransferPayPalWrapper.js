@@ -102,7 +102,7 @@ const TransferPayPalWrapper = ({
             const lastName = details.payer.name.surname;
             const name = `${firstName} ${lastName}`;
             const deposit = details.purchase_units[0].amount.value;
-            window.location.href = `${host}/contact/thankyou/?name=${name}`;
+            // window.location.href = `${host}/contact/thankyou/?name=${name}`;
             // window.location.href = `${host}/payment/thankyou/?firstname=${firstName}&lastname=${lastName}&deposit=${deposit}`;
           });
         }}
