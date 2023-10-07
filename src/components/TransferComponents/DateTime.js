@@ -1,4 +1,5 @@
 import React from "react";
+import DatePickerComponent from "../CartComponent/DatePickerComponent";
 
 const DateTime = ({ formData, handleChange }) => {
   //set minDate to a future date
@@ -24,8 +25,8 @@ const DateTime = ({ formData, handleChange }) => {
           Pick Up Time
         </label>
       </div>
-      <div className="relative z-0 mb-6 w-full lg:w-1/2 group">
-        <input
+      <div className="relative z-10 mb-6 w-full lg:w-1/2 group">
+        {/* <input
           type="date"
           name="date"
           id="date"
@@ -38,7 +39,8 @@ const DateTime = ({ formData, handleChange }) => {
         />
         <label htmlFor="date" className="transferFormLabel">
           Date
-        </label>
+        </label> */}
+        <DatePickerComponent />
       </div>
     </div>
   );
