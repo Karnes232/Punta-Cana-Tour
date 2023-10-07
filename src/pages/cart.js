@@ -4,6 +4,7 @@ import { graphql } from "gatsby";
 import CartLayout from "../components/cartLayout";
 
 import Form from "../components/CartComponent/Form";
+import Seo from "../components/seo";
 
 const Cart = ({ data }) => {
   return (
@@ -43,7 +44,7 @@ export const query = graphql`
       }
     }
 
-    allContentfulSeo(filter: { page: { eq: "Index" } }) {
+    allContentfulSeo(filter: { page: { eq: "Cart" } }) {
       nodes {
         title
         keywords
@@ -57,12 +58,20 @@ export const query = graphql`
 
 export default Cart;
 
-export const Head = () => (
-  <>
-    <title>Testing</title>
-    <meta
+export const Head = ({ data }) => {
+  const { title, description, keywords } = data.allContentfulSeo.nodes[0];
+  return (
+    <>
+      <Seo
+        title={title}
+        description={description.description}
+        keywords={keywords.join(", ")}
+      />
+      <link rel="canonical" href="https://puntacanatourstore.com/" />
+      <meta
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1"
     />
-  </>
-);
+    </>
+  );
+};
