@@ -22,9 +22,9 @@ const Thankyou = ({ data }) => {
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
     >
-      <main className=''>
+      <main className="">
         <div className="flex flex-col items-center max-w-xs xl:max-w-sm mx-auto">
-          <div classNam=''>
+          <div classNam="">
             <div className="flex flex-col justify-center items-center text-slate-600 ">
               <div className="text-2xl xl:text-4xl font-serif text-center mt-6">
                 Thank you {name}, our team will reach out to you shortly!

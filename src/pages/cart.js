@@ -56,3 +56,13 @@ export const query = graphql`
 `;
 
 export default Cart;
+
+export const Head = () => (
+  <>
+    <title>Testing</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+  </>
+);

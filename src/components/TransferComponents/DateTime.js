@@ -2,10 +2,10 @@ import React from "react";
 
 const DateTime = ({ formData, handleChange }) => {
   //set minDate to a future date
-  const futureDays = 2
-  const date = new Date()
-  date.setDate(date.getDate() + futureDays)
-  const minDate = date.toLocaleDateString('en-ca')
+  const futureDays = 2;
+  const date = new Date();
+  date.setDate(date.getDate() + futureDays);
+  const minDate = date.toLocaleDateString("en-ca");
 
   return (
     <div className="flex flex-col mt-6 lg:flex-row lg:gap-10 lg:justify-between w-full">

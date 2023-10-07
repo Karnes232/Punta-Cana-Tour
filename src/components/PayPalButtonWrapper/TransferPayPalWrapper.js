@@ -35,14 +35,26 @@ const TransferPayPalWrapper = ({
         <input type="text" name="name" defaultValue={formData.name} />
         <input type="email" name="email" defaultValue={formData.email} />
         <input type="tel" name="telephone" defaultValue={formData.telephone} />
-        <input type="text" name="transferType" defaultValue={formData.transferType} />
+        <input
+          type="text"
+          name="transferType"
+          defaultValue={formData.transferType}
+        />
         <input
           type="text"
           name="passengerCount"
           defaultValue={formData.passengerCount}
         />
-        <input type="text" name="flightNumber" defaultValue={formData.flightNumber} />
-        <input type="text" name="hotelSelect" defaultValue={formData.hotelSelect} />
+        <input
+          type="text"
+          name="flightNumber"
+          defaultValue={formData.flightNumber}
+        />
+        <input
+          type="text"
+          name="hotelSelect"
+          defaultValue={formData.hotelSelect}
+        />
         <input type="time" name="time" defaultValue={formData.time} />
         <input type="date" name="date" defaultValue={formData.date} />
         <input type="text" name="price" defaultValue={amount} />
@@ -78,7 +90,7 @@ const TransferPayPalWrapper = ({
             const form = document.getElementById("transferInfo");
             const newFormData = new FormData(form);
             console.log(newFormData);
-            newFormData.set("price", details.purchase_units[0].amount.value)
+            newFormData.set("price", details.purchase_units[0].amount.value);
             fetch("/", {
               method: "POST",
               headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -88,7 +100,7 @@ const TransferPayPalWrapper = ({
               .catch((error) => alert(error));
             const firstName = details.payer.name.given_name;
             const lastName = details.payer.name.surname;
-            const name = `${firstName} ${lastName}`
+            const name = `${firstName} ${lastName}`;
             const deposit = details.purchase_units[0].amount.value;
             window.location.href = `${host}/contact/thankyou/?name=${name}`;
             // window.location.href = `${host}/payment/thankyou/?firstname=${firstName}&lastname=${lastName}&deposit=${deposit}`;

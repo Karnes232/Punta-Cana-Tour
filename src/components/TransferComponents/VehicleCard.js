@@ -36,8 +36,7 @@ const VehicleCard = ({ vehicle, formData }) => {
         <div className="font-bold h-10 text-lg flex justify-between">
           <div className="truncate mr-3">{vehicle.vehicleType}</div>
           <div className="w-20 text-right">
-          {price > 1 ? (<> ${price} </>) : (<></> )}
-            
+            {price > 1 ? <> ${price} </> : <></>}
           </div>
         </div>
         <p className="text-gray-700 mb-2 text-sm">
@@ -47,7 +46,6 @@ const VehicleCard = ({ vehicle, formData }) => {
       </div>
 
       <div className="px-6 pb-2 flex items-end flex-wrap">
-
         {price ? (
           <>
             {" "}
