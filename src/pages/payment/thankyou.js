@@ -1,25 +1,16 @@
-import { graphql } from "gatsby";
 import React from "react";
+import { graphql } from "gatsby";
 import CartLayout from "../../components/cartLayout";
 import TourCard from "../../components/PaymentComponents/TourCard";
-import CustomPayPal from "../../components/PayPalButtonWrapper/CustomPayPal";
 
-const Index = ({ data, location }) => {
+const Thankyou = ({ data, location }) => {
   const params = new URLSearchParams(location.search);
   const clientName = params.get("name");
-  const clientEmail = params.get("email");
+  const deposit = params.get("deposit");
   const tours = params.getAll("tourSelect");
   const guests = params.getAll("guests");
 
-  let totalCost = 0;
-
   const newList = tours.map((tour, index) => {
-    let tourPrice = data.allContentfulTour.nodes.find(
-      (tour) => tour.name === tours[index],
-    ).price;
-
-    totalCost += parseInt(tourPrice) * parseInt(guests[index]);
-
     return {
       tourName: tour,
       guestCount: guests[index],
@@ -28,7 +19,7 @@ const Index = ({ data, location }) => {
       ),
     };
   });
-
+  console.log(newList);
   return (
     <CartLayout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -42,26 +33,29 @@ const Index = ({ data, location }) => {
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
     >
-      <main className="flex flex-col lg:flex-row lg:gap-24 lg:max-w-6xl lg:mx-auto">
-        {/* <main className="mt-28 md:mt-32 xl:mt-40"> */}
-        <div className="flex flex-col justify-center">
-          <section className="w-64 md:w-full max-w-md flex flex-col justify-center items-center mx-auto my-5">
-            <div className="font-lato tracking-wider text-3xl border-b-2 border-gray-400/75 w-full text-center py-2">
-              Booking Details
-            </div>
-            <div className="my-5 space-y-1">
-              <div className="text-gray-500">{clientName}</div>
-              <div className="text-gray-500">{clientEmail}</div>
-            </div>
-          </section>
+        <main className="flex flex-col lg:flex-row lg:gap-24 lg:max-w-6xl lg:mx-auto">
 
-          <section className="flex flex-col justify-center items-center">
-            <CustomPayPal
-              price={totalCost}
-              tourList={newList}
-              clientName={clientName}
-            />
-          </section>
+         <div className="flex flex-col items-center max-w-xs xl:max-w-sm mx-auto mb-5">
+          <div classNam="">
+            <div className="flex flex-col justify-center items-center text-slate-600 ">
+              <div className="text-2xl xl:text-4xl font-serif text-center mt-6">
+                Thank you {clientName}, our team will reach out to you shortly!
+              </div>
+
+              <div className="text-center text-sm xl:text-base mt-2 xl:mt-6">
+                Please feel free to{" "}
+                <a
+                  href={`mailto:${data.allContentfulLayout.edges[0].node.email}`}
+                  aria-label="Gmail"
+                  rel="noreferrer"
+                  className="underline"
+                >
+                  contact us
+                </a>{" "}
+                with any questions or concerns.
+              </div>
+            </div>
+          </div>
         </div>
         <div className="max-w-xs mx-auto lg:mx-0 flex flex-col justify-center">
           {newList.map((tour, index) => {
@@ -70,8 +64,8 @@ const Index = ({ data, location }) => {
         </div>
       </main>
       <section className="space-x-16 flex justify-between mx-auto my-5">
-        <div className="text-lg font-bold">Total Paid</div>
-        <div className="text-lg">${totalCost}</div>
+        <div className="text-lg font-bold">Total Cost</div>
+        <div className="text-lg">${deposit}</div>
       </section>
     </CartLayout>
   );
@@ -110,4 +104,4 @@ export const query = graphql`
   }
 `;
 
-export default Index;
+export default Thankyou;

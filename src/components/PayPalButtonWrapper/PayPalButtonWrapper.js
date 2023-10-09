@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 
-const PayPalButtonWrapper = ({ currency, showSpinner, amount }) => {
+const PayPalButtonWrapper = ({
+  currency,
+  showSpinner,
+  amount,
+  tourList,
+  clientName,
+}) => {
   const style = { layout: "vertical", shape: "pill" };
   const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
   const [host, setHost] = useState("");
@@ -15,7 +21,12 @@ const PayPalButtonWrapper = ({ currency, showSpinner, amount }) => {
     });
     setHost(window.location.origin);
   }, [currency, showSpinner]);
-
+  console.log(tourList);
+  let redirectHref = `${host}/payment/thankyou/?name=${clientName}`;
+  tourList.map((tour) => {
+    redirectHref =
+      redirectHref + `&tourSelect=${tour.tourName}&guests=${tour.guestCount}`;
+  });
   return (
     <>
       {showSpinner && isPending && <div className="spinner" />}
@@ -46,10 +57,9 @@ const PayPalButtonWrapper = ({ currency, showSpinner, amount }) => {
         }}
         onApprove={function (data, actions) {
           return actions.order.capture().then(function (details) {
-            const firstName = details.payer.name.given_name;
-            const lastName = details.payer.name.surname;
             const deposit = details.purchase_units[0].amount.value;
-            window.location.href = `${host}/payment/thankyou/?firstname=${firstName}&lastname=${lastName}&deposit=${deposit}`;
+            const depositString = `&deposit=${deposit}`;
+            window.location.href = redirectHref + depositString;
           });
         }}
       />
