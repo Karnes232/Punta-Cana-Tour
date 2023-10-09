@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
 
 const DatePickerComponent = ({ formData, handleChange, setFormData }) => {
-
   const [date, setDate] = useState(undefined);
   const [value, setValue] = useState({
     startDate: date,
@@ -20,9 +19,8 @@ const DatePickerComponent = ({ formData, handleChange, setFormData }) => {
       ...formData,
       date: newValue.startDate,
     });
-    
   };
-  console.log(formData)
+
   return (
     <>
       <Datepicker

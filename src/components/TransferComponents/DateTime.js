@@ -40,7 +40,11 @@ const DateTime = ({ formData, handleChange, setFormData }) => {
         <label htmlFor="date" className="transferFormLabel">
           Date
         </label> */}
-        <DatePickerComponent formData={formData} handleChange={handleChange} setFormData={setFormData} />
+        <DatePickerComponent
+          formData={formData}
+          handleChange={handleChange}
+          setFormData={setFormData}
+        />
       </div>
     </div>
   );

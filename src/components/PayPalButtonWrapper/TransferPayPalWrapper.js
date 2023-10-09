@@ -96,13 +96,17 @@ const TransferPayPalWrapper = ({
               headers: { "Content-Type": "application/x-www-form-urlencoded" },
               body: new URLSearchParams(newFormData).toString(),
             })
-              .then(() => console.log("Form successfully submitted"))
+              .then(() => {
+                console.log("Form successfully submitted");
+                const firstName = details.payer.name.given_name;
+                const lastName = details.payer.name.surname;
+                const name = `${firstName} ${lastName}`;
+                window.location.href = `${host}/contact/thankyou/?name=${name}`;
+              })
               .catch((error) => alert(error));
-            const firstName = details.payer.name.given_name;
-            const lastName = details.payer.name.surname;
-            const name = `${firstName} ${lastName}`;
+
             const deposit = details.purchase_units[0].amount.value;
-            // window.location.href = `${host}/contact/thankyou/?name=${name}`;
+
             // window.location.href = `${host}/payment/thankyou/?firstname=${firstName}&lastname=${lastName}&deposit=${deposit}`;
           });
         }}

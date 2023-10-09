@@ -35,7 +35,11 @@ const Form = ({ data, formData, setFormData, hotels, handleSubmit }) => {
           setFormData={setFormData}
           hotels={hotels}
         />
-        <DateTime formData={formData} handleChange={handleChange} setFormData={setFormData}/>
+        <DateTime
+          formData={formData}
+          handleChange={handleChange}
+          setFormData={setFormData}
+        />
       </form>
     </div>
   );
