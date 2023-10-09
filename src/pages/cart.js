@@ -67,7 +67,7 @@ export const Head = ({ data }) => {
         description={description.description}
         keywords={keywords.join(", ")}
       />
-      <link rel="canonical" href="https://puntacanatourstore.com/" />
+      <link rel="canonical" href="https://puntacanatourstore.com/cart" />
       <meta
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"

@@ -78,7 +78,7 @@ export const query = graphql`
         }
       }
     }
-    allContentfulSeo(filter: { page: { eq: "Index" } }) {
+    allContentfulSeo(filter: { page: { eq: "Transfers" } }) {
       nodes {
         title
         keywords
@@ -137,7 +137,7 @@ export const Head = ({ data }) => {
         description={description.description}
         keywords={keywords.join(", ")}
       />
-      <link rel="canonical" href="https://puntacanatourstore.com/" />
+      <link rel="canonical" href="https://puntacanatourstore.com/transfers/" />
     </>
   );
 };
