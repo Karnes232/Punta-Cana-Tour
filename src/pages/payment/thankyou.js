@@ -33,9 +33,8 @@ const Thankyou = ({ data, location }) => {
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
     >
-        <main className="flex flex-col lg:flex-row lg:gap-24 lg:max-w-6xl lg:mx-auto">
-
-         <div className="flex flex-col items-center max-w-xs xl:max-w-sm mx-auto mb-5">
+      <main className="flex flex-col lg:flex-row lg:gap-24 lg:max-w-6xl lg:mx-auto">
+        <div className="flex flex-col items-center max-w-xs xl:max-w-sm mx-auto mb-5">
           <div classNam="">
             <div className="flex flex-col justify-center items-center text-slate-600 ">
               <div className="text-2xl xl:text-4xl font-serif text-center mt-6">
