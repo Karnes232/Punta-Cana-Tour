@@ -1,19 +1,25 @@
 import React, { useState } from "react";
-import { auth } from "../../config/firebase";
+import { auth, db } from "../../config/firebase";
 import { graphql } from "gatsby";
 import Seo from "../../components/seo";
 import Layout from "../../components/TravelAgentComponents/Layout";
 import { onAuthStateChanged } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
 const Index = ({ data }) => {
   const [loggedIn, setLoggedIn] = useState(false);
-  onAuthStateChanged(auth, (user) => {
+  let userData = null
+  onAuthStateChanged(auth, async (user) => {
     if (user) {
       setLoggedIn(true);
-      console.log(auth.currentUser);
+      const docRef = doc(db, "users", auth.currentUser.uid);
+      const docSnap = await getDoc(docRef);
+      const data = docSnap.data()
+      userData = data
     } else {
       setLoggedIn(false);
     }
   });
+ 
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
