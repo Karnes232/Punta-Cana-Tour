@@ -1,10 +1,19 @@
-import React from "react";
-import Layout from "../../components/TravelAgentComponents/Layout";
+import React, { useState } from "react";
+import { auth } from "../../config/firebase";
 import { graphql } from "gatsby";
 import Seo from "../../components/seo";
-import CreateUser from "../../components/auth/CreateUser";
-
+import Layout from "../../components/TravelAgentComponents/Layout";
+import { onAuthStateChanged } from "firebase/auth";
 const Index = ({ data }) => {
+  const [loggedIn, setLoggedIn] = useState(false);
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      setLoggedIn(true);
+      console.log(auth.currentUser);
+    } else {
+      setLoggedIn(false);
+    }
+  });
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -18,9 +27,21 @@ const Index = ({ data }) => {
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
     >
-      <CreateUser
-        image={data.allContentfulLayout.edges[0].node.travelAgentImage}
-      />
+      {loggedIn ? (
+        <>
+          {" "}
+          <div className="flex flex-col justify-center items-center">
+            I am hidden
+          </div>
+        </>
+      ) : (
+        <>
+          {" "}
+          <div className="flex flex-col justify-center items-center">
+            You are not authorized
+          </div>
+        </>
+      )}
     </Layout>
   );
 };

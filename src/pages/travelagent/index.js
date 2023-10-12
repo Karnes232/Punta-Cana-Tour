@@ -3,7 +3,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import Seo from "../../components/seo";
 import SignIn from "../../components/auth/SignIn";
-import Layout from '../../components/TravelAgentComponents/Layout'
+import Layout from "../../components/TravelAgentComponents/Layout";
 const Index = ({ data }) => {
   return (
     <Layout
@@ -18,7 +18,7 @@ const Index = ({ data }) => {
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
     >
-        <SignIn/>
+      <SignIn image={data.allContentfulLayout.edges[0].node.travelAgentImage} />
     </Layout>
   );
 };
@@ -30,6 +30,9 @@ export const query = graphql`
         node {
           logo {
             gatsbyImage(width: 150, formats: WEBP)
+          }
+          travelAgentImage {
+            gatsbyImage(width: 720, formats: WEBP)
           }
           footerBackground {
             url

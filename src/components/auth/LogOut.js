@@ -1,29 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { auth } from "../../config/firebase"
+import { auth } from "../../config/firebase";
 import { signOut } from "firebase/auth";
 
 const LogOut = () => {
-    const [name, setName] = useState('')
-    useEffect(() => {
-      setName(auth?.currentUser?.displayName)
-        console.log(auth.currentUser)
-     
-    }, [])
-    
+  const [name, setName] = useState("");
+  useEffect(() => {
+    setName(auth?.currentUser?.displayName);
+    console.log(auth.currentUser);
+  }, []);
 
-    const logout = async () => {
-        try {
-          await signOut(auth);
-        } catch (err) {
-          console.error(err);
-        }
-      };
+  const logout = async () => {
+    try {
+      await signOut(auth);
+    } catch (err) {
+      console.error(err);
+    }
+  };
   return (
     <>
-    {name}
-    <button onClick={logout}>Logout</button>
+      {name}
+      <button onClick={logout}>Logout</button>
     </>
-  )
-}
+  );
+};
 
-export default LogOut
+export default LogOut;

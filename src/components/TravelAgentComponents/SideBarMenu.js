@@ -8,7 +8,7 @@ import {
 } from "react-pro-sidebar";
 import { Link } from "gatsby";
 import SocialMedia from "../FooterComponent/SocialMedia";
-import { auth } from "../../config/firebase"
+import { auth } from "../../config/firebase";
 import { signOut } from "firebase/auth";
 const SideBarMenu = ({ toggled, setToggled }) => {
   const logout = async () => {
@@ -31,34 +31,29 @@ const SideBarMenu = ({ toggled, setToggled }) => {
         <div className="flex flex-col h-full justify-between">
           <div>
             <div className="mt-7 mb-10 flex justify-center items-center font-yellowtail tracking-wide text-2xl">
-              Punta Cana Tour Store
+              {auth?.currentUser?.displayName}
             </div>
             <Menu className="ml-4 overflow-hidden">
-              <MenuItem component={<Link to="/" className="hamburger" />}>
-                <p className="hamburger">Home</p>
-              </MenuItem>
-              <MenuItem component={<Link to="/tours" className="hamburger" />}>
-                <p className="hamburger">Tours</p>
-              </MenuItem>
               <MenuItem
-                component={<Link to="/transfers" className="hamburger" />}
+                component={
+                  <Link to="/travelagent/signup" className="hamburger" />
+                }
               >
-                <p className="hamburger">Transfers</p>
+                <p className="hamburger">Register</p>
               </MenuItem>
-              <MenuItem component={<Link to="/about" className="hamburger" />}>
-                <p className="hamburger">About</p>
-              </MenuItem>
-              <MenuItem
-                component={<Link to="/contact" className="hamburger" />}
-              >
-                <p className="hamburger">Contact</p>
-              </MenuItem>
-              {auth.currentUser ? <> <MenuItem
-                component={<button onClick={logout}>Logout</button>}
-              >
-                <p className="hamburger">Log Out</p>
-              </MenuItem></> : <></>}
-             
+
+              {auth.currentUser ? (
+                <>
+                  {" "}
+                  <MenuItem
+                    component={<button onClick={logout}>Logout</button>}
+                  >
+                    <p className="hamburger">Log Out</p>
+                  </MenuItem>
+                </>
+              ) : (
+                <></>
+              )}
             </Menu>
           </div>
           <footer className="hamburger mx-4">

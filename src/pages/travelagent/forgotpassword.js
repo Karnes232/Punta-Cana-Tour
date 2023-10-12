@@ -1,12 +1,10 @@
 import React from "react";
-import Layout from '../../components/TravelAgentComponents/Layout'
+
 import { graphql } from "gatsby";
 import Seo from "../../components/seo";
-import LogOut from "../../components/auth/LogOut";
-
+import Layout from "../../components/TravelAgentComponents/Layout";
+import ForgotPassword from "../../components/auth/ForgotPassword";
 const Index = ({ data }) => {
-
-    
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -20,7 +18,9 @@ const Index = ({ data }) => {
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
     >
-        <LogOut/>
+      <ForgotPassword
+        image={data.allContentfulLayout.edges[0].node.travelAgentImage}
+      />
     </Layout>
   );
 };
@@ -32,6 +32,9 @@ export const query = graphql`
         node {
           logo {
             gatsbyImage(width: 150, formats: WEBP)
+          }
+          travelAgentImage {
+            gatsbyImage(width: 720, formats: WEBP)
           }
           footerBackground {
             url
