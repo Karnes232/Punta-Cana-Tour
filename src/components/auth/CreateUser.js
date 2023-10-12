@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import { auth } from "../../config/firebase";
+import { auth, db } from "../../config/firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { ToastContainer, toast } from "react-toastify";
+import { doc, setDoc } from "firebase/firestore";
 
 const CreateUser = ({ image }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [company, setCompany] = useState("");
   const [password, setPassword] = useState("");
   const travelAgentImage = getImage(image);
 
@@ -30,6 +32,11 @@ const CreateUser = ({ image }) => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(auth.currentUser, { displayName: name });
+      await setDoc(doc(db, "users", auth.currentUser.uid), {
+        name: name,
+        email: email,
+        company: company
+      });
       window.location.href = `/travelagent/hidden`;
     } catch (error) {
       console.error(error);
@@ -59,6 +66,19 @@ const CreateUser = ({ image }) => {
               />
               <label htmlFor="name" className="contactFormLabel">
                 Full Name
+              </label>
+            </div>
+            <div className="relative z-0 mb-6 w-full group">
+              <input
+                type="text"
+                name="company"
+                placeholder=""
+                onChange={(e) => setCompany(e.target.value)}
+                className="contactFormInput peer"
+                required
+              />
+              <label htmlFor="company" className="contactFormLabel">
+                Company Name
               </label>
             </div>
             <div className="relative z-0 mb-6 w-full group">
