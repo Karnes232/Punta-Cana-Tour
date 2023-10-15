@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { auth, db } from "../../config/firebase";
 import { graphql } from "gatsby";
 import Seo from "../../components/seo";
@@ -7,19 +7,26 @@ import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 const Index = ({ data }) => {
   const [loggedIn, setLoggedIn] = useState(false);
-  let userData = null
-  onAuthStateChanged(auth, async (user) => {
-    if (user) {
-      setLoggedIn(true);
-      const docRef = doc(db, "users", auth.currentUser.uid);
-      const docSnap = await getDoc(docRef);
-      const data = docSnap.data()
-      userData = data
-    } else {
-      setLoggedIn(false);
-    }
-  });
- 
+  const [user, setUser] = useState({});
+
+  const findUser = async (id) => {
+    const docRef = doc(db, "users", id);
+    const docSnap = await getDoc(docRef);
+    setUser(docSnap.data());
+  };
+
+  useEffect(() => {
+    onAuthStateChanged(auth, async (user) => {
+      const currentUser = auth.currentUser;
+      if (currentUser) {
+        findUser(currentUser.uid);
+        setLoggedIn(true);
+      }
+    });
+  }, []);
+
+  console.table(user)
+
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}

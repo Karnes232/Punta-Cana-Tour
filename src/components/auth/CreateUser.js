@@ -10,10 +10,15 @@ const CreateUser = ({ image }) => {
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const [country, setCountry] = useState("");
+  const [telephone, setTelephone] = useState("");
   const travelAgentImage = getImage(image);
 
-  const unableToSignUp = () =>
-    toast.error(`Email Already in Use`, {
+
+
+  const unableToSignUp = (reason) =>
+    toast.error(`${reason}`, {
       position: "top-center",
       autoClose: 2000,
       hideProgressBar: true,
@@ -29,18 +34,24 @@ const CreateUser = ({ image }) => {
 
   const signUp = async (e) => {
     e.preventDefault();
+    if (password !== passwordConfirmation) {
+      unableToSignUp(`Password doesn't match`);
+      return
+    }
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(auth.currentUser, { displayName: name });
       await setDoc(doc(db, "users", auth.currentUser.uid), {
         name: name,
         email: email,
-        company: company
+        company: company,
+        country: country,
+        telephone: telephone
       });
       window.location.href = `/travelagent/hidden`;
     } catch (error) {
       console.error(error);
-      unableToSignUp();
+      unableToSignUp(`Email Already in Use`);
     }
   };
   return (
@@ -83,6 +94,32 @@ const CreateUser = ({ image }) => {
             </div>
             <div className="relative z-0 mb-6 w-full group">
               <input
+                type="text"
+                name="country"
+                placeholder=""
+                onChange={(e) => setCountry(e.target.value)}
+                className="contactFormInput peer"
+                required
+              />
+              <label htmlFor="country" className="contactFormLabel">
+                Country
+              </label>
+            </div>
+            <div className="relative z-0 mb-6 w-full group">
+              <input
+                type="tel"
+                name="telephone"
+                placeholder=""
+                onChange={(e) => setTelephone(e.target.value)}
+                className="contactFormInput peer"
+                required
+              />
+              <label htmlFor="telephone" className="contactFormLabel">
+                Telephone
+              </label>
+            </div>
+            <div className="relative z-0 mb-6 w-full group">
+              <input
                 type="email"
                 name="email"
                 placeholder=""
@@ -97,15 +134,29 @@ const CreateUser = ({ image }) => {
             <div className="relative z-0 mb-6 w-full group">
               <input
                 type="password"
-                name="passowrd"
+                name="password"
                 placeholder=""
                 onChange={(e) => setPassword(e.target.value)}
                 className="contactFormInput peer"
                 required
                 minLength="8"
               />
-              <label htmlFor="email" className="contactFormLabel">
+              <label htmlFor="password" className="contactFormLabel">
                 Password
+              </label>
+            </div>
+            <div className="relative z-0 mb-6 w-full group">
+              <input
+                type="password"
+                name="passwordConfirmation"
+                placeholder=""
+                onChange={(e) => setPasswordConfirmation(e.target.value)}
+                className="contactFormInput peer"
+                required
+                minLength="8"
+              />
+              <label htmlFor="passwordConfirmation" className="contactFormLabel">
+                Confirm Password
               </label>
             </div>
             <div className="flex justify-center items-center">
