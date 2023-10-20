@@ -3,7 +3,7 @@ import React from "react";
 import Footer from "../FooterComponent/Footer";
 import Header from "./Header";
 
-export default function CartLayout({
+export default function TravelAgentLayout({
   children,
   logo,
   footerBackground,
