@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { auth, db } from "../../config/firebase";
-import { graphql } from "gatsby";
+import { graphql, navigate } from "gatsby";
 import Seo from "../../components/seo";
 import Layout from "../../components/TravelAgentComponents/Layout";
 import { onAuthStateChanged } from "firebase/auth";
@@ -8,11 +8,16 @@ import { doc, getDoc } from "firebase/firestore";
 const Index = ({ data }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState({});
+  const [isAdmin, setIsAdmin] = useState(false)
 
   const findUser = async (id) => {
     const docRef = doc(db, "users", id);
     const docSnap = await getDoc(docRef);
     setUser(docSnap.data());
+    const user = docSnap.data()
+    if (user.isAdmin) {
+      setIsAdmin(true)
+    }
   };
 
   useEffect(() => {
@@ -21,11 +26,12 @@ const Index = ({ data }) => {
       if (currentUser) {
         findUser(currentUser.uid);
         setLoggedIn(true);
+      } else {
+        navigate("/travelagent")
       }
     });
   }, []);
 
-  console.table(user)
 
   return (
     <Layout

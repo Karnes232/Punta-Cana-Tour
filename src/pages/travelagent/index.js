@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-import { graphql } from "gatsby";
+import { graphql, navigate } from "gatsby";
 import Seo from "../../components/seo";
 import SignIn from "../../components/auth/SignIn";
 import Layout from "../../components/TravelAgentComponents/Layout";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../config/firebase";
 const Index = ({ data }) => {
+
+  useEffect(() => {
+    onAuthStateChanged(auth, async (user) => {
+      const currentUser = auth.currentUser;
+      if (currentUser) {
+        navigate("/travelagent/hidden")
+      }
+    });
+  }, []);
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}

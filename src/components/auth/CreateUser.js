@@ -4,7 +4,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { ToastContainer, toast } from "react-toastify";
 import { doc, setDoc } from "firebase/firestore";
-
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 const CreateUser = ({ image }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -15,7 +15,17 @@ const CreateUser = ({ image }) => {
   const [telephone, setTelephone] = useState("");
   const travelAgentImage = getImage(image);
 
+  const [passwordType, setPasswordType] = useState("password");
 
+  const togglePassword =(e)=>{
+    e.preventDefault()
+    if(passwordType==="password")
+    {
+     setPasswordType("text")
+     return;
+    }
+    setPasswordType("password")
+  }
 
   const unableToSignUp = (reason) =>
     toast.error(`${reason}`, {
@@ -46,7 +56,8 @@ const CreateUser = ({ image }) => {
         email: email,
         company: company,
         country: country,
-        telephone: telephone
+        telephone: telephone,
+        isAdmin: false
       });
       window.location.href = `/travelagent/hidden`;
     } catch (error) {
@@ -133,7 +144,7 @@ const CreateUser = ({ image }) => {
             </div>
             <div className="relative z-0 mb-6 w-full group">
               <input
-                type="password"
+                type={passwordType}
                 name="password"
                 placeholder=""
                 onChange={(e) => setPassword(e.target.value)}
@@ -141,13 +152,18 @@ const CreateUser = ({ image }) => {
                 required
                 minLength="8"
               />
+              <div className="absolute right-2 top-4 text-gray-500 text-lg">
+                <button onClick={togglePassword}>
+                { passwordType==="password"? <AiOutlineEye/> : <AiOutlineEyeInvisible/> }
+                </button>
+              </div>
               <label htmlFor="password" className="contactFormLabel">
                 Password
               </label>
             </div>
             <div className="relative z-0 mb-6 w-full group">
               <input
-                type="password"
+                type={passwordType}
                 name="passwordConfirmation"
                 placeholder=""
                 onChange={(e) => setPasswordConfirmation(e.target.value)}
@@ -155,6 +171,11 @@ const CreateUser = ({ image }) => {
                 required
                 minLength="8"
               />
+              <div className="absolute right-2 top-4 text-gray-500 text-lg">
+                <button onClick={togglePassword}>
+                { passwordType==="password"? <AiOutlineEye/> : <AiOutlineEyeInvisible/> }
+                </button>
+              </div>
               <label htmlFor="passwordConfirmation" className="contactFormLabel">
                 Confirm Password
               </label>
