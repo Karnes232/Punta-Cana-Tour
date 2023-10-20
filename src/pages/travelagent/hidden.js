@@ -27,7 +27,7 @@ const Index = ({ data }) => {
         findUser(currentUser.uid);
         setLoggedIn(true);
       } else {
-        // navigate("/travelagent")
+        navigate("/travelagent")
       }
     });
   }, []);

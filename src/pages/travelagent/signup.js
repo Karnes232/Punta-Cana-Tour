@@ -11,7 +11,7 @@ const Index = ({ data }) => {
     onAuthStateChanged(auth, async (user) => {
       const currentUser = auth.currentUser;
       if (currentUser) {
-        // navigate("/travelagent/hidden")
+        navigate("/travelagent/hidden")
       }
     });
   }, []);

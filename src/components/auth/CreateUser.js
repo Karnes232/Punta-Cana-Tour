@@ -59,7 +59,7 @@ const CreateUser = ({ image }) => {
         telephone: telephone,
         isAdmin: false
       });
-      // window.location.href = `/travelagent/hidden`;
+      window.location.href = `/travelagent/hidden`;
     } catch (error) {
       console.error(error);
       unableToSignUp(`Email Already in Use`);
