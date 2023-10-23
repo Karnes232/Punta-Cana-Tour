@@ -8,15 +8,15 @@ import { doc, getDoc } from "firebase/firestore";
 const Index = ({ data }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState({});
-  const [isAdmin, setIsAdmin] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const findUser = async (id) => {
     const docRef = doc(db, "users", id);
     const docSnap = await getDoc(docRef);
     setUser(docSnap.data());
-    const user = docSnap.data()
+    const user = docSnap.data();
     if (user.isAdmin) {
-      setIsAdmin(true)
+      setIsAdmin(true);
     }
   };
 
@@ -27,11 +27,10 @@ const Index = ({ data }) => {
         findUser(currentUser.uid);
         setLoggedIn(true);
       } else {
-        navigate("/travelagent")
+        navigate("/travelagent");
       }
     });
   }, []);
-
 
   return (
     <Layout

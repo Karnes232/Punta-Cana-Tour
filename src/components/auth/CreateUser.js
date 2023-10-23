@@ -4,7 +4,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { ToastContainer, toast } from "react-toastify";
 import { doc, setDoc } from "firebase/firestore";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 const CreateUser = ({ image }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -17,15 +17,14 @@ const CreateUser = ({ image }) => {
 
   const [passwordType, setPasswordType] = useState("password");
 
-  const togglePassword =(e)=>{
-    e.preventDefault()
-    if(passwordType==="password")
-    {
-     setPasswordType("text")
-     return;
+  const togglePassword = (e) => {
+    e.preventDefault();
+    if (passwordType === "password") {
+      setPasswordType("text");
+      return;
     }
-    setPasswordType("password")
-  }
+    setPasswordType("password");
+  };
 
   const unableToSignUp = (reason) =>
     toast.error(`${reason}`, {
@@ -46,7 +45,7 @@ const CreateUser = ({ image }) => {
     e.preventDefault();
     if (password !== passwordConfirmation) {
       unableToSignUp(`Password doesn't match`);
-      return
+      return;
     }
     try {
       await createUserWithEmailAndPassword(auth, email, password);
@@ -57,7 +56,7 @@ const CreateUser = ({ image }) => {
         company: company,
         country: country,
         telephone: telephone,
-        isAdmin: false
+        isAdmin: false,
       });
       window.location.href = `/travelagent/hidden`;
     } catch (error) {
@@ -154,7 +153,11 @@ const CreateUser = ({ image }) => {
               />
               <div className="absolute right-2 top-4 text-gray-500 text-lg">
                 <button onClick={togglePassword}>
-                { passwordType==="password"? <AiOutlineEye/> : <AiOutlineEyeInvisible/> }
+                  {passwordType === "password" ? (
+                    <AiOutlineEye />
+                  ) : (
+                    <AiOutlineEyeInvisible />
+                  )}
                 </button>
               </div>
               <label htmlFor="password" className="contactFormLabel">
@@ -173,10 +176,17 @@ const CreateUser = ({ image }) => {
               />
               <div className="absolute right-2 top-4 text-gray-500 text-lg">
                 <button onClick={togglePassword}>
-                { passwordType==="password"? <AiOutlineEye/> : <AiOutlineEyeInvisible/> }
+                  {passwordType === "password" ? (
+                    <AiOutlineEye />
+                  ) : (
+                    <AiOutlineEyeInvisible />
+                  )}
                 </button>
               </div>
-              <label htmlFor="passwordConfirmation" className="contactFormLabel">
+              <label
+                htmlFor="passwordConfirmation"
+                className="contactFormLabel"
+              >
                 Confirm Password
               </label>
             </div>

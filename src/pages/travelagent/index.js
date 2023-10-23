@@ -7,12 +7,11 @@ import Layout from "../../components/TravelAgentComponents/Layout";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../config/firebase";
 const Index = ({ data }) => {
-
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
       const currentUser = auth.currentUser;
       if (currentUser) {
-        navigate("/travelagent/hidden")
+        navigate("/travelagent/hidden");
       }
     });
   }, []);
