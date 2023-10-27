@@ -6,6 +6,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../../config/firebase";
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import UserList from "../../components/TravelAgentComponents/UserList";
+import UserListMobile from "../../components/TravelAgentComponents/UserListMobile";
 const Touroperators = ({ data }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState({});
@@ -50,8 +51,8 @@ const Touroperators = ({ data }) => {
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
     >
-      <div className="flex flex-col items-center justify-center text-center max-w-5xl mx-5 lg:p-2 xl:mx-auto">
-        <table className="w-full text-sm text-left text-gray-500">
+      <div className="flex flex-col items-center justify-center text-center max-w-5xl lg:p-2 mx-auto">
+        <table className="mx-auto text-sm text-left text-gray-500 hidden md:block shadow">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
               <th scope="col" className="px-6 py-3">
@@ -77,6 +78,12 @@ const Touroperators = ({ data }) => {
             })}
           </tbody>
         </table>
+
+        <div className="md:hidden min-w-[90vw] my-5 space-y-4">
+          {users.map((user, index) => {
+            return <UserListMobile key={index} user={user} />;
+          })}
+        </div>
       </div>
     </Layout>
   );
