@@ -28,7 +28,11 @@ const Index = ({ data }) => {
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
     >
-      <SignIn image={data.allContentfulLayout.edges[0].node.travelAgentImage} />
+      <div className="my-10">
+        <SignIn
+          image={data.allContentfulLayout.edges[0].node.travelAgentImage}
+        />
+      </div>
     </Layout>
   );
 };

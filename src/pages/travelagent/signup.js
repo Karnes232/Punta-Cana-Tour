@@ -28,9 +28,12 @@ const Index = ({ data }) => {
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
     >
-      <CreateUser
-        image={data.allContentfulLayout.edges[0].node.travelAgentImage}
-      />
+      {" "}
+      <div className="my-10">
+        <CreateUser
+          image={data.allContentfulLayout.edges[0].node.travelAgentImage}
+        />
+      </div>
     </Layout>
   );
 };
