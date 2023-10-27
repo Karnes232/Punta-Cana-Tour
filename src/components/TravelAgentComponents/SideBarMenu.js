@@ -36,9 +36,6 @@ const SideBarMenu = ({ toggled, setToggled }) => {
     });
   }, []);
 
-  console.log(user);
-  console.table(isAdmin);
-
   const logout = async () => {
     try {
       await signOut(auth);
@@ -82,10 +79,13 @@ const SideBarMenu = ({ toggled, setToggled }) => {
                 <>
                   <MenuItem
                     component={
-                      <Link to="/travelagent/theboss" className="hamburger" />
+                      <Link
+                        to="/travelagent/touroperators"
+                        className="hamburger"
+                      />
                     }
                   >
-                    <p className="hamburger">I am the boss</p>
+                    <p className="hamburger">Tour Operators</p>
                   </MenuItem>
                 </>
               ) : (
