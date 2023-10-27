@@ -4,10 +4,22 @@ import { auth } from "../../config/firebase";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { Link } from "gatsby";
 import { ToastContainer, toast } from "react-toastify";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 const SignIn = ({ image }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const travelAgentImage = getImage(image);
+
+  const [passwordType, setPasswordType] = useState("password");
+
+  const togglePassword = (e) => {
+    e.preventDefault();
+    if (passwordType === "password") {
+      setPasswordType("text");
+      return;
+    }
+    setPasswordType("password");
+  };
 
   const unableToLogIn = () =>
     toast.error(`Invalid login credentials`, {
@@ -58,12 +70,21 @@ const SignIn = ({ image }) => {
           </div>
           <div className="relative z-0 mb-6 w-full group">
             <input
-              type="password"
+              type={passwordType}
               name="passowrd"
               placeholder=""
               onChange={(e) => setPassword(e.target.value)}
               className="contactFormInput peer"
             />
+            <div className="absolute right-2 top-4 text-gray-500 text-lg">
+              <button tabindex="-1" onClick={togglePassword}>
+                {passwordType === "password" ? (
+                  <AiOutlineEye />
+                ) : (
+                  <AiOutlineEyeInvisible />
+                )}
+              </button>
+            </div>
             <label htmlFor="email" className="contactFormLabel">
               Password
             </label>

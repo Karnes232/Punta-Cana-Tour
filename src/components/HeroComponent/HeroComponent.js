@@ -36,14 +36,14 @@ const HeroComponent = ({ imageUrl, gImage, heroText, heroText2, button }) => {
         >
           <h1
             translate="no"
-            className="relative inline-block text-white z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-yellowtail tracking-widest text-4xl md:text-6xl"
+            className="relative inline-block text-white z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-yellowtail tracking-widest text-4xl md:text-6xl lg:text-7xl xl:text-8xl"
           >
             {heroText}
           </h1>
           <br />
           <h2
             translate="no"
-            className="relative inline-block text-white z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-yellowtail tracking-wider text-3xl md:text-5xl"
+            className="relative inline-block text-white z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-yellowtail tracking-wider text-3xl md:text-5xl lg:text-6xl xl:text-7xl"
           >
             {heroText2}
           </h2>

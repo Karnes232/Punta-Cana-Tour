@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { auth, db } from "../../config/firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { ToastContainer, toast } from "react-toastify";
 import { doc, setDoc } from "firebase/firestore";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+
+import { collection, query, where, getDocs } from "firebase/firestore";
+
 const CreateUser = ({ image }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -13,6 +16,8 @@ const CreateUser = ({ image }) => {
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [country, setCountry] = useState("");
   const [telephone, setTelephone] = useState("");
+  const [referralEmail, setReferralEmail] = useState("");
+  const [referral, setReferral] = useState(null);
   const travelAgentImage = getImage(image);
 
   const [passwordType, setPasswordType] = useState("password");
@@ -51,12 +56,14 @@ const CreateUser = ({ image }) => {
       await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(auth.currentUser, { displayName: name });
       await setDoc(doc(db, "users", auth.currentUser.uid), {
+        id: auth.currentUser.uid,
         name: name,
         email: email,
         company: company,
         country: country,
         telephone: telephone,
         isAdmin: false,
+        referral: referral,
       });
       window.location.href = `/travelagent/hidden`;
     } catch (error) {
@@ -64,6 +71,21 @@ const CreateUser = ({ image }) => {
       unableToSignUp(`Email Already in Use`);
     }
   };
+
+  useEffect(() => {
+    const findReferral = async () => {
+      const q = query(
+        collection(db, "users"),
+        where("email", "==", referralEmail),
+      );
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        setReferral(doc.data());
+      });
+    };
+    findReferral();
+  }, [referralEmail]);
+
   return (
     <>
       {" "}
@@ -152,7 +174,7 @@ const CreateUser = ({ image }) => {
                 minLength="8"
               />
               <div className="absolute right-2 top-4 text-gray-500 text-lg">
-                <button onClick={togglePassword}>
+                <button tabindex="-1" onClick={togglePassword}>
                   {passwordType === "password" ? (
                     <AiOutlineEye />
                   ) : (
@@ -175,7 +197,7 @@ const CreateUser = ({ image }) => {
                 minLength="8"
               />
               <div className="absolute right-2 top-4 text-gray-500 text-lg">
-                <button onClick={togglePassword}>
+                <button tabindex="-1" onClick={togglePassword}>
                   {passwordType === "password" ? (
                     <AiOutlineEye />
                   ) : (
@@ -190,6 +212,20 @@ const CreateUser = ({ image }) => {
                 Confirm Password
               </label>
             </div>
+
+            <div className="relative z-0 mb-6 w-full group">
+              <input
+                type="text"
+                name="referral"
+                placeholder=""
+                onChange={(e) => setReferralEmail(e.target.value)}
+                className="contactFormInput peer"
+              />
+              <label htmlFor="referral" className="contactFormLabel">
+                Referral Email (optional)
+              </label>
+            </div>
+
             <div className="flex justify-center items-center">
               <button
                 className="flex items-center justify-center no-underline md:text-2xl w-[9.15rem] md:w-[12.5rem] font-medium bg-primary-color text-secondary-color px-4 py-2 md:py-3 my-3 rounded-xl hover:opacity-70 uppercase"
