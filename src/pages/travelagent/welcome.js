@@ -5,6 +5,9 @@ import Seo from "../../components/seo";
 import Layout from "../../components/TravelAgentComponents/Layout";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
+import HeroComponent from "../../components/HeroComponent/HeroComponent";
+import WhoWhatWhyComponent from "../../components/TravelAgentComponents/WhoWhatWhy/WhoWhatWhyComponent";
+import SwiperCarousel from "../../components/BackgroundCarousel/SwiperCarousel";
 const Welcome = ({ data }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState({});
@@ -31,7 +34,7 @@ const Welcome = ({ data }) => {
       }
     });
   }, []);
-
+  console.log(data.allContentfulSwiperPhotoCarousel.edges[0].node);
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -45,6 +48,25 @@ const Welcome = ({ data }) => {
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
     >
+      <HeroComponent
+        imageUrl={
+          data.allContentfulTravelAgentWelcomePage.edges[0].node.heroImage.url
+        }
+        gImage={
+          data.allContentfulTravelAgentWelcomePage.edges[0].node.heroImage
+            .gatsbyImage
+        }
+        button={false}
+      />
+      <WhoWhatWhyComponent
+        data={data.allContentfulTravelAgentWelcomePage.edges[0].node}
+      />
+      <SwiperCarousel
+        className="mt-5"
+        photoList={
+          data.allContentfulSwiperPhotoCarousel.edges[0].node.photoList
+        }
+      />
       {loggedIn ? (
         <>
           {" "}
@@ -85,7 +107,50 @@ export const query = graphql`
         }
       }
     }
-
+    allContentfulTravelAgentWelcomePage {
+      edges {
+        node {
+          heroImage {
+            url
+            gatsbyImage(width: 1920, formats: WEBP)
+          }
+          faqsIcon1 {
+            gatsbyImage(formats: WEBP, width: 300)
+          }
+          faqsIcon2 {
+            gatsbyImage(formats: WEBP, width: 300)
+          }
+          faqsIcon3 {
+            gatsbyImage(formats: WEBP, width: 300)
+          }
+          faqsTitle1
+          faqsTitle2
+          faqsTitle3
+          faqsDescription1 {
+            faqsDescription1
+          }
+          faqDescription3 {
+            faqDescription3
+          }
+          faqDescription2 {
+            faqDescription2
+          }
+        }
+      }
+    }
+    allContentfulSwiperPhotoCarousel(
+      filter: { page: { eq: "Travel Agent Welcome" } }
+    ) {
+      edges {
+        node {
+          photoList {
+            title
+            gatsbyImage(width: 1920, formats: WEBP)
+            url
+          }
+        }
+      }
+    }
     allContentfulSeo(filter: { page: { eq: "Travel Agent" } }) {
       nodes {
         title
