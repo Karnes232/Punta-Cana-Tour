@@ -52,7 +52,7 @@ const Touroperators = ({ data }) => {
       }
     >
       <div className="flex flex-col items-center justify-center text-center max-w-5xl lg:p-2 mx-auto">
-        <table className="mx-auto text-sm text-left text-gray-500 hidden md:block shadow">
+        <table className="mx-auto text-sm text-left text-gray-500 hidden md:block shadow rounded-xl overflow-hidden">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
               <th scope="col" className="px-6 py-3">
@@ -111,7 +111,7 @@ export const query = graphql`
       }
     }
 
-    allContentfulSeo(filter: { page: { eq: "Cart" } }) {
+    allContentfulSeo(filter: { page: { eq: "Travel Agent" } }) {
       nodes {
         title
         keywords

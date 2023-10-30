@@ -11,7 +11,7 @@ const Index = ({ data }) => {
     onAuthStateChanged(auth, async (user) => {
       const currentUser = auth.currentUser;
       if (currentUser) {
-        navigate("/travelagent/hidden");
+        navigate("/travelagent/welcome");
       }
     });
   }, []);
@@ -60,7 +60,7 @@ export const query = graphql`
       }
     }
 
-    allContentfulSeo(filter: { page: { eq: "Cart" } }) {
+    allContentfulSeo(filter: { page: { eq: "Travel Agent" } }) {
       nodes {
         title
         keywords
@@ -83,7 +83,7 @@ export const Head = ({ data }) => {
         description={description.description}
         keywords={keywords.join(", ")}
       />
-      <link rel="canonical" href="https://puntacanatourstore.com/cart" />
+      <link rel="canonical" href="https://puntacanatourstore.com/travelagent/signup" />
       <meta
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"

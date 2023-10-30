@@ -5,7 +5,7 @@ import Seo from "../../components/seo";
 import Layout from "../../components/TravelAgentComponents/Layout";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
-const Index = ({ data }) => {
+const Welcome = ({ data }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState({});
   const [isAdmin, setIsAdmin] = useState(false);
@@ -86,7 +86,7 @@ export const query = graphql`
       }
     }
 
-    allContentfulSeo(filter: { page: { eq: "Cart" } }) {
+    allContentfulSeo(filter: { page: { eq: "Travel Agent" } }) {
       nodes {
         title
         keywords
@@ -98,7 +98,7 @@ export const query = graphql`
   }
 `;
 
-export default Index;
+export default Welcome;
 
 export const Head = ({ data }) => {
   const { title, description, keywords } = data.allContentfulSeo.nodes[0];
