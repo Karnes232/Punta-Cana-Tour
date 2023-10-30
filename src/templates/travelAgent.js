@@ -1,7 +1,6 @@
 import React from "react";
 import Layout from "../components/TravelAgentComponents/Layout";
 import HeroComponent from "../components/HeroComponent/HeroComponent";
-import Button from "../components/TourPageComponents/Button";
 import Price from "../components/TourPageComponents/Price";
 import TourInfo from "../components/TourPageComponents/TourInfo";
 import TextComponent from "../components/TourPageComponents/TextComponent";

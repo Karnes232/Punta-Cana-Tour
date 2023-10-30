@@ -3,6 +3,7 @@ import React from "react";
 import Footer from "../FooterComponent/Footer";
 import Header from "./Header";
 import { TravelAgentCartProvider } from "../../context/travelAgentCart";
+import TravelAgentFloatingCartButton from "../FloatingCartButton/TravelAgentFloatingCartButton";
 
 export default function TravelAgentLayout({
   children,
@@ -26,6 +27,7 @@ export default function TravelAgentLayout({
           email={email}
           gImage={gImage}
         />
+        <TravelAgentFloatingCartButton />
       </div>
     </TravelAgentCartProvider>
   );
