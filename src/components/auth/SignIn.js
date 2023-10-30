@@ -77,7 +77,7 @@ const SignIn = ({ image }) => {
               className="contactFormInput peer"
             />
             <div className="absolute right-2 top-4 text-gray-500 text-lg">
-              <button tabindex="-1" onClick={togglePassword}>
+              <button tabIndex="-1" onClick={togglePassword}>
                 {passwordType === "password" ? (
                   <AiOutlineEye />
                 ) : (

@@ -8,6 +8,7 @@ import { doc, getDoc } from "firebase/firestore";
 import HeroComponent from "../../components/HeroComponent/HeroComponent";
 import WhoWhatWhyComponent from "../../components/TravelAgentComponents/WhoWhatWhy/WhoWhatWhyComponent";
 import SwiperCarousel from "../../components/BackgroundCarousel/SwiperCarousel";
+import TextComponent from "../../components/TextComponent/TextComponent";
 const Welcome = ({ data }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState({});
@@ -34,7 +35,7 @@ const Welcome = ({ data }) => {
       }
     });
   }, []);
-  console.log(data.allContentfulSwiperPhotoCarousel.edges[0].node);
+  console.log(data.allContentfulTravelAgentWelcomePage.edges[0].node);
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -48,31 +49,44 @@ const Welcome = ({ data }) => {
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
     >
-      <HeroComponent
-        imageUrl={
-          data.allContentfulTravelAgentWelcomePage.edges[0].node.heroImage.url
-        }
-        gImage={
-          data.allContentfulTravelAgentWelcomePage.edges[0].node.heroImage
-            .gatsbyImage
-        }
-        button={false}
-      />
-      <WhoWhatWhyComponent
-        data={data.allContentfulTravelAgentWelcomePage.edges[0].node}
-      />
-      <SwiperCarousel
-        className="mt-5"
-        photoList={
-          data.allContentfulSwiperPhotoCarousel.edges[0].node.photoList
-        }
-      />
       {loggedIn ? (
         <>
-          {" "}
-          <div className="flex flex-col justify-center items-center">
-            I am hidden
-          </div>
+          <HeroComponent
+            imageUrl={
+              data.allContentfulTravelAgentWelcomePage.edges[0].node.heroImage
+                .url
+            }
+            gImage={
+              data.allContentfulTravelAgentWelcomePage.edges[0].node.heroImage
+                .gatsbyImage
+            }
+            button={false}
+          />
+          <WhoWhatWhyComponent
+            data={data.allContentfulTravelAgentWelcomePage.edges[0].node}
+          />
+          <SwiperCarousel
+            className="mt-5"
+            photoList={
+              data.allContentfulSwiperPhotoCarousel.edges[0].node.photoList
+            }
+          />
+          <TextComponent
+            paragraph={
+              data.allContentfulTravelAgentWelcomePage.edges[0].node.paragraph1
+                .paragraph1
+            }
+            className="mt-5 2xl:mt-10"
+            pClassName="mb-4 lg:mb-0"
+          />
+          <TextComponent
+            paragraph={
+              data.allContentfulTravelAgentWelcomePage.edges[0].node.paragraph2
+                .paragraph2
+            }
+            className="mt-5 2xl:mt-10"
+            pClassName="mb-4 lg:mb-0"
+          />
         </>
       ) : (
         <>
@@ -134,6 +148,12 @@ export const query = graphql`
           }
           faqDescription2 {
             faqDescription2
+          }
+          paragraph1 {
+            paragraph1
+          }
+          paragraph2 {
+            paragraph2
           }
         }
       }
