@@ -54,10 +54,31 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
   const tourTemplate = path.resolve(`src/templates/tour.js`);
+  const travelAgentTemplate = path.resolve(`src/templates/travelAgent.js`);
   queryResults.data.allContentfulTour.nodes.forEach((node) => {
     createPage({
       path: `/tours/${node.url}`,
       component: tourTemplate,
+      context: {
+        // This time the entire product is passed down as context
+        tour: node,
+        logo: queryResults.data.allContentfulLayout.edges[0].node.logo
+          .gatsbyImage,
+        footerBackground:
+          queryResults.data.allContentfulLayout.edges[0].node.footerBackground
+            .url,
+        facebook: queryResults.data.allContentfulLayout.edges[0].node.facebook,
+        instagram:
+          queryResults.data.allContentfulLayout.edges[0].node.instagram,
+        email: queryResults.data.allContentfulLayout.edges[0].node.email,
+        gImage:
+          queryResults.data.allContentfulLayout.edges[0].node.footerBackground
+            .gatsbyImage,
+      },
+    });
+    createPage({
+      path: `/travelagent/welcome/tours/${node.url}`,
+      component: travelAgentTemplate,
       context: {
         // This time the entire product is passed down as context
         tour: node,

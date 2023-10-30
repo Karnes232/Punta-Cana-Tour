@@ -39,7 +39,7 @@ const SignIn = ({ image }) => {
   const signIn = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      window.location.href = `/travelagent/hidden`;
+      window.location.href = `/travelagent/welcome`;
     } catch (error) {
       console.error(error);
       unableToLogIn();

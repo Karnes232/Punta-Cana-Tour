@@ -2,6 +2,7 @@ import React from "react";
 
 import Footer from "../FooterComponent/Footer";
 import Header from "./Header";
+import { TravelAgentCartProvider } from "../../context/travelAgentCart";
 
 export default function TravelAgentLayout({
   children,
@@ -13,17 +14,19 @@ export default function TravelAgentLayout({
   gImage,
 }) {
   return (
-    <div className="min-h-screen font-montserrat flex flex-col justify-between overflow-x-hidden bg-primary-bg-color">
-      <Header logo={logo} />
+    <TravelAgentCartProvider>
+      <div className="min-h-screen font-montserrat flex flex-col justify-between overflow-x-hidden bg-primary-bg-color">
+        <Header logo={logo} />
 
-      {children}
-      <Footer
-        footerBackground={footerBackground}
-        facebook={facebook}
-        instagram={instagram}
-        email={email}
-        gImage={gImage}
-      />
-    </div>
+        {children}
+        <Footer
+          footerBackground={footerBackground}
+          facebook={facebook}
+          instagram={instagram}
+          email={email}
+          gImage={gImage}
+        />
+      </div>
+    </TravelAgentCartProvider>
   );
 }

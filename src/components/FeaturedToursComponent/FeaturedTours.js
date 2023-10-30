@@ -3,7 +3,7 @@ import TourCard from "../TourCardComponent/TourCard";
 
 import CtaButton from "../CtaButton/CtaButton";
 
-const FeaturedTours = ({ tours }) => {
+const FeaturedTours = ({ tours, link }) => {
   let tourList = tours.splice(0, 6).sort(() => Math.random() - 0.5);
   return (
     <div className="bg-slate-100 py-10" id="featured-Tours">
@@ -16,7 +16,7 @@ const FeaturedTours = ({ tours }) => {
           <TourCard tour={tour} key={index} featured />
         ))}
       </div>
-      <CtaButton text="More Tours" link="/tours/" />
+      <CtaButton text="More Tours" link={link} />
     </div>
   );
 };

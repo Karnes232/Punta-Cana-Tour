@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { auth, db } from "../../config/firebase";
+import { auth, db } from "../../../config/firebase";
 import { graphql, navigate } from "gatsby";
-import Seo from "../../components/seo";
-import Layout from "../../components/TravelAgentComponents/Layout";
+import Seo from "../../../components/seo";
+import Layout from "../../../components/TravelAgentComponents/Layout";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
-import HeroComponent from "../../components/HeroComponent/HeroComponent";
-import WhoWhatWhyComponent from "../../components/TravelAgentComponents/WhoWhatWhy/WhoWhatWhyComponent";
-import SwiperCarousel from "../../components/BackgroundCarousel/SwiperCarousel";
-import TextComponent from "../../components/TextComponent/TextComponent";
+import HeroComponent from "../../../components/HeroComponent/HeroComponent";
+import WhoWhatWhyComponent from "../../../components/TravelAgentComponents/WhoWhatWhy/WhoWhatWhyComponent";
+import SwiperCarousel from "../../../components/BackgroundCarousel/SwiperCarousel";
+import TextComponent from "../../../components/TextComponent/TextComponent";
+import FeaturedTours from "../../../components/FeaturedToursComponent/FeaturedTours";
 const Welcome = ({ data }) => {
+  const tourList = Array.from(data.allContentfulTour.edges, (x) => x);
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState({});
   const [isAdmin, setIsAdmin] = useState(false);
@@ -87,6 +89,7 @@ const Welcome = ({ data }) => {
             className="mt-5 2xl:mt-10"
             pClassName="mb-4 lg:mb-0"
           />
+          <FeaturedTours tours={tourList} link="/travelagent/welcome/tours/" />
         </>
       ) : (
         <>
@@ -167,6 +170,25 @@ export const query = graphql`
             title
             gatsbyImage(width: 1920, formats: WEBP)
             url
+          }
+        }
+      }
+    }
+    allContentfulTour(filter: { featured: { eq: true } }) {
+      edges {
+        node {
+          url
+          name
+          price
+          category
+          mainImage {
+            gatsbyImage(width: 400, formats: WEBP)
+            file {
+              url
+            }
+          }
+          description1 {
+            description1
           }
         }
       }

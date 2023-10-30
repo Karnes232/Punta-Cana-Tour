@@ -83,7 +83,7 @@ const IndexPage = ({ data }) => {
         }
         pClassName="mb-4 2xl:mb-10"
       />
-      <FeaturedTours tours={tourList} />
+      <FeaturedTours tours={tourList} link="/tours/" />
       <TextComponent
         paragraph={
           data.allContentfulIndexPageContent.edges[0].node.paragraph7.paragraph7
