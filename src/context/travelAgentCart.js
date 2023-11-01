@@ -60,7 +60,6 @@ export const TravelAgentCartProvider = ({ children }) => {
 
   useEffect(() => {
     const data = localStorage.getItem("travelAgentCartItems");
-    console.log(data);
     if (data) {
       setCartItems(JSON.parse(data));
     }
