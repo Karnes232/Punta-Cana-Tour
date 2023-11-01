@@ -1,3 +1,4 @@
+import { Link } from "gatsby";
 import React from "react";
 
 const UserListMobile = ({ user }) => {
@@ -5,7 +6,10 @@ const UserListMobile = ({ user }) => {
     <>
       <div className="min-w-full max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow">
         <div className="font-normal text-left">
-          Company: <span className="font-semibold">{user.company}</span>
+          <Link to={`/travelagent/touroperators/${user.id}`}>
+            {" "}
+            Company: <span className="font-semibold">{user.company}</span>
+          </Link>
         </div>
         <div className="font-normal text-left">Name: {user.name}</div>
         <div className="font-normal text-left">

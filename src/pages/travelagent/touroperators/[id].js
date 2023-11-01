@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../../components/TravelAgentComponents/Layout";
 import Seo from "../../../components/seo";
 import { graphql } from "gatsby";
-const TourRep = ({ data }) => {
+import { doc, getDoc } from "firebase/firestore";
+import { auth, db } from "../../../config/firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import IndividualUser from "../../../components/TravelAgentComponents/IndividualUser";
+const TourRep = ({ location, data }) => {
+  const [user, setUser] = useState({});
+  const findUser = async (id) => {
+    const docRef = doc(db, "users", id);
+    const docSnap = await getDoc(docRef);
+    setUser(docSnap.data());
+  };
+  const userId = location.pathname.split("/");
+  console.log(user);
+  useEffect(() => {
+    findUser(userId[3]);
+  }, []);
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -16,7 +31,7 @@ const TourRep = ({ data }) => {
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
     >
-      Hello
+      <IndividualUser user={user} />
     </Layout>
   );
 };

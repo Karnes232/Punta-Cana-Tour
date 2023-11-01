@@ -37,7 +37,7 @@ const Touroperators = ({ data }) => {
       }
     });
   }, []);
-  console.table(users);
+
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
