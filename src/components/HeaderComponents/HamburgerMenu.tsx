@@ -13,6 +13,7 @@ const HamburgerMenu = ({ color }) => {
         <main className="flex p-3">
           <div>
             <button
+              aria-label="Menu"
               className={`sb-button border border-${color} ${
                 color === "black" ? "opacity-100" : "opacity-80"
               } rounded`}
