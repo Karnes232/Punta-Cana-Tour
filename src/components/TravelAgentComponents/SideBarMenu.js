@@ -75,6 +75,27 @@ const SideBarMenu = ({ toggled, setToggled }) => {
                   </MenuItem>
                 </>
               )}
+              <MenuItem
+                component={
+                  <Link to="/travelagent/welcome/" className="hamburger" />
+                }
+              >
+                <p className="hamburger">Home</p>
+              </MenuItem>
+              <MenuItem
+                component={
+                  <Link to="/travelagent/welcome/tours" className="hamburger" />
+                }
+              >
+                <p className="hamburger">Tours</p>
+              </MenuItem>
+              <MenuItem
+                component={
+                  <Link to="/travelagent/cart" className="hamburger" />
+                }
+              >
+                <p className="hamburger">Cart</p>
+              </MenuItem>
               {user.isAdmin ? (
                 <>
                   <MenuItem
