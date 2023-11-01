@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { TravelAgentCartContext } from "../../../context/travelAgentCart";
 import CartComponent from "../CartComponents/CartComponent";
 import ContactInfo from "./ContactInfo";
