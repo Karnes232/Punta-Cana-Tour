@@ -7,9 +7,9 @@ const FeaturedTours = ({ tours, link }) => {
   let tourList = tours.splice(0, 6).sort(() => Math.random() - 0.5);
   return (
     <div className="bg-slate-100 py-10" id="featured-Tours">
-      <h3 className="font-lato tracking-wider text-3xl font-semibold md:text-4xl text-center">
+      <h2 className="font-lato tracking-wider text-3xl font-semibold md:text-4xl text-center">
         Featured Tours
-      </h3>
+      </h2>
 
       <div className="flex flex-col md:flex-row md:flex-wrap md:justify-evenly max-w-5xl xl:max-w-6xl mx-auto">
         {tourList.map((tour, index) => (
