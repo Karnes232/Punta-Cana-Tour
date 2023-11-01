@@ -3,9 +3,9 @@ import React from "react";
 const IndividualUser = ({ user }) => {
   const gotoUserPage = () => {
     if (window !== undefined) {
-        window.location.href = `/travelagent/touroperators/${user.referredBy.id}`;
+      window.location.href = `/travelagent/touroperators/${user.referredBy.id}`;
     }
-  }
+  };
   return (
     <table className="mx-auto text-base text-left text-gray-500 shadow rounded-xl overflow-hidden w-5/6">
       <tbody>
@@ -35,11 +35,13 @@ const IndividualUser = ({ user }) => {
         </tr>
         {user.referredBy ? (
           <>
-          <tr>
+            <tr>
               <th className="p-2">Referred By:</th>
-              <td className="capitalize" onClick={gotoUserPage}>{user.referredBy.name}</td>
+              <td className="capitalize" onClick={gotoUserPage}>
+                {user.referredBy.name}
+              </td>
             </tr>
-        </>
+          </>
         ) : (
           <>
             <tr>
@@ -48,7 +50,6 @@ const IndividualUser = ({ user }) => {
             </tr>
           </>
         )}
- 
       </tbody>
     </table>
   );

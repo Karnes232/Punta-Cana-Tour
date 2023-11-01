@@ -3,6 +3,7 @@ import Header from "../components/HeaderComponents/Header";
 import Footer from "./FooterComponent/Footer";
 import { CartProvider } from "../context/cart";
 import FloatingCartButton from "./FloatingCartButton/FloatingCartButton";
+import CookieConsent from "react-cookie-consent";
 export default function Layout({
   children,
   logo,
@@ -27,6 +28,9 @@ export default function Layout({
         />
         <FloatingCartButton />
       </div>
+      <CookieConsent>
+        This website uses cookies to enhance the user experience.
+      </CookieConsent>
     </CartProvider>
   );
 }
