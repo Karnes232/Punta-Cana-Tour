@@ -37,7 +37,6 @@ const Welcome = ({ data }) => {
       }
     });
   }, []);
-  console.log(data.allContentfulTravelAgentWelcomePage.edges[0].node);
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
