@@ -1,12 +1,12 @@
 import { graphql, navigate } from "gatsby";
 import React, { useEffect, useState } from "react";
-import Layout from "../../components/TravelAgentComponents/Layout";
-import Seo from "../../components/seo";
+import Layout from "../../../components/TravelAgentComponents/Layout";
+import Seo from "../../../components/seo";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth, db } from "../../config/firebase";
+import { auth, db } from "../../../config/firebase";
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
-import UserList from "../../components/TravelAgentComponents/UserList";
-import UserListMobile from "../../components/TravelAgentComponents/UserListMobile";
+import UserList from "../../../components/TravelAgentComponents/UserList";
+import UserListMobile from "../../../components/TravelAgentComponents/UserListMobile";
 const Touroperators = ({ data }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState({});
@@ -37,7 +37,7 @@ const Touroperators = ({ data }) => {
       }
     });
   }, []);
-
+  console.table(users);
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}

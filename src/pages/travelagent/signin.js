@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import Layout from "../../components/TravelAgentComponents/Layout";
+
 import { graphql, navigate } from "gatsby";
 import Seo from "../../components/seo";
-import CreateUser from "../../components/auth/CreateUser";
+import SignIn from "../../components/auth/SignIn";
+import Layout from "../../components/TravelAgentComponents/Layout";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../config/firebase";
-
 const Index = ({ data }) => {
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
@@ -28,9 +28,8 @@ const Index = ({ data }) => {
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
     >
-      {" "}
       <div className="my-10">
-        <CreateUser
+        <SignIn
           image={data.allContentfulLayout.edges[0].node.travelAgentImage}
         />
       </div>
@@ -85,7 +84,7 @@ export const Head = ({ data }) => {
       />
       <link
         rel="canonical"
-        href="https://puntacanatourstore.com/travelagent/signup"
+        href="https://puntacanatourstore.com/travelagent/"
       />
       <meta
         name="viewport"

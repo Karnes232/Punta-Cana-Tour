@@ -132,7 +132,7 @@ export default function Cart() {
             sometimes it’s hard to choose — maybe this helps:
           </p>
           <Link
-            to="/travelagent/welcome/tours"
+            to="/travelagent/tours"
             className="font-medium text-lg text-primary-color"
           >
             View Our Tours

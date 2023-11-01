@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { graphql } from "gatsby";
-import Layout from "../../../../components/TravelAgentComponents/Layout";
-import HeroComponent from "../../../../components/HeroComponent/HeroComponent";
-import TextComponent from "../../../../components/TextComponent/TextComponent";
-import TourCard from "../../../../components/TourCardComponent/TourCard";
-import Seo from "../../../../components/seo";
+import Layout from "../../../components/TravelAgentComponents/Layout";
+import HeroComponent from "../../../components/HeroComponent/HeroComponent";
+import TextComponent from "../../../components/TextComponent/TextComponent";
+import TourCard from "../../../components/TourCardComponent/TourCard";
+import Seo from "../../../components/seo";
 const Index = ({ data }) => {
   const backendTourList = data.allContentfulTour.edges;
   const [tourList, setTourList] = useState(

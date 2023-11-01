@@ -77,7 +77,7 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
     createPage({
-      path: `/travelagent/welcome/tours/${node.url}`,
+      path: `/travelagent/tours/${node.url}`,
       component: travelAgentTemplate,
       context: {
         // This time the entire product is passed down as context
