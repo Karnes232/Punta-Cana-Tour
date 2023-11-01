@@ -63,7 +63,29 @@ const SideBarMenu = ({ toggled, setToggled }) => {
             </div>
             <Menu className="ml-4 overflow-hidden">
               {auth.currentUser ? (
-                <></>
+                <>
+                  <MenuItem
+                    component={
+                      <Link to="/travelagent/" className="hamburger" />
+                    }
+                  >
+                    <p className="hamburger">Home</p>
+                  </MenuItem>
+                  <MenuItem
+                    component={
+                      <Link to="/travelagent/tours" className="hamburger" />
+                    }
+                  >
+                    <p className="hamburger">Tours</p>
+                  </MenuItem>
+                  <MenuItem
+                    component={
+                      <Link to="/travelagent/cart" className="hamburger" />
+                    }
+                  >
+                    <p className="hamburger">Cart</p>
+                  </MenuItem>
+                </>
               ) : (
                 <>
                   <MenuItem
@@ -75,25 +97,7 @@ const SideBarMenu = ({ toggled, setToggled }) => {
                   </MenuItem>
                 </>
               )}
-              <MenuItem
-                component={<Link to="/travelagent/" className="hamburger" />}
-              >
-                <p className="hamburger">Home</p>
-              </MenuItem>
-              <MenuItem
-                component={
-                  <Link to="/travelagent/tours" className="hamburger" />
-                }
-              >
-                <p className="hamburger">Tours</p>
-              </MenuItem>
-              <MenuItem
-                component={
-                  <Link to="/travelagent/cart" className="hamburger" />
-                }
-              >
-                <p className="hamburger">Cart</p>
-              </MenuItem>
+
               {user.isAdmin ? (
                 <>
                   <MenuItem

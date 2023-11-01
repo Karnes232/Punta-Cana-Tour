@@ -63,9 +63,17 @@ const CreateUser = ({ image }) => {
         country: country,
         telephone: telephone,
         isAdmin: false,
-        referral: referral,
+        referredBy: referral,
       });
-      window.location.href = `/travelagent/hidden`;
+      // if (referral !== null) {
+      // const referralRef = await doc(db, 'users', referral.id)
+      // await setDoc(referralRef, { referred: [referral?.referred, {
+      //   name: name,
+      //   id:auth.currentUser.uid
+      // }]}, { merge: true })
+
+      // }
+      window.location.href = `/travelagent/`;
     } catch (error) {
       console.error(error);
       unableToSignUp(`Email Already in Use`);
@@ -79,6 +87,12 @@ const CreateUser = ({ image }) => {
         where("email", "==", referralEmail),
       );
       const querySnapshot = await getDocs(q);
+      if (
+        typeof querySnapshot.docs !== "undefined" &&
+        querySnapshot.docs.length === 0
+      ) {
+        setReferral(null);
+      }
       querySnapshot.forEach((doc) => {
         setReferral(doc.data());
       });
