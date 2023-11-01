@@ -5,8 +5,25 @@ import ContactInfo from "./ContactInfo";
 import MoreInfo from "../../CartComponent/MoreInfo";
 import Button from "../../CartComponent/Button";
 import HiddenInputs from "./HiddenInputs";
+import { doc, getDoc } from "firebase/firestore";
+import { auth, db } from "../../../config/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 const Form = () => {
-  const [name, setName] = useState("");
+  const [user, setUser] = useState({});
+  const findUser = async (id) => {
+    const docRef = doc(db, "users", id);
+    const docSnap = await getDoc(docRef);
+    setUser(docSnap.data());
+  };
+  useEffect(() => {
+    onAuthStateChanged(auth, async (user) => {
+      const currentUser = auth.currentUser;
+      if (currentUser) {
+        findUser(currentUser.uid);
+      }
+    });
+  }, []);
+
   const { clearCart } = useContext(TravelAgentCartContext);
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -22,7 +39,7 @@ const Form = () => {
       .then(() => {
         clearCart();
         if (typeof window !== "undefined") {
-          window.location.href = `/contact/thankyou/?name=${name}`;
+          window.location.href = `/contact/thankyou/?name=${user.name}`;
         }
       })
       .catch((error) => alert(error));
@@ -31,7 +48,7 @@ const Form = () => {
     <form
       name="travelAgentCart"
       method="POST"
-      action={`/contact/thankyou/?name=${name}`}
+      action={`/contact/thankyou/?name=${user.name}}`}
       data-netlify="true"
       data-netlify-honeypot="bot-field"
       id="travelAgentCart"
@@ -42,7 +59,7 @@ const Form = () => {
       <div className="flex flex-col xl:flex-row-reverse xl:mt-10 xl:gap-12">
         <CartComponent />
         <div className="xl:w-[25rem]">
-          <ContactInfo name={name} setName={setName} />
+          <ContactInfo />
           <MoreInfo />
         </div>
       </div>

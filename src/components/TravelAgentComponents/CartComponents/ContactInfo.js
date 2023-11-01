@@ -1,6 +1,6 @@
 import React from "react";
 
-const ContactInfo = ({ name, setName }) => {
+const ContactInfo = () => {
   return (
     <>
       <div className="relative z-0 mb-6 w-full group">
@@ -11,8 +11,6 @@ const ContactInfo = ({ name, setName }) => {
           className="contactFormInput peer"
           placeholder=" "
           required
-          // value={name}
-          // onChange={(e) => setName(e.target.value)}
         />
         <label htmlFor="name" className="contactFormLabel">
           Client's Name

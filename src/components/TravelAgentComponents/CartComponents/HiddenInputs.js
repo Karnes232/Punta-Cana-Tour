@@ -21,7 +21,7 @@ const HiddenInputs = () => {
       }
     });
   }, []);
-  console.log(user);
+
   return (
     <div className="hidden">
       <input
