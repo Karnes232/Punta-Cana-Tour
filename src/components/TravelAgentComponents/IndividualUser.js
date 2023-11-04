@@ -19,7 +19,7 @@ const IndividualUser = ({ user }) => {
         </tr>
         <tr>
           <th className="p-2">Email:</th>
-          <td className="">{user.email}</td>
+          <td className=""><a href={`mailto:${user.email}`}>{user.email}</a></td>
         </tr>
         <tr>
           <th className="p-2">Country:</th>
@@ -27,7 +27,7 @@ const IndividualUser = ({ user }) => {
         </tr>
         <tr>
           <th className="p-2">Phone:</th>
-          <td>{user.telephone}</td>
+          <td><a href={`tel:${user.telephone}`}>{user.telephone}</a></td>
         </tr>
         <tr>
           <th className="p-2">Is Admin:</th>
