@@ -7,7 +7,7 @@ const IndividualUser = ({ user }) => {
     }
   };
   return (
-    <table className="mx-auto text-base text-left text-gray-500 shadow rounded-xl overflow-hidden w-5/6">
+    <table className="mx-auto text-base text-left text-gray-500 shadow rounded-xl overflow-hidden w-5/6 lg:w-1/2 xl:w-1/3">
       <tbody>
         <tr>
           <th className="p-2">Name:</th>
