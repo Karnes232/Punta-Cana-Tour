@@ -14,7 +14,6 @@ const TourRep = ({ location, data }) => {
     setUser(docSnap.data());
   };
   const userId = location.pathname.split("/");
-  console.log(user);
   useEffect(() => {
     findUser(userId[3]);
   }, []);

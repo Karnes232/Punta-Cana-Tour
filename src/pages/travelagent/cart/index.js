@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../../../components/TravelAgentComponents/Layout";
-import { graphql } from "gatsby";
+import { graphql, navigate } from "gatsby";
 import Seo from "../../../components/seo";
 import Form from "../../../components/TravelAgentComponents/CartComponents/Form";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../../config/firebase";
 
 const Cart = ({ data }) => {
+  useEffect(() => {
+    onAuthStateChanged(auth, async (user) => {
+      const currentUser = auth.currentUser;
+      if (!currentUser) {
+        navigate("/travelagent/signin");
+      }
+    });
+  }, []);
+
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}

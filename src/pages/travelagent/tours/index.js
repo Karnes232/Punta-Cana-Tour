@@ -1,10 +1,12 @@
-import React, { useState } from "react";
-import { graphql } from "gatsby";
+import React, { useEffect, useState } from "react";
+import { graphql, navigate } from "gatsby";
 import Layout from "../../../components/TravelAgentComponents/Layout";
 import HeroComponent from "../../../components/HeroComponent/HeroComponent";
 import TextComponent from "../../../components/TextComponent/TextComponent";
 import TourCard from "../../../components/TourCardComponent/TourCard";
 import Seo from "../../../components/seo";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../../config/firebase";
 const Index = ({ data }) => {
   const backendTourList = data.allContentfulTour.edges;
   const [tourList, setTourList] = useState(
@@ -32,6 +34,15 @@ const Index = ({ data }) => {
     });
     setTourList(filteredTourList.sort(() => Math.random() - 0.5));
   };
+
+  useEffect(() => {
+    onAuthStateChanged(auth, async (user) => {
+      const currentUser = auth.currentUser;
+      if (!currentUser) {
+        navigate("/travelagent/signin");
+      }
+    });
+  }, []);
 
   return (
     <Layout
