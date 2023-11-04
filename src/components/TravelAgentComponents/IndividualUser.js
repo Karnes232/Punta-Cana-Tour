@@ -37,7 +37,7 @@ const IndividualUser = ({ user }) => {
           <>
             <tr>
               <th className="p-2">Referred By:</th>
-              <td className="capitalize" onClick={gotoUserPage}>
+              <td className="capitalize cursor-pointer" onClick={gotoUserPage}>
                 {user.referredBy.name}
               </td>
             </tr>
