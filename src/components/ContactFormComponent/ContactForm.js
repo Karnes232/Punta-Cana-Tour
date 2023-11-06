@@ -2,20 +2,20 @@ import React, { useState } from "react";
 import ContactInfo from "./ContactInfo";
 import MoreInfo from "./MoreInfo";
 
-const ContactForm = () => {
+const ContactForm = ({ formName, url }) => {
   const [name, setName] = useState("");
   return (
     <>
       <form
-        name="contact"
+        name={formName}
         method="POST"
-        action={`/contact/thankyou/?name=${name}`}
+        action={`${url}${name}`}
         data-netlify="true"
         data-netlify-honeypot="bot-field"
-        id="contact"
+        id={formName}
         className="w-64 md:w-full max-w-md flex flex-col justify-center items-center mx-auto my-5"
       >
-        <input type="hidden" name="form-name" value="contact" />
+        <input type="hidden" name="form-name" value={formName} />
         <ContactInfo name={name} setName={setName} />
         <MoreInfo />
         <button

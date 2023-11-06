@@ -30,7 +30,7 @@ const index = ({ data }) => {
         heroText2=""
         button={false}
       />
-      <ContactForm />
+      <ContactForm formName="contact" url="/contact/thankyou/?name=" />
     </Layout>
   );
 };
