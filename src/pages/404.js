@@ -40,7 +40,7 @@ const NotFoundPage = ({ data }) => {
       }
       color="black"
     >
-      <main style={pageStyles} className="max-w-6xl mx-auto">
+      <main style={pageStyles} className="max-w-6xl mx-auto min-h-[60vh]">
         <h1 style={headingStyles}>Page not found</h1>
         <p style={paragraphStyles}>
           Sorry 😔, we couldn’t find what you were looking for.
