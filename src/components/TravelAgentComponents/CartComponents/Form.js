@@ -39,7 +39,7 @@ const Form = () => {
       .then(() => {
         clearCart();
         if (typeof window !== "undefined") {
-          window.location.href = `/contact/thankyou/?name=${user.name}`;
+          window.location.href = `travelagent/contact/thankyou/?name=${user.name}`;
         }
       })
       .catch((error) => alert(error));

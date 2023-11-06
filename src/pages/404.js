@@ -6,7 +6,6 @@ const pageStyles = {
   paddingTop: "96px",
   paddingBottom: "96px",
   fontFamily: "-apple-system, Roboto, sans-serif, serif",
-
 };
 const headingStyles = {
   marginTop: 0,
