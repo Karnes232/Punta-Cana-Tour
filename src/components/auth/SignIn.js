@@ -98,7 +98,10 @@ const SignIn = ({ image }) => {
             </button>
           </div>
           <div className="flex justify-end text-sky-700 font-medium text-sm">
+            <div className="flex flex-col">
+            <Link to="/travelagent/signup">Register?</Link>
             <Link to="/travelagent/forgotpassword">Forgot your password?</Link>
+            </div>
           </div>
         </div>
       </div>
