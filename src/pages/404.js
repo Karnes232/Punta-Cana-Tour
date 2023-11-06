@@ -3,8 +3,10 @@ import { Link, graphql } from "gatsby";
 import Layout from "../components/layout";
 const pageStyles = {
   color: "#232129",
-  padding: "96px",
+  paddingTop: "96px",
+  paddingBottom: "96px",
   fontFamily: "-apple-system, Roboto, sans-serif, serif",
+
 };
 const headingStyles = {
   marginTop: 0,
@@ -38,7 +40,7 @@ const NotFoundPage = ({ data }) => {
       }
       color="black"
     >
-      <main style={pageStyles}>
+      <main style={pageStyles} className="max-w-6xl mx-auto">
         <h1 style={headingStyles}>Page not found</h1>
         <p style={paragraphStyles}>
           Sorry 😔, we couldn’t find what you were looking for.
