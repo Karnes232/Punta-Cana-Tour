@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
+import collectUserDataPayPal from "../../customHooks/collectUserDataPayPal";
 
 const PayPalButtonWrapper = ({
   currency,
@@ -57,12 +58,10 @@ const PayPalButtonWrapper = ({
         }}
         onApprove={function (data, actions) {
           return actions.order.capture().then(function (details) {
-            const name = details.payer.name;
-            const email = details.payer.email_address;
-            const address = details.payer.address;
             const deposit = details.purchase_units[0].amount.value;
             const depositString = `&deposit=${deposit}`;
-            window.location.href = redirectHref + depositString;
+            collectUserDataPayPal(details, redirectHref, depositString);
+            // window.location.href = redirectHref + depositString;
           });
         }}
       />

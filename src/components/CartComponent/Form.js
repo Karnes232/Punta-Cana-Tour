@@ -5,15 +5,16 @@ import MoreInfo from "./MoreInfo";
 import Button from "./Button";
 import CartComponent from "./CartComponent";
 import { CartContext } from "../../context/cart";
+import collectUserData from "../../customHooks/collectUserData";
 const Form = () => {
   const [name, setName] = useState("");
   const { clearCart } = useContext(CartContext);
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const myForm = event.target;
     const formData = new FormData(myForm);
-
+    await collectUserData(formData);
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
