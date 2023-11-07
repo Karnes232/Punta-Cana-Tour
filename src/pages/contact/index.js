@@ -17,19 +17,22 @@ const index = ({ data }) => {
       gImage={
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
-      color="white"
+      color="black"
     >
-      <HeroComponent
-        imageUrl={
-          data.allContentfulAboutPageContent.edges[0].node.aboutHero.file.url
-        }
-        gImage={
-          data.allContentfulAboutPageContent.edges[0].node.aboutHero.gatsbyImage
-        }
-        heroText=""
-        heroText2=""
-        button={false}
-      />
+      <div className="xl:hidden">
+        <HeroComponent
+          imageUrl={
+            data.allContentfulAboutPageContent.edges[0].node.aboutHero.file.url
+          }
+          gImage={
+            data.allContentfulAboutPageContent.edges[0].node.aboutHero
+              .gatsbyImage
+          }
+          heroText=""
+          heroText2=""
+          button={false}
+        />
+      </div>
       <ContactForm formName="contact" url="/contact/thankyou/?name=" />
     </Layout>
   );

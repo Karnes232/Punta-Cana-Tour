@@ -21,7 +21,7 @@ const PayPalButtonWrapper = ({
     });
     setHost(window.location.origin);
   }, [currency, showSpinner]);
-  console.log(tourList);
+
   let redirectHref = `${host}/payment/thankyou/?name=${clientName}`;
   tourList.map((tour) => {
     redirectHref =
@@ -57,6 +57,9 @@ const PayPalButtonWrapper = ({
         }}
         onApprove={function (data, actions) {
           return actions.order.capture().then(function (details) {
+            const name = details.payer.name;
+            const email = details.payer.email_address;
+            const address = details.payer.address;
             const deposit = details.purchase_units[0].amount.value;
             const depositString = `&deposit=${deposit}`;
             window.location.href = redirectHref + depositString;
