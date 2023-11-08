@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import collectUserDataPayPal from "../../customHooks/collectUserDataPayPal";
-
+import axios from "axios";
 const PayPalButtonWrapper = ({
   currency,
   showSpinner,
@@ -60,6 +60,11 @@ const PayPalButtonWrapper = ({
           return actions.order.capture().then(function (details) {
             const deposit = details.purchase_units[0].amount.value;
             const depositString = `&deposit=${deposit}`;
+            // axios.post("/api/email", {
+            //   clientName: `Testing Man`,
+            //   deposit: deposit,
+
+            // })
             collectUserDataPayPal(details, redirectHref, depositString);
             // window.location.href = redirectHref + depositString;
           });
