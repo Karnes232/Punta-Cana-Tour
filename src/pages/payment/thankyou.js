@@ -19,7 +19,6 @@ const Thankyou = ({ data, location }) => {
       ),
     };
   });
-  console.log(newList);
   return (
     <CartLayout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -35,7 +34,7 @@ const Thankyou = ({ data, location }) => {
     >
       <main className="flex flex-col lg:flex-row lg:gap-24 lg:max-w-6xl lg:mx-auto">
         <div className="flex flex-col items-center max-w-xs xl:max-w-sm mx-auto mb-5">
-          <div classNam="">
+          <div className="">
             <div className="flex flex-col justify-center items-center text-slate-600 ">
               <div className="text-2xl xl:text-4xl font-serif text-center mt-6">
                 Thank you {clientName}, our team will reach out to you shortly!
