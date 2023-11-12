@@ -7,7 +7,7 @@ const liveId =
 const sandBox =
   "AWKpOxlq063t4e3-YvGIHBWohFbzZ_o0Y1M2juHc6EaAr5iK_UfOAEKb_YxhdpRvC5uu_Sj444MyUzmZ";
 
-const CustomPayPal = ({ price, tourList, clientName }) => {
+const CustomPayPal = ({ price, tourList, clientName, clientEmail }) => {
   const currency = "USD";
   return (
     <div className="flex justify-center md:w-80 xl:w-96">
@@ -24,6 +24,7 @@ const CustomPayPal = ({ price, tourList, clientName }) => {
           amount={price}
           tourList={tourList}
           clientName={clientName}
+          clientEmail={clientEmail}
         />
       </PayPalScriptProvider>
     </div>

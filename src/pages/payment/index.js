@@ -60,6 +60,7 @@ const Index = ({ data, location }) => {
               price={totalCost}
               tourList={newList}
               clientName={clientName}
+              clientEmail={clientEmail}
             />
           </section>
         </div>

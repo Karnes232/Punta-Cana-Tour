@@ -8,7 +8,9 @@ const PayPalButtonWrapper = ({
   amount,
   tourList,
   clientName,
+  clientEmail
 }) => {
+ 
   const style = { layout: "vertical", shape: "pill" };
   const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
   const [host, setHost] = useState("");
@@ -60,8 +62,9 @@ const PayPalButtonWrapper = ({
           return actions.order.capture().then(function (details) {
             const deposit = details.purchase_units[0].amount.value;
             const depositString = `&deposit=${deposit}`;
-            axios.post("/api/email", {
-              clientName: `Testing Man`,
+            axios.post("/api/tour", {
+              clientName: clientName,
+              clientEmail: clientEmail,
               deposit: deposit,
             });
             collectUserDataPayPal(details, redirectHref, depositString);
