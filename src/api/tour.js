@@ -3,17 +3,17 @@ const nodemailer = require("nodemailer");
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: `${process.env.EMAIL_USER}`,
-    pass: `${process.env.EMAIL_PASSWORD}`,
+    user: `${process.env.EMAIL_USER_NEW}`,
+    pass: `${process.env.EMAIL_PASSWORD_NEW}`,
   },
 });
 export default function handler(req, res) {
   const clientName = req.body.clientName;
-  const clientEmail = req.body.clientEmail
+  const clientEmail = req.body.clientEmail;
   const deposit = req.body.deposit;
-  console.log(req.body)
+  console.log(req.body);
   let mailDetails = {
-    from: `${process.env.EMAIL_USER}`,
+    from: `${process.env.EMAIL_USER_NEW}`,
     to: clientEmail,
     subject: "Punta Cana Tour Store",
     text: `${clientName} have a deposit of ${deposit}`,
@@ -31,4 +31,3 @@ export default function handler(req, res) {
 
   res.status(200);
 }
-

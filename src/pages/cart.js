@@ -16,6 +16,7 @@ const Cart = ({ data }) => {
       facebook={data.allContentfulLayout.edges[0].node.facebook}
       instagram={data.allContentfulLayout.edges[0].node.instagram}
       email={data.allContentfulLayout.edges[0].node.email}
+      whatsApp={data.allContentfulLayout.edges[0].node.whatsApp}
       gImage={
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
@@ -40,6 +41,7 @@ export const query = graphql`
           email
           facebook
           instagram
+          whatsApp
         }
       }
     }

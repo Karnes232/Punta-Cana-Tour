@@ -21,6 +21,7 @@ const IndexPage = ({ data }) => {
       }
       facebook={data.allContentfulLayout.edges[0].node.facebook}
       instagram={data.allContentfulLayout.edges[0].node.instagram}
+      whatsApp={data.allContentfulLayout.edges[0].node.whatsApp}
       email={data.allContentfulLayout.edges[0].node.email}
       gImage={
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
@@ -170,6 +171,7 @@ export const query = graphql`
           email
           facebook
           instagram
+          whatsApp
         }
       }
     }

@@ -1,9 +1,9 @@
 import React from "react";
 
-import { FaFacebookF, FaInstagram } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { GrMail } from "react-icons/gr";
 
-const SocialMedia = ({ classes, facebook, instagram, email }) => {
+const SocialMedia = ({ classes, facebook, instagram, email, whatsApp }) => {
   return (
     <div className="">
       <div
@@ -34,6 +34,15 @@ const SocialMedia = ({ classes, facebook, instagram, email }) => {
         {email && (
           <a href={`mailto:${email}`} aria-label="Gmail" rel="noreferrer">
             <GrMail className="footerIcons" />
+          </a>
+        )}
+        {whatsApp && (
+          <a
+            href={`https://api.whatsapp.com/send?phone=${whatsApp}`}
+            aria-label="whatsApp"
+            rel="noreferrer"
+          >
+            <FaWhatsapp className="footerIcons" />
           </a>
         )}
       </div>

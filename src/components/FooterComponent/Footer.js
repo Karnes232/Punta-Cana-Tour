@@ -3,7 +3,14 @@ import Copyright from "./Copyright";
 import Sitemap from "./Sitemap";
 import SocialMedia from "./SocialMedia";
 import useWindowWidth from "../../customHooks/useWindowWidth";
-const Footer = ({ footerBackground, facebook, instagram, email, gImage }) => {
+const Footer = ({
+  footerBackground,
+  facebook,
+  instagram,
+  whatsApp,
+  email,
+  gImage,
+}) => {
   const windowWidth = useWindowWidth();
   let image = gImage?.images.fallback.srcSet.split(",");
   const imageSrc = [];
@@ -35,6 +42,7 @@ const Footer = ({ footerBackground, facebook, instagram, email, gImage }) => {
           facebook={facebook}
           instagram={instagram}
           email={email}
+          whatsApp={whatsApp}
         />
         <Sitemap />
         <div className="flex flex-col justify-between md:flex-row">

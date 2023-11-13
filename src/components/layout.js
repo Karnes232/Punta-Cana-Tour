@@ -10,6 +10,7 @@ export default function Layout({
   footerBackground,
   facebook,
   instagram,
+  whatsApp,
   email,
   gImage,
   color,
@@ -23,6 +24,7 @@ export default function Layout({
           footerBackground={footerBackground}
           facebook={facebook}
           instagram={instagram}
+          whatsApp={whatsApp}
           email={email}
           gImage={gImage}
         />

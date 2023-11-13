@@ -8,9 +8,8 @@ const PayPalButtonWrapper = ({
   amount,
   tourList,
   clientName,
-  clientEmail
+  clientEmail,
 }) => {
- 
   const style = { layout: "vertical", shape: "pill" };
   const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
   const [host, setHost] = useState("");
