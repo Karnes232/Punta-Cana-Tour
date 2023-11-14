@@ -4,6 +4,7 @@ import Footer from "./FooterComponent/Footer";
 import { CartProvider } from "../context/cart";
 import FloatingCartButton from "./FloatingCartButton/FloatingCartButton";
 import CookieConsent from "react-cookie-consent";
+import FloatingWhatsAppButton from "./FloatingCartButton/FloatingWhatsAppButton";
 export default function Layout({
   children,
   logo,
@@ -29,6 +30,7 @@ export default function Layout({
           gImage={gImage}
         />
         <FloatingCartButton />
+        <FloatingWhatsAppButton whatsApp={whatsApp} />
       </div>
       <CookieConsent>
         This website uses cookies to enhance the user experience.
