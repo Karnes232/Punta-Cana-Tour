@@ -10,7 +10,7 @@ const Copyright = () => {
     <div className="mx-8 flex flex-col justify-between py-4 md:flex-row md:items-center md:mx-auto">
       <Link to="/">
         <p className="footerSitemap font-medium tracking-wider">
-          &copy; {date} ThrillQuest Punta Cana
+          &copy; {date} Punta Cana Tour Store
         </p>
       </Link>
     </div>

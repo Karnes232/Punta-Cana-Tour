@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../components/HeaderComponents/Header";
 import Footer from "./FooterComponent/Footer";
 import { CartProvider } from "../context/cart";
+import FloatingWhatsAppButton from "./FloatingCartButton/FloatingWhatsAppButton";
 
 export default function CartLayout({
   children,
@@ -9,6 +10,7 @@ export default function CartLayout({
   footerBackground,
   facebook,
   instagram,
+  whatsApp,
   email,
   gImage,
 }) {
@@ -22,8 +24,10 @@ export default function CartLayout({
           facebook={facebook}
           instagram={instagram}
           email={email}
+          whatsApp={whatsApp}
           gImage={gImage}
         />
+        <FloatingWhatsAppButton whatsApp={whatsApp} />
       </div>
     </CartProvider>
   );

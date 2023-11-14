@@ -4,6 +4,7 @@ import Footer from "../FooterComponent/Footer";
 import Header from "./Header";
 import { TravelAgentCartProvider } from "../../context/travelAgentCart";
 import TravelAgentFloatingCartButton from "../FloatingCartButton/TravelAgentFloatingCartButton";
+import FloatingWhatsAppButton from "../FloatingCartButton/FloatingWhatsAppButton";
 
 export default function TravelAgentLayout({
   children,
@@ -11,6 +12,7 @@ export default function TravelAgentLayout({
   footerBackground,
   facebook,
   instagram,
+  whatsApp,
   email,
   gImage,
 }) {
@@ -26,8 +28,10 @@ export default function TravelAgentLayout({
           instagram={instagram}
           email={email}
           gImage={gImage}
+          whatsApp={whatsApp}
         />
         <TravelAgentFloatingCartButton />
+        <FloatingWhatsAppButton whatsApp={whatsApp} />
       </div>
     </TravelAgentCartProvider>
   );
