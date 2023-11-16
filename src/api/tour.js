@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
 });
 
 const loadTemplate = (templateName, context) => {
-  const templatePath = `src/views/${templateName}.handlebars`;
+  const templatePath = `views/${templateName}.handlebars`;
   const source = fs.readFileSync(templatePath, "utf8");
   const template = handlebars.compile(source);
   return template(context);
