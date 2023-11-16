@@ -15,12 +15,17 @@ const loadTemplate = (templateName, context) => {
   let templatePath = ""
   if (process.env.NODE_ENV === 'production') { 
     templatePath = productionEmail
+    const template = handlebars.compile(templatePath);
+    return template(context);
   } else {
     templatePath = `src/views/${templateName}.handlebars`;
+    const source = fs.readFileSync(templatePath, "utf8");
+    const template = handlebars.compile(source);
+    return template(context);
   }
-  const source = fs.readFileSync(templatePath, "utf8");
-  const template = handlebars.compile(source);
-  return template(context);
+  // const source = fs.readFileSync(templatePath, "utf8");
+  // const template = handlebars.compile(source);
+  // return template(context);
 };
 
 export default function handler(req, res) {
