@@ -1,6 +1,7 @@
 const nodemailer = require("nodemailer");
 const handlebars = require("handlebars");
 const fs = require("fs");
+import * as path from 'path';
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -11,7 +12,13 @@ const transporter = nodemailer.createTransport({
 });
 
 const loadTemplate = (templateName, context) => {
-  const templatePath = `views/${templateName}.handlebars`;
+  let templatePath = ""
+  if (process.env.NODE_ENV === 'production') { 
+    const __dirname = path.resolve();
+    templatePath = path.join(__dirname, `views/${templateName}.handlebars`);;
+  } else {
+    templatePath = `src/views/${templateName}.handlebars`;
+  }
   const source = fs.readFileSync(templatePath, "utf8");
   const template = handlebars.compile(source);
   return template(context);
