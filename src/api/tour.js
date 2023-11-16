@@ -11,22 +11,22 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const loadTemplate = (templateName, context) => {
-  let templatePath = ""
-  if (process.env.NODE_ENV === 'production') { 
-    templatePath = productionEmail
-    const template = handlebars.compile(templatePath);
-    return template(context);
-  } else {
-    templatePath = `src/views/${templateName}.handlebars`;
-    const source = fs.readFileSync(templatePath, "utf8");
-    const template = handlebars.compile(source);
-    return template(context);
-  }
-  // const source = fs.readFileSync(templatePath, "utf8");
-  // const template = handlebars.compile(source);
-  // return template(context);
-};
+// const loadTemplate = (templateName, context) => {
+//   let templatePath = ""
+//   if (process.env.NODE_ENV === 'production') { 
+//     templatePath = productionEmail
+//     const template = handlebars.compile(templatePath);
+//     return template(context);
+//   } else {
+//     templatePath = `src/views/${templateName}.handlebars`;
+//     const source = fs.readFileSync(templatePath, "utf8");
+//     const template = handlebars.compile(source);
+//     return template(context);
+//   }
+//   // const source = fs.readFileSync(templatePath, "utf8");
+//   // const template = handlebars.compile(source);
+//   // return template(context);
+// };
 
 export default function handler(req, res) {
   const clientName = req.body.clientName;
@@ -39,13 +39,13 @@ export default function handler(req, res) {
     name: clientName,
     // Add more data here based on your template's placeholders
   };
-  const emailHTML = loadTemplate(templateName, emailContext);
+  // const emailHTML = loadTemplate(templateName, emailContext);
   let mailDetails = {
     from: `${process.env.EMAIL_USER_NEW}`,
     to: clientEmail,
     subject: "Punta Cana Tour Store",
     text: `${clientName} have a deposit of ${deposit}`,
-    html: emailHTML,
+    html: productionEmail,
   };
 
   transporter.sendMail(mailDetails, function (err, data) {
