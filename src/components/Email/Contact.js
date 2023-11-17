@@ -1,6 +1,4 @@
-export const TotalPrice = (price) => {
-  const htmlBody = `
-  
+export const Contact = `
     
     <div class="u-row-container" style="padding: 0px;background-color: #f5f5f5">
     <div class="u-row" style="margin: 0 auto;min-width: 320px;max-width: 500px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;">
@@ -12,20 +10,28 @@ export const TotalPrice = (price) => {
     <div style="background-color: #f5f5f5;height: 100%;width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
     <!--[if (!mso)&(!IE)]><!--><div style="box-sizing: border-box; height: 100%; padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;"><!--<![endif]-->
     
+  
   <table style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
     <tbody>
       <tr>
         <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;" align="left">
           
-    <div style="font-size: 18px; line-height: 140%; text-align: center; word-wrap: break-word;">
-      <p style="line-height: 140%;"><span style='font-weight:700;'>Total Cost:</span> $${price}</p>
+    <div style="font-size: 14px; line-height: 140%; text-align: left; word-wrap: break-word;">
+      <p style="line-height: 140%;">If you have any additional queries or worries, please do not hesitate to reach out to us by <a
+      href="mailto:puntacanatourstore@gmail.com?subject=Punta Cana Tour Store Reservation"
+      aria-label="whatsApp"
+      rel="noreferrer"
+    >email</a> or <a
+      href="https://api.whatsapp.com/send?phone=18494520971"
+      aria-label="whatsApp"
+      rel="noreferrer"
+    >WhatsApp.</a></p>
     </div>
   
         </td>
       </tr>
     </tbody>
   </table>
-  
   
     <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
     </div>
@@ -37,5 +43,3 @@ export const TotalPrice = (price) => {
     </div>
     
   `;
-  return htmlBody;
-};
