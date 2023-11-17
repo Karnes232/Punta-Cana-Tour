@@ -15,7 +15,7 @@ export const SocailMedia = `
     <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;" align="left">
       
 <div align="center">
-<div style="display: table; max-width:327px;">
+<div style="display: flex; width:327px; justify-content: space-between;">
 <!--[if (mso)|(IE)]><table width="327" cellpadding="0" cellspacing="0" border="0"><tr><td style="border-collapse:collapse;" align="center"><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; mso-table-lspace: 0pt;mso-table-rspace: 0pt; width:327px;"><tr><![endif]-->
 
   
