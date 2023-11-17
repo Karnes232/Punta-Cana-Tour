@@ -8,8 +8,8 @@ export const Css = `
     vertical-align: top;
   }
 
-  .u-row .u-col-33p33 {
-    width: 166.65px !important;
+  .u-row .u-col-100 {
+    width: 500px !important;
   }
 
 }
@@ -47,6 +47,10 @@ td {
   border-collapse: collapse;
 }
 
+p {
+  margin: 0;
+}
+
 .ie-container table,
 .mso-container table {
   table-layout: fixed;
@@ -61,9 +65,11 @@ a[x-apple-data-detectors='true'] {
   text-decoration: none !important;
 }
 
-table, td { color: #000000; } </style>
+table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: underline; }
+    </style>
   
   
 
 </head>
+
 `;

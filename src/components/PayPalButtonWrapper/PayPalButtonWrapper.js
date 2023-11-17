@@ -65,6 +65,7 @@ const PayPalButtonWrapper = ({
               clientName: clientName,
               clientEmail: clientEmail,
               deposit: deposit,
+              tourList: tourList,
             });
             collectUserDataPayPal(details, redirectHref, depositString);
             // window.location.href = redirectHref + depositString;
