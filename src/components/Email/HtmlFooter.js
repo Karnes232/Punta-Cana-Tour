@@ -1,4 +1,7 @@
 export const HtmlFooter = `
+
+
+</div>
 </td>
 </tr>
 </tbody>
