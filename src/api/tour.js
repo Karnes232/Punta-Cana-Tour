@@ -8,6 +8,7 @@ import { HtmlFooter } from "../components/Email/HtmlFooter";
 import { Tour } from "../components/Email/Tour";
 import { TotalPrice } from "../components/Email/TotalPrice";
 import { Contact } from "../components/Email/Contact";
+import { SocailMedia } from "../components/Email/SocialMedia";
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -37,7 +38,7 @@ export default function handler(req, res) {
     tourList[2] ? Tour(tourList[2]) : ""
   }${tourList[3] ? Tour(tourList[3]) : ""}${TotalPrice(
     totalCost,
-  )}${Contact}${HtmlFooter}`;
+  )}${Contact}${SocailMedia}${HtmlFooter}`;
 
   let mailDetails = {
     from: `${process.env.EMAIL_USER_NEW}`,
