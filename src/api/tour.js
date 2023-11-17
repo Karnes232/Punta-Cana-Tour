@@ -57,7 +57,7 @@ export default function handler(req, res) {
   });
 
   res.status(200);
-}
+
 
 
 
@@ -558,7 +558,7 @@ ul.social li{
 	        <td class="bg_dark email-section" style="text-align:center;">
 	        	<div class="heading-section heading-section-white">
 	          	<h2>Welcome To Punta Cana Tour Store</h2>
-				<h3>{{name}}</h3>
+				<h3>${clientName}</h3>
 	          	<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
 	        	</div>
 	        </td>
@@ -566,3 +566,5 @@ ul.social li{
         </center>
 </body>
 </html>`
+
+}
