@@ -9,6 +9,7 @@ const collectUserDataPayPal = async (details, redirectHref, depositString) => {
     name: details.payer.name,
     email: details.payer.email_address,
     address: details.payer.address,
+    amount: details.purchase_units[0].amount.value,
     createdAt: createdAt,
   });
   window.location.href = redirectHref + depositString;
