@@ -6,7 +6,7 @@ import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../../../config/firebase";
 
-const Transfers = ({ data }) => {
+const Reserved = ({ data }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState({});
   const [isAdmin, setIsAdmin] = useState(false);
@@ -29,7 +29,9 @@ const Transfers = ({ data }) => {
       if (currentUser) {
         findUser(currentUser.uid);
         setLoggedIn(true);
-        const querySnapshot = await getDocs(collection(db, "transferClientes"));
+        const querySnapshot = await getDocs(
+          collection(db, "reservationsClientes"),
+        );
         querySnapshot.forEach((doc) => {
           setClientes((prevUsers) => [...prevUsers, doc.data()]);
         });
@@ -92,7 +94,7 @@ export const query = graphql`
   }
 `;
 
-export default Transfers;
+export default Reserved;
 
 export const Head = ({ data }) => {
   const { title, description, keywords } = data.allContentfulSeo.nodes[0];
@@ -105,7 +107,7 @@ export const Head = ({ data }) => {
       />
       <link
         rel="canonical"
-        href="https://puntacanatourstore.com/travelagent/transfer"
+        href="https://puntacanatourstore.com/travelagent/paidclients"
       />
       <meta
         name="viewport"

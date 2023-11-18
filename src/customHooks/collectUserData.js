@@ -5,8 +5,9 @@ const collectUserData = async (formData) => {
   const createdAt = new Date();
   const formDataObj = {};
   formData.forEach((value, key) => (formDataObj[key] = value));
-
-  await setDoc(doc(db, "reservationsClientes", uuidv4()), {
+  const id = uuidv4();
+  await setDoc(doc(db, "reservationsClientes", id), {
+    id: id,
     email: formDataObj.email,
     name: formDataObj.name,
     phone: formDataObj.phone,

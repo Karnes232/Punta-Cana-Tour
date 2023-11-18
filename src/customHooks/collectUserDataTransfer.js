@@ -3,9 +3,9 @@ import { db } from "../config/firebase";
 import { v4 as uuidv4 } from "uuid";
 const collectUserDataTransfer = async (details, formDataObj, redirectHref) => {
   const createdAt = new Date();
-
-  await setDoc(doc(db, "transferClientes", uuidv4()), {
-    id: details.payer.payer_id,
+  const id = uuidv4();
+  await setDoc(doc(db, "transferClientes", id), {
+    id: id,
     name: details.payer.name,
     email: details.payer.email_address,
     address: details.payer.address,
