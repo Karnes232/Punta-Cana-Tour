@@ -29,7 +29,7 @@ const HotelSelect = ({ formData, setFormData, hotels }) => {
   };
   return (
     <>
-      <div className="relative z-30 mb-2 w-full group">
+      <div className="relative mb-2 w-full group">
         <Select
           options={options}
           className="contactFormInput"

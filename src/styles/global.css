@@ -7,3 +7,7 @@
   --secondary-color: #002447;
   --primary-bg-color: rgba(245, 245, 245, 1);
 }
+
+#react-select-2-listbox {
+  z-index: 50;
+}

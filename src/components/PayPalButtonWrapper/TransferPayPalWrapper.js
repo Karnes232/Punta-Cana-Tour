@@ -9,12 +9,12 @@ const TransferPayPalWrapper = ({
   amount,
   formData,
   disabled,
-  vehicle
+  vehicle,
 }) => {
   const style = { layout: "vertical", shape: "pill" };
   const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
   const [host, setHost] = useState("");
-  
+
   useEffect(() => {
     dispatch({
       type: "resetOptions",
@@ -94,7 +94,7 @@ const TransferPayPalWrapper = ({
             const form = document.getElementById("transferInfo");
             const newFormData = new FormData(form);
             const formDataObj = {};
-            
+
             newFormData.set("price", details.purchase_units[0].amount.value);
             newFormData.set("vehicle", vehicle);
             newFormData.forEach((value, key) => (formDataObj[key] = value));
