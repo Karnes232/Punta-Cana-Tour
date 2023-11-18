@@ -2,11 +2,11 @@ const nodemailer = require("nodemailer");
 
 import { Head } from "../components/Email/Head";
 import { Css } from "../components/Email/Css";
-import { Body } from "../components/Email/Body";
 import { HtmlHeader } from "../components/Email/HtmlHeader";
 import { HtmlFooter } from "../components/Email/HtmlFooter";
 import { Contact } from "../components/Email/Contact";
 import { SocailMedia } from "../components/Email/SocialMedia";
+import { TransferBody } from "../components/Email/TransferBody";
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -17,16 +17,17 @@ const transporter = nodemailer.createTransport({
 
 export default function handler(req, res) {
   const clientName = req.body.clientName;
-  const clientEmail = req.body.clientEmail;
   const deposit = req.body.deposit;
-
-  const htmlString = `${Head}${Css}${HtmlHeader}${Body(
+  const formData = req.body.formData;
+  console.log(deposit);
+  console.log(formData);
+  const htmlString = `${Head}${Css}${HtmlHeader}${TransferBody(
     clientName,
   )}${Contact}${SocailMedia}${HtmlFooter}`;
 
   let mailDetails = {
     from: `${process.env.EMAIL_USER_NEW}`,
-    to: clientEmail,
+    to: formData.email,
     subject: "Punta Cana Tour Store",
     text: `${clientName} have a deposit of ${deposit}`,
     html: htmlString,

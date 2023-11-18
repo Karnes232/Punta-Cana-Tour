@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import collectUserDataTransfer from "../../customHooks/collectUserDataTransfer";
+import axios from "axios";
 
 const TransferPayPalWrapper = ({
   currency,
@@ -103,8 +104,12 @@ const TransferPayPalWrapper = ({
                 const firstName = details.payer.name.given_name;
                 const lastName = details.payer.name.surname;
                 const name = `${firstName} ${lastName}`;
-                const deposit = details.purchase_units[0].amount.value;
                 const redirectHref = `${host}/contact/thankyou/?name=${name}`;
+                axios.post("/api/transfer", {
+                  clientName: name,
+                  deposit: details.purchase_units[0].amount.value,
+                  formData: formDataObj,
+                });
                 collectUserDataTransfer(details, formDataObj, redirectHref);
               })
               .catch((error) => alert(error));
