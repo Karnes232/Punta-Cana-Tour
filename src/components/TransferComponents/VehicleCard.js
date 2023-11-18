@@ -55,6 +55,7 @@ const VehicleCard = ({ vehicle, formData }) => {
               amount={price}
               formData={formData}
               disabled={disabled}
+              vehicle={vehicle.vehicleType}
             />
           </>
         ) : (
