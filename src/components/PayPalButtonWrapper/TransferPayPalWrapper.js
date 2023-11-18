@@ -62,6 +62,7 @@ const TransferPayPalWrapper = ({
         <input type="time" name="time" defaultValue={formData.time} />
         <input type="date" name="date" defaultValue={formData.date} />
         <input type="text" name="price" defaultValue={amount} />
+        <input type="text" name="vehicle" defaultValue="" />
       </form>
       {showSpinner && isPending && <div className="spinner" />}
       <PayPalButtons
