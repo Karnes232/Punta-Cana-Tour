@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
 const TransferClientList = ({ client }) => {
-  console.log(client);
   return (
     <>
       <tr className="bg-white hover:bg-gray-50">
