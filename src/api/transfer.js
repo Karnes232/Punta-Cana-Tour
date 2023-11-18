@@ -5,8 +5,6 @@ import { Css } from "../components/Email/Css";
 import { Body } from "../components/Email/Body";
 import { HtmlHeader } from "../components/Email/HtmlHeader";
 import { HtmlFooter } from "../components/Email/HtmlFooter";
-import { Tour } from "../components/Email/Tour";
-import { TotalPrice } from "../components/Email/TotalPrice";
 import { Contact } from "../components/Email/Contact";
 import { SocailMedia } from "../components/Email/SocialMedia";
 const transporter = nodemailer.createTransport({
@@ -21,19 +19,9 @@ export default function handler(req, res) {
   const clientName = req.body.clientName;
   const clientEmail = req.body.clientEmail;
   const deposit = req.body.deposit;
-  const tourList = req.body.tourList;
-  let totalCost = 0;
-  tourList.map((tour) => {
-    let tourCost = parseInt(tour.guestCount) * parseInt(tour.tour.price);
-    totalCost = totalCost + tourCost;
-  });
 
-  const htmlString = `${Head}${Css}${HtmlHeader}${Body(clientName)}${
-    tourList[0] ? Tour(tourList[0]) : ""
-  }${tourList[1] ? Tour(tourList[1]) : ""}${
-    tourList[2] ? Tour(tourList[2]) : ""
-  }${tourList[3] ? Tour(tourList[3]) : ""}${TotalPrice(
-    totalCost,
+  const htmlString = `${Head}${Css}${HtmlHeader}${Body(
+    clientName,
   )}${Contact}${SocailMedia}${HtmlFooter}`;
 
   let mailDetails = {

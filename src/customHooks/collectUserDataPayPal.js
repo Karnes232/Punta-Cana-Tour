@@ -3,7 +3,7 @@ import { db } from "../config/firebase";
 
 const collectUserDataPayPal = async (details, redirectHref, depositString) => {
   const createdAt = new Date();
-  console.log(createdAt);
+
   await setDoc(
     doc(db, "paidClientes", createdAt.toString().split(" ").slice(1).join(" ")),
     {

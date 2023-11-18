@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
+import collectUserDataTransfer from "../../customHooks/collectUserDataTransfer";
 
 const TransferPayPalWrapper = ({
   currency,
@@ -89,7 +90,8 @@ const TransferPayPalWrapper = ({
           return actions.order.capture().then(function (details) {
             const form = document.getElementById("transferInfo");
             const newFormData = new FormData(form);
-            console.log(newFormData);
+            const formDataObj = {};
+            newFormData.forEach((value, key) => (formDataObj[key] = value));
             newFormData.set("price", details.purchase_units[0].amount.value);
             fetch("/", {
               method: "POST",
@@ -101,11 +103,11 @@ const TransferPayPalWrapper = ({
                 const firstName = details.payer.name.given_name;
                 const lastName = details.payer.name.surname;
                 const name = `${firstName} ${lastName}`;
-                window.location.href = `${host}/contact/thankyou/?name=${name}`;
+                const deposit = details.purchase_units[0].amount.value;
+                const redirectHref = `${host}/contact/thankyou/?name=${name}`;
+                collectUserDataTransfer(details, formDataObj, redirectHref);
               })
               .catch((error) => alert(error));
-
-            const deposit = details.purchase_units[0].amount.value;
 
             // window.location.href = `${host}/payment/thankyou/?firstname=${firstName}&lastname=${lastName}&deposit=${deposit}`;
           });
