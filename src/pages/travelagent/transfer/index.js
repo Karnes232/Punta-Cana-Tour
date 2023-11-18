@@ -5,6 +5,8 @@ import Seo from "../../../components/seo";
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../../../config/firebase";
+import TransferClientList from "../../../components/TravelAgentComponents/TransferClientList";
+import TransferClientListMobile from "../../../components/TravelAgentComponents/TransferClientListMobile";
 
 const Transfers = ({ data }) => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -39,7 +41,6 @@ const Transfers = ({ data }) => {
     });
   }, []);
 
-  console.log(clientes);
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -53,7 +54,39 @@ const Transfers = ({ data }) => {
       gImage={
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
-    ></Layout>
+    >
+      <div className="flex flex-col items-center justify-center text-center max-w-5xl lg:p-2 mx-auto">
+        <table className="mx-auto text-sm text-left text-gray-500 hidden md:block shadow rounded-xl overflow-hidden">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+            <tr>
+              <th scope="col" className="px-6 py-3">
+                Name
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Email
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Vehicle
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Amount
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {clientes.map((client, index) => {
+              return <TransferClientList key={index} client={client} />;
+            })}
+          </tbody>
+        </table>
+
+        <div className="md:hidden min-w-[90vw] my-5 space-y-4">
+          {clientes.map((client, index) => {
+            return <TransferClientListMobile key={index} client={client} />;
+          })}
+        </div>
+      </div>
+    </Layout>
   );
 };
 
