@@ -6,7 +6,7 @@ const DateTime = ({ formData, handleChange, setFormData }) => {
   const futureDays = 2;
   const date = new Date();
   date.setDate(date.getDate() + futureDays);
-  const minDate = date.toLocaleDateString("en-ca");
+  // const minDate = date.toLocaleDateString("en-ca");
 
   return (
     <div className="flex flex-col mt-6 lg:flex-row lg:gap-10 lg:justify-between w-full">

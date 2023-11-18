@@ -97,7 +97,7 @@ const TransferPayPalWrapper = ({
             const formDataObj = {};
 
             newFormData.set("price", details.purchase_units[0].amount.value);
-            newFormData.set("vehicle", vehicle);
+            newFormData.set("vehicle", vehicle.vehicleType);
             newFormData.forEach((value, key) => (formDataObj[key] = value));
             fetch("/", {
               method: "POST",
@@ -114,6 +114,7 @@ const TransferPayPalWrapper = ({
                   clientName: name,
                   deposit: details.purchase_units[0].amount.value,
                   formData: formDataObj,
+                  vehicle: vehicle,
                 });
                 collectUserDataTransfer(details, formDataObj, redirectHref);
               })

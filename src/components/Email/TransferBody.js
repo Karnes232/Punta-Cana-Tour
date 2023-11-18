@@ -1,4 +1,11 @@
-export const TransferBody = (name) => {
+export const TransferBody = (clientName, hotel, transferType, date, time) => {
+  console.log(transferType);
+  let paragraph = "";
+  if (transferType === "Depature") {
+    paragraph = `We've booked your transportation from the ${hotel} to the airport for ${date} at ${time}. Have a great trip!`;
+  } else {
+    paragraph = `We have organized your transportation from the airport to the ${hotel} on ${date} at ${time}. Have a pleasant trip!`;
+  }
   const htmlBody = `
   
     
@@ -18,7 +25,7 @@ export const TransferBody = (name) => {
         <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;" align="left">
           
     <div style="font-size: 14px; line-height: 140%; text-align: left; word-wrap: break-word;">
-      <p style="line-height: 140%;">Hi ${name},</p>
+      <p style="line-height: 140%;">Hi ${clientName},</p>
     </div>
   
         </td>
@@ -32,7 +39,7 @@ export const TransferBody = (name) => {
         <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;" align="left">
           
     <div style="font-size: 14px; line-height: 140%; text-align: left; word-wrap: break-word;">
-      <p style="line-height: 140%;">Your Transfer has been confirmed!</p>
+      <p style="line-height: 140%;">${paragraph}</p>
     </div>
   
         </td>

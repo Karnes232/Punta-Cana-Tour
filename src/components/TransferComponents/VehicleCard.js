@@ -1,7 +1,5 @@
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import React, { useState } from "react";
-import { RiArrowRightSLine } from "react-icons/ri";
-import { Link } from "gatsby";
+import React from "react";
 import useFormValidation from "../../customHooks/useFormValidation";
 import TransferPayPalWrapper from "../PayPalButtonWrapper/TransferPayPalWrapper";
 
@@ -25,6 +23,7 @@ const VehicleCard = ({ vehicle, formData }) => {
     price = price * 2;
   }
   let disabled = useFormValidation(formData);
+
   return (
     <div className="max-w-xs min-w-[20rem] xl:max-w-xs my-5 mx-2 rounded-lg overflow-hidden shadow-lg">
       <GatsbyImage
@@ -55,7 +54,7 @@ const VehicleCard = ({ vehicle, formData }) => {
               amount={price}
               formData={formData}
               disabled={disabled}
-              vehicle={vehicle.vehicleType}
+              vehicle={vehicle}
             />
           </>
         ) : (

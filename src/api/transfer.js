@@ -16,13 +16,22 @@ const transporter = nodemailer.createTransport({
 });
 
 export default function handler(req, res) {
-  const clientName = req.body.clientName;
+  const clientName = req.body.formData.name;
   const deposit = req.body.deposit;
   const formData = req.body.formData;
-  console.log(deposit);
+  const vehicle = req.body.vehicle;
+  const hotel = formData.hotelSelect;
+  const transferType = formData.transferType;
+  const date = formData.date;
+  const time = formData.time;
+  console.log(vehicle);
   console.log(formData);
   const htmlString = `${Head}${Css}${HtmlHeader}${TransferBody(
     clientName,
+    hotel,
+    transferType,
+    date,
+    time,
   )}${Contact}${SocailMedia}${HtmlFooter}`;
 
   let mailDetails = {

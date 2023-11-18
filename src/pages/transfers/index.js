@@ -123,6 +123,9 @@ export const query = graphql`
           zone4Price
           vehiclePhoto {
             gatsbyImage(formats: WEBP, width: 400)
+            file {
+              url
+            }
           }
         }
       }
