@@ -5,7 +5,8 @@ import Seo from "../../../components/seo";
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../../../config/firebase";
-
+import PaidClientList from "../../../components/TravelAgentComponents/PaidClientList";
+import PaidClientListMobile from "../../../components/TravelAgentComponents/PaidClientListMobile";
 const PaidClients = ({ data }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState({});
@@ -39,7 +40,6 @@ const PaidClients = ({ data }) => {
     });
   }, []);
 
-  console.log(clientes);
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -53,7 +53,39 @@ const PaidClients = ({ data }) => {
       gImage={
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
-    ></Layout>
+    >
+      <div className="flex flex-col items-center justify-center text-center max-w-5xl lg:p-2 mx-auto">
+        <table className="mx-auto text-sm text-left text-gray-500 hidden md:block shadow rounded-xl overflow-hidden">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+            <tr>
+              <th scope="col" className="px-6 py-3">
+                Name
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Email
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Country
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Amount
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {clientes.map((client, index) => {
+              return <PaidClientList key={index} client={client} />;
+            })}
+          </tbody>
+        </table>
+
+        <div className="md:hidden min-w-[90vw] my-5 space-y-4">
+          {clientes.map((client, index) => {
+            return <PaidClientListMobile key={index} client={client} />;
+          })}
+        </div>
+      </div>
+    </Layout>
   );
 };
 
