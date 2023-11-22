@@ -1,4 +1,7 @@
 export const TotalPrice = (price) => {
+  const cost = price.toFixed(2);
+  const deposit = price * 0.3;
+  const balance = price * 0.7;
   const htmlBody = `
   
     
@@ -18,7 +21,13 @@ export const TotalPrice = (price) => {
         <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;" align="left">
           
     <div style="font-size: 18px; line-height: 140%; text-align: center; word-wrap: break-word;">
-      <p style="line-height: 140%;"><span style='font-weight:700;'>Total Cost:</span> $${price}</p>
+      <p style="line-height: 140%;"><span style='font-weight:700;'>Total Cost:</span> $${cost}</p>
+      <p style="line-height: 140%;"><span style='font-weight:700;'>Deposit:</span> $${deposit.toFixed(
+        2,
+      )}</p>
+      <p style="line-height: 140%;"><span style='font-weight:700;'>Balance:</span> $${balance.toFixed(
+        2,
+      )}</p>
     </div>
   
         </td>

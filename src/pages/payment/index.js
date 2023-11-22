@@ -28,7 +28,8 @@ const Index = ({ data, location }) => {
       ),
     };
   });
-
+  const deposit = totalCost * 0.3;
+  const balance = totalCost * 0.7;
   return (
     <CartLayout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -72,17 +73,17 @@ const Index = ({ data, location }) => {
         </div>
       </main>
       <section className="my-5 max-w-xs mx-auto">
-        <section className="space-x-16 flex justify-between mx-auto">
+        <section className="space-x-10 flex justify-between mx-auto">
           <div className="text-lg font-bold">Total Cost</div>
-          <div className="text-lg">${totalCost}</div>
+          <div className="text-lg">${totalCost.toFixed(2)}</div>
         </section>
-        <section className="space-x-16 flex justify-between mx-auto my-1">
+        <section className="space-x-10 flex justify-between mx-auto my-1">
           <div className="text-lg font-bold">Deposit</div>
-          <div className="text-lg">${totalCost * 0.3}</div>
+          <div className="text-lg">${deposit.toFixed(2)}</div>
         </section>
-        <section className="space-x-16 flex justify-between mx-auto">
+        <section className="space-x-10 flex justify-between mx-auto">
           <div className="text-lg font-bold">Remaining Balance</div>
-          <div className="text-lg">${totalCost * 0.7}</div>
+          <div className="text-lg">${balance.toFixed(2)}</div>
         </section>
       </section>
     </CartLayout>
