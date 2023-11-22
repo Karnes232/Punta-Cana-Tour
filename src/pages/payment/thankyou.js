@@ -6,6 +6,7 @@ import TourCard from "../../components/PaymentComponents/TourCard";
 const Thankyou = ({ data, location }) => {
   const params = new URLSearchParams(location.search);
   const clientName = params.get("name");
+  const totalPrice = params.get("totalPrice");
   const deposit = params.get("deposit");
   const tours = params.getAll("tourSelect");
   const guests = params.getAll("guests");
@@ -19,6 +20,8 @@ const Thankyou = ({ data, location }) => {
       ),
     };
   });
+
+  const balance = parseInt(totalPrice) - parseInt(deposit);
   return (
     <CartLayout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -62,9 +65,19 @@ const Thankyou = ({ data, location }) => {
           })}
         </div>
       </main>
-      <section className="space-x-16 flex justify-between mx-auto my-5">
-        <div className="text-lg font-bold">Total Cost</div>
-        <div className="text-lg">${deposit}</div>
+      <section className="my-5 max-w-xs mx-auto">
+        <section className="space-x-16 flex justify-between mx-auto">
+          <div className="text-lg font-bold">Total Cost</div>
+          <div className="text-lg">${parseInt(totalPrice).toFixed(2)}</div>
+        </section>
+        <section className="space-x-16 flex justify-between mx-auto my-1">
+          <div className="text-lg font-bold">Deposit</div>
+          <div className="text-lg">${deposit}</div>
+        </section>
+        <section className="space-x-16 flex justify-between mx-auto">
+          <div className="text-lg font-bold">Remaining Balance</div>
+          <div className="text-lg">${balance.toFixed(2)}</div>
+        </section>
       </section>
     </CartLayout>
   );

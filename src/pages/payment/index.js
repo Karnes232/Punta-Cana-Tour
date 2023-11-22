@@ -71,9 +71,19 @@ const Index = ({ data, location }) => {
           })}
         </div>
       </main>
-      <section className="space-x-16 flex justify-between mx-auto my-5">
-        <div className="text-lg font-bold">Total Paid</div>
-        <div className="text-lg">${totalCost}</div>
+      <section className="my-5 max-w-xs mx-auto">
+        <section className="space-x-16 flex justify-between mx-auto">
+          <div className="text-lg font-bold">Total Cost</div>
+          <div className="text-lg">${totalCost}</div>
+        </section>
+        <section className="space-x-16 flex justify-between mx-auto my-1">
+          <div className="text-lg font-bold">Deposit</div>
+          <div className="text-lg">${totalCost * 0.3}</div>
+        </section>
+        <section className="space-x-16 flex justify-between mx-auto">
+          <div className="text-lg font-bold">Remaining Balance</div>
+          <div className="text-lg">${totalCost * 0.7}</div>
+        </section>
       </section>
     </CartLayout>
   );

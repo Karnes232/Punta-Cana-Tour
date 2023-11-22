@@ -24,7 +24,7 @@ const PayPalButtonWrapper = ({
     setHost(window.location.origin);
   }, [currency, showSpinner]);
 
-  let redirectHref = `${host}/payment/thankyou/?name=${clientName}`;
+  let redirectHref = `${host}/payment/thankyou/?name=${clientName}&totalPrice=${amount}`;
   tourList.map((tour) => {
     redirectHref =
       redirectHref + `&tourSelect=${tour.tourName}&guests=${tour.guestCount}`;
@@ -45,7 +45,7 @@ const PayPalButtonWrapper = ({
                 {
                   amount: {
                     currency_code: currency,
-                    value: amount,
+                    value: amount * 0.3,
                   },
                 },
               ],
@@ -65,9 +65,10 @@ const PayPalButtonWrapper = ({
               clientName: clientName,
               clientEmail: clientEmail,
               deposit: deposit,
+              totalPrice: amount,
               tourList: tourList,
             });
-            collectUserDataPayPal(details, redirectHref, depositString);
+            collectUserDataPayPal(details, redirectHref, depositString, amount);
             // window.location.href = redirectHref + depositString;
           });
         }}
