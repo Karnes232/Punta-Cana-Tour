@@ -62,6 +62,7 @@ const TransferPayPalWrapper = ({
         <input type="time" name="time" defaultValue={formData.time} />
         <input type="date" name="date" defaultValue={formData.date} />
         <input type="text" name="price" defaultValue={amount} />
+        <input type="text" name="deposit" defaultValue={amount} />
         <input type="text" name="vehicle" defaultValue="" />
       </form>
       {showSpinner && isPending && <div className="spinner" />}
@@ -78,7 +79,7 @@ const TransferPayPalWrapper = ({
                 {
                   amount: {
                     currency_code: currency,
-                    value: amount,
+                    value: amount * 0.3,
                   },
                 },
               ],
@@ -95,8 +96,8 @@ const TransferPayPalWrapper = ({
             const form = document.getElementById("transferInfo");
             const newFormData = new FormData(form);
             const formDataObj = {};
-
-            newFormData.set("price", details.purchase_units[0].amount.value);
+            newFormData.set("price", amount);
+            newFormData.set("deposit", details.purchase_units[0].amount.value);
             newFormData.set("vehicle", vehicle.vehicleType);
             newFormData.forEach((value, key) => (formDataObj[key] = value));
             fetch("/", {

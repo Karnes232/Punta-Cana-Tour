@@ -7,6 +7,7 @@ import { HtmlFooter } from "../components/Email/HtmlFooter";
 import { Contact } from "../components/Email/Contact";
 import { SocailMedia } from "../components/Email/SocialMedia";
 import { TransferBody } from "../components/Email/TransferBody";
+import { TransferPrice } from "../components/Email/TransferPrice";
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -32,7 +33,7 @@ export default function handler(req, res) {
     transferType,
     date,
     time,
-  )}${Contact}${SocailMedia}${HtmlFooter}`;
+  )}${TransferPrice(formData.price)}${Contact}${SocailMedia}${HtmlFooter}`;
 
   let mailDetails = {
     from: `${process.env.EMAIL_USER_NEW}`,
