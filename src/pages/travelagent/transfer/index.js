@@ -2,7 +2,14 @@ import { graphql, navigate } from "gatsby";
 import React, { useEffect, useState } from "react";
 import Layout from "../../../components/TravelAgentComponents/Layout";
 import Seo from "../../../components/seo";
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  query,
+  doc,
+  getDoc,
+  getDocs,
+  orderBy,
+} from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../../../config/firebase";
 import TransferClientList from "../../../components/TravelAgentComponents/TransferClientList";
@@ -31,7 +38,9 @@ const Transfers = ({ data }) => {
       if (currentUser) {
         findUser(currentUser.uid);
         setLoggedIn(true);
-        const querySnapshot = await getDocs(collection(db, "transferClientes"));
+        const transferRef = collection(db, "transferClientes");
+        const q = query(transferRef, orderBy("createdAt", "desc"));
+        const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
           setClientes((prevUsers) => [...prevUsers, doc.data()]);
         });
@@ -40,7 +49,7 @@ const Transfers = ({ data }) => {
       }
     });
   }, []);
-
+  console.log(clientes);
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -90,7 +99,7 @@ const Transfers = ({ data }) => {
   );
 };
 
-export const query = graphql`
+export const querie = graphql`
   query MyQuery {
     allContentfulLayout {
       edges {

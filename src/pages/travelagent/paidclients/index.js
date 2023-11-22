@@ -2,7 +2,14 @@ import { graphql, navigate } from "gatsby";
 import React, { useEffect, useState } from "react";
 import Layout from "../../../components/TravelAgentComponents/Layout";
 import Seo from "../../../components/seo";
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  query,
+  doc,
+  getDoc,
+  getDocs,
+  orderBy,
+} from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../../../config/firebase";
 import PaidClientList from "../../../components/TravelAgentComponents/PaidClientList";
@@ -30,7 +37,10 @@ const PaidClients = ({ data }) => {
       if (currentUser) {
         findUser(currentUser.uid);
         setLoggedIn(true);
-        const querySnapshot = await getDocs(collection(db, "paidClientes"));
+
+        const paidRef = collection(db, "paidClientes");
+        const q = query(paidRef, orderBy("createdAt", "desc"));
+        const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
           setClientes((prevUsers) => [...prevUsers, doc.data()]);
         });
@@ -68,7 +78,10 @@ const PaidClients = ({ data }) => {
                 Country
               </th>
               <th scope="col" className="px-6 py-3">
-                Amount
+                Total Price
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Deposit
               </th>
             </tr>
           </thead>
@@ -89,7 +102,7 @@ const PaidClients = ({ data }) => {
   );
 };
 
-export const query = graphql`
+export const querie = graphql`
   query MyQuery {
     allContentfulLayout {
       edges {

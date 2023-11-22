@@ -2,7 +2,14 @@ import { graphql, navigate } from "gatsby";
 import React, { useEffect, useState } from "react";
 import Layout from "../../../components/TravelAgentComponents/Layout";
 import Seo from "../../../components/seo";
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  orderBy,
+  query,
+} from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../../../config/firebase";
 import ReservedClientList from "../../../components/TravelAgentComponents/ReservedClientList";
@@ -31,9 +38,9 @@ const Reserved = ({ data }) => {
       if (currentUser) {
         findUser(currentUser.uid);
         setLoggedIn(true);
-        const querySnapshot = await getDocs(
-          collection(db, "reservationsClientes"),
-        );
+        const reservedRef = collection(db, "reservationsClientes");
+        const q = query(reservedRef, orderBy("createdAt", "desc"));
+        const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
           setClientes((prevUsers) => [...prevUsers, doc.data()]);
         });
@@ -91,7 +98,7 @@ const Reserved = ({ data }) => {
   );
 };
 
-export const query = graphql`
+export const querie = graphql`
   query MyQuery {
     allContentfulLayout {
       edges {

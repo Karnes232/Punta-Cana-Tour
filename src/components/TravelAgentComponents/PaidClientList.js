@@ -15,7 +15,8 @@ const PaidClientList = ({ client }) => {
           <a href={`mailto:${client.email}`}>{client.email}</a>
         </td>
         <td className="px-6 py-4">{client.address.country_code}</td>
-        <td className="px-6 py-4">${client.amount}</td>
+        <td className="px-6 py-4">${client.totalPrice}</td>
+        <td className="px-6 py-4">${client.deposit}</td>
       </tr>
     </>
   );

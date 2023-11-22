@@ -16,7 +16,10 @@ const PaidClientListMobile = ({ client }) => {
         <div className="font-normal text-left">
           Country: {client.address.country_code}
         </div>
-        <div className="font-normal text-left">Amount: ${client.amount}</div>
+        <div className="font-normal text-left">
+          Total Price: ${client.totalPrice}
+        </div>
+        <div className="font-normal text-left">Deposit: ${client.deposit}</div>
       </div>
     </>
   );
