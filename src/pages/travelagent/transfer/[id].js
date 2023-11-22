@@ -4,19 +4,20 @@ import Seo from "../../../components/seo";
 import { graphql } from "gatsby";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../../../config/firebase";
+import IndividualTransfer from "../../../components/TravelAgentComponents/IndividualTransfer";
 
 const TransferClient = ({ location, data }) => {
-  const [user, setUser] = useState({});
-  const findUser = async (id) => {
+  const [client, setClient] = useState({});
+  const findClient = async (id) => {
     const docRef = doc(db, "transferClientes", id);
     const docSnap = await getDoc(docRef);
-    setUser(docSnap.data());
+    setClient(docSnap.data());
   };
   const userId = location.pathname.split("/");
   useEffect(() => {
-    findUser(userId[3]);
+    findClient(userId[3]);
   }, []);
-  console.log(user);
+
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -30,7 +31,9 @@ const TransferClient = ({ location, data }) => {
       gImage={
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
-    ></Layout>
+    >
+      <IndividualTransfer client={client} />
+    </Layout>
   );
 };
 

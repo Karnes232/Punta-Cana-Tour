@@ -6,17 +6,17 @@ import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../../../config/firebase";
 
 const TransferClient = ({ location, data }) => {
-  const [user, setUser] = useState({});
-  const findUser = async (id) => {
+  const [client, setClient] = useState({});
+  const findClient = async (id) => {
     const docRef = doc(db, "reservationsClientes", id);
     const docSnap = await getDoc(docRef);
-    setUser(docSnap.data());
+    setClient(docSnap.data());
   };
   const userId = location.pathname.split("/");
   useEffect(() => {
-    findUser(userId[3]);
+    findClient(userId[3]);
   }, []);
-  console.log(user);
+  console.log(client);
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
