@@ -8,7 +8,7 @@ const DatePickerComponent = () => {
     endDate: null,
   });
   useEffect(() => {
-    const futureDays = 2;
+    const futureDays = 0;
     const date = new Date();
     date.setDate(date.getDate() + futureDays);
     setDate(date);
