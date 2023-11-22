@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "gatsby";
 const ReservedClientList = ({ client }) => {
   return (
     <>
@@ -9,7 +9,7 @@ const ReservedClientList = ({ client }) => {
           className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
         >
           {" "}
-          {client.name}
+          <Link to={`/travelagent/reserved/${client.id}`}>{client.name}</Link>
         </th>
         <td className="px-6 py-4">
           <a href={`mailto:${client.email}`}>{client.email}</a>

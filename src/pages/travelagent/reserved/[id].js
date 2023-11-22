@@ -4,6 +4,7 @@ import Seo from "../../../components/seo";
 import { graphql } from "gatsby";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../../../config/firebase";
+import IndividualReserved from "../../../components/TravelAgentComponents/IndividualReserved";
 
 const TransferClient = ({ location, data }) => {
   const [client, setClient] = useState({});
@@ -16,7 +17,6 @@ const TransferClient = ({ location, data }) => {
   useEffect(() => {
     findClient(userId[3]);
   }, []);
-  console.log(client);
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -30,7 +30,9 @@ const TransferClient = ({ location, data }) => {
       gImage={
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
-    ></Layout>
+    >
+      <IndividualReserved client={client} />
+    </Layout>
   );
 };
 
