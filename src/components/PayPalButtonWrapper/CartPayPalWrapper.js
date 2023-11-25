@@ -28,7 +28,6 @@ const CartPayPalWrapper = ({
     });
     setHost(window.location.origin);
   }, [currency, showSpinner]);
-  console.log(formData)
   let redirectHref = `${host}/payment/thankyou/?name=${clientName}&totalPrice=${totalCost}`;
   return (
     <>
@@ -46,7 +45,7 @@ const CartPayPalWrapper = ({
                 {
                   amount: {
                     currency_code: currency,
-                    value: deposit,
+                    value: deposit.toFixed(2),
                   },
                 },
               ],
