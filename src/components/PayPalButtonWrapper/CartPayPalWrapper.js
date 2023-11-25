@@ -35,7 +35,6 @@ const CartPayPalWrapper = ({
     Object.keys(object).forEach((key) => formData.append(key, object[key]));
     return formData;
   }
-
   return (
     <>
       {showSpinner && isPending && <div className="spinner" />}
@@ -70,6 +69,7 @@ const CartPayPalWrapper = ({
             const depositString = `&deposit=${deposit}`;
 
             const dataFromForm = getFormData(formData);
+            dataFromForm.set("Date", formData.date);
             fetch("/", {
               method: "POST",
               headers: { "Content-Type": "application/x-www-form-urlencoded" },
