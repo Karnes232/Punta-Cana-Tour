@@ -6,6 +6,8 @@ const collectUserDataPayPal = async (
   redirectHref,
   depositString,
   amount,
+  formData,
+  clearCart
 ) => {
   const createdAt = new Date();
   const id = uuidv4();
@@ -16,8 +18,10 @@ const collectUserDataPayPal = async (
     address: details.payer.address,
     deposit: details.purchase_units[0].amount.value,
     totalPrice: amount,
+    formData: formData,
     createdAt: createdAt,
   });
+  clearCart()
   window.location.href = redirectHref + depositString;
 };
 

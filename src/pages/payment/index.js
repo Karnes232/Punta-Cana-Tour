@@ -10,7 +10,6 @@ const Index = ({ data, location }) => {
   const clientEmail = params.get("email");
   const tours = params.getAll("tourSelect");
   const guests = params.getAll("guests");
-
   let totalCost = 0;
 
   const newList = tours.map((tour, index) => {

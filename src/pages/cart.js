@@ -21,7 +21,7 @@ const Cart = ({ data }) => {
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
     >
-      <Form />
+      <Form allTours={data.allContentfulTour}/>
     </CartLayout>
   );
 };
@@ -52,6 +52,18 @@ export const query = graphql`
         keywords
         description {
           description
+        }
+      }
+    }
+    allContentfulTour {
+      nodes {
+        name
+        price
+        mainImage {
+          gatsbyImage(width: 400, formats: WEBP)
+          file {
+            url
+          }
         }
       }
     }
