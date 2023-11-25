@@ -1,7 +1,7 @@
 import React from "react";
 import DatePickerComponent from "./DatePickerComponent";
 
-const MoreInfo = ({formData, setFormData}) => {
+const MoreInfo = ({ formData, setFormData }) => {
   const handleChange = ({ target }) => {
     setFormData({
       ...formData,

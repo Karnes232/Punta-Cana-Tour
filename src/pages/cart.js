@@ -21,7 +21,7 @@ const Cart = ({ data }) => {
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
     >
-      <Form allTours={data.allContentfulTour}/>
+      <Form allTours={data.allContentfulTour} />
     </CartLayout>
   );
 };

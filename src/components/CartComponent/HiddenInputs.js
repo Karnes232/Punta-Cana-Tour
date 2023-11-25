@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { CartContext } from "../../context/cart";
 
-const HiddenInputs = ({formData, setFormData}) => {
+const HiddenInputs = ({ formData, setFormData }) => {
   const { cartItems } = useContext(CartContext);
   const handleChange = ({ target }) => {
     setFormData({

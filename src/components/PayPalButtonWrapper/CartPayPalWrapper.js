@@ -12,7 +12,7 @@ const CartPayPalWrapper = ({
   tourList,
   clientName,
   clientEmail,
-  formData
+  formData,
 }) => {
   const style = { layout: "vertical", shape: "pill" };
   const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
@@ -61,7 +61,7 @@ const CartPayPalWrapper = ({
           return actions.order.capture().then(function (details) {
             const deposit = details.purchase_units[0].amount.value;
             const depositString = `&deposit=${deposit}`;
-            console.log('Appoved')
+            console.log("Appoved");
             axios.post("/api/tour", {
               clientName: clientName,
               clientEmail: clientEmail,
@@ -69,7 +69,14 @@ const CartPayPalWrapper = ({
               totalPrice: totalCost,
               tourList: tourList,
             });
-            collectUserDataPayPal(details, redirectHref, depositString, totalCost, formData, clearCart);
+            collectUserDataPayPal(
+              details,
+              redirectHref,
+              depositString,
+              totalCost,
+              formData,
+              clearCart,
+            );
             // window.location.href = redirectHref + depositString;
           });
         }}

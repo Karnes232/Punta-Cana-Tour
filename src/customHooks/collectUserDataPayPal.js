@@ -7,7 +7,7 @@ const collectUserDataPayPal = async (
   depositString,
   amount,
   formData,
-  clearCart
+  clearCart,
 ) => {
   const createdAt = new Date();
   const id = uuidv4();
@@ -21,7 +21,7 @@ const collectUserDataPayPal = async (
     formData: formData,
     createdAt: createdAt,
   });
-  clearCart()
+  clearCart();
   window.location.href = redirectHref + depositString;
 };
 

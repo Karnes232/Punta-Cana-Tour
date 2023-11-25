@@ -49,7 +49,7 @@ const Transfers = ({ data }) => {
       }
     });
   }, []);
-  console.log(clientes);
+
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}

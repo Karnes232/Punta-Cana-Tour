@@ -7,11 +7,11 @@ import CartComponent from "./CartComponent";
 import { CartContext } from "../../context/cart";
 import collectUserData from "../../customHooks/collectUserData";
 import CartPayPal from "../PayPalButtonWrapper/CartPayPal";
-const Form = ({allTours}) => {
+const Form = ({ allTours }) => {
   const [name, setName] = useState("");
   const { clearCart, cartItems } = useContext(CartContext);
   const [formData, setFormData] = useState({
-    "form-name": 'cart',
+    "form-name": "cart",
     name: "",
     email: "",
     phone: "",
@@ -40,8 +40,8 @@ const Form = ({allTours}) => {
       Tour4: `- ` + cartItems[3]?.name,
       Pax4: `- ` + cartItems[3]?.quantity,
     });
-  }, [cartItems])
-  
+  }, [cartItems]);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -82,16 +82,18 @@ const Form = ({allTours}) => {
       <div className="flex flex-col xl:flex-row-reverse xl:mt-10 xl:gap-12">
         <CartComponent />
         <div className="xl:w-[25rem]">
-          <ContactInfo name={name} setName={setName}  formData={formData}
-        setFormData={setFormData} />
-          <MoreInfo formData={formData}
-        setFormData={setFormData}/>
+          <ContactInfo
+            name={name}
+            setName={setName}
+            formData={formData}
+            setFormData={setFormData}
+          />
+          <MoreInfo formData={formData} setFormData={setFormData} />
         </div>
       </div>
-      <HiddenInputs formData={formData}
-        setFormData={setFormData}/>
+      <HiddenInputs formData={formData} setFormData={setFormData} />
       {/* <Button /> */}
-      <CartPayPal formData={formData} allTours={allTours}/>
+      <CartPayPal formData={formData} allTours={allTours} />
     </form>
   );
 };
