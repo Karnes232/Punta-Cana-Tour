@@ -21,7 +21,7 @@ const Thankyou = ({ data, location }) => {
     };
   });
 
-  const balance = parseInt(totalPrice) - parseInt(deposit);
+  const balance = parseFloat(totalPrice) - parseFloat(deposit);
   return (
     <CartLayout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
