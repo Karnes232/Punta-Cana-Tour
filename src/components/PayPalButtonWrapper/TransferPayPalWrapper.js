@@ -14,7 +14,7 @@ const TransferPayPalWrapper = ({
   const style = { layout: "vertical", shape: "pill" };
   const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
   const [host, setHost] = useState("");
-
+  const paypalAmount = amount*3
   useEffect(() => {
     dispatch({
       type: "resetOptions",
@@ -79,7 +79,7 @@ const TransferPayPalWrapper = ({
                 {
                   amount: {
                     currency_code: currency,
-                    value: amount * 0.3,
+                    value: paypalAmount.toFixed(2),
                   },
                 },
               ],
