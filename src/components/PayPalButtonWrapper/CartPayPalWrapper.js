@@ -13,6 +13,7 @@ const CartPayPalWrapper = ({
   clientName,
   clientEmail,
   formData,
+  disabled,
 }) => {
   const style = { layout: "vertical", shape: "pill" };
   const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
@@ -41,7 +42,7 @@ const CartPayPalWrapper = ({
       <PayPalButtons
         className="w-full"
         style={style}
-        disabled={false}
+        disabled={disabled}
         forceReRender={[deposit, currency, style]}
         fundingSource={undefined}
         createOrder={(data, actions) => {
