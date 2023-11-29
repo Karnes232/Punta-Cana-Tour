@@ -10,7 +10,6 @@ import ListGroup from "../components/TourPageComponents/ListGroup";
 import Seo from "../components/seo";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import MaybeLikeTourCard from "../components/TourCardComponent/MaybeLikeTourCard";
 import YouMayLikeSwiper from "../components/YouMayLikeSwiper/YouMayLikeSwiper";
 const tour = ({ pageContext }) => {
   const {
@@ -106,11 +105,11 @@ const tour = ({ pageContext }) => {
 
           <ListGroup tour={tour} />
         </div>
+        <div className="max-w-6xl my-5 mx-5 md:mx-10 xl:mx-auto">
+          <h5 className="font-bold text-lg">You Might Also Like</h5>
+          <YouMayLikeSwiper tourList={maybeYouLike} />
+        </div>
       </Layout>
-      <div className="max-w-6xl my-5 mx-5 md:mx-10 xl:mx-auto">
-        <h5 className="font-bold text-lg">You Might Also Like</h5>
-        <YouMayLikeSwiper tourList={maybeYouLike} />
-      </div>
     </>
   );
 };
