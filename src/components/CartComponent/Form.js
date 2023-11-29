@@ -81,7 +81,7 @@ const Form = ({ allTours }) => {
 
       <div className="flex flex-col xl:flex-row-reverse xl:mt-10 xl:gap-12">
         <CartComponent />
-        <div className="xl:w-[25rem]">
+        <div className="xl:w-[25rem] flex flex-col justify-center">
           <ContactInfo
             name={name}
             setName={setName}

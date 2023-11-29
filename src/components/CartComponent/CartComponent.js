@@ -45,6 +45,8 @@ export default function Cart() {
     notifyRemovedFromCart(tour);
   };
 
+  let cartTotalPrice = getCartTotal();
+
   return (
     <div className="flex-col flex items-center justify-center my-10">
       <ToastContainer />
@@ -111,7 +113,26 @@ export default function Cart() {
       </div>
       {cartItems.length > 0 ? (
         <div className="flex flex-col justify-between items-center mt-5">
-          <h1 className="text-lg font-bold mb-3">Total: ${getCartTotal()}</h1>
+          <section className="my-5 max-w-xs mx-auto">
+            <section className="space-x-12 flex justify-between mx-auto">
+              <div className="text-lg font-bold">Total Cost:</div>
+              <div className="text-lg w-20">
+                ${parseFloat(cartTotalPrice).toFixed(2)}
+              </div>
+            </section>
+            <section className="space-x-12 flex justify-between mx-auto my-1">
+              <div className="text-lg font-bold">Deposit:</div>
+              <div className="text-lg w-20">
+                ${parseFloat(cartTotalPrice * 0.3).toFixed(2)}
+              </div>
+            </section>
+            <section className="space-x-12 flex justify-between mx-auto">
+              <div className="text-lg font-bold">Remaining Balance:</div>
+              <div className="text-lg w-20">
+                ${parseFloat(cartTotalPrice * 0.7).toFixed(2)}
+              </div>
+            </section>
+          </section>
 
           <button
             className="px-4 py-2 bg-secondary-color text-primary-color text-xs font-bold uppercase rounded hover:opacity-70 focus:outline-none focus:bg-gray-700"
