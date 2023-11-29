@@ -18,6 +18,7 @@ Welcome to the Punta Cana Tour Company website built with GatsbyJS! This website
 - Firebase (Realtime Database)
 - PayPal Integration
 - React Context API
+- Nodemailer
 
 ## Installation
 
