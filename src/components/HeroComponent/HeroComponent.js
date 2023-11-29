@@ -3,7 +3,7 @@ import useWindowWidth from "../../customHooks/useWindowWidth";
 import { Link } from "gatsby";
 const HeroComponent = ({ imageUrl, gImage, heroText, heroText2, button }) => {
   const windowWidth = useWindowWidth();
-  let image = gImage.images.fallback.srcSet.split(",");
+  let image = gImage?.images?.fallback?.srcSet.split(",");
   const imageSrc = [];
 
   image.forEach((element) => {
