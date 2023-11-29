@@ -1,49 +1,47 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby Minimal Starter
-</h1>
+# Punta Cana Tour Company Website
 
-## 🚀 Quick start
+Welcome to the Punta Cana Tour Company website built with GatsbyJS! This website showcases various excursions offered by the tour company in Punta Cana, allowing users to explore tours, make bookings, and proceed with payments via PayPal.
 
-1.  **Create a Gatsby site.**
+## Features
 
-    Use the Gatsby CLI to create a new site, specifying the minimal starter.
+- **Homepage**: The homepage provides an overview of the company, a hero section, tour information, and a carousel showcasing the highlights of the tours.
+- **Tours Page**: View all available tours with detailed information about each excursion. Users can navigate to individual tour pages for more details.
+- **Individual Tour Pages**: Each tour has its own dedicated page with in-depth information, images, and booking options.
+- **Cart & Payment**: Utilizes React's useContext hook and local storage to store selected tours in the cart. PayPal integration allows users to make payments securely.
+- **Data Storage**: Completed purchases are stored in a Firebase database for easy access and management.
+- **Email Notifications**: Upon successful payment, clients receive automated emails confirming their purchase and providing tour details.
 
-    ```shell
-    # create a new Gatsby site using the minimal starter
-    npm init gatsby
-    ```
+## Technologies Used
 
-2.  **Start developing.**
+- GatsbyJS
+- React
+- Firebase (Realtime Database)
+- PayPal Integration
+- React Context API
 
-    Navigate into your new site’s directory and start it up.
+## Installation
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+1. Clone this repository.
+2. Install dependencies using `npm install`.
+3. Set up your Firebase configuration and PayPal API keys.
+4. Run `gatsby develop` to start the development server.
 
-3.  **Open the code and start customizing!**
+## Usage
 
-    Your site is now running at http://localhost:8000!
+- Access the website via the development server (`localhost:8000`) after running `gatsby develop`.
+- Explore tours, add them to the cart, and proceed with a mock payment using PayPal Sandbox for testing purposes.
+- Monitor the Firebase database for stored purchase information.
+- Customize the website content and styles according to business requirements.
 
-    Edit `src/pages/index.js` to see your site update in real-time!
+## Contributing
 
-4.  **Learn more**
+Contributions are welcome! Feel free to submit issues or pull requests for enhancements, bug fixes, or new features.
 
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Tutorials](https://www.gatsbyjs.com/docs/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Guides](https://www.gatsbyjs.com/docs/how-to/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+## License
 
-## 🚀 Quick start (Netlify)
+This project is licensed under the [MIT License](LICENSE).
 
-Deploy this starter with one click on [Netlify](https://app.netlify.com/signup):
+## Acknowledgements
 
-[<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-minimal)
+- Thanks to [GatsbyJS](https://www.gatsbyjs.com/) for the wonderful framework.
+- PayPal API and Firebase for providing secure payment and data storage solutions.
