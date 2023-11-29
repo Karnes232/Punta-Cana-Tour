@@ -23,7 +23,6 @@ const Index = ({ data }) => {
   ];
 
   const setFilter = (e) => {
-    console.log(e);
     setSelectedCategory(e.target.dataset.category);
     const filteredTourList = backendTourList.filter((tour) => {
       if (e.target.innerText === "All Tours") {

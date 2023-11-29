@@ -62,6 +62,7 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         // This time the entire product is passed down as context
         tour: node,
+        tourList: queryResults.data.allContentfulTour.nodes,
         logo: queryResults.data.allContentfulLayout.edges[0].node.logo
           .gatsbyImage,
         footerBackground:
