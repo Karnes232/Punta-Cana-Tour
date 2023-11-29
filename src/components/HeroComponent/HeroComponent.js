@@ -6,7 +6,7 @@ const HeroComponent = ({ imageUrl, gImage, heroText, heroText2, button }) => {
   let image = gImage?.images?.fallback?.srcSet.split(",");
   const imageSrc = [];
 
-  image.forEach((element) => {
+  image?.forEach((element) => {
     const image = element.split(" ");
     const imageObject = { imageSrc: image[0], imageWidth: image[1] };
     imageSrc.push(imageObject);
