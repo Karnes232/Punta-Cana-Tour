@@ -2,21 +2,20 @@ import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-fade";
-import { Autoplay, EffectFade } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import MaybeLikeTourCard from "../TourCardComponent/MaybeLikeTourCard";
-import useWindowWidth from "../../customHooks/useWindowWidth";
 
 const YouMayLikeSwiper = ({ tourList }) => {
-  const windowSize = useWindowWidth();
+
   const [windowWidth, setWindowWidth] = useState(0);
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
   };
   useEffect(() => {
-    setWindowWidth(windowSize);
+    setWindowWidth(window.innerWidth);
     window.addEventListener("resize", handleResize, false);
   }, []);
-
+  console.log(windowWidth)
   let slidesPerView = 1;
   if (windowWidth < 680) {
     slidesPerView = 1;
