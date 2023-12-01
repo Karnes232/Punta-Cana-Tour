@@ -10,7 +10,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 const SwiperCarousel = ({ className, photoList }) => {
   let photoListEdited = [];
 
-  photoList.forEach((e) => {
+  photoList?.forEach((e) => {
     let image = {
       title: e.title,
       image: getImage(e.gatsbyImage),
