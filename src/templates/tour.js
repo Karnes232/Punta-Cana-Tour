@@ -11,7 +11,8 @@ import Seo from "../components/seo";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import YouMayLikeSwiper from "../components/YouMayLikeSwiper/YouMayLikeSwiper";
-const tour = ({ pageContext }) => {
+import PhotoGrid from "../components/TourPageComponents/PhotoGrid";
+const Tour = ({ pageContext }) => {
   const {
     tour,
     tourList,
@@ -63,6 +64,7 @@ const tour = ({ pageContext }) => {
       }
     });
   });
+
   return (
     <>
       <Layout
@@ -75,13 +77,18 @@ const tour = ({ pageContext }) => {
         color="black"
       >
         <ToastContainer />
-        <HeroComponent
-          imageUrl={tour.mainImage?.url}
-          gImage={tour.mainImage?.gatsbyImage}
-          heroText=""
-          heroText2=""
-          button={false}
-        />
+        <div className="lg:hidden">
+          <HeroComponent
+            imageUrl={tour.mainImage?.url}
+            gImage={tour.mainImage?.gatsbyImage}
+            heroText=""
+            heroText2=""
+            button={false}
+          />
+        </div>
+        <div className="hidden lg:flex max-w-6xl mx-auto">
+          <PhotoGrid tourPhotos={tour.images} />
+        </div>
         <div className="max-w-6xl my-5 mx-5 md:mx-10 xl:mx-auto">
           <TourInfo name={tour.name} category={tour.category} />
           <Button
@@ -114,7 +121,7 @@ const tour = ({ pageContext }) => {
   );
 };
 
-export default tour;
+export default Tour;
 
 export const Head = ({ pageContext }) => {
   return (

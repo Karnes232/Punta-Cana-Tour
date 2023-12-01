@@ -42,6 +42,7 @@
     "react-cookie-consent": "^9.0.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
+    "react-photo-album": "^2.3.0",
     "react-pro-sidebar": "^1.1.0-alpha.1",
     "react-select": "^5.7.5",
     "react-tailwindcss-datepicker": "^1.6.0",
