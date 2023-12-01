@@ -41,6 +41,7 @@ const CartPayPal = ({ formData, allTours }) => {
   const deposit = totalCost * 0.3;
   const balance = totalCost * 0.7;
   let disabled = useFormValidationReservations(formData);
+
   return (
     <div className="flex justify-center md:w-80 xl:w-96">
       <PayPalScriptProvider

@@ -13,7 +13,6 @@ const PickUpTimeLocation = ({
       [e.target.name]: e.target.value,
     });
   };
-  console.log(formData);
   return (
     <div className="flex justify-around my-2">
       <div className="relative z-10 w-2/5 group">

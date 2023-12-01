@@ -32,8 +32,12 @@ const CartPayPalWrapper = ({
   let redirectHref = `${host}/payment/thankyou/?name=${clientName}&totalPrice=${totalCost}`;
 
   function getFormData(object) {
-    const formData = new FormData();
-    Object.keys(object).forEach((key) => formData.append(key, object[key]));
+    const newFormData = new FormData();
+    newFormData.set("Pick Up Time1", formData.PickUp1);
+    newFormData.set("Pick Up Time2", formData.PickUp2);
+    newFormData.set("Pick Up Time3", formData.PickUp3);
+    newFormData.set("Pick Up Time4", formData.PickUp4);
+    Object.keys(object).forEach((key) => newFormData.append(key, object[key]));
     return formData;
   }
   return (
@@ -70,14 +74,11 @@ const CartPayPalWrapper = ({
             const depositString = `&deposit=${deposit}`;
 
             const dataFromForm = getFormData(formData);
-            dataFromForm.set("Date1", formData.Date1);
-            dataFromForm.set("Date2", formData.Date2);
-            dataFromForm.set("Date3", formData.Date3);
-            dataFromForm.set("Date4", formData.Date4);
-            dataFromForm.set("Pick Up Time1", formData.PickUp1)
-            dataFromForm.set("Pick Up Time2", formData.PickUp2)
-            dataFromForm.set("Pick Up Time3", formData.PickUp3)
-            dataFromForm.set("Pick Up Time4", formData.PickUp4)
+            // dataFromForm.set("Date1", formData.Date1);
+            // dataFromForm.set("Date2", formData.Date2);
+            // dataFromForm.set("Date3", formData.Date3);
+            // dataFromForm.set("Date4", formData.Date4);
+
             fetch("/", {
               method: "POST",
               headers: { "Content-Type": "application/x-www-form-urlencoded" },
