@@ -7,7 +7,7 @@ const List = ({ list, title }) => {
         {title}
       </h4>
       <ul className="ml-5 mt-2 space-y-1">
-        {list.map((object, index) => (
+        {list?.map((object, index) => (
           <li className="capitalize text-sm lg:text-lg list-disc" key={index}>
             {object}
           </li>
