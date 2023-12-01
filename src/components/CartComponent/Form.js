@@ -7,7 +7,7 @@ import CartComponent from "./CartComponent";
 import { CartContext } from "../../context/cart";
 import collectUserData from "../../customHooks/collectUserData";
 import CartPayPal from "../PayPalButtonWrapper/CartPayPal";
-const Form = ({ allTours }) => {
+const Form = ({ allTours, hotels }) => {
   const [name, setName] = useState("");
   const { clearCart, cartItems } = useContext(CartContext);
   const [formData, setFormData] = useState({
@@ -15,7 +15,7 @@ const Form = ({ allTours }) => {
     name: "",
     email: "",
     phone: "",
-    location: "",
+    hotelSelect: "",
     additional: "",
     Date: "",
     Tour1: "",
@@ -88,7 +88,11 @@ const Form = ({ allTours }) => {
             formData={formData}
             setFormData={setFormData}
           />
-          <MoreInfo formData={formData} setFormData={setFormData} />
+          <MoreInfo
+            formData={formData}
+            setFormData={setFormData}
+            hotels={hotels}
+          />
         </div>
       </div>
       <HiddenInputs formData={formData} setFormData={setFormData} />

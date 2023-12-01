@@ -21,7 +21,10 @@ const Cart = ({ data }) => {
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
     >
-      <Form allTours={data.allContentfulTour} />
+      <Form
+        allTours={data.allContentfulTour}
+        hotels={data.allContentfulHotelList.edges}
+      />
     </CartLayout>
   );
 };
@@ -45,7 +48,14 @@ export const query = graphql`
         }
       }
     }
-
+    allContentfulHotelList {
+      edges {
+        node {
+          zone
+          hotelName
+        }
+      }
+    }
     allContentfulSeo(filter: { page: { eq: "Cart" } }) {
       nodes {
         title
