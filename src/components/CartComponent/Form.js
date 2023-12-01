@@ -17,13 +17,20 @@ const Form = ({ allTours, hotels }) => {
     phone: "",
     hotelSelect: "",
     additional: "",
-    Date: "",
+    Date1: "",
+    PickUp1: "",
     Tour1: "",
     Pax1: "",
+    Date2: "",
+    PickUp2: "",
     Tour2: "",
     Pax2: "",
+    Date3: "",
+    PickUp3: "",
     Tour3: "",
     Pax3: "",
+    Date4: "",
+    PickUp4: "",
     Tour4: "",
     Pax4: "",
   });
@@ -65,6 +72,14 @@ const Form = ({ allTours, hotels }) => {
     //   })
     //   .catch((error) => alert(error));
   };
+  let pickupTimes = [];
+  allTours.nodes.forEach((tour) => {
+    let pickupObject = {
+      name: tour.name,
+      pickupTimes: tour.pickupTime?.internal?.content,
+    };
+    pickupTimes.push(pickupObject);
+  });
 
   return (
     <form
@@ -80,7 +95,12 @@ const Form = ({ allTours, hotels }) => {
       <input type="hidden" name="form-name" value="cart" />
 
       <div className="flex flex-col xl:flex-row-reverse xl:mt-10 xl:gap-12">
-        <CartComponent />
+        <CartComponent
+          selectedHotel={formData.hotelSelect}
+          pickupTimes={pickupTimes}
+          formData={formData}
+          setFormData={setFormData}
+        />
         <div className="xl:w-[25rem] flex flex-col justify-center">
           <ContactInfo
             name={name}

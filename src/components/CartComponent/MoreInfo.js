@@ -17,9 +17,9 @@ const MoreInfo = ({ formData, setFormData, hotels }) => {
         setFormData={setFormData}
         hotels={hotels}
       />
-      <div className="relative z-10 mb-6 w-full group">
+      {/* <div className="relative z-10 mb-6 w-full group">
         <DatePickerComponent formData={formData} setFormData={setFormData} />
-      </div>
+      </div> */}
       <div className="relative z-0 mb-6 w-full group">
         <label
           htmlFor="additional"

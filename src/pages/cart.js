@@ -75,6 +75,11 @@ export const query = graphql`
             url
           }
         }
+        pickupTime {
+          internal {
+            content
+          }
+        }
       }
     }
   }
