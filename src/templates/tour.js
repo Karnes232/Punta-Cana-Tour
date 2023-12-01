@@ -10,9 +10,9 @@ import ListGroup from "../components/TourPageComponents/ListGroup";
 import Seo from "../components/seo";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import PhotoAlbum from "react-photo-album";
 import YouMayLikeSwiper from "../components/YouMayLikeSwiper/YouMayLikeSwiper";
-const tour = ({ pageContext }) => {
+import PhotoGrid from "../components/TourPageComponents/PhotoGrid";
+const Tour = ({ pageContext }) => {
   const {
     tour,
     tourList,
@@ -65,33 +65,6 @@ const tour = ({ pageContext }) => {
     });
   });
 
-  let photoList = [];
-
-  tour.images.forEach((image, key) => {
-    const srcSet = image.gatsbyImage.images.fallback.srcSet.split(",");
-    const photoObject = {
-      src: image.url,
-      width: image.gatsbyImage.width,
-      height: image.gatsbyImage.height,
-      // srcSet: [
-      //   {
-      //     src: srcSet[2],
-      //     width: 1920,
-      //   },
-      //   {
-      //     src: srcSet[1],
-      //     width: 640,
-      //   },
-      //   {
-      //     src: srcSet[0],
-      //     width: 480,
-      //   },
-      // ],
-    };
-    photoList.push(photoObject);
-  });
-  photoList = photoList.sort(() => Math.random() - 0.5);
-
   return (
     <>
       <Layout
@@ -114,13 +87,7 @@ const tour = ({ pageContext }) => {
           />
         </div>
         <div className="hidden lg:flex max-w-6xl mx-auto">
-          <PhotoAlbum
-            layout="columns"
-            photos={photoList.slice(0, 6)}
-            defaultContainerWidth={1920}
-            padding={0}
-            spacing={0}
-          />
+          <PhotoGrid tourPhotos={tour.images} />
         </div>
         <div className="max-w-6xl my-5 mx-5 md:mx-10 xl:mx-auto">
           <TourInfo name={tour.name} category={tour.category} />
@@ -154,7 +121,7 @@ const tour = ({ pageContext }) => {
   );
 };
 
-export default tour;
+export default Tour;
 
 export const Head = ({ pageContext }) => {
   return (
