@@ -2,7 +2,7 @@ import React from "react";
 import Select from "react-select";
 const HotelSelect = ({ formData, setFormData, hotels }) => {
   let options = [];
-  hotels.map((zone) => {
+  hotels?.map((zone) => {
     return zone.node.hotelName.map((hotel) => {
       let option = {
         value: zone.node.zone + " - " + hotel,
