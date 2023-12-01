@@ -70,7 +70,14 @@ const CartPayPalWrapper = ({
             const depositString = `&deposit=${deposit}`;
 
             const dataFromForm = getFormData(formData);
-            dataFromForm.set("Date", formData.date);
+            dataFromForm.set("Date1", formData.Date1);
+            dataFromForm.set("Date2", formData.Date2);
+            dataFromForm.set("Date3", formData.Date3);
+            dataFromForm.set("Date4", formData.Date4);
+            dataFromForm.set("PickUp1", formData.PickUp1)
+            dataFromForm.set("PickUp2", formData.PickUp2)
+            dataFromForm.set("PickUp3", formData.PickUp3)
+            dataFromForm.set("PickUp4", formData.PickUp4)
             fetch("/", {
               method: "POST",
               headers: { "Content-Type": "application/x-www-form-urlencoded" },
