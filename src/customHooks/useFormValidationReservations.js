@@ -1,5 +1,4 @@
 const useFormValidationReservations = (formData) => {
-  console.log(formData);
   if (
     formData.name !== "" &&
     formData.email !== "" &&
