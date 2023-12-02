@@ -86,7 +86,7 @@ const CartPayPalWrapper = ({
             })
               .then(() => {
                 console.log("Form successfully submitted");
-                console.log(dataFromForm)
+                console.log(dataFromForm.toString())
                 // axios.post("/api/tour", {
                 //   clientName: clientName,
                 //   clientEmail: clientEmail,

@@ -94,7 +94,7 @@ const Form = ({ allTours, hotels }) => {
     >
       <input type="hidden" name="form-name" value="cart" />
 
-      <div className="flex flex-col xl:flex-row-reverse xl:mt-10 xl:gap-12">
+      <div className="flex flex-col-reverse xl:flex-row-reverse xl:mt-10 xl:gap-12">
         <CartComponent
           selectedHotel={formData.hotelSelect}
           pickupTimes={pickupTimes}
