@@ -38,7 +38,7 @@ const CartPayPalWrapper = ({
     newFormData.set("Pick Up Time3", formData.PickUp3);
     newFormData.set("Pick Up Time4", formData.PickUp4);
     Object.keys(object).forEach((key) => newFormData.append(key, object[key]));
-    return formData;
+    return newFormData;
   }
   return (
     <>
