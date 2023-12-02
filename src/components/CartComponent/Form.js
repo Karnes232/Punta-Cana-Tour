@@ -101,7 +101,7 @@ const Form = ({ allTours, hotels }) => {
           formData={formData}
           setFormData={setFormData}
         />
-        <div className="xl:w-[25rem] flex flex-col justify-center">
+        <div className="xl:w-[25rem] flex flex-col mt-5 xl:mt-24">
           <ContactInfo
             name={name}
             setName={setName}

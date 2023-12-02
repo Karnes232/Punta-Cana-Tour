@@ -74,10 +74,6 @@ const CartPayPalWrapper = ({
             const depositString = `&deposit=${deposit}`;
 
             const dataFromForm = getFormData(formData);
-            // dataFromForm.set("Date1", formData.Date1);
-            // dataFromForm.set("Date2", formData.Date2);
-            // dataFromForm.set("Date3", formData.Date3);
-            // dataFromForm.set("Date4", formData.Date4);
 
             fetch("/", {
               method: "POST",
@@ -86,22 +82,22 @@ const CartPayPalWrapper = ({
             })
               .then(() => {
                 console.log("Form successfully submitted");
-                console.log(new URLSearchParams(dataFromForm).toString())
-                // axios.post("/api/tour", {
-                //   clientName: clientName,
-                //   clientEmail: clientEmail,
-                //   deposit: deposit,
-                //   totalPrice: totalCost,
-                //   tourList: tourList,
-                // });
-                // collectUserDataPayPal(
-                //   details,
-                //   redirectHref,
-                //   depositString,
-                //   totalCost,
-                //   formData,
-                //   clearCart,
-                // );
+                console.log(new URLSearchParams(dataFromForm).toString());
+                axios.post("/api/tour", {
+                  clientName: clientName,
+                  clientEmail: clientEmail,
+                  deposit: deposit,
+                  totalPrice: totalCost,
+                  tourList: tourList,
+                });
+                collectUserDataPayPal(
+                  details,
+                  redirectHref,
+                  depositString,
+                  totalCost,
+                  formData,
+                  clearCart,
+                );
               })
               .catch((error) => alert(error));
 
