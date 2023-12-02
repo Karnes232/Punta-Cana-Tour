@@ -6,7 +6,6 @@ import { Autoplay } from "swiper/modules";
 import MaybeLikeTourCard from "../TourCardComponent/MaybeLikeTourCard";
 
 const YouMayLikeSwiper = ({ tourList }) => {
-
   const [windowWidth, setWindowWidth] = useState(0);
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
@@ -15,7 +14,6 @@ const YouMayLikeSwiper = ({ tourList }) => {
     setWindowWidth(window.innerWidth);
     window.addEventListener("resize", handleResize, false);
   }, []);
-  console.log(windowWidth)
   let slidesPerView = 1;
   if (windowWidth < 680) {
     slidesPerView = 1;
