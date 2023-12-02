@@ -33,10 +33,10 @@ const CartPayPalWrapper = ({
 
   function getFormData(object) {
     const newFormData = new FormData();
-    newFormData.set("Pick Up Time1", formData.PickUp1);
-    newFormData.set("Pick Up Time2", formData.PickUp2);
-    newFormData.set("Pick Up Time3", formData.PickUp3);
-    newFormData.set("Pick Up Time4", formData.PickUp4);
+    newFormData.append("Pick Up Time1", formData.PickUp1);
+    newFormData.append("Pick Up Time2", formData.PickUp2);
+    newFormData.append("Pick Up Time3", formData.PickUp3);
+    newFormData.append("Pick Up Time4", formData.PickUp4);
     Object.keys(object).forEach((key) => newFormData.append(key, object[key]));
     return newFormData;
   }
@@ -86,7 +86,7 @@ const CartPayPalWrapper = ({
             })
               .then(() => {
                 console.log("Form successfully submitted");
-                console.log(dataFromForm.toString())
+                console.log(new URLSearchParams(dataFromForm).toString())
                 // axios.post("/api/tour", {
                 //   clientName: clientName,
                 //   clientEmail: clientEmail,
