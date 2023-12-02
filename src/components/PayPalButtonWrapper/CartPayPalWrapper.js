@@ -86,21 +86,22 @@ const CartPayPalWrapper = ({
             })
               .then(() => {
                 console.log("Form successfully submitted");
-                axios.post("/api/tour", {
-                  clientName: clientName,
-                  clientEmail: clientEmail,
-                  deposit: deposit,
-                  totalPrice: totalCost,
-                  tourList: tourList,
-                });
-                collectUserDataPayPal(
-                  details,
-                  redirectHref,
-                  depositString,
-                  totalCost,
-                  formData,
-                  clearCart,
-                );
+                console.log('dataFromForm')
+                // axios.post("/api/tour", {
+                //   clientName: clientName,
+                //   clientEmail: clientEmail,
+                //   deposit: deposit,
+                //   totalPrice: totalCost,
+                //   tourList: tourList,
+                // });
+                // collectUserDataPayPal(
+                //   details,
+                //   redirectHref,
+                //   depositString,
+                //   totalCost,
+                //   formData,
+                //   clearCart,
+                // );
               })
               .catch((error) => alert(error));
 

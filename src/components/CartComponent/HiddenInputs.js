@@ -4,6 +4,7 @@ import { CartContext } from "../../context/cart";
 const HiddenInputs = ({ formData, setFormData }) => {
   const { cartItems } = useContext(CartContext);
   const handleChange = ({ target }) => {
+    console.log(formData)
     setFormData({
       ...formData,
       [target.name]: target.value,
