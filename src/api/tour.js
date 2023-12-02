@@ -38,6 +38,7 @@ export default function handler(req, res) {
 
   let mailDetails = {
     from: `${process.env.EMAIL_USER_NEW}`,
+    replyTo: `info@puntacanatourstore.com`,
     to: clientEmail,
     subject: "Punta Cana Tour Store",
     text: `${clientName} have a deposit of ${deposit}`,
