@@ -54,6 +54,14 @@ export const query = graphql`
         }
       }
     }
+    allContentfulHotelList {
+      edges {
+        node {
+          zone
+          hotelName
+        }
+      }
+    }
 
     allContentfulSeo(filter: { page: { eq: "Cart" } }) {
       nodes {

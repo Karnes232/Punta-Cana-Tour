@@ -11,7 +11,9 @@ const HotelSelect = ({ formData, setFormData, hotels, pickupTimes }) => {
   let tour4PickupTimes = {};
   pickupTimes?.forEach((tourPickupTime) => {
     if (tourPickupTime.name === tour1) {
-      tour1PickupTimes = JSON.parse(tourPickupTime?.pickupTimes);
+      if (typeof tourPickupTime?.pickupTimes !== "undefined") {
+        tour1PickupTimes = JSON.parse(tourPickupTime?.pickupTimes);
+      }
     }
     if (tourPickupTime.name === tour2) {
       if (typeof tourPickupTime?.pickupTimes !== "undefined") {
