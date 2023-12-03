@@ -48,16 +48,16 @@ const HotelSelect = ({ formData, setFormData, hotels, pickupTimes }) => {
     let tour2PickUp = "";
     let tour3PickUp = "";
     let tour4PickUp = "";
-    if (Object.keys(tour1PickupTimes).length !== 0) {
-      tour1PickUp = tour1PickupTimes[e.label][0];
+    if (Object.keys(tour1PickupTimes).length !== 0 && typeof tour1PickupTimes[e.label] !== "undefined") {
+        tour1PickUp = tour1PickupTimes[e.label][0];
     }
-    if (Object.keys(tour2PickupTimes).length !== 0) {
+    if (Object.keys(tour2PickupTimes).length !== 0 && typeof tour2PickupTimes[e.label] !== "undefined") {
       tour2PickUp = tour2PickupTimes[e.label][0];
     }
-    if (Object.keys(tour3PickupTimes).length !== 0) {
+    if (Object.keys(tour3PickupTimes).length !== 0 && typeof tour3PickupTimes[e.label] !== "undefined") {
       tour3PickUp = tour3PickupTimes[e.label][0];
     }
-    if (Object.keys(tour4PickupTimes).length !== 0) {
+    if (Object.keys(tour4PickupTimes).length !== 0 && typeof tour4PickupTimes[e.label] !== "undefined") {
       tour4PickUp = tour4PickupTimes[e.label][0];
     }
     setFormData({
