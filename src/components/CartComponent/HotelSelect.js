@@ -1,15 +1,15 @@
 import React from "react";
 import Select from "react-select";
 const HotelSelect = ({ formData, setFormData, hotels, pickupTimes }) => {
-  let tour1 = formData.Tour1.split("- ")[1];
-  let tour2 = formData.Tour2.split("- ")[1];
-  let tour3 = formData.Tour3.split("- ")[1];
-  let tour4 = formData.Tour4.split("- ")[1];
+  let tour1 = formData?.Tour1.split("- ")[1];
+  let tour2 = formData?.Tour2.split("- ")[1];
+  let tour3 = formData?.Tour3.split("- ")[1];
+  let tour4 = formData?.Tour4.split("- ")[1];
   let tour1PickupTimes = {};
   let tour2PickupTimes = {};
   let tour3PickupTimes = {};
   let tour4PickupTimes = {};
-  pickupTimes.forEach((tourPickupTime) => {
+  pickupTimes?.forEach((tourPickupTime) => {
     if (tourPickupTime.name === tour1) {
       tour1PickupTimes = JSON.parse(tourPickupTime?.pickupTimes);
     }
