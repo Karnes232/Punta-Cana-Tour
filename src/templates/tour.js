@@ -124,12 +124,20 @@ const Tour = ({ pageContext }) => {
 export default Tour;
 
 export const Head = ({ pageContext }) => {
+  console.log(pageContext.tour.description1.description1)
   return (
     <>
       <Seo
         title={pageContext.tour.name}
         description={pageContext.tour.description1.description1}
         keywords={pageContext.tour.keywords?.join(", ")}
+        schemaMarkup={{
+          "@context": "https://schema.org/",
+          "@type": "Product",
+          name: pageContext.tour.name,
+          image: `https://www.puntacanatourstore.com${pageContext.tour.mainImage.gatsbyImage.images.fallback.src}`,
+          description: pageContext.tour.description1.description1,
+        }}
       />
       <link
         rel="canonical"
