@@ -35,8 +35,12 @@ const PickUpTimeLocation = ({
           className="contactFormInput peer"
           onChange={handleChange}
         >
-          {pickupTimeList?.map((time) => {
-            return <option value={time}>{time}</option>;
+          {pickupTimeList?.map((time, index) => {
+            return (
+              <option key={index} value={time}>
+                {time}
+              </option>
+            );
           })}
         </select>
       </div>

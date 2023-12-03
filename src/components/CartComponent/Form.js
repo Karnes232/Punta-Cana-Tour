@@ -112,6 +112,7 @@ const Form = ({ allTours, hotels }) => {
             formData={formData}
             setFormData={setFormData}
             hotels={hotels}
+            pickupTimes={pickupTimes}
           />
         </div>
       </div>

@@ -1,8 +1,8 @@
 import React from "react";
 import DatePickerComponent from "./DatePickerComponent";
-import HotelSelect from "../TransferComponents/HotelSelect";
+import HotelSelect from "./HotelSelect";
 
-const MoreInfo = ({ formData, setFormData, hotels }) => {
+const MoreInfo = ({ formData, setFormData, hotels, pickupTimes }) => {
   const handleChange = ({ target }) => {
     setFormData({
       ...formData,
@@ -16,6 +16,7 @@ const MoreInfo = ({ formData, setFormData, hotels }) => {
         formData={formData}
         setFormData={setFormData}
         hotels={hotels}
+        pickupTimes={pickupTimes}
       />
       {/* <div className="relative z-10 mb-6 w-full group">
         <DatePickerComponent formData={formData} setFormData={setFormData} />
