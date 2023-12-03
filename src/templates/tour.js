@@ -124,7 +124,6 @@ const Tour = ({ pageContext }) => {
 export default Tour;
 
 export const Head = ({ pageContext }) => {
-  console.log(pageContext.tour.description1.description1);
   return (
     <>
       <Seo
