@@ -82,13 +82,13 @@ const CartPayPalWrapper = ({
             })
               .then(() => {
                 console.log("Form successfully submitted");
-                console.log(new URLSearchParams(dataFromForm).toString());
                 axios.post("/api/tour", {
                   clientName: clientName,
                   clientEmail: clientEmail,
                   deposit: deposit,
                   totalPrice: totalCost,
                   tourList: tourList,
+                  formData: formData,
                 });
                 collectUserDataPayPal(
                   details,

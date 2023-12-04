@@ -22,6 +22,15 @@ export default function handler(req, res) {
   const clientEmail = req.body.clientEmail;
   const deposit = req.body.deposit;
   const tourList = req.body.tourList;
+  const formData = req.body.formData;
+  const PickUp1 = formData.PickUp1;
+  const PickUp2 = formData.PickUp2;
+  const PickUp3 = formData.PickUp3;
+  const PickUp4 = formData.PickUp4;
+  const Date1 = formData.Date1;
+  const Date2 = formData.Date2;
+  const Date3 = formData.Date3;
+  const Date4 = formData.Date4;
   let totalCost = 0;
   tourList.map((tour) => {
     let tourCost = parseInt(tour.guestCount) * parseInt(tour.tour.price);
@@ -29,16 +38,16 @@ export default function handler(req, res) {
   });
 
   const htmlString = `${Head}${Css}${HtmlHeader}${Body(clientName)}${
-    tourList[0] ? Tour(tourList[0]) : ""
-  }${tourList[1] ? Tour(tourList[1]) : ""}${
-    tourList[2] ? Tour(tourList[2]) : ""
-  }${tourList[3] ? Tour(tourList[3]) : ""}${TotalPrice(
+    tourList[0] ? Tour(tourList[0], PickUp1, Date1) : ""
+  }${tourList[1] ? Tour(tourList[1], PickUp2, Date2) : ""}${
+    tourList[2] ? Tour(tourList[2], PickUp3, Date3) : ""
+  }${tourList[3] ? Tour(tourList[3], PickUp4, Date4) : ""}${TotalPrice(
     totalCost,
   )}${Contact}${SocailMedia}${HtmlFooter}`;
 
   let mailDetails = {
     from: `${process.env.EMAIL_USER_NEW}`,
-    replyTo: `info@puntacanatourstore.com`,
+    replyTo: `reservations@puntacanatourstore.com`,
     to: clientEmail,
     subject: "Punta Cana Tour Store",
     text: `${clientName} have a deposit of ${deposit}`,

@@ -68,6 +68,7 @@ export const query = graphql`
     allContentfulTour {
       nodes {
         name
+        providerEmail
         price
         mainImage {
           gatsbyImage(width: 400, formats: WEBP)
