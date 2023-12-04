@@ -15,6 +15,7 @@ const Form = ({ allTours, hotels }) => {
     name: "",
     email: "",
     phone: "",
+    roomNumber: "",
     hotelSelect: "",
     additional: "",
     Date1: "",
@@ -80,7 +81,7 @@ const Form = ({ allTours, hotels }) => {
     };
     pickupTimes.push(pickupObject);
   });
-
+  
   return (
     <form
       name="cart"
