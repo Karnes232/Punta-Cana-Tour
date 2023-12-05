@@ -32,9 +32,13 @@ const CartPayPalWrapper = ({
   let redirectHref = `${host}/payment/thankyou/?name=${clientName}&totalPrice=${totalCost}`;
 
   function getFormData(object) {
-    const formData = new FormData();
-    Object.keys(object).forEach((key) => formData.append(key, object[key]));
-    return formData;
+    const newFormData = new FormData();
+    newFormData.append("PickUpTime1", formData.PickUp1);
+    newFormData.append("PickUpTime2", formData.PickUp2);
+    newFormData.append("PickUpTime3", formData.PickUp3);
+    newFormData.append("PickUpTime4", formData.PickUp4);
+    Object.keys(object).forEach((key) => newFormData.append(key, object[key]));
+    return newFormData;
   }
   return (
     <>
@@ -70,7 +74,7 @@ const CartPayPalWrapper = ({
             const depositString = `&deposit=${deposit}`;
 
             const dataFromForm = getFormData(formData);
-            dataFromForm.set("Date", formData.date);
+
             fetch("/", {
               method: "POST",
               headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -84,6 +88,7 @@ const CartPayPalWrapper = ({
                   deposit: deposit,
                   totalPrice: totalCost,
                   tourList: tourList,
+                  formData: formData,
                 });
                 collectUserDataPayPal(
                   details,

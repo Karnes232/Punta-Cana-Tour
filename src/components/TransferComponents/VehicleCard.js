@@ -18,6 +18,9 @@ const VehicleCard = ({ vehicle, formData }) => {
   if (formData.zone === "4") {
     price = vehicle.zone4Price;
   }
+  if (formData.zone === "5") {
+    price = vehicle.zone5Price;
+  }
 
   if (formData.transferType === "Round") {
     price = price * 2;

@@ -12,5 +12,10 @@ export const schema = {
     contactType: "customer service",
     availableLanguage: ["en", "es"],
   },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Punta Cana",
+    addressCountry: "DO",
+  },
   sameAs: ["https://puntacanatourstore.com/"],
 };

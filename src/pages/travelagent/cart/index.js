@@ -30,7 +30,7 @@ const Cart = ({ data }) => {
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
     >
-      <Form />
+      <Form hotels={data.allContentfulHotelList.edges} />
     </Layout>
   );
 };
@@ -51,6 +51,14 @@ export const query = graphql`
           facebook
           instagram
           whatsApp
+        }
+      }
+    }
+    allContentfulHotelList {
+      edges {
+        node {
+          zone
+          hotelName
         }
       }
     }

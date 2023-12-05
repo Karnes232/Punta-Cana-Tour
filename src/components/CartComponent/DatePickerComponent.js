@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
 
-const DatePickerComponent = ({ formData, setFormData }) => {
+const DatePickerComponent = ({ formData, setFormData, index }) => {
   const [date, setDate] = useState(undefined);
   const [value, setValue] = useState({
     startDate: date,
     endDate: null,
   });
+  let dateName = `Date${index + 1}`;
   useEffect(() => {
     const futureDays = 0;
     const date = new Date();
@@ -17,16 +18,17 @@ const DatePickerComponent = ({ formData, setFormData }) => {
     setValue(newValue);
     setFormData({
       ...formData,
-      date: newValue.startDate,
+      [dateName]: newValue.startDate,
     });
   };
+
   return (
     <>
       <input type="hidden" name="Date" value={value.startDate} />
       <Datepicker
         asSingle={true}
         useRange={false}
-        placeholder={"Select Date"}
+        placeholder={"Date"}
         minDate={date}
         value={value}
         onChange={handleValueChange}

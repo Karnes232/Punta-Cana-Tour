@@ -203,8 +203,20 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
   width: 150px;
 }
 
+.tourDateDiv {
+  display: flex; 
+  flex: 1 1;
+  align-items: center; 
+  justify-content: space-evenly;
+  width: 100%;
+}
+
 .paddingLeft {
   padding:0px 0px 0px 10px;
+}
+
+.width {
+
 }
 
 </style>

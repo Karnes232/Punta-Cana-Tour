@@ -121,6 +121,7 @@ export const query = graphql`
           zone2Price
           zone3Price
           zone4Price
+          zone5Price
           vehiclePhoto {
             gatsbyImage(formats: WEBP, width: 400)
             file {

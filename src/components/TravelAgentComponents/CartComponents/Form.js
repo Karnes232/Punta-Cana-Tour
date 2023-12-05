@@ -8,8 +8,9 @@ import HiddenInputs from "./HiddenInputs";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../../../config/firebase";
 import { onAuthStateChanged } from "firebase/auth";
-const Form = () => {
+const Form = ({ hotels }) => {
   const [user, setUser] = useState({});
+
   const findUser = async (id) => {
     const docRef = doc(db, "users", id);
     const docSnap = await getDoc(docRef);
@@ -60,7 +61,7 @@ const Form = () => {
         <CartComponent />
         <div className="xl:w-[25rem]">
           <ContactInfo />
-          <MoreInfo />
+          <MoreInfo hotels={hotels} />
         </div>
       </div>
       <HiddenInputs />

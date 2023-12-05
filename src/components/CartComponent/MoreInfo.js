@@ -1,31 +1,26 @@
 import React from "react";
 import DatePickerComponent from "./DatePickerComponent";
+import HotelSelect from "./HotelSelect";
 
-const MoreInfo = ({ formData, setFormData }) => {
+const MoreInfo = ({ formData, setFormData, hotels, pickupTimes }) => {
   const handleChange = ({ target }) => {
     setFormData({
       ...formData,
       [target.name]: target.value,
     });
   };
+
   return (
     <>
-      <div className="relative z-0 mb-6 w-full group">
-        <input
-          type="location"
-          name="location"
-          id="location"
-          className="contactFormInput peer"
-          placeholder=" "
-          onChange={handleChange}
-        />
-        <label htmlFor="location" className="contactFormLabel">
-          Pick Up Location
-        </label>
-      </div>
-      <div className="relative z-10 mb-6 w-full group">
+      <HotelSelect
+        formData={formData}
+        setFormData={setFormData}
+        hotels={hotels}
+        pickupTimes={pickupTimes}
+      />
+      {/* <div className="relative z-10 mb-6 w-full group">
         <DatePickerComponent formData={formData} setFormData={setFormData} />
-      </div>
+      </div> */}
       <div className="relative z-0 mb-6 w-full group">
         <label
           htmlFor="additional"

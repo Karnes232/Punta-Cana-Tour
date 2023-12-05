@@ -7,7 +7,7 @@ import CartComponent from "./CartComponent";
 import { CartContext } from "../../context/cart";
 import collectUserData from "../../customHooks/collectUserData";
 import CartPayPal from "../PayPalButtonWrapper/CartPayPal";
-const Form = ({ allTours }) => {
+const Form = ({ allTours, hotels }) => {
   const [name, setName] = useState("");
   const { clearCart, cartItems } = useContext(CartContext);
   const [formData, setFormData] = useState({
@@ -15,15 +15,23 @@ const Form = ({ allTours }) => {
     name: "",
     email: "",
     phone: "",
-    location: "",
+    roomNumber: "",
+    hotelSelect: "",
     additional: "",
-    Date: "",
+    Date1: "",
+    PickUp1: "",
     Tour1: "",
     Pax1: "",
+    Date2: "",
+    PickUp2: "",
     Tour2: "",
     Pax2: "",
+    Date3: "",
+    PickUp3: "",
     Tour3: "",
     Pax3: "",
+    Date4: "",
+    PickUp4: "",
     Tour4: "",
     Pax4: "",
   });
@@ -65,6 +73,14 @@ const Form = ({ allTours }) => {
     //   })
     //   .catch((error) => alert(error));
   };
+  let pickupTimes = [];
+  allTours.nodes.forEach((tour) => {
+    let pickupObject = {
+      name: tour.name,
+      pickupTimes: tour.pickupTime?.internal?.content,
+    };
+    pickupTimes.push(pickupObject);
+  });
 
   return (
     <form
@@ -79,16 +95,26 @@ const Form = ({ allTours }) => {
     >
       <input type="hidden" name="form-name" value="cart" />
 
-      <div className="flex flex-col xl:flex-row-reverse xl:mt-10 xl:gap-12">
-        <CartComponent />
-        <div className="xl:w-[25rem] flex flex-col justify-center">
+      <div className="flex flex-col-reverse xl:flex-row-reverse xl:mt-10 xl:gap-12">
+        <CartComponent
+          selectedHotel={formData.hotelSelect}
+          pickupTimes={pickupTimes}
+          formData={formData}
+          setFormData={setFormData}
+        />
+        <div className="xl:w-[25rem] flex flex-col mt-5 xl:mt-24">
           <ContactInfo
             name={name}
             setName={setName}
             formData={formData}
             setFormData={setFormData}
           />
-          <MoreInfo formData={formData} setFormData={setFormData} />
+          <MoreInfo
+            formData={formData}
+            setFormData={setFormData}
+            hotels={hotels}
+            pickupTimes={pickupTimes}
+          />
         </div>
       </div>
       <HiddenInputs formData={formData} setFormData={setFormData} />
