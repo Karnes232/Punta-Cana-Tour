@@ -3,8 +3,7 @@ const useFormValidationReservations = (formData) => {
     formData.name !== "" &&
     formData.email !== "" &&
     formData.location !== "" &&
-    formData.phone !== "" &&
-    formData.roomNumber !== ""
+    formData.phone !== ""
   ) {
     if (
       formData.Tour1 !== "- undefined" &&
