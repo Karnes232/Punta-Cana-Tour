@@ -30,7 +30,7 @@ const Cart = ({ data }) => {
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
     >
-      <Form />
+      <Form hotels={data.allContentfulHotelList.edges} />
     </Layout>
   );
 };
