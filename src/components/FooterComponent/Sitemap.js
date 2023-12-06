@@ -5,7 +5,7 @@ import React from "react";
 const Sitemap = () => {
   return (
     <div className="border-b border-gray-500">
-      <div className="flex justify-between py-4 md:mx-auto md:max-w-2xl md:flex-row">
+      <div className="flex justify-between pt-4 md:mx-auto md:max-w-2xl md:flex-row">
         <Link to="/">
           <p className="footerSitemap">Home</p>
         </Link>
@@ -20,6 +20,17 @@ const Sitemap = () => {
         </Link>
         <Link to="/travelagent">
           <p className="footerSitemap">Travel Agents</p>
+        </Link>
+      </div>
+      <div className="flex justify-evenly pt-2 pb-4 mx-auto max-w-xs md:max-w-2xl md:flex-row">
+        <Link to="/information/cancellation">
+          <p className="footerSitemap text-center">Cancellation Policy</p>
+        </Link>
+        <Link to="/information/privacy">
+          <p className="footerSitemap text-center">Privacy</p>
+        </Link>
+        <Link to="/information/termsconditions">
+          <p className="footerSitemap text-center">Terms & Conditions</p>
         </Link>
       </div>
     </div>
