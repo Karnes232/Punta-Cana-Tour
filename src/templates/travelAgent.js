@@ -10,6 +10,7 @@ import Seo from "../components/seo";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import TourButton from "../components/TravelAgentComponents/TourButton";
+import PhotoGrid from "../components/TourPageComponents/PhotoGrid";
 const tour = ({ pageContext }) => {
   const { tour, logo, footerBackground, facebook, instagram, email, gImage } =
     pageContext;
@@ -54,13 +55,18 @@ const tour = ({ pageContext }) => {
       color="black"
     >
       <ToastContainer />
-      <HeroComponent
-        imageUrl={tour.mainImage?.url}
-        gImage={tour.mainImage?.gatsbyImage}
-        heroText=""
-        heroText2=""
-        button={false}
-      />
+      <div className="lg:hidden">
+        <HeroComponent
+          imageUrl={tour.mainImage?.url}
+          gImage={tour.mainImage?.gatsbyImage}
+          heroText=""
+          heroText2=""
+          button={false}
+        />
+      </div>
+      <div className="hidden lg:flex max-w-6xl mx-auto">
+        <PhotoGrid tourPhotos={tour.images} />
+      </div>
       <div className="max-w-6xl my-5 mx-5 md:mx-10 xl:mx-auto">
         <TourInfo name={tour.name} category={tour.category} />
         <TourButton
