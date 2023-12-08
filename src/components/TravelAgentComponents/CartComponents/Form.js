@@ -67,6 +67,8 @@ const Form = ({ hotels, allTours }) => {
     Object.keys(object).forEach((key) => newFormData.append(key, object[key]));
     return newFormData;
   }
+  const data = getFormData(formData);
+  console.log(new URLSearchParams(data).toString());
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -82,11 +84,12 @@ const Form = ({ hotels, allTours }) => {
       .then(() => {
         clearCart();
         if (typeof window !== "undefined") {
-          window.location.href = `travelagent/contact/thankyou/?name=${user.name}`;
+          window.location.href = `https://puntacanatourstore.com/travelagent/contact/thankyou/?name=${user.name}`;
         }
       })
       .catch((error) => alert(error));
   };
+  console.log(formData);
   return (
     <form
       name="travelAgentCart"
@@ -106,7 +109,7 @@ const Form = ({ hotels, allTours }) => {
           formData={formData}
           setFormData={setFormData}
         />
-        <div className="xl:w-[25rem]">
+        <div className="xl:w-[25rem] flex flex-col mt-5 xl:mt-24">
           <ContactInfo formData={formData} setFormData={setFormData} />
           <MoreInfo
             hotels={hotels}

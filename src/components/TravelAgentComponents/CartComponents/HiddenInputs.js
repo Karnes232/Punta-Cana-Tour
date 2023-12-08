@@ -32,13 +32,13 @@ const HiddenInputs = ({ formData, setFormData }) => {
     <div className="hidden">
       <input
         type="hidden"
-        name="Tour 1"
+        name="Tour1"
         value={`- ` + cartItems[0]?.name || "None"}
         onChange={handleChange}
       />
       <input
         type="hidden"
-        name="Pax 1"
+        name="Pax1"
         value={`- ` + cartItems[0]?.quantity || 0}
         onChange={handleChange}
       />
@@ -56,13 +56,13 @@ const HiddenInputs = ({ formData, setFormData }) => {
       />
       <input
         type="hidden"
-        name="Tour 2"
+        name="Tour2"
         value={`- ` + cartItems[1]?.name || "None"}
         onChange={handleChange}
       />
       <input
         type="hidden"
-        name="Pax 2"
+        name="Pax2"
         value={`- ` + cartItems[1]?.quantity || 0}
         onChange={handleChange}
       />
@@ -80,13 +80,13 @@ const HiddenInputs = ({ formData, setFormData }) => {
       />
       <input
         type="hidden"
-        name="Tour 3"
+        name="Tour3"
         value={`- ` + cartItems[2]?.name || "None"}
         onChange={handleChange}
       />
       <input
         type="hidden"
-        name="Pax 3"
+        name="Pax3"
         value={`- ` + cartItems[2]?.quantity || 0}
         onChange={handleChange}
       />
@@ -104,13 +104,13 @@ const HiddenInputs = ({ formData, setFormData }) => {
       />
       <input
         type="hidden"
-        name="Tour 4"
+        name="Tour4"
         value={`- ` + cartItems[3]?.name || "None"}
         onChange={handleChange}
       />
       <input
         type="hidden"
-        name="Pax 4"
+        name="Pax4"
         value={`- ` + cartItems[3]?.quantity || 0}
         onChange={handleChange}
       />
