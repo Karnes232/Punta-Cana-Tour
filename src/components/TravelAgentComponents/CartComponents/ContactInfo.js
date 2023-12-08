@@ -1,6 +1,12 @@
 import React from "react";
 
-const ContactInfo = () => {
+const ContactInfo = ({ formData, setFormData }) => {
+  const handleChange = ({ target }) => {
+    setFormData({
+      ...formData,
+      [target.name]: target.value,
+    });
+  };
   return (
     <>
       <div className="relative z-0 mb-6 w-full group">
@@ -11,6 +17,7 @@ const ContactInfo = () => {
           className="contactFormInput peer"
           placeholder=" "
           required
+          onChange={handleChange}
         />
         <label htmlFor="name" className="contactFormLabel">
           Client's Name
@@ -24,6 +31,7 @@ const ContactInfo = () => {
           className="contactFormInput peer"
           placeholder=" "
           required
+          onChange={handleChange}
         />
         <label htmlFor="email" className="contactFormLabel">
           Client's Email address
@@ -37,6 +45,7 @@ const ContactInfo = () => {
           className="contactFormInput peer"
           placeholder=" "
           required
+          onChange={handleChange}
         />
         <label htmlFor="phone" className="contactFormLabel">
           Client's Phone

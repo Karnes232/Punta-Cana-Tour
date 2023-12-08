@@ -23,7 +23,7 @@ const TravelAgentFloatingCartButton = () => {
         <>
           {cartItems.length !== 0 ? (
             <Link to="/travelagent/cart/" className="no-underline">
-              <button className="fixed z-50 flex px-2 justify-between items-center bottom-6 right-24 rounded-full h-14 w-14 bg-primary-color text-secondary-color  font-bold">
+              <button className="fixed z-50 flex px-2 justify-between items-center bottom-6 right-24 xl:right-32 rounded-full h-14 w-14 bg-primary-color text-secondary-color  font-bold">
                 <AiOutlineShoppingCart size={25} />
                 {cartItems.length}
               </button>

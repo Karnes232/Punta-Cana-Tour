@@ -5,7 +5,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-export default function Cart() {
+import PickUpTimeLocation from "../../CartComponent/PickUpTimeLocation";
+export default function Cart({
+  selectedHotel,
+  pickupTimes,
+  formData,
+  setFormData,
+}) {
   const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } =
     useContext(TravelAgentCartContext);
 
@@ -53,58 +59,76 @@ export default function Cart() {
       <div className="flex flex-col gap-4">
         {cartItems.map((tour, index) => {
           const image = getImage(tour.mainImage?.gatsbyImage);
-
+          let pickupTimeList = [];
+          pickupTimes.forEach((tourPickupTime) => {
+            if (tourPickupTime.name === tour.name) {
+              try {
+                let times = JSON.parse(tourPickupTime?.pickupTimes);
+                pickupTimeList = times[selectedHotel];
+              } catch (error) {
+                let times = undefined;
+              }
+            }
+          });
           return (
-            <div className="flex justify-between my-2" key={tour.name}>
-              <div className="flex gap-4">
-                <GatsbyImage
-                  image={image}
-                  alt={tour.name}
-                  className="rounded-md w-24 h-24 md:w-32 md:h-32 object-cover"
-                />
-                <div className="flex flex-col md:justify-around lg:flex-row w-40 md:w-72 lg:w-[30rem] xl:w-[25rem]">
-                  <div className="flex flex-col md:flex-row gap-2 md:gap-8 mb-1 mx-4">
-                    <h1 className="text-lg font-bold truncate lg:whitespace-normal">
-                      {tour.name}
-                    </h1>
-                    <p className="text-gray-600 text-end flex items-center justify-end">
-                      ${tour.price}
-                    </p>
-                  </div>
+            <div key={tour.name}>
+              <div className="flex justify-between mt-2 mb-5" key={tour.name}>
+                <div className="flex gap-4">
+                  <GatsbyImage
+                    image={image}
+                    alt={tour.name}
+                    className="rounded-md w-24 h-24 md:w-32 md:h-32 object-cover"
+                  />
+                  <div className="flex flex-col md:justify-around lg:flex-row w-40 md:w-72 lg:w-[30rem] xl:w-[25rem]">
+                    <div className="flex flex-col md:flex-row gap-2 md:gap-8 mb-1 mx-4">
+                      <h1 className="text-lg font-bold truncate lg:whitespace-normal">
+                        {tour.name}
+                      </h1>
+                      <p className="text-gray-600 text-end flex items-center justify-end">
+                        ${tour.price}
+                      </p>
+                    </div>
 
-                  <div className="flex gap-4 justify-center items-center">
-                    <button
-                      className="px-4 py-2 bg-secondary-color text-primary-color text-xs font-bold uppercase rounded hover:opacity-70 focus:outline-none focus:bg-gray-700"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        addToCart(tour);
-                      }}
-                    >
-                      +
-                    </button>
-                    <p className="w-5 text-center">{tour.quantity}</p>
-                    <button
-                      className="px-4 py-2 bg-secondary-color text-primary-color text-xs font-bold uppercase rounded hover:opacity-70 focus:outline-none focus:bg-gray-700"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        const cartItem = cartItems.find(
-                          (tour) => tour.name === tour.name,
-                        );
-                        if (cartItem.quantity === 1) {
-                          handleRemoveFromCart(tour);
-                        } else {
-                          removeFromCart(tour);
-                        }
-                      }}
-                    >
-                      -
-                    </button>
+                    <div className="flex gap-4 justify-center items-center">
+                      <button
+                        className="px-4 py-2 bg-secondary-color text-primary-color text-xs font-bold uppercase rounded hover:opacity-70 focus:outline-none focus:bg-gray-700"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          addToCart(tour);
+                        }}
+                      >
+                        +
+                      </button>
+                      <p className="w-5 text-center">{tour.quantity}</p>
+                      <button
+                        className="px-4 py-2 bg-secondary-color text-primary-color text-xs font-bold uppercase rounded hover:opacity-70 focus:outline-none focus:bg-gray-700"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          const cartItem = cartItems.find(
+                            (tour) => tour.name === tour.name,
+                          );
+                          if (cartItem.quantity === 1) {
+                            handleRemoveFromCart(tour);
+                          } else {
+                            removeFromCart(tour);
+                          }
+                        }}
+                      >
+                        -
+                      </button>
+                    </div>
                   </div>
-                </div>
-                <div className="flex gap-8 mx-4 text-gray-600 w-12">
-                  ${tour.price * tour.quantity}
+                  <div className="flex gap-8 mx-4 text-gray-600 w-12">
+                    ${tour.price * tour.quantity}
+                  </div>
                 </div>
               </div>
+              <PickUpTimeLocation
+                pickupTimeList={pickupTimeList}
+                formData={formData}
+                setFormData={setFormData}
+                index={index}
+              />
             </div>
           );
         })}

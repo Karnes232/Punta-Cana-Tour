@@ -4,7 +4,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../../../config/firebase";
 import { doc, getDoc } from "firebase/firestore";
 
-const HiddenInputs = () => {
+const HiddenInputs = ({ formData, setFormData }) => {
   const [user, setUser] = useState({});
   const { cartItems } = useContext(TravelAgentCartContext);
   const findUser = async (id) => {
@@ -22,47 +22,109 @@ const HiddenInputs = () => {
     });
   }, []);
 
+  const handleChange = ({ target }) => {
+    setFormData({
+      ...formData,
+      [target.name]: target.value,
+    });
+  };
   return (
     <div className="hidden">
       <input
         type="hidden"
         name="Tour 1"
         value={`- ` + cartItems[0]?.name || "None"}
+        onChange={handleChange}
       />
       <input
         type="hidden"
         name="Pax 1"
         value={`- ` + cartItems[0]?.quantity || 0}
+        onChange={handleChange}
+      />
+      <input
+        type="hidden"
+        name="PickUpTime1"
+        value={`- ` + formData.PickUp1 || 0}
+        onChange={handleChange}
+      />
+      <input
+        type="hidden"
+        name="Date1"
+        value={`- ` + formData.Date1 || 0}
+        onChange={handleChange}
       />
       <input
         type="hidden"
         name="Tour 2"
         value={`- ` + cartItems[1]?.name || "None"}
+        onChange={handleChange}
       />
       <input
         type="hidden"
         name="Pax 2"
         value={`- ` + cartItems[1]?.quantity || 0}
+        onChange={handleChange}
+      />
+      <input
+        type="hidden"
+        name="PickUpTime2"
+        value={`- ` + formData.PickUp1 || 0}
+        onChange={handleChange}
+      />
+      <input
+        type="hidden"
+        name="Date2"
+        value={`- ` + formData.Date1 || 0}
+        onChange={handleChange}
       />
       <input
         type="hidden"
         name="Tour 3"
         value={`- ` + cartItems[2]?.name || "None"}
+        onChange={handleChange}
       />
       <input
         type="hidden"
         name="Pax 3"
         value={`- ` + cartItems[2]?.quantity || 0}
+        onChange={handleChange}
+      />
+      <input
+        type="hidden"
+        name="PickUpTime3"
+        value={`- ` + formData.PickUp1 || 0}
+        onChange={handleChange}
+      />
+      <input
+        type="hidden"
+        name="Date3"
+        value={`- ` + formData.Date1 || 0}
+        onChange={handleChange}
       />
       <input
         type="hidden"
         name="Tour 4"
         value={`- ` + cartItems[3]?.name || "None"}
+        onChange={handleChange}
       />
       <input
         type="hidden"
         name="Pax 4"
         value={`- ` + cartItems[3]?.quantity || 0}
+        onChange={handleChange}
+      />
+      <input
+        type="hidden"
+        name="PickUpTime4"
+        value={`- ` + formData.PickUp1 || 0}
+        onChange={handleChange}
+      />
+      <input
+        type="hidden"
+        name="Date4"
+        value={`- ` + formData.Date1 || 0}
+        onChange={handleChange}
       />
       <input type="hidden" name="Tour Rep" value={user.name} />
     </div>
