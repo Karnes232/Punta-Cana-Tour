@@ -22,7 +22,7 @@ const Cancellation = ({ data }) => {
       <TextComponent
         title={data.allContentfulInformationLayout.nodes[0].title1}
         paragraph={
-          data.allContentfulInformationLayout.nodes[0].paragraph1.paragraph1
+          data.allContentfulInformationLayout.nodes[0].paragraph1?.paragraph1
         }
         className="my-5 2xl:mb-2 2xl:mt-10 text-3xl md:text-4xl"
         pClassName="mb-4 lg:mb-0"
@@ -30,7 +30,7 @@ const Cancellation = ({ data }) => {
       <TextComponent
         title={data.allContentfulInformationLayout.nodes[0].title2}
         paragraph={
-          data.allContentfulInformationLayout.nodes[0].paragraph2.paragraph2
+          data.allContentfulInformationLayout.nodes[0].paragraph2?.paragraph2
         }
         className="my-5 2xl:mb-2 2xl:mt-10 text-3xl md:text-4xl"
         pClassName="mb-4 lg:mb-0"
@@ -38,7 +38,7 @@ const Cancellation = ({ data }) => {
       <TextComponent
         title={data.allContentfulInformationLayout.nodes[0].title3}
         paragraph={
-          data.allContentfulInformationLayout.nodes[0].paragraph3.paragraph3
+          data.allContentfulInformationLayout.nodes[0].paragraph3?.paragraph3
         }
         className="my-5 2xl:mb-2 2xl:mt-10 text-3xl md:text-4xl"
         pClassName="mb-4 lg:mb-0"
@@ -46,7 +46,7 @@ const Cancellation = ({ data }) => {
       <TextComponent
         title={data.allContentfulInformationLayout.nodes[0].title4}
         paragraph={
-          data.allContentfulInformationLayout.nodes[0].paragraph4.paragraph4
+          data.allContentfulInformationLayout.nodes[0].paragraph4?.paragraph4
         }
         className="my-5 2xl:mb-2 2xl:mt-10 text-3xl md:text-4xl"
         pClassName="mb-4 lg:mb-0"
@@ -54,7 +54,7 @@ const Cancellation = ({ data }) => {
       <TextComponent
         title={data.allContentfulInformationLayout.nodes[0].title5}
         paragraph={
-          data.allContentfulInformationLayout.nodes[0].paragraph5.paragraph5
+          data.allContentfulInformationLayout.nodes[0].paragraph5?.paragraph5
         }
         className="my-5 2xl:mb-2 2xl:mt-10 text-3xl md:text-4xl"
         pClassName="mb-4 lg:mb-0"
@@ -62,7 +62,7 @@ const Cancellation = ({ data }) => {
       <TextComponent
         title={data.allContentfulInformationLayout.nodes[0].title6}
         paragraph={
-          data.allContentfulInformationLayout.nodes[0].paragraph6.paragraph6
+          data.allContentfulInformationLayout.nodes[0].paragraph6?.paragraph6
         }
         className="my-5 2xl:mb-2 2xl:mt-10 text-3xl md:text-4xl"
         pClassName="mb-4 lg:mb-0"
