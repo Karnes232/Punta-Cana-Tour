@@ -12,9 +12,17 @@ import "react-toastify/dist/ReactToastify.css";
 import TourButton from "../components/TravelAgentComponents/TourButton";
 import PhotoGrid from "../components/TourPageComponents/PhotoGrid";
 const tour = ({ pageContext }) => {
-  const { tour, logo, footerBackground, facebook, instagram, email, gImage } =
-    pageContext;
-
+  const {
+    tour,
+    logo,
+    footerBackground,
+    facebook,
+    whatsApp,
+    instagram,
+    email,
+    gImage,
+  } = pageContext;
+  const newPrice = tour.price * 0.85;
   const notifyAddedToCart = (tour) =>
     toast.success(`${tour.name} added to cart!`, {
       position: "top-center",
@@ -50,6 +58,7 @@ const tour = ({ pageContext }) => {
       footerBackground={footerBackground}
       facebook={facebook}
       instagram={instagram}
+      whatsApp={whatsApp}
       email={email}
       gImage={gImage}
       color="black"
@@ -76,7 +85,7 @@ const tour = ({ pageContext }) => {
           notifyAddedToCart={notifyAddedToCart}
           notifyRemovedFromCart={notifyRemovedFromCart}
         />
-        <Price price={tour.price} duration={tour.duration1} />
+        <Price price={newPrice.toFixed(2)} duration={tour.duration1} />
         <TextComponent paragraph={tour.description1.description1} />
       </div>
       <SwiperCarousel className="mt-5" photoList={tour.images} />

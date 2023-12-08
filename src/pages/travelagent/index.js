@@ -9,7 +9,7 @@ import HeroComponent from "../../components/HeroComponent/HeroComponent";
 import WhoWhatWhyComponent from "../../components/TravelAgentComponents/WhoWhatWhy/WhoWhatWhyComponent";
 import SwiperCarousel from "../../components/BackgroundCarousel/SwiperCarousel";
 import TextComponent from "../../components/TextComponent/TextComponent";
-import FeaturedTours from "../../components/FeaturedToursComponent/FeaturedTours";
+import FeaturedTours from "../../components/TravelAgentComponents/FeaturedTours";
 const Index = ({ data }) => {
   const tourList = Array.from(data.allContentfulTour.edges, (x) => x);
   const [loggedIn, setLoggedIn] = useState(false);

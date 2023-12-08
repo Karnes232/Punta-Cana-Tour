@@ -3,7 +3,7 @@ import { graphql, navigate } from "gatsby";
 import Layout from "../../../components/TravelAgentComponents/Layout";
 import HeroComponent from "../../../components/HeroComponent/HeroComponent";
 import TextComponent from "../../../components/TextComponent/TextComponent";
-import TourCard from "../../../components/TourCardComponent/TourCard";
+import TourCard from "../../../components/TravelAgentComponents/TourCard";
 import Seo from "../../../components/seo";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../../config/firebase";

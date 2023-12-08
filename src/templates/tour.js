@@ -19,6 +19,7 @@ const Tour = ({ pageContext }) => {
     logo,
     footerBackground,
     facebook,
+    whatsApp,
     instagram,
     email,
     gImage,
@@ -72,6 +73,7 @@ const Tour = ({ pageContext }) => {
         footerBackground={footerBackground}
         facebook={facebook}
         instagram={instagram}
+        whatsApp={whatsApp}
         email={email}
         gImage={gImage}
         color="black"

@@ -48,6 +48,7 @@ exports.createPages = async ({ graphql, actions }) => {
             email
             facebook
             instagram
+            whatsApp
           }
         }
       }
@@ -69,6 +70,7 @@ exports.createPages = async ({ graphql, actions }) => {
           queryResults.data.allContentfulLayout.edges[0].node.footerBackground
             .url,
         facebook: queryResults.data.allContentfulLayout.edges[0].node.facebook,
+        whatsApp: queryResults.data.allContentfulLayout.edges[0].node.whatsApp,
         instagram:
           queryResults.data.allContentfulLayout.edges[0].node.instagram,
         email: queryResults.data.allContentfulLayout.edges[0].node.email,
@@ -89,6 +91,7 @@ exports.createPages = async ({ graphql, actions }) => {
           queryResults.data.allContentfulLayout.edges[0].node.footerBackground
             .url,
         facebook: queryResults.data.allContentfulLayout.edges[0].node.facebook,
+        whatsApp: queryResults.data.allContentfulLayout.edges[0].node.whatsApp,
         instagram:
           queryResults.data.allContentfulLayout.edges[0].node.instagram,
         email: queryResults.data.allContentfulLayout.edges[0].node.email,
