@@ -22,19 +22,19 @@ export const ClientInfo = (
             
          
         <div>
-        <p style='color: rgb(75 85 99)'><span style="font-weight:bold">Client Name:</span> ${clientName}</p>
+        <p style='color: rgb(75 85 99);margin-bottom: 10px'><span style="font-weight:bold">Client Name:</span> ${clientName}</p>
         </div>
         <div>
-        <p style='color: rgb(75 85 99)'><span style="font-weight:bold">Client Email:</span> ${clientEmail}</p>
+        <p style='color: rgb(75 85 99);margin-bottom: 10px'><span style="font-weight:bold">Client Email:</span> ${clientEmail}</p>
         </div>
         <div>
-        <p style='color: rgb(75 85 99)'><span style="font-weight:bold">Client Phone:</span> ${clientPhone}</p>
+        <p style='color: rgb(75 85 99);margin-bottom: 10px'><span style="font-weight:bold">Client Phone:</span> ${clientPhone}</p>
         </div>
         <div>
-        <p style='color: rgb(75 85 99)'><span style="font-weight:bold">Hotel:</span> ${hotel}</p>
+        <p style='color: rgb(75 85 99);margin-bottom: 10px'><span style="font-weight:bold">Hotel:</span> ${hotel}</p>
         </div>
         <div>
-        <p style='color: rgb(75 85 99)'><span style="font-weight:bold">Room Number:</span> ${room}</p>
+        <p style='color: rgb(75 85 99);margin-bottom: 10px'><span style="font-weight:bold">Room Number:</span> ${room}</p>
         </div>
     
       </div>
