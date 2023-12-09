@@ -18,7 +18,7 @@ export const Contact = `
           
     <div style="font-size: 14px; line-height: 140%; text-align: left; word-wrap: break-word;">
       <p style="line-height: 140%;">If you have any additional queries or worries, please do not hesitate to reach out to us by <a
-      href="mailto:puntacanatourstore@gmail.com?subject=Punta Cana Tour Store Reservation"
+      href="mailto:reservations@puntacanatourstore.com?subject=Punta Cana Tour Store Reservation"
       aria-label="whatsApp"
       rel="noreferrer"
     >email</a> or <a
