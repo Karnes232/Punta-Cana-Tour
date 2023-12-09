@@ -90,6 +90,40 @@ const CartPayPalWrapper = ({
                   tourList: tourList,
                   formData: formData,
                 });
+                tourList.forEach((tour) => {
+                  let pickupDate = "";
+                  let pickupTime = "";
+                  if (formData.Tour1.split("-")[1].trim() === tour.tourName) {
+                    pickupDate = formData.Date1;
+                    pickupTime = formData.PickUp1;
+                  }
+                  if (formData.Tour2.split("-")[1].trim() === tour.tourName) {
+                    pickupDate = formData.Date2;
+                    pickupTime = formData.PickUp2;
+                  }
+                  if (formData.Tour3.split("-")[1].trim() === tour.tourName) {
+                    pickupDate = formData.Date3;
+                    pickupTime = formData.PickUp3;
+                  }
+                  if (formData.Tour4.split("-")[1].trim() === tour.tourName) {
+                    pickupDate = formData.Date4;
+                    pickupTime = formData.PickUp4;
+                  }
+                  try {
+                    axios.post("/api/provider", {
+                      clientName: clientName,
+                      providerEmail: tour.tour.providerEmail,
+                      tour: tour,
+                      guestCount: tour.guestCount,
+                      pickupDate: pickupDate,
+                      pickupTime: pickupTime,
+                      formData: formData,
+                    });
+                  } catch (error) {
+                    console.log(error);
+                  }
+                });
+
                 collectUserDataPayPal(
                   details,
                   redirectHref,
