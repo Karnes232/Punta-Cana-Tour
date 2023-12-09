@@ -6,7 +6,6 @@ const LogOut = () => {
   const [name, setName] = useState("");
   useEffect(() => {
     setName(auth?.currentUser?.displayName);
-    console.log(auth.currentUser);
   }, []);
 
   const logout = async () => {

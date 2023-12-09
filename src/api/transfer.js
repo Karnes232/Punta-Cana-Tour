@@ -25,8 +25,6 @@ export default function handler(req, res) {
   const transferType = formData.transferType;
   const date = formData.date;
   const time = formData.time;
-  console.log(vehicle);
-  console.log(formData);
   const htmlString = `${Head}${Css}${HtmlHeader}${TransferBody(
     clientName,
     hotel,
@@ -37,7 +35,7 @@ export default function handler(req, res) {
 
   let mailDetails = {
     from: `${process.env.EMAIL_USER_NEW}`,
-    replyTo: `info@puntacanatourstore.com`,
+    replyTo: `reservations@puntacanatourstore.com`,
     to: formData.email,
     subject: "Punta Cana Tour Store",
     text: `${clientName} have a deposit of ${deposit}`,

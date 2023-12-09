@@ -1,7 +1,6 @@
 import React from "react";
 
 const IndividualReserved = ({ client }) => {
-  console.log(client);
   return (
     <>
       <table className="mx-auto text-base text-left text-gray-500 shadow rounded-xl overflow-hidden w-5/6 lg:w-1/2 xl:w-1/3">

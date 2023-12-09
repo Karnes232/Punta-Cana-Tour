@@ -68,7 +68,6 @@ const Form = ({ hotels, allTours }) => {
     return newFormData;
   }
   const data = getFormData(formData);
-  console.log(new URLSearchParams(data).toString());
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -89,7 +88,6 @@ const Form = ({ hotels, allTours }) => {
       })
       .catch((error) => alert(error));
   };
-  console.log(formData);
   return (
     <form
       name="travelAgentCart"

@@ -1,5 +1,4 @@
 export const TransferBody = (clientName, hotel, transferType, date, time) => {
-  console.log(transferType);
   let paragraph = "";
   if (transferType === "Depature") {
     paragraph = `We've booked your transportation from the ${hotel} to the airport for ${date} at ${time}. Have a great trip!`;

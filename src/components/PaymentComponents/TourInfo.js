@@ -1,7 +1,6 @@
 import React from "react";
 
 const TourInfo = ({ tourList }) => {
-  console.log(tourList);
   return (
     <div className="flex flex-col md:flex-row md:space-x-10 justify-between mt-6 w-full">
       <div className="relative z-0 mb-6 w-full group">
