@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import HiddenInputs from "./HiddenInputs";
 import ContactInfo from "./ContactInfo";
 import MoreInfo from "./MoreInfo";
@@ -52,35 +52,18 @@ const Form = ({ allTours, hotels }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    // const myForm = event.target;
-    // const formData = new FormData(myForm);
-
-    // const formDataObj = {};
-    // formData.forEach((value, key) => (formDataObj[key] = value));
-    // console.log(formDataObj);
-    // await collectUserData(formData);
-    // fetch("/", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    //   body: new URLSearchParams(formData).toString(),
-    // })
-    //   .then(() => {
-    //     clearCart();
-    //     // if (typeof window !== "undefined") {
-    //     //   window.location.href = `/contact/thankyou/?name=${name}`;
-    //     // }
-    //   })
-    //   .catch((error) => alert(error));
   };
-  let pickupTimes = [];
-  allTours.nodes.forEach((tour) => {
-    let pickupObject = {
-      name: tour.name,
-      pickupTimes: tour.pickupTime?.internal?.content,
-    };
-    pickupTimes.push(pickupObject);
-  });
+
+  const pickupTimes = useMemo(() => calculatePickUpTimes(allTours), [allTours]);
+
+  // let pickupTimes = [];
+  // allTours.nodes.forEach((tour) => {
+  //   let pickupObject = {
+  //     name: tour.name,
+  //     pickupTimes: tour.pickupTime?.internal?.content,
+  //   };
+  //   pickupTimes.push(pickupObject);
+  // });
 
   return (
     <form
@@ -122,6 +105,18 @@ const Form = ({ allTours, hotels }) => {
       <CartPayPal formData={formData} allTours={allTours} />
     </form>
   );
+};
+
+const calculatePickUpTimes = (tours) => {
+  let pickupList = [];
+  tours.nodes.forEach((tour) => {
+    let pickupObject = {
+      name: tour.name,
+      pickupTimes: tour.pickupTime?.internal?.content,
+    };
+    pickupList.push(pickupObject);
+  });
+  return pickupList;
 };
 
 export default Form;

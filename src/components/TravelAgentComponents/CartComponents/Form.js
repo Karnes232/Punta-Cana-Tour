@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { TravelAgentCartContext } from "../../../context/travelAgentCart";
 import CartComponent from "../CartComponents/CartComponent";
 import ContactInfo from "./ContactInfo";
@@ -8,6 +8,7 @@ import HiddenInputs from "./HiddenInputs";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../../../config/firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import TravelAgenetPayPal from "../../PayPalButtonWrapper/TravelAgenetPayPal";
 const Form = ({ hotels, allTours }) => {
   const [user, setUser] = useState({});
   const { clearCart, cartItems } = useContext(TravelAgentCartContext);
@@ -49,14 +50,7 @@ const Form = ({ hotels, allTours }) => {
     });
   }, []);
 
-  let pickupTimes = [];
-  allTours.nodes.forEach((tour) => {
-    let pickupObject = {
-      name: tour.name,
-      pickupTimes: tour.pickupTime?.internal?.content,
-    };
-    pickupTimes.push(pickupObject);
-  });
+  const pickupTimes = useMemo(() => calculatePickUpTimes(allTours), [allTours]);
 
   function getFormData(object) {
     const newFormData = new FormData();
@@ -71,22 +65,6 @@ const Form = ({ hotels, allTours }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const dataFromForm = getFormData(formData);
-    // const myForm = event.target;
-    // const formData = new FormData(myForm);
-
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(dataFromForm).toString(),
-    })
-      .then(() => {
-        clearCart();
-        if (typeof window !== "undefined") {
-          window.location.href = `https://puntacanatourstore.com/travelagent/contact/thankyou/?name=${user.name}`;
-        }
-      })
-      .catch((error) => alert(error));
   };
   return (
     <form
@@ -118,9 +96,21 @@ const Form = ({ hotels, allTours }) => {
         </div>
       </div>
       <HiddenInputs formData={formData} setFormData={setFormData} />
-      <Button />
+      <TravelAgenetPayPal formData={formData} allTours={allTours} />
     </form>
   );
+};
+
+const calculatePickUpTimes = (tours) => {
+  let pickupList = [];
+  tours.nodes.forEach((tour) => {
+    let pickupObject = {
+      name: tour.name,
+      pickupTimes: tour.pickupTime?.internal?.content,
+    };
+    pickupList.push(pickupObject);
+  });
+  return pickupList;
 };
 
 export default Form;

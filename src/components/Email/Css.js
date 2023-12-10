@@ -200,7 +200,7 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
   flex: 1 1 0%; 
   align-items: center; 
   justify-content: space-between;
-  width: 150px;
+  width: 230px;
 }
 
 .tourDateDiv {

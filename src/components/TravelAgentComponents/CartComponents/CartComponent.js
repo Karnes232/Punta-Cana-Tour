@@ -50,7 +50,9 @@ export default function Cart({
     removeFromCart(tour);
     notifyRemovedFromCart(tour);
   };
-
+  const totalPrice = getCartTotal() * 0.85;
+  const deposit = getCartTotal() * 0.15;
+  const balance = getCartTotal() * 0.7;
   return (
     <div className="flex-col flex items-center justify-center my-10">
       <ToastContainer />
@@ -70,6 +72,9 @@ export default function Cart({
               }
             }
           });
+
+          const agentPrice = tour.price * 0.85;
+          const tourTotalPrice = agentPrice * tour.quantity;
           return (
             <div key={tour.name}>
               <div className="flex justify-between mt-2 mb-5" key={tour.name}>
@@ -85,7 +90,7 @@ export default function Cart({
                         {tour.name}
                       </h1>
                       <p className="text-gray-600 text-end flex items-center justify-end">
-                        ${tour.price}
+                        ${agentPrice.toFixed(2)}
                       </p>
                     </div>
 
@@ -118,8 +123,8 @@ export default function Cart({
                       </button>
                     </div>
                   </div>
-                  <div className="flex gap-8 mx-4 text-gray-600 w-12">
-                    ${tour.price * tour.quantity}
+                  <div className="flex justify-center items-center gap-8 mx-4 text-gray-600 w-12">
+                    ${tourTotalPrice.toFixed(2)}
                   </div>
                 </div>
               </div>
@@ -135,7 +140,15 @@ export default function Cart({
       </div>
       {cartItems.length > 0 ? (
         <div className="flex flex-col justify-between items-center mt-5">
-          <h1 className="text-lg font-bold mb-3">Total: ${getCartTotal()}</h1>
+          <h1 className="text-lg font-bold mb-1">
+            Total: ${totalPrice.toFixed(2)}
+          </h1>
+          <h1 className="text-lg font-bold mb-1">
+            Deposit: ${deposit.toFixed(2)}
+          </h1>
+          <h1 className="text-lg font-bold mb-3">
+            Balance: ${balance.toFixed(2)}
+          </h1>
 
           <button
             className="px-4 py-2 bg-secondary-color text-primary-color text-xs font-bold uppercase rounded hover:opacity-70 focus:outline-none focus:bg-gray-700"
