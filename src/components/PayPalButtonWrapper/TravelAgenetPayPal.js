@@ -1,8 +1,8 @@
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import React from "react";
 import { paypalId } from "../../data/paypalId";
-import useFormValidationReservations from "../../customHooks/useFormValidationReservations";
 import TravelAgentPayPalWrapper from "./TravelAgentPayPalWrapper";
+import useTravelAgentFormValidationReservations from "../../customHooks/useTravelAgentFormValidationReservations";
 
 const TravelAgenetPayPal = ({ formData, allTours }) => {
   const currency = "USD";
@@ -41,7 +41,9 @@ const TravelAgenetPayPal = ({ formData, allTours }) => {
   const deposit = totalCost * 0.15;
   const balance = totalCost * 0.7;
   // let disabled = useFormValidationReservations(formData);
-  let disabled = false;
+
+  let disabled = useTravelAgentFormValidationReservations(formData);
+
   return (
     <div className="flex justify-center md:w-80 xl:w-96">
       <PayPalScriptProvider

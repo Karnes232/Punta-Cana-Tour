@@ -20,6 +20,22 @@ const Form = ({ hotels, allTours }) => {
     phone: "",
     hotelSelect: "",
     additional: "",
+    Date1: "",
+    PickUp1: "",
+    Tour1: "",
+    Pax1: "",
+    Date2: "",
+    PickUp2: "",
+    Tour2: "",
+    Pax2: "",
+    Date3: "",
+    PickUp3: "",
+    Tour3: "",
+    Pax3: "",
+    Date4: "",
+    PickUp4: "",
+    Tour4: "",
+    Pax4: "",
   });
   useEffect(() => {
     setFormData({
