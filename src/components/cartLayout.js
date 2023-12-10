@@ -19,6 +19,7 @@ export default function CartLayout({
       <div className="min-h-screen font-montserrat flex flex-col justify-between overflow-x-hidden bg-primary-bg-color">
         <Header logo={logo} color="black" />
         {children}
+        <FloatingWhatsAppButton whatsApp={whatsApp} />
         <Footer
           footerBackground={footerBackground}
           facebook={facebook}
@@ -27,7 +28,6 @@ export default function CartLayout({
           whatsApp={whatsApp}
           gImage={gImage}
         />
-        <FloatingWhatsAppButton whatsApp={whatsApp} />
       </div>
     </CartProvider>
   );

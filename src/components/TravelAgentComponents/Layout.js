@@ -22,6 +22,8 @@ export default function TravelAgentLayout({
         <Header logo={logo} />
 
         {children}
+        <TravelAgentFloatingCartButton />
+        <FloatingWhatsAppButton whatsApp={whatsApp} />
         <Footer
           footerBackground={footerBackground}
           facebook={facebook}
@@ -30,8 +32,6 @@ export default function TravelAgentLayout({
           gImage={gImage}
           whatsApp={whatsApp}
         />
-        <TravelAgentFloatingCartButton />
-        <FloatingWhatsAppButton whatsApp={whatsApp} />
       </div>
     </TravelAgentCartProvider>
   );

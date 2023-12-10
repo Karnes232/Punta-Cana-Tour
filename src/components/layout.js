@@ -21,6 +21,8 @@ export default function Layout({
       <div className="min-h-screen font-montserrat flex flex-col justify-between overflow-x-hidden bg-primary-bg-color">
         <Header logo={logo} color={color} />
         {children}
+        <FloatingCartButton />
+        <FloatingWhatsAppButton whatsApp={whatsApp} />
         <Footer
           footerBackground={footerBackground}
           facebook={facebook}
@@ -29,12 +31,11 @@ export default function Layout({
           email={email}
           gImage={gImage}
         />
-        <FloatingCartButton />
-        <FloatingWhatsAppButton whatsApp={whatsApp} />
+
+        <CookieConsent>
+          This website uses cookies to enhance the user experience.
+        </CookieConsent>
       </div>
-      <CookieConsent>
-        This website uses cookies to enhance the user experience.
-      </CookieConsent>
     </CartProvider>
   );
 }
