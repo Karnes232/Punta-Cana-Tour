@@ -21,7 +21,7 @@ const TransferClientListMobile = ({ client }) => {
         <div className="font-normal text-left">
           Vehicle: {client.formData.vehicle}
         </div>
-        <div className="font-normal text-left">Amount: ${client.amount}</div>
+        <div className="font-normal text-left">Deposit: ${client.amount}</div>
       </div>
     </>
   );

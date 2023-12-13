@@ -1,6 +1,7 @@
 import React from "react";
 
 const IndividualTransfer = ({ client }) => {
+  let purchasedDate = new Date(client.createdAt?.seconds * 1000);
   return (
     <table className="mx-auto text-base text-left text-gray-500 shadow rounded-xl overflow-hidden w-5/6 lg:w-1/2 xl:w-1/3">
       <tbody>
@@ -25,7 +26,7 @@ const IndividualTransfer = ({ client }) => {
           </td>
         </tr>
         <tr>
-          <th className="p-2">Date:</th>
+          <th className="p-2"> Pick Up Date:</th>
           <td className="capitalize">{client?.formData?.date}</td>
         </tr>
         <tr>
@@ -55,6 +56,12 @@ const IndividualTransfer = ({ client }) => {
         <tr>
           <th className="p-2">Hotel:</th>
           <td className="capitalize">{client?.formData?.hotelSelect}</td>
+        </tr>
+        <tr>
+          <th className="p-2"> Purchased Date:</th>
+          <td className="capitalize">
+            {purchasedDate.toLocaleDateString("en-CA")}
+          </td>
         </tr>
       </tbody>
     </table>

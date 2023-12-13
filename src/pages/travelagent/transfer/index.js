@@ -78,7 +78,7 @@ const Transfers = ({ data }) => {
                 Vehicle
               </th>
               <th scope="col" className="px-6 py-3">
-                Amount
+                Deposit
               </th>
             </tr>
           </thead>
