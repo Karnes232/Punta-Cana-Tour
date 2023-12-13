@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "gatsby";
 const PaidClientListMobile = ({ client }) => {
   return (
     <>
@@ -7,7 +7,10 @@ const PaidClientListMobile = ({ client }) => {
         <div className="font-normal text-left">
           Name:{" "}
           <span className="font-semibold">
-            {client.name.given_name} {client.name.surname}
+            <Link to={`/travelagent/paidclients/${client.id}`}>
+              {" "}
+              {client.name.given_name} {client.name.surname}
+            </Link>
           </span>
         </div>
         <div className="font-normal text-left">
