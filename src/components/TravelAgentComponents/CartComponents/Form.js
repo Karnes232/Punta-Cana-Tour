@@ -15,6 +15,7 @@ const Form = ({ hotels, allTours }) => {
   const [formData, setFormData] = useState({
     "form-name": "travelAgentCart",
     "Tour Rep": "",
+    "Tour Rep Id": "",
     name: "",
     email: "",
     phone: "",
@@ -49,9 +50,9 @@ const Form = ({ hotels, allTours }) => {
       Tour4: `- ` + cartItems[3]?.name,
       Pax4: `- ` + cartItems[3]?.quantity,
       "Tour Rep": user.name,
+      "Tour Rep Id": user.id,
     });
   }, [cartItems, user]);
-
   const findUser = async (id) => {
     const docRef = doc(db, "users", id);
     const docSnap = await getDoc(docRef);

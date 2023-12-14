@@ -24,7 +24,10 @@ const AgentClientListMobile = ({ client }) => {
 
         <div className="font-normal text-left">Deposit: ${client.deposit}</div>
         <div className="font-normal text-left">
-          Tour Rep: {client.formData["Tour Rep"]}
+          Tour Rep:{" "}
+          <Link to={`/travelagent/touroperators/${client.tourRepId}`}>
+            {client.formData["Tour Rep"]}
+          </Link>
         </div>
       </div>
     </>

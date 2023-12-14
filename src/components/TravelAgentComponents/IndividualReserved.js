@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "gatsby";
 const IndividualReserved = ({ client }) => {
   let purchasedDate = new Date(client.createdAt?.seconds * 1000);
   console.log(client);
@@ -65,7 +65,12 @@ const IndividualReserved = ({ client }) => {
             <>
               <tr>
                 <th className="p-2">Tour Rep:</th>
-                <td className="capitalize">{client?.tourRep}</td>
+                <td className="capitalize">
+                  {" "}
+                  <Link to={`/travelagent/touroperators/${client.tourRepId}`}>
+                    {client?.tourRep}
+                  </Link>
+                </td>
               </tr>
             </>
           ) : (

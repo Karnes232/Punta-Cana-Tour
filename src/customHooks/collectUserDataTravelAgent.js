@@ -15,6 +15,7 @@ const collectUserDataTravelAgent = async (
   await setDoc(doc(db, "travelAgent", id), {
     id: id,
     tourRep: formData["Tour Rep"],
+    tourRepId: formData["Tour Rep Id"],
     email: details.payer.email_address,
     address: details.payer.address,
     deposit: details.purchase_units[0].amount.value,
