@@ -25,7 +25,6 @@ const SideBarMenu = ({ toggled, setToggled }) => {
       setIsAdmin(true);
     }
   };
-
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
       const currentUser = auth.currentUser;
@@ -84,6 +83,16 @@ const SideBarMenu = ({ toggled, setToggled }) => {
                     }
                   >
                     <p className="hamburger">Cart</p>
+                  </MenuItem>
+                  <MenuItem
+                    component={
+                      <Link
+                        to={`/travelagent/${user.id}`}
+                        className="hamburger"
+                      />
+                    }
+                  >
+                    <p className="hamburger">My Bookings</p>
                   </MenuItem>
                 </>
               ) : (

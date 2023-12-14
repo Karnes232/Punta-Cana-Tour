@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "gatsby";
 const AgentClientList = ({ client }) => {
   let purchasedDate = new Date(client.createdAt?.seconds * 1000);
-  console.log(client.tourRepId);
   return (
     <>
       <tr className="bg-white hover:bg-gray-50">
