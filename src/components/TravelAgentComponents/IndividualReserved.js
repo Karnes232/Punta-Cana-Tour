@@ -1,7 +1,7 @@
 import React from "react";
 
 const IndividualReserved = ({ client }) => {
-  console.log(client);
+  let purchasedDate = new Date(client.createdAt?.seconds * 1000);
   return (
     <>
       <table className="mx-auto text-base text-left text-gray-500 shadow rounded-xl overflow-hidden w-5/6 lg:w-1/2 xl:w-1/3">
@@ -21,7 +21,7 @@ const IndividualReserved = ({ client }) => {
           <tr>
             <th className="p-2">Tel:</th>
             <td className="">
-              <a href={`tel:${client?.formData?.telephone}`}>
+              <a href={`tel:${client?.formData?.phone}`}>
                 {client?.formData?.phone}
               </a>
             </td>
@@ -45,6 +45,16 @@ const IndividualReserved = ({ client }) => {
           <tr>
             <th className="p-2">Deposit:</th>
             <td className="capitalize">${client?.deposit}</td>
+          </tr>
+          <tr>
+            <th className="p-2"> Purchased Date:</th>
+            <td className="capitalize">
+              {purchasedDate.toLocaleDateString("en-CA")}
+            </td>
+          </tr>
+          <tr>
+            <th className="p-2">Country</th>
+            <td>{client.address?.country_code}</td>
           </tr>
         </tbody>
       </table>

@@ -9,7 +9,7 @@ import IndividualReserved from "../../../components/TravelAgentComponents/Indivi
 const TransferClient = ({ location, data }) => {
   const [client, setClient] = useState({});
   const findClient = async (id) => {
-    const docRef = doc(db, "reservationsClientes", id);
+    const docRef = doc(db, "paidClientes", id);
     const docSnap = await getDoc(docRef);
     setClient(docSnap.data());
   };

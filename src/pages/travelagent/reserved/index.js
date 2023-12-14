@@ -4,18 +4,17 @@ import Layout from "../../../components/TravelAgentComponents/Layout";
 import Seo from "../../../components/seo";
 import {
   collection,
+  query,
   doc,
   getDoc,
   getDocs,
   orderBy,
-  query,
 } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../../../config/firebase";
-import ReservedClientList from "../../../components/TravelAgentComponents/ReservedClientList";
-import ReservedClientListMobile from "../../../components/TravelAgentComponents/ReservedClientListMobile";
-
-const Reserved = ({ data }) => {
+import PaidClientList from "../../../components/TravelAgentComponents/PaidClientList";
+import PaidClientListMobile from "../../../components/TravelAgentComponents/PaidClientListMobile";
+const PaidClients = ({ data }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState({});
   const [isAdmin, setIsAdmin] = useState(false);
@@ -38,8 +37,9 @@ const Reserved = ({ data }) => {
       if (currentUser) {
         findUser(currentUser.uid);
         setLoggedIn(true);
-        const reservedRef = collection(db, "reservationsClientes");
-        const q = query(reservedRef, orderBy("createdAt", "desc"));
+
+        const paidRef = collection(db, "paidClientes");
+        const q = query(paidRef, orderBy("createdAt", "desc"));
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
           setClientes((prevUsers) => [...prevUsers, doc.data()]);
@@ -75,22 +75,26 @@ const Reserved = ({ data }) => {
                 Email
               </th>
               <th scope="col" className="px-6 py-3">
-                Hotel
+                Purchased Date:
               </th>
               <th scope="col" className="px-6 py-3">
-                Excursion Date
+                Total Price
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Deposit
               </th>
             </tr>
           </thead>
           <tbody>
             {clientes.map((client, index) => {
-              return <ReservedClientList key={index} client={client} />;
+              return <PaidClientList key={index} client={client} />;
             })}
           </tbody>
         </table>
+
         <div className="md:hidden min-w-[90vw] my-5 space-y-4">
           {clientes.map((client, index) => {
-            return <ReservedClientListMobile key={index} client={client} />;
+            return <PaidClientListMobile key={index} client={client} />;
           })}
         </div>
       </div>
@@ -133,7 +137,7 @@ export const querie = graphql`
   }
 `;
 
-export default Reserved;
+export default PaidClients;
 
 export const Head = ({ data }) => {
   const { title, description, keywords } = data.allContentfulSeo.nodes[0];
