@@ -131,6 +131,16 @@ const SideBarMenu = ({ toggled, setToggled }) => {
                   >
                     <p className="hamburger">Reserved Clients</p>
                   </MenuItem>
+                  <MenuItem
+                    component={
+                      <Link
+                        to="/travelagent/agentbooking"
+                        className="hamburger"
+                      />
+                    }
+                  >
+                    <p className="hamburger">Agent Bookings</p>
+                  </MenuItem>
                 </>
               ) : (
                 <></>

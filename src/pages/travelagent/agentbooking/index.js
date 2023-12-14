@@ -12,8 +12,8 @@ import {
 } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../../../config/firebase";
-import PaidClientList from "../../../components/TravelAgentComponents/PaidClientList";
-import PaidClientListMobile from "../../../components/TravelAgentComponents/PaidClientListMobile";
+import AgentClientList from "../../../components/TravelAgentComponents/AgentClientList";
+import AgentClientListMobile from "../../../components/TravelAgentComponents/AgentClientListMobile";
 const PaidClients = ({ data }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState({});
@@ -30,7 +30,6 @@ const PaidClients = ({ data }) => {
       navigate("/travelagent");
     }
   };
-
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
       const currentUser = auth.currentUser;
@@ -38,7 +37,7 @@ const PaidClients = ({ data }) => {
         findUser(currentUser.uid);
         setLoggedIn(true);
 
-        const paidRef = collection(db, "paidClientes");
+        const paidRef = collection(db, "travelAgent");
         const q = query(paidRef, orderBy("createdAt", "desc"));
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
@@ -69,11 +68,9 @@ const PaidClients = ({ data }) => {
           <thead className="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
               <th scope="col" className="px-6 py-3">
-                Name
+                Client Name
               </th>
-              <th scope="col" className="px-6 py-3">
-                Email
-              </th>
+
               <th scope="col" className="px-6 py-3">
                 Purchased Date:
               </th>
@@ -83,18 +80,21 @@ const PaidClients = ({ data }) => {
               <th scope="col" className="px-6 py-3">
                 Deposit
               </th>
+              <th scope="col" className="px-6 py-3">
+                Tour Rep
+              </th>
             </tr>
           </thead>
           <tbody>
             {clientes.map((client, index) => {
-              return <PaidClientList key={index} client={client} />;
+              return <AgentClientList key={index} client={client} />;
             })}
           </tbody>
         </table>
 
         <div className="md:hidden min-w-[90vw] my-5 space-y-4">
           {clientes.map((client, index) => {
-            return <PaidClientListMobile key={index} client={client} />;
+            return <AgentClientListMobile key={index} client={client} />;
           })}
         </div>
       </div>
@@ -150,7 +150,7 @@ export const Head = ({ data }) => {
       />
       <link
         rel="canonical"
-        href="https://puntacanatourstore.com/travelagent/reserved"
+        href="https://puntacanatourstore.com/travelagent/agentbooking"
       />
       <meta
         name="viewport"

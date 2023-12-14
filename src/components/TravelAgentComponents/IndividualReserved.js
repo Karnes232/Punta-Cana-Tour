@@ -2,9 +2,10 @@ import React from "react";
 
 const IndividualReserved = ({ client }) => {
   let purchasedDate = new Date(client.createdAt?.seconds * 1000);
+  console.log(client);
   return (
     <>
-      <table className="mx-auto text-base text-left text-gray-500 shadow rounded-xl overflow-hidden w-5/6 lg:w-1/2 xl:w-1/3">
+      <table className="mx-auto text-base text-left text-gray-500 shadow rounded-xl overflow-hidden w-11/12 lg:w-1/2 xl:w-1/3">
         <tbody>
           <tr>
             <th className="p-2">Name:</th>
@@ -30,10 +31,17 @@ const IndividualReserved = ({ client }) => {
             <th className="p-2">Hotel:</th>
             <td className="capitalize">{client?.formData?.hotelSelect}</td>
           </tr>
-          <tr>
-            <th className="p-2">Room Number:</th>
-            <td className="capitalize">{client?.formData?.roomNumber}</td>
-          </tr>
+          {client.formData?.roomNumber ? (
+            <>
+              <tr>
+                <th className="p-2">Room Number:</th>
+                <td className="capitalize">{client?.formData?.roomNumber}</td>
+              </tr>
+            </>
+          ) : (
+            <></>
+          )}
+
           <tr>
             <th className="p-2">Additional:</th>
             <td className="capitalize">{client?.formData?.additional}</td>
@@ -52,10 +60,22 @@ const IndividualReserved = ({ client }) => {
               {purchasedDate.toLocaleDateString("en-CA")}
             </td>
           </tr>
-          <tr>
-            <th className="p-2">Country</th>
-            <td>{client.address?.country_code}</td>
-          </tr>
+
+          {client?.tourRep ? (
+            <>
+              <tr>
+                <th className="p-2">Tour Rep:</th>
+                <td className="capitalize">{client?.tourRep}</td>
+              </tr>
+            </>
+          ) : (
+            <>
+              <tr>
+                <th className="p-2">Country</th>
+                <td>{client.address?.country_code}</td>
+              </tr>
+            </>
+          )}
         </tbody>
       </table>
 
@@ -63,7 +83,7 @@ const IndividualReserved = ({ client }) => {
         <>
           {client.formData["Tour1"] !== "- undefined" ? (
             <>
-              <table className="mx-auto text-base text-left text-gray-500 shadow rounded-xl overflow-hidden w-5/6 lg:w-1/2 xl:w-1/3">
+              <table className="mx-auto text-base text-left text-gray-500 shadow rounded-xl overflow-hidden w-11/12 lg:w-1/2 xl:w-1/3">
                 <tbody>
                   <tr className="">
                     <th className="p-2 w-2/5">Tour:</th>
@@ -97,7 +117,7 @@ const IndividualReserved = ({ client }) => {
           {client.formData["Tour2"] !== "- undefined" ? (
             <>
               {" "}
-              <table className="mx-auto text-base text-left text-gray-500 shadow rounded-xl overflow-hidden w-5/6 lg:w-1/2 xl:w-1/3">
+              <table className="mx-auto text-base text-left text-gray-500 shadow rounded-xl overflow-hidden w-11/12 lg:w-1/2 xl:w-1/3">
                 <tbody>
                   <tr>
                     <th className="p-2 w-2/5">Tour:</th>
@@ -130,7 +150,7 @@ const IndividualReserved = ({ client }) => {
           {client.formData["Tour3"] !== "- undefined" ? (
             <>
               {" "}
-              <table className="mx-auto text-base text-left text-gray-500 shadow rounded-xl overflow-hidden w-5/6 lg:w-1/2 xl:w-1/3">
+              <table className="mx-auto text-base text-left text-gray-500 shadow rounded-xl overflow-hidden w-11/12 lg:w-1/2 xl:w-1/3">
                 <tbody>
                   <tr>
                     <th className="p-2 w-2/5">Tour:</th>
@@ -163,7 +183,7 @@ const IndividualReserved = ({ client }) => {
           {client.formData["Tour4"] !== "- undefined" ? (
             <>
               {" "}
-              <table className="mx-auto text-base text-left text-gray-500 shadow rounded-xl overflow-hidden w-5/6 lg:w-1/2 xl:w-1/3">
+              <table className="mx-auto text-base text-left text-gray-500 shadow rounded-xl overflow-hidden w-11/12 lg:w-1/2 xl:w-1/3">
                 <tbody>
                   <tr>
                     <th className="p-2 w-2/5">Tour:</th>
