@@ -12,7 +12,6 @@ import {
 } from "firebase/firestore";
 import { auth, db } from "../../config/firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import IndividualUser from "../../../components/TravelAgentComponents/IndividualUser";
 import IndividualAgentClientList from "../../components/TravelAgentComponents/IndividualAgentClientList";
 import IndividualAgentClientListMobile from "../../components/TravelAgentComponents/IndividualAgentClientListMobile";
 const TourRep = ({ location, data }) => {

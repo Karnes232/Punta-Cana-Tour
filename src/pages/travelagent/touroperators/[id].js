@@ -17,7 +17,7 @@ const TourRep = ({ location, data }) => {
   useEffect(() => {
     findUser(userId[3]);
   }, []);
-
+  
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
