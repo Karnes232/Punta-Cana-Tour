@@ -3,7 +3,7 @@ import Step from "./Step";
 
 const WhoWhatWhyComponent = ({ data }) => {
   return (
-    <div className="my-5 flex flex-col lg:flex-row justify-center lg:justify-around items-center lg:max-w-6xl lg:mx-auto">
+    <div className="my-5 flex flex-col justify-center lg:justify-around items-center lg:max-w-6xl lg:mx-auto">
       <Step
         title={data.faqsTitle1}
         description={data.faqsDescription1.faqsDescription1}

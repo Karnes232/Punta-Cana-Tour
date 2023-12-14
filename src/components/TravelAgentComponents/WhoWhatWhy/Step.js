@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 const Step = ({ title, description, image }) => {
   const icon = getImage(image);
   return (
-    <div className="flex flex-col justify-center items-center my-2 md:my-4 max-w-sm">
+    <div className="flex flex-col justify-center items-center my-2 md:my-4 max-w-sm lg:max-w-4xl">
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -20,7 +20,7 @@ const Step = ({ title, description, image }) => {
           {title}
         </h1>
         <p
-          className="font-montserrat text-sm md:text-base text-gray-700 max-w-xs lg:max-w-[18rem]"
+          className="font-montserrat text-sm md:text-base text-gray-700 max-w-xs lg:max-w-4xl"
           dangerouslySetInnerHTML={{ __html: description }}
         ></p>
       </motion.div>
