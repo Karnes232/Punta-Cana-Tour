@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import HiddenInputs from "./HiddenInputs";
 import ContactInfo from "./ContactInfo";
 import MoreInfo from "./MoreInfo";
@@ -35,6 +35,19 @@ const Form = ({ allTours, hotels }) => {
     Tour4: "",
     Pax4: "",
   });
+  const cartElement = useRef();
+  const [dateValidation1, setDateValidation1] = useState(false);
+  const [dateValidation2, setDateValidation2] = useState(false);
+  const [dateValidation3, setDateValidation3] = useState(false);
+  const [dateValidation4, setDateValidation4] = useState(false);
+
+  const setScrollPosition = (element) => {
+    const area = element.current.getBoundingClientRect();
+    window.scrollTo({
+      top: area.bottom,
+      behavior: "smooth",
+    });
+  };
 
   useEffect(() => {
     setFormData({
@@ -52,19 +65,51 @@ const Form = ({ allTours, hotels }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (formData.Tour1 !== "- undefined") {
+      if (formData.Date1 === "" || formData.Date1 === null) {
+        setDateValidation1(true);
+      } else {
+        setDateValidation1(false);
+      }
+    }
+    if (formData.Tour2 !== "- undefined") {
+      if (formData.Date2 === "" || formData.Date2 === null) {
+        setDateValidation2(true);
+      } else {
+        setDateValidation2(false);
+      }
+    }
+    if (formData.Tour3 !== "- undefined") {
+      if (formData.Date3 === "" || formData.Date3 === null) {
+        setDateValidation3(true);
+      } else {
+        setDateValidation3(false);
+      }
+    }
+    if (formData.Tour4 !== "- undefined") {
+      if (formData.Date4 === "" || formData.Date4 === null) {
+        setDateValidation4(true);
+      } else {
+        setDateValidation4(false);
+      }
+    }
+    setScrollPosition(cartElement);
   };
 
   const pickupTimes = useMemo(() => calculatePickUpTimes(allTours), [allTours]);
 
-  // let pickupTimes = [];
-  // allTours.nodes.forEach((tour) => {
-  //   let pickupObject = {
-  //     name: tour.name,
-  //     pickupTimes: tour.pickupTime?.internal?.content,
-  //   };
-  //   pickupTimes.push(pickupObject);
-  // });
-
+  const validationAlert = {
+    dateValidation1,
+    dateValidation2,
+    dateValidation3,
+    dateValidation4,
+  };
+  const setDateValidations = [
+    setDateValidation1,
+    setDateValidation2,
+    setDateValidation3,
+    setDateValidation4,
+  ];
   return (
     <form
       name="cart"
@@ -84,6 +129,9 @@ const Form = ({ allTours, hotels }) => {
           pickupTimes={pickupTimes}
           formData={formData}
           setFormData={setFormData}
+          validationAlert={validationAlert}
+          cartElement={cartElement}
+          setDateValidations={setDateValidations}
         />
         <div className="xl:w-[25rem] flex flex-col mt-5 xl:mt-24">
           <ContactInfo

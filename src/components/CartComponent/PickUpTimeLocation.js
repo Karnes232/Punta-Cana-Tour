@@ -6,6 +6,8 @@ const PickUpTimeLocation = ({
   formData,
   setFormData,
   index,
+  validationAlert,
+  setDateValidations,
 }) => {
   const handleChange = (e) => {
     setFormData({
@@ -13,6 +15,10 @@ const PickUpTimeLocation = ({
       [e.target.name]: e.target.value,
     });
   };
+  let dateAlert = false;
+  if (validationAlert !== undefined) {
+    dateAlert = validationAlert[`dateValidation${index + 1}`];
+  }
   return (
     <div className="flex justify-around my-2">
       <div className="relative z-10 w-2/5 group">
@@ -20,6 +26,8 @@ const PickUpTimeLocation = ({
           formData={formData}
           setFormData={setFormData}
           index={index}
+          dateAlert={dateAlert}
+          setDateValidations={setDateValidations}
         />
       </div>
       <div className="relative z-0 w-2/5 group">

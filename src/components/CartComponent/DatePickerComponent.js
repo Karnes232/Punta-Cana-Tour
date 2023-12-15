@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
 
-const DatePickerComponent = ({ formData, setFormData, index }) => {
+const DatePickerComponent = ({
+  formData,
+  setFormData,
+  index,
+  dateAlert,
+  setDateValidations,
+}) => {
+  console.log(setDateValidations);
   const [date, setDate] = useState(undefined);
   const [value, setValue] = useState({
     startDate: date,
@@ -14,13 +21,29 @@ const DatePickerComponent = ({ formData, setFormData, index }) => {
     date.setDate(date.getDate() + futureDays);
     setDate(date);
   }, []);
+
+  let bgColor = "";
+
   const handleValueChange = (newValue) => {
     setValue(newValue);
     setFormData({
       ...formData,
       [dateName]: newValue.startDate,
     });
+    if (setDateValidations !== undefined) {
+      const setData = setDateValidations[index];
+      if (newValue.startDate !== null) {
+        setData(false);
+      } else {
+        setData(true);
+      }
+    }
   };
+  if (dateAlert) {
+    bgColor = "bg-red-500 placeholder-white";
+  } else {
+    bgColor = "bg-white placeholder-gray-400";
+  }
 
   return (
     <>
@@ -33,7 +56,7 @@ const DatePickerComponent = ({ formData, setFormData, index }) => {
         value={value}
         onChange={handleValueChange}
         popoverDirection="up"
-        inputClassName="relative transition-all duration-300 py-2.5 pl-4 pr-14 w-full border-gray-300  rounded-lg tracking-wide font-light text-sm placeholder-gray-400 bg-white focus:ring disabled:opacity-40 disabled:cursor-not-allowed focus:border-blue-500 focus:ring-blue-500/20"
+        inputClassName={`relative transition-all duration-300 py-2.5 pl-4 pr-14 w-full border-gray-300  rounded-lg tracking-wide font-light text-sm  focus:ring disabled:opacity-40 disabled:cursor-not-allowed focus:border-blue-500 focus:ring-blue-500/20 ${bgColor}`}
       />
     </>
   );

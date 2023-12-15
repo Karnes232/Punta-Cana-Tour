@@ -58,7 +58,6 @@ const ContactInfo = ({ name, setName, formData, setFormData }) => {
           id="roomNumber"
           className="contactFormInput peer"
           placeholder=" "
-          required
           onChange={handleChange}
         />
         <label htmlFor="roomNumber" className="contactFormLabel">

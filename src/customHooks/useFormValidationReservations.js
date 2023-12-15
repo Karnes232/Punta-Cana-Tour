@@ -7,6 +7,7 @@ const useFormValidationReservations = (formData) => {
   ) {
     if (
       formData.Tour1 !== "- undefined" &&
+      formData.Date1 !== null &&
       formData.Date1 !== ""
       // && formData.PickUp1 !== ""
     ) {
@@ -15,6 +16,7 @@ const useFormValidationReservations = (formData) => {
       }
       if (
         formData.Tour2 !== "- undefined" &&
+        formData.Date2 !== null &&
         formData.Date2 !== ""
         // && formData.PickUp2 !== ""
       ) {
@@ -23,6 +25,7 @@ const useFormValidationReservations = (formData) => {
         }
         if (
           formData.Tour3 !== "- undefined" &&
+          formData.Date3 !== null &&
           formData.Date3 !== ""
           // && formData.PickUp3 !== ""
         ) {
@@ -31,6 +34,7 @@ const useFormValidationReservations = (formData) => {
           }
           if (
             formData.Tour4 !== "- undefined" &&
+            formData.Date4 !== null &&
             formData.Date4 !== ""
             // && formData.PickUp3 !== ""
           ) {

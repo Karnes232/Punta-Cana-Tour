@@ -11,6 +11,9 @@ export default function Cart({
   pickupTimes,
   formData,
   setFormData,
+  validationAlert,
+  cartElement,
+  setDateValidations,
 }) {
   const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } =
     useContext(CartContext);
@@ -57,7 +60,7 @@ export default function Cart({
       <ToastContainer />
       {emptyCart ? <></> : <h1 className="text-2xl font-bold mb-5">Cart</h1>}
 
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4" ref={cartElement}>
         {cartItems.map((tour, index) => {
           const image = getImage(tour.mainImage?.gatsbyImage);
           let pickupTimeList = [];
@@ -130,6 +133,8 @@ export default function Cart({
                 formData={formData}
                 setFormData={setFormData}
                 index={index}
+                validationAlert={validationAlert}
+                setDateValidations={setDateValidations}
               />
             </div>
           );
