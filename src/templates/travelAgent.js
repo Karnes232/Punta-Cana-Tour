@@ -115,7 +115,7 @@ export const Head = ({ pageContext }) => {
       />
       <link
         rel="canonical"
-        href={`https://puntacanatourstore.com/tours/${pageContext.tour.url}`}
+        href={`https://puntacanatourstore.com/travelagent/tours/${pageContext.tour.url}`}
       />
     </>
   );
