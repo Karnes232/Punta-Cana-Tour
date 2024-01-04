@@ -1,5 +1,5 @@
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
-import React from "react";
+import React, { useEffect } from "react";
 import { paypalId } from "../../data/paypalId";
 import CartPayPalWrapper from "./CartPayPalWrapper";
 import useFormValidationReservations from "../../customHooks/useFormValidationReservations";
@@ -41,6 +41,9 @@ const CartPayPal = ({ formData, allTours }) => {
   const deposit = totalCost * 0.3;
   const balance = totalCost * 0.7;
   let disabled = useFormValidationReservations(formData);
+  useEffect(() => {
+    disabled = true;
+  }, []);
 
   return (
     <div className="flex justify-center md:w-80 xl:w-96">
