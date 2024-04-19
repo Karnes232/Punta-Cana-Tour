@@ -4,6 +4,7 @@ import { Link } from "gatsby";
 
 const Logo = ({ logo }) => {
   const image = getImage(logo);
+  console.log(image)
   return (
     <>
       <div className="flex justify-center items-center overflow-hidden">
