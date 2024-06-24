@@ -8,7 +8,6 @@ const DatePickerComponent = ({
   dateAlert,
   setDateValidations,
 }) => {
-  console.log(setDateValidations);
   const [date, setDate] = useState(undefined);
   const [value, setValue] = useState({
     startDate: date,
