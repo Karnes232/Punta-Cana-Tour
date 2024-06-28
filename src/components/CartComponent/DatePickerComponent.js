@@ -15,6 +15,8 @@ const DatePickerComponent = ({
   });
   let dateName = `Date${index + 1}`;
   useEffect(() => {
+    const setData = setDateValidations[index];
+    setData(true);
     const futureDays = 0;
     const date = new Date();
     date.setDate(date.getDate() + futureDays);
@@ -39,7 +41,7 @@ const DatePickerComponent = ({
     }
   };
   if (dateAlert) {
-    bgColor = "bg-red-500 placeholder-white";
+    bgColor = "bg-red-200 placeholder-white";
   } else {
     bgColor = "bg-white placeholder-gray-400";
   }

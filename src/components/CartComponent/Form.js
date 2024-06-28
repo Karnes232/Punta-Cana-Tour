@@ -49,6 +49,16 @@ const Form = ({ allTours, hotels }) => {
     });
   };
 
+  function getFormData(object) {
+    const newFormData = new FormData();
+    newFormData.append("PickUpTime1", formData.PickUp1);
+    newFormData.append("PickUpTime2", formData.PickUp2);
+    newFormData.append("PickUpTime3", formData.PickUp3);
+    newFormData.append("PickUpTime4", formData.PickUp4);
+    Object.keys(object).forEach((key) => newFormData.append(key, object[key]));
+    return newFormData;
+  }
+
   useEffect(() => {
     setFormData({
       ...formData,
@@ -63,37 +73,66 @@ const Form = ({ allTours, hotels }) => {
     });
   }, [cartItems]);
 
+  // const checkDates = async () => {
+  //   if (formData.Tour1 !== "- undefined") {
+  //     if (formData.Date1 === "" || formData.Date1 === null) {
+  //       setDateValidation1(true);
+  //     } else {
+  //       setDateValidation1(false);
+  //     }
+  //   }
+  //   if (formData.Tour2 !== "- undefined") {
+  //     if (formData.Date2 === "" || formData.Date2 === null) {
+  //       setDateValidation2(true);
+  //     } else {
+  //       setDateValidation2(false);
+  //     }
+  //   }
+  //   if (formData.Tour3 !== "- undefined") {
+  //     if (formData.Date3 === "" || formData.Date3 === null) {
+  //       setDateValidation3(true);
+  //     } else {
+  //       setDateValidation3(false);
+  //     }
+  //   }
+  //   if (formData.Tour4 !== "- undefined") {
+  //     if (formData.Date4 === "" || formData.Date4 === null) {
+  //       setDateValidation4(true);
+  //     } else {
+  //       setDateValidation4(false);
+  //     }
+  //   }
+
+  // };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (formData.Tour1 !== "- undefined") {
-      if (formData.Date1 === "" || formData.Date1 === null) {
-        setDateValidation1(true);
-      } else {
-        setDateValidation1(false);
-      }
+
+    if (
+      dateValidation1 === false &&
+      dateValidation2 === false &&
+      dateValidation3 === false &&
+      dateValidation4 === false
+    ) {
+      const dataFromForm = getFormData(formData);
+      fetch("/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams(dataFromForm).toString(),
+      }).then(() => {
+        console.log("Form successfully submitted");
+      });
     }
-    if (formData.Tour2 !== "- undefined") {
-      if (formData.Date2 === "" || formData.Date2 === null) {
-        setDateValidation2(true);
-      } else {
-        setDateValidation2(false);
-      }
+    if (
+      dateValidation1 === true ||
+      dateValidation2 === true ||
+      dateValidation3 === true ||
+      dateValidation4 === true
+    ) {
+      setScrollPosition(cartElement);
     }
-    if (formData.Tour3 !== "- undefined") {
-      if (formData.Date3 === "" || formData.Date3 === null) {
-        setDateValidation3(true);
-      } else {
-        setDateValidation3(false);
-      }
-    }
-    if (formData.Tour4 !== "- undefined") {
-      if (formData.Date4 === "" || formData.Date4 === null) {
-        setDateValidation4(true);
-      } else {
-        setDateValidation4(false);
-      }
-    }
-    setScrollPosition(cartElement);
   };
 
   const pickupTimes = useMemo(() => calculatePickUpTimes(allTours), [allTours]);
@@ -149,8 +188,8 @@ const Form = ({ allTours, hotels }) => {
         </div>
       </div>
       <HiddenInputs formData={formData} setFormData={setFormData} />
-      {/* <Button /> */}
-      <CartPayPal formData={formData} allTours={allTours} />
+      <Button />
+      {/* <CartPayPal formData={formData} allTours={allTours} /> */}
     </form>
   );
 };
