@@ -112,7 +112,9 @@ export default function Cart({
                           const cartItem = cartItems.find(
                             (tour) => tour.name === tour.name,
                           );
-                          if (cartItem.quantity === 1) {
+                          if (tour.quantity === 1) {
+                            const setData = setDateValidations[index];
+                            setData(false);
                             handleRemoveFromCart(tour);
                           } else {
                             removeFromCart(tour);

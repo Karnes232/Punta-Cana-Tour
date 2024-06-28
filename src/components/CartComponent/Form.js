@@ -107,7 +107,6 @@ const Form = ({ allTours, hotels }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     if (
       dateValidation1 === false &&
       dateValidation2 === false &&
