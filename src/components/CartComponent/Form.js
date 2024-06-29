@@ -9,6 +9,7 @@ import collectUserData from "../../customHooks/collectUserData";
 import CartPayPal from "../PayPalButtonWrapper/CartPayPal";
 const Form = ({ allTours, hotels }) => {
   const [name, setName] = useState("");
+  const [host, setHost] = useState("");
   const { clearCart, cartItems } = useContext(CartContext);
   const [formData, setFormData] = useState({
     "form-name": "cart",
@@ -49,6 +50,8 @@ const Form = ({ allTours, hotels }) => {
     });
   };
 
+  let redirectHref = `${host}/contact/thankyou/?name=${formData.name}`;
+
   function getFormData(object) {
     const newFormData = new FormData();
     newFormData.append("PickUpTime1", formData.PickUp1);
@@ -60,6 +63,7 @@ const Form = ({ allTours, hotels }) => {
   }
 
   useEffect(() => {
+    setHost(window.location.origin);
     setFormData({
       ...formData,
       Tour1: `- ` + cartItems[0]?.name,
@@ -72,38 +76,6 @@ const Form = ({ allTours, hotels }) => {
       Pax4: `- ` + cartItems[3]?.quantity,
     });
   }, [cartItems]);
-
-  // const checkDates = async () => {
-  //   if (formData.Tour1 !== "- undefined") {
-  //     if (formData.Date1 === "" || formData.Date1 === null) {
-  //       setDateValidation1(true);
-  //     } else {
-  //       setDateValidation1(false);
-  //     }
-  //   }
-  //   if (formData.Tour2 !== "- undefined") {
-  //     if (formData.Date2 === "" || formData.Date2 === null) {
-  //       setDateValidation2(true);
-  //     } else {
-  //       setDateValidation2(false);
-  //     }
-  //   }
-  //   if (formData.Tour3 !== "- undefined") {
-  //     if (formData.Date3 === "" || formData.Date3 === null) {
-  //       setDateValidation3(true);
-  //     } else {
-  //       setDateValidation3(false);
-  //     }
-  //   }
-  //   if (formData.Tour4 !== "- undefined") {
-  //     if (formData.Date4 === "" || formData.Date4 === null) {
-  //       setDateValidation4(true);
-  //     } else {
-  //       setDateValidation4(false);
-  //     }
-  //   }
-
-  // };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -122,6 +94,7 @@ const Form = ({ allTours, hotels }) => {
         body: new URLSearchParams(dataFromForm).toString(),
       }).then(() => {
         console.log("Form successfully submitted");
+        collectUserData(dataFromForm, clearCart, redirectHref);
       });
     }
     if (
