@@ -79,11 +79,6 @@ exports.createPages = async ({ graphql, actions }) => {
                 }
                 gatsbyImage(placeholder: BLURRED, formats: WEBP, width: 2000)
               }
-              ... on ContentfulBlogPost {
-                contentful_id
-                title
-                slug
-              }
             }
           }
         }
