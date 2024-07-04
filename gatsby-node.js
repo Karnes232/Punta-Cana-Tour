@@ -52,10 +52,47 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      allContentfulBlogPost {
+        nodes {
+          title
+          tags
+          slug
+          publishedDate(formatString: "MMMM do, YYYY")
+          description
+          category
+          backgroundImage {
+            gatsbyImage(width: 2000, placeholder: BLURRED, formats: WEBP)
+            url
+          }
+          reference {
+            name
+          }
+          body {
+            raw
+            references {
+              ... on ContentfulAsset {
+                contentful_id
+                __typename
+                title
+                file {
+                  url
+                }
+                gatsbyImage(placeholder: BLURRED, formats: WEBP, width: 2000)
+              }
+              ... on ContentfulBlogPost {
+                contentful_id
+                title
+                slug
+              }
+            }
+          }
+        }
+      }
     }
   `);
   const tourTemplate = path.resolve(`src/templates/tour.js`);
   const travelAgentTemplate = path.resolve(`src/templates/travelAgent.js`);
+  const blogTemplate = path.resolve(`src/templates/blog.js`);
   queryResults.data.allContentfulTour.nodes.forEach((node) => {
     createPage({
       path: `/tours/${node.url}`,
@@ -98,6 +135,16 @@ exports.createPages = async ({ graphql, actions }) => {
         gImage:
           queryResults.data.allContentfulLayout.edges[0].node.footerBackground
             .gatsbyImage,
+      },
+    });
+  });
+  queryResults.data.allContentfulBlogPost.nodes.forEach((node) => {
+    createPage({
+      path: `/blog/${node.slug}`,
+      component: blogTemplate,
+      context: {
+        blog: node,
+        layout: queryResults.data.allContentfulLayout.edges[0].node,
       },
     });
   });
