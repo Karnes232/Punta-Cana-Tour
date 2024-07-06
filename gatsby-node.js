@@ -140,6 +140,7 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         blog: node,
         layout: queryResults.data.allContentfulLayout.edges[0].node,
+        blogList: queryResults.data.allContentfulBlogPost.nodes,
       },
     });
   });

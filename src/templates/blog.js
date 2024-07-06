@@ -4,7 +4,14 @@ import Layout from "../components/layout";
 import BlogBody from "../components/BlogComponents/BlogBody";
 import HeroImage from "../components/BlogComponents/HeroImage";
 import Seo from "../components/seo";
+import Recommendations from "../components/BlogComponents/Recommendations";
 const blog = ({ pageContext }) => {
+  let recommendationList = [];
+  pageContext.blogList.forEach((blog) => {
+    if (pageContext.blog.category === blog.category) {
+      recommendationList.push(blog);
+    }
+  });
   return (
     <Layout
       logo={pageContext.layout.logo}
@@ -18,6 +25,7 @@ const blog = ({ pageContext }) => {
     >
       <HeroImage backgroundImages={pageContext.blog.backgroundImage} />
       <BlogBody context={pageContext.blog.body} />
+      <Recommendations list={recommendationList} />
     </Layout>
   );
 };
