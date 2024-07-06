@@ -3,6 +3,7 @@ import Layout from "../components/layout";
 
 import BlogBody from "../components/BlogComponents/BlogBody";
 import HeroImage from "../components/BlogComponents/HeroImage";
+import Seo from "../components/seo";
 const blog = ({ pageContext }) => {
   return (
     <Layout
@@ -18,6 +19,19 @@ const blog = ({ pageContext }) => {
       <HeroImage backgroundImages={pageContext.blog.backgroundImage} />
       <BlogBody context={pageContext.blog.body} />
     </Layout>
+  );
+};
+
+export const Head = ({ pageContext }) => {
+  return (
+    <>
+      <Seo
+        title={pageContext.blog.title}
+        description={pageContext.blog.description}
+        keywords={pageContext.blog.tags.join(", ")}
+      />
+      <link rel="canonical" href="https://puntacanatourstore.com/contact/" />
+    </>
   );
 };
 
