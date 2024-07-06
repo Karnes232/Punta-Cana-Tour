@@ -92,13 +92,13 @@ const BlogBody = ({ context }) => {
         });
         const imageGatsby = getImage(image.gatsbyImage);
         return (
-          <>
+          <div className="flex justify-center items-center lg:justify-start">
             <GatsbyImage
               image={imageGatsby}
               alt={image.title}
-              className="rounded-lg w-[20rem] mb-4"
+              className="rounded-lg w-[20rem] mb-4 lg:w-[30rem]"
             />
-          </>
+          </div>
         );
       },
       // [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
