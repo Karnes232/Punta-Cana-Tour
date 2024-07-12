@@ -14,7 +14,7 @@ const blog = ({ pageContext }) => {
       recommendationList.push(blog);
     }
   });
-  console.log(pageContext.blog.reference.url);
+  console.log(pageContext.blog.category.toLowerCase());
   return (
     <Layout
       logo={pageContext.layout.logo}
@@ -31,7 +31,7 @@ const blog = ({ pageContext }) => {
       <BlogBody context={pageContext.blog.body} />
       <ActivityLink
         name={pageContext.blog.reference.name}
-        url={pageContext.blog.reference.url}
+        url={`/${pageContext.blog.category.toLowerCase()}/${pageContext.blog.reference.url}`}
       />
       <Recommendations list={recommendationList} />
     </Layout>
