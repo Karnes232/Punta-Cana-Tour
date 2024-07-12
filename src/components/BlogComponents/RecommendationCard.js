@@ -2,7 +2,6 @@ import { Link } from "gatsby";
 import React from "react";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 const RecommendationCard = ({ blog }) => {
-  console.log(blog);
   const image = getImage(blog.backgroundImage[0].gatsbyImage);
   return (
     <>

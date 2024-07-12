@@ -5,6 +5,8 @@ import BlogBody from "../components/BlogComponents/BlogBody";
 import HeroImage from "../components/BlogComponents/HeroImage";
 import Seo from "../components/seo";
 import Recommendations from "../components/BlogComponents/Recommendations";
+import Button from "../components/BlogComponents/Button";
+import ActivityLink from "../components/BlogComponents/ActivityLink";
 const blog = ({ pageContext }) => {
   let recommendationList = [];
   pageContext.blogList.forEach((blog) => {
@@ -12,6 +14,7 @@ const blog = ({ pageContext }) => {
       recommendationList.push(blog);
     }
   });
+  console.log(pageContext.blog.reference.url);
   return (
     <Layout
       logo={pageContext.layout.logo}
@@ -24,7 +27,12 @@ const blog = ({ pageContext }) => {
       color="black"
     >
       <HeroImage backgroundImages={pageContext.blog.backgroundImage} />
+      {/* <Button text="Book Now" url={pageContext.blog.reference.url} /> */}
       <BlogBody context={pageContext.blog.body} />
+      <ActivityLink
+        name={pageContext.blog.reference.name}
+        url={pageContext.blog.reference.url}
+      />
       <Recommendations list={recommendationList} />
     </Layout>
   );

@@ -33,6 +33,14 @@ exports.createPages = async ({ graphql, actions }) => {
           tourPageDescription2 {
             tourPageDescription2
           }
+          blog_post {
+            title
+            description
+            slug
+            backgroundImage {
+              gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 400)
+            }
+          }
         }
       }
       allContentfulLayout {
@@ -66,6 +74,7 @@ exports.createPages = async ({ graphql, actions }) => {
           }
           reference {
             name
+            url
           }
           body {
             raw

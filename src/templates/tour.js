@@ -24,7 +24,7 @@ const Tour = ({ pageContext }) => {
     email,
     gImage,
   } = pageContext;
-
+  console.log(tour.blog_post);
   const notifyAddedToCart = (tour) =>
     toast.success(`${tour.name} added to cart!`, {
       position: "top-center",
