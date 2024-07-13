@@ -23,7 +23,9 @@ const Index = ({ data }) => {
       color="black"
     >
       <HeroComponent
-        gImage={data.allContentfulBlogLayout.nodes[0].transferBlogImage.gatsbyImage}
+        gImage={
+          data.allContentfulBlogLayout.nodes[0].transferBlogImage.gatsbyImage
+        }
         heroText="Transfer Blogs"
         button={false}
       />

@@ -7,7 +7,6 @@ import TextComponent from "../../../components/BlogComponents/TextComponent";
 import PostList from "../../../components/BlogComponents/PostList";
 
 const Index = ({ data }) => {
-
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}

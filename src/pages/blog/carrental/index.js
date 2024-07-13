@@ -7,7 +7,7 @@ import TextComponent from "../../../components/BlogComponents/TextComponent";
 import PostList from "../../../components/BlogComponents/PostList";
 
 const Index = ({ data }) => {
-    console.log(data.allContentfulBlogPost)
+  console.log(data.allContentfulBlogPost);
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -24,7 +24,9 @@ const Index = ({ data }) => {
       color="black"
     >
       <HeroComponent
-        gImage={data.allContentfulBlogLayout.nodes[0].carRentalBlogImage.gatsbyImage}
+        gImage={
+          data.allContentfulBlogLayout.nodes[0].carRentalBlogImage.gatsbyImage
+        }
         heroText="Car Rental Blogs"
         button={false}
       />

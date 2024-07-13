@@ -34,7 +34,7 @@ const Sitemap = () => {
         </Link>
       </div>
       <div className="flex justify-evenly pt-2 pb-4 mx-auto max-w-xs md:max-w-2xl md:flex-row">
-      <Link to="/travelagent">
+        <Link to="/travelagent">
           <p className="footerSitemap">Travel Agents</p>
         </Link>
       </div>

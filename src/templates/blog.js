@@ -18,7 +18,6 @@ const blog = ({ pageContext }) => {
         recommendationList.push(blog);
       }
     }
-    
   });
   return (
     <Layout
@@ -33,14 +32,14 @@ const blog = ({ pageContext }) => {
     >
       <HeroImage backgroundImages={pageContext.blog.backgroundImage} />
       <BlogBody context={pageContext.blog.body} />
-      {pageContext.blog.category === "Tours" &&
+      {pageContext.blog.category === "Tours" && (
         <ActivityLink
-        name={pageContext.blog?.reference?.name}
-        url={`/${pageContext.blog.category.toLowerCase().replaceAll(/\s/g,'')}/${
-          pageContext.blog.reference.url
-        }`}
-      /> 
-      }
+          name={pageContext.blog?.reference?.name}
+          url={`/${pageContext.blog.category
+            .toLowerCase()
+            .replaceAll(/\s/g, "")}/${pageContext.blog.reference.url}`}
+        />
+      )}
       <Recommendations list={recommendationList} />
     </Layout>
   );

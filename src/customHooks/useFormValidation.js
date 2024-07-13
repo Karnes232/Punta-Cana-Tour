@@ -1,4 +1,3 @@
-
 const useFormValidation = (formData) => {
   if (
     formData.name !== "" &&
