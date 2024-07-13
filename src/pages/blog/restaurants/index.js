@@ -65,7 +65,7 @@ export const query = graphql`
         }
       }
     }
-    allContentfulBlogPost(filter: { category: { eq: "Resturants" } }) {
+    allContentfulBlogPost(filter: { category: { eq: "Restaurants" } }) {
       nodes {
         title
         description

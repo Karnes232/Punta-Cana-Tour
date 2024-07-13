@@ -65,7 +65,7 @@ const index = ({ data }) => {
         <BlogCategory
           title="Resturants Blogs"
           gImage={data.allContentfulBlogLayout.nodes[0].resturantBlogImage}
-          url="restaurant"
+          url="restaurants"
         />
       </div>
     </Layout>
