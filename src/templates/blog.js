@@ -14,7 +14,7 @@ const blog = ({ pageContext }) => {
       recommendationList.push(blog);
     }
   });
-  console.log(pageContext.blog.category.toLowerCase());
+  console.log(pageContext.blog.category)
   return (
     <Layout
       logo={pageContext.layout.logo}
@@ -29,10 +29,20 @@ const blog = ({ pageContext }) => {
       <HeroImage backgroundImages={pageContext.blog.backgroundImage} />
       {/* <Button text="Book Now" url={pageContext.blog.reference.url} /> */}
       <BlogBody context={pageContext.blog.body} />
-      <ActivityLink
-        name={pageContext.blog.reference.name}
-        url={`/${pageContext.blog.category.toLowerCase()}/${pageContext.blog.reference.url}`}
-      />
+      {pageContext.blog.category === "Tours" &&
+        <ActivityLink
+        name={pageContext.blog?.reference?.name}
+        url={`/${pageContext.blog.category.toLowerCase().replaceAll(/\s/g,'')}/${
+          pageContext.blog.reference.url
+        }`}
+      /> 
+      }
+      {/* <ActivityLink
+        name={pageContext.blog?.reference?.name}
+        url={`/${pageContext.blog.category.toLowerCase().replaceAll(/\s/g,'')}/${
+          pageContext.blog.reference.url
+        }`}
+      /> */}
       <Recommendations list={recommendationList} />
     </Layout>
   );

@@ -18,7 +18,7 @@ const RecommendationCard = ({ blog }) => {
             <div className="font-bold h-8 text-base mb-2 flex justify-between">
               <div className="truncate mr-3">{blog.title}</div>
             </div>
-            <p className="text-gray-700 h-32 text-sm whitespace-pre-wrap truncate">
+            <p className="text-gray-700 h-32 text-xs whitespace-pre-wrap truncate">
               {blog.description}
             </p>
           </div>

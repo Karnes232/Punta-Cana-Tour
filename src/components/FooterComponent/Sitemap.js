@@ -18,8 +18,8 @@ const Sitemap = () => {
         <Link to="/contact">
           <p className="footerSitemap">Contact</p>
         </Link>
-        <Link to="/travelagent">
-          <p className="footerSitemap">Travel Agents</p>
+        <Link to="/blog">
+          <p className="footerSitemap">Blogs</p>
         </Link>
       </div>
       <div className="flex justify-evenly pt-2 pb-4 mx-auto max-w-xs md:max-w-2xl md:flex-row">
@@ -31,6 +31,11 @@ const Sitemap = () => {
         </Link>
         <Link to="/information/termsconditions">
           <p className="footerSitemap text-center">Terms & Conditions</p>
+        </Link>
+      </div>
+      <div className="flex justify-evenly pt-2 pb-4 mx-auto max-w-xs md:max-w-2xl md:flex-row">
+      <Link to="/travelagent">
+          <p className="footerSitemap">Travel Agents</p>
         </Link>
       </div>
     </div>

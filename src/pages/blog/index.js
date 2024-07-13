@@ -2,6 +2,8 @@ import React from "react";
 import Layout from "../../components/layout";
 import { graphql } from "gatsby";
 import Seo from "../../components/seo";
+import HeroComponent from "../../components/HeroComponent/HeroComponent";
+import BlogCategory from "../../components/BlogComponents/BlogCategory";
 
 const index = ({ data }) => {
   return (
@@ -18,7 +20,55 @@ const index = ({ data }) => {
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
       color="black"
-    ></Layout>
+    >
+      <HeroComponent
+        gImage={data.allContentfulBlogLayout.nodes[0].mainImage.gatsbyImage}
+        heroText="Blog Posts"
+        button={false}
+      />
+      <div className="flex flex-col xl:mt-5 md:flex-row md:flex-wrap md:justify-evenly md:space-x-10 max-w-5xl xl:max-w-6xl mx-auto">
+        <BlogCategory
+          title="Tour Blogs"
+          gImage={data.allContentfulBlogLayout.nodes[0].tourBlogImage}
+          url="tours"
+        />
+        <BlogCategory
+          title="Transfer Blogs"
+          gImage={data.allContentfulBlogLayout.nodes[0].transferBlogImage}
+          url="transfer"
+        />
+        <BlogCategory
+          title="Hotel Blogs"
+          gImage={data.allContentfulBlogLayout.nodes[0].hotelBlogImage}
+          url="hotel"
+        />
+        <BlogCategory
+          title="Car Rental Blogs"
+          gImage={data.allContentfulBlogLayout.nodes[0].carRentalBlogImage}
+          url="carrental"
+        />
+        <BlogCategory
+          title="Flights Blogs"
+          gImage={data.allContentfulBlogLayout.nodes[0].flightsBlogImage}
+          url="flights"
+        />
+        <BlogCategory
+          title="Property Blogs"
+          gImage={data.allContentfulBlogLayout.nodes[0].propertyBlogImage}
+          url="property"
+        />
+        <BlogCategory
+          title="Attractions Blogs"
+          gImage={data.allContentfulBlogLayout.nodes[0].attractionsBlogImage}
+          url="attractions"
+        />
+        <BlogCategory
+          title="Resturants Blogs"
+          gImage={data.allContentfulBlogLayout.nodes[0].resturantBlogImage}
+          url="resturants"
+        />
+      </div>
+    </Layout>
   );
 };
 
@@ -41,15 +91,35 @@ export const query = graphql`
         }
       }
     }
-    allContentfulAboutPageContent {
-      edges {
-        node {
-          aboutHero {
-            gatsbyImage(width: 1920, formats: WEBP)
-            file {
-              url
-            }
-          }
+    allContentfulBlogLayout {
+      nodes {
+        page
+        mainImage {
+          gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 2000)
+        }
+        tourBlogImage {
+          gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 2000)
+        }
+        transferBlogImage {
+          gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 2000)
+        }
+        hotelBlogImage {
+          gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 2000)
+        }
+        carRentalBlogImage {
+          gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 2000)
+        }
+        flightsBlogImage {
+          gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 2000)
+        }
+        propertyBlogImage {
+          gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 2000)
+        }
+        attractionsBlogImage {
+          gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 2000)
+        }
+        resturantBlogImage {
+          gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 2000)
         }
       }
     }

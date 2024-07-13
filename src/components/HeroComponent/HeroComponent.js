@@ -55,7 +55,7 @@ const HeroComponent = ({ imageUrl, gImage, heroText, heroText2, button }) => {
           )}
         </div>
       </div>
-      <div className="h-[40vh] md:h-[35vh] lg:h-[60vh] xl:h-[80vh]"></div>
+      <div className="h-[40vh] lg:h-[60vh] xl:h-[80vh]"></div>
     </>
   );
 };
