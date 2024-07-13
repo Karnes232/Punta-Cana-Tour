@@ -51,7 +51,7 @@ export const Head = ({ pageContext }) => {
       <Seo
         title={pageContext.blog.title}
         description={pageContext.blog.description}
-        keywords={pageContext.blog.tags.join(", ")}
+        keywords={pageContext.blog?.tags?.join(", ")}
       />
       <link rel="canonical" href="https://puntacanatourstore.com/contact/" />
     </>
