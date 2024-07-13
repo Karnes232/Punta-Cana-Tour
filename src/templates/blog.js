@@ -5,16 +5,21 @@ import BlogBody from "../components/BlogComponents/BlogBody";
 import HeroImage from "../components/BlogComponents/HeroImage";
 import Seo from "../components/seo";
 import Recommendations from "../components/BlogComponents/Recommendations";
-import Button from "../components/BlogComponents/Button";
 import ActivityLink from "../components/BlogComponents/ActivityLink";
 const blog = ({ pageContext }) => {
   let recommendationList = [];
   pageContext.blogList.forEach((blog) => {
-    if (pageContext.blog.category === blog.category) {
-      recommendationList.push(blog);
+    if (blog.category === "Tours") {
+      if (pageContext.blog.category === blog.category) {
+        recommendationList.push(blog);
+      }
+    } else {
+      if (pageContext.blog.category !== "Tours") {
+        recommendationList.push(blog);
+      }
     }
+    
   });
-  console.log(pageContext.blog.category)
   return (
     <Layout
       logo={pageContext.layout.logo}
@@ -27,7 +32,6 @@ const blog = ({ pageContext }) => {
       color="black"
     >
       <HeroImage backgroundImages={pageContext.blog.backgroundImage} />
-      {/* <Button text="Book Now" url={pageContext.blog.reference.url} /> */}
       <BlogBody context={pageContext.blog.body} />
       {pageContext.blog.category === "Tours" &&
         <ActivityLink
@@ -37,12 +41,6 @@ const blog = ({ pageContext }) => {
         }`}
       /> 
       }
-      {/* <ActivityLink
-        name={pageContext.blog?.reference?.name}
-        url={`/${pageContext.blog.category.toLowerCase().replaceAll(/\s/g,'')}/${
-          pageContext.blog.reference.url
-        }`}
-      /> */}
       <Recommendations list={recommendationList} />
     </Layout>
   );

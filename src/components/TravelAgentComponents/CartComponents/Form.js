@@ -3,7 +3,6 @@ import { TravelAgentCartContext } from "../../../context/travelAgentCart";
 import CartComponent from "../CartComponents/CartComponent";
 import ContactInfo from "./ContactInfo";
 import MoreInfo from "../../CartComponent/MoreInfo";
-import Button from "../../CartComponent/Button";
 import HiddenInputs from "./HiddenInputs";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../../../config/firebase";

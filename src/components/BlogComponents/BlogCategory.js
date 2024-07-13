@@ -3,9 +3,6 @@ import { Link } from "gatsby";
 import useWindowWidth from "../../customHooks/useWindowWidth";
 
 const BlogCategory = ({ title, gImage, url }) => {
-  console.log(title);
-  console.log(gImage);
-  console.log(url);
   const windowWidth = useWindowWidth();
   let image = gImage?.gatsbyImage?.images?.fallback?.srcSet.split(",");
   const imageSrc = [];
@@ -31,7 +28,6 @@ const BlogCategory = ({ title, gImage, url }) => {
         ")",
     };
   }
-  console.log(image)
   return (
     <>
       <Link to={`/blog/${url}`}>

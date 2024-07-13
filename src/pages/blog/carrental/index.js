@@ -7,6 +7,7 @@ import TextComponent from "../../../components/BlogComponents/TextComponent";
 import PostList from "../../../components/BlogComponents/PostList";
 
 const Index = ({ data }) => {
+    console.log(data.allContentfulBlogPost)
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -23,8 +24,8 @@ const Index = ({ data }) => {
       color="black"
     >
       <HeroComponent
-        gImage={data.allContentfulBlogLayout.nodes[0].transferBlogImage.gatsbyImage}
-        heroText="Transfer Blogs"
+        gImage={data.allContentfulBlogLayout.nodes[0].carRentalBlogImage.gatsbyImage}
+        heroText="Car Rental Blogs"
         button={false}
       />
       <TextComponent
@@ -57,12 +58,12 @@ export const query = graphql`
     }
     allContentfulBlogLayout {
       nodes {
-        transferBlogImage {
+        carRentalBlogImage {
           gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 2000)
         }
       }
     }
-    allContentfulBlogPost(filter: { category: { eq: "Transfer" } }) {
+    allContentfulBlogPost(filter: { category: { eq: "Car Rental" } }) {
       nodes {
         title
         description
