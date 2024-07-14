@@ -98,28 +98,28 @@ export const query = graphql`
           gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 2000)
         }
         tourBlogImage {
-          gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 2000)
+          gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 400)
         }
         transferBlogImage {
-          gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 2000)
+          gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 400)
         }
         hotelBlogImage {
-          gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 2000)
+          gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 400)
         }
         carRentalBlogImage {
-          gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 2000)
+          gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 400)
         }
         flightsBlogImage {
-          gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 2000)
+          gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 400)
         }
         propertyBlogImage {
-          gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 2000)
+          gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 400)
         }
         attractionsBlogImage {
-          gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 2000)
+          gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 400)
         }
         resturantBlogImage {
-          gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 2000)
+          gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 400)
         }
       }
     }
