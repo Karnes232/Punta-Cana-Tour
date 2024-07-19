@@ -27,7 +27,6 @@ const Index = ({ data }) => {
         heroText="Tour Blogs"
         button={false}
       />
-      <div>test</div>
       <TextComponent
         title="Blog Posts"
         className="my-5 2xl:mb-2 2xl:mt-10 text-2xl md:text-3xl"
