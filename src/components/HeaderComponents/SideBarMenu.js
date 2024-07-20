@@ -34,10 +34,17 @@ const SideBarMenu = ({ toggled, setToggled }) => {
               <SubMenu label="Transfers" className="hamburger">
                 <MenuItem
                   component={
-                    <Link to="/transfers/punta-cana" className="hamburger" />
+                    <Link to="/transfers/punta-cana" className="no-underline font-lato uppercase text-sm" />
                   }
                 >
-                  <p className="hamburger">Local Transfers</p>
+                  <p>Punta Cana</p>
+                </MenuItem>
+                <MenuItem
+                  component={
+                    <Link to="/transfers/dominican-republic" className="no-underline font-lato uppercase text-sm" />
+                  }
+                >
+                  <p>Other Cities</p>
                 </MenuItem>
               </SubMenu>
               <MenuItem component={<Link to="/about" className="hamburger" />}>
