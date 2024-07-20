@@ -1,10 +1,10 @@
 import React from "react";
 
-const TransferInfo = ({ formData, handleChange }) => {
+const TransferInfo = ({ formData, handleChange, local }) => {
   return (
     <>
       <div className="flex flex-col w-full lg:flex-row lg:gap-10 lg:justify-between">
-        <div className="lg:w-1/2">
+        <div className="lg:w-1/2 flex flex-col justify-center lg:space-y-4">
           <div className="relative z-0 mb-2 xl:mb-0 w-full group">
             <input
               type="radio"
@@ -70,21 +70,25 @@ const TransferInfo = ({ formData, handleChange }) => {
               Passengers
             </label>
           </div>
-          <div className="relative z-0 mb-2 w-full group">
-            <input
-              type="text"
-              name="flightNumber"
-              id="flightNumber"
-              className="peer transferFormInput"
-              placeholder=" "
-              required
-              value={formData.flightNumber}
-              onChange={handleChange}
-            />
-            <label htmlFor="flightNumber" className="transferFormLabel">
-              Flight Number
-            </label>
-          </div>
+          {local ? (
+            <div className="relative z-0 mb-2 w-full group">
+              <input
+                type="text"
+                name="flightNumber"
+                id="flightNumber"
+                className="peer transferFormInput"
+                placeholder=" "
+                required
+                value={formData.flightNumber}
+                onChange={handleChange}
+              />
+              <label htmlFor="flightNumber" className="transferFormLabel">
+                Flight Number
+              </label>
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </>

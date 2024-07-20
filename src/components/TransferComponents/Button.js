@@ -19,7 +19,7 @@ const Button = ({ amount, formData, disabled, vehicle }) => {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(newFormData).toString(),
     }).then(() => {
-        window.location.href = redirectHref;
+      window.location.href = redirectHref;
     });
   };
   return (

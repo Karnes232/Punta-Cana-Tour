@@ -93,7 +93,7 @@ export const query = graphql`
         }
       }
     }
-    allContentfulTransferPageContent {
+    allContentfulTransferPageContent(filter: { page: { eq: "Punta Cana" } }) {
       edges {
         node {
           title

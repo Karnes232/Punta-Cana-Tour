@@ -1,12 +1,15 @@
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import ContactInfo from "./ContactInfo";
 import TransferInfo from "./TransferInfo";
-import HotelSelect from "./HotelSelect";
 import DateTime from "./DateTime";
+import CitySelect from "./CitySelect";
 
-const Form = ({ data, formData, setFormData, hotels, handleSubmit }) => {
+const FormDominicanRepublic = ({ data, formData, setFormData, cityList }) => {
   const image = getImage(data.gatsbyImage);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   const handleChange = ({ target }) => {
     setFormData({
       ...formData,
@@ -32,31 +35,18 @@ const Form = ({ data, formData, setFormData, hotels, handleSubmit }) => {
         <TransferInfo
           formData={formData}
           handleChange={handleChange}
-          local={true}
+          local={false}
         />
         <DateTime
           formData={formData}
           handleChange={handleChange}
           setFormData={setFormData}
         />
-        <HotelSelect
-          formData={formData}
-          setFormData={setFormData}
-          hotels={hotels}
-          pickup={true}
-          dropoff={false}
-        />
-        <HotelSelect
-          formData={formData}
-          setFormData={setFormData}
-          hotels={hotels}
-          pickup={false}
-          dropoff={true}
-        />
-        
+        <CitySelect cityList={cityList} formData={formData} setFormData={setFormData} pickup={true}/>
+        <CitySelect cityList={cityList} formData={formData} setFormData={setFormData} dropoff={true}/>
       </form>
     </div>
   );
 };
 
-export default Form;
+export default FormDominicanRepublic;
