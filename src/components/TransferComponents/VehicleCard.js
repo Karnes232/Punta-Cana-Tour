@@ -2,23 +2,24 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
 import useFormValidation from "../../customHooks/useFormValidation";
 import TransferPayPalWrapper from "../PayPalButtonWrapper/TransferPayPalWrapper";
+import Button from "./Button";
 
 const VehicleCard = ({ vehicle, formData }) => {
   const image = getImage(vehicle.vehiclePhoto.gatsbyImage);
   let price = 1;
-  if (formData.zone === "1") {
+  if (formData.dropOffZone === "1") {
     price = vehicle.zone1Price;
   }
-  if (formData.zone === "2") {
+  if (formData.dropOffZone === "2") {
     price = vehicle.zone2Price;
   }
-  if (formData.zone === "3") {
+  if (formData.dropOffZone === "3") {
     price = vehicle.zone3Price;
   }
-  if (formData.zone === "4") {
+  if (formData.dropOffZone === "4") {
     price = vehicle.zone4Price;
   }
-  if (formData.zone === "5") {
+  if (formData.dropOffZone === "5") {
     price = vehicle.zone5Price;
   }
 
@@ -47,18 +48,23 @@ const VehicleCard = ({ vehicle, formData }) => {
         <p className="text-gray-700 text-xs">{vehicle.description}</p>
       </div>
 
-      <div className="px-6 pb-2 flex items-end flex-wrap">
+      <div className="px-6 pb-2 flex items-end flex-wrap justify-center">
         {price ? (
           <>
-            {" "}
-            <TransferPayPalWrapper
+            <Button
+              amount={price}
+              formData={formData}
+              disabled={disabled}
+              vehicle={vehicle}
+            />{" "}
+            {/* <TransferPayPalWrapper
               currency="USD"
               showSpinner={false}
               amount={price}
               formData={formData}
               disabled={disabled}
               vehicle={vehicle}
-            />
+            /> */}
           </>
         ) : (
           <></>

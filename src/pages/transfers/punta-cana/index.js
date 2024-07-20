@@ -17,11 +17,15 @@ const Index = ({ data }) => {
     time: "",
     date: "",
     hotelSelect: "",
-    zone: "",
+    pickUpLocation: "",
+    dropOffLocation: "",
+    pickUpZone: "",
+    dropOffZone: "",
   });
   const handleSubmit = (e) => {
     e.preventDefault();
   };
+
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}

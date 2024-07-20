@@ -1,7 +1,7 @@
 import React from "react";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { Link } from "gatsby";
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
 const LinksRight = ({ color }) => {
   return (
     <div className="hidden lg:flex lg:w-[28rem] xl:w-[35rem] lg:justify-between">
@@ -15,8 +15,11 @@ const LinksRight = ({ color }) => {
         <Menu as="div" className="relative inline-block text-left">
           <div>
             <MenuButton className={`navLinks text-${color}`}>
-              Transfers  
-              <ChevronDownIcon aria-hidden="true" className="ml-1 h-5 w-5 navLinks text-${color}" />
+              Transfers
+              <ChevronDownIcon
+                aria-hidden="true"
+                className="ml-1 h-5 w-5 navLinks text-${color}"
+              />
             </MenuButton>
           </div>
 
@@ -33,7 +36,6 @@ const LinksRight = ({ color }) => {
                   Punta Cana
                 </Link>
               </MenuItem>
-              
             </div>
             <div className="py-2">
               <MenuItem>
@@ -44,7 +46,6 @@ const LinksRight = ({ color }) => {
                   Other Cities
                 </Link>
               </MenuItem>
-              
             </div>
           </MenuItems>
         </Menu>

@@ -56,8 +56,13 @@ const TransferPayPalWrapper = ({
         />
         <input
           type="text"
-          name="hotelSelect"
-          defaultValue={formData.hotelSelect}
+          name="pickUpLocation"
+          defaultValue={formData.pickUpLocation}
+        />
+        <input
+          type="text"
+          name="dropOffLocation"
+          defaultValue={formData.dropOffLocation}
         />
         <input type="time" name="time" defaultValue={formData.time} />
         <input type="date" name="date" defaultValue={formData.date} />

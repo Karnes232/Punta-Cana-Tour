@@ -9,6 +9,21 @@ const TransferInfo = ({ formData, handleChange }) => {
             <input
               type="radio"
               name="transferType"
+              id="oneWay"
+              className=""
+              placeholder=" "
+              required
+              value="One Way"
+              onChange={handleChange}
+            />
+            <label htmlFor="oneWay" className="ml-5 text-gray-500">
+              One way
+            </label>
+          </div>
+          <div className="relative z-0 mb-2 xl:mb-0 w-full group">
+            <input
+              type="radio"
+              name="transferType"
               id="Round"
               className=""
               placeholder=" "
@@ -20,22 +35,8 @@ const TransferInfo = ({ formData, handleChange }) => {
               Round Trip
             </label>
           </div>
-          <div className="relative z-0 mb-2 xl:mb-0 w-full group">
-            <input
-              type="radio"
-              name="transferType"
-              id="Arrival"
-              className=""
-              placeholder=" "
-              required
-              value="Arrival"
-              onChange={handleChange}
-            />
-            <label htmlFor="Arrival" className="ml-5 text-gray-500">
-              One way - Arrival
-            </label>
-          </div>
-          <div className="relative z-0 mb-4 w-full group">
+
+          {/* <div className="relative z-0 mb-4 w-full group">
             <input
               type="radio"
               name="transferType"
@@ -49,7 +50,7 @@ const TransferInfo = ({ formData, handleChange }) => {
             <label htmlFor="Depature" className="ml-5 text-gray-500">
               One way - Depature
             </label>
-          </div>
+          </div> */}
         </div>
         <div className="lg:w-1/2">
           <div className="relative z-0 mb-2 w-full group">

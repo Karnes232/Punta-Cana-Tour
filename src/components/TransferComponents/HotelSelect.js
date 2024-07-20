@@ -1,7 +1,12 @@
 import React from "react";
 import Select from "react-select";
-const HotelSelect = ({ formData, setFormData, hotels }) => {
-  let options = [];
+const HotelSelect = ({ formData, setFormData, hotels, pickup, dropoff }) => {
+  let options = [
+    {
+      value: "1 - Punta Cana Airport",
+      label: "Punta Cana Airport",
+    },
+  ];
   hotels?.map((zone) => {
     return zone.node.hotelName?.map((hotel) => {
       let option = {
@@ -13,11 +18,20 @@ const HotelSelect = ({ formData, setFormData, hotels }) => {
   });
   const hotelChange = (e) => {
     let selectedZone = e.value.split(" ");
-    setFormData({
-      ...formData,
-      hotelSelect: e.label,
-      zone: selectedZone[0],
-    });
+    if (pickup) {
+      setFormData({
+        ...formData,
+        pickUpLocation: e.label,
+        pickUpZone: selectedZone[0],
+      });
+    }
+    if (dropoff) {
+      setFormData({
+        ...formData,
+        dropOffLocation: e.label,
+        dropOffZone: selectedZone[0],
+      });
+    }
   };
   const style = {
     control: (base) => ({
@@ -37,7 +51,7 @@ const HotelSelect = ({ formData, setFormData, hotels }) => {
           isSearchable={true}
           name="hotelSelect"
           onChange={hotelChange}
-          placeholder="Hotel"
+          placeholder={pickup ? "Pick Up Location" : "Drop Off Location"}
           styles={style}
           required
         />

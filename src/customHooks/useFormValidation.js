@@ -6,10 +6,12 @@ const useFormValidation = (formData) => {
     formData.transferType !== "" &&
     formData.passengerCount !== "" &&
     formData.flightNumber !== "" &&
-    formData.hotelSelect !== "" &&
+    formData.pickUpLocation !== "" &&
+    formData.dropOffLocation !== "" &&
     formData.time !== "" &&
     formData.date !== "" &&
-    formData.zone !== ""
+    formData.pickUpZone !== "" &&
+    formData.dropOffZone !== ""
   ) {
     return false;
   } else {

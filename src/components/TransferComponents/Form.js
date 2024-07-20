@@ -34,6 +34,15 @@ const Form = ({ data, formData, setFormData, hotels, handleSubmit }) => {
           formData={formData}
           setFormData={setFormData}
           hotels={hotels}
+          pickup={true}
+          dropoff={false}
+        />
+        <HotelSelect
+          formData={formData}
+          setFormData={setFormData}
+          hotels={hotels}
+          pickup={false}
+          dropoff={true}
         />
         <DateTime
           formData={formData}
