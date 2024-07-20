@@ -1,27 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
+import Layout from "../../components/layout";
 import Seo from "../../components/seo";
 import { graphql } from "gatsby";
-import Layout from "../../components/layout";
-import TextComponent from "../../components/TextComponent/TextComponent";
-import Form from "../../components/TransferComponents/Form";
-import VehicleSelect from "../../components/TransferComponents/VehicleSelect";
 
-const Index = ({ data }) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    telephone: "",
-    transferType: "",
-    passengerCount: "",
-    flightNumber: "",
-    time: "",
-    date: "",
-    hotelSelect: "",
-    zone: "",
-  });
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+const index = ({ data }) => {
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -36,28 +18,7 @@ const Index = ({ data }) => {
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
       color="black"
-    >
-      <TextComponent
-        title={data.allContentfulTransferPageContent.edges[0].node.title}
-        paragraph={
-          data.allContentfulTransferPageContent.edges[0].node.description
-            .description
-        }
-        className="my-5 2xl:mb-2 2xl:mt-10 text-2xl md:text-4xl"
-        pClassName="mb-4 lg:mb-0"
-      />
-      <Form
-        data={data.allContentfulTransferPageContent.edges[0].node.airportPhoto}
-        formData={formData}
-        setFormData={setFormData}
-        hotels={data.allContentfulHotelList.edges}
-        handleSubmit={handleSubmit}
-      />
-      <VehicleSelect
-        formData={formData}
-        vehicles={data.allContentfulTransferVehicle.edges}
-      />
-    </Layout>
+    ></Layout>
   );
 };
 
@@ -89,48 +50,6 @@ export const query = graphql`
         }
       }
     }
-    allContentfulTransferPageContent {
-      edges {
-        node {
-          title
-          description {
-            description
-          }
-          airportPhoto {
-            title
-            gatsbyImage(width: 620, formats: WEBP)
-          }
-        }
-      }
-    }
-    allContentfulHotelList {
-      edges {
-        node {
-          zone
-          hotelName
-        }
-      }
-    }
-    allContentfulTransferVehicle(sort: { zone1Price: ASC }) {
-      edges {
-        node {
-          vehicleType
-          amountOfPassengers
-          description
-          zone1Price
-          zone2Price
-          zone3Price
-          zone4Price
-          zone5Price
-          vehiclePhoto {
-            gatsbyImage(formats: WEBP, width: 400)
-            file {
-              url
-            }
-          }
-        }
-      }
-    }
   }
 `;
 
@@ -148,4 +67,4 @@ export const Head = ({ data }) => {
   );
 };
 
-export default Index;
+export default index;

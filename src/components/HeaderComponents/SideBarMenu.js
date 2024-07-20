@@ -4,6 +4,7 @@ import {
   // menuClasses,
   Menu,
   MenuItem,
+  SubMenu,
   // SubMenu,
 } from "react-pro-sidebar";
 import { Link } from "gatsby";
@@ -31,11 +32,15 @@ const SideBarMenu = ({ toggled, setToggled }) => {
               <MenuItem component={<Link to="/tours" className="hamburger" />}>
                 <p className="hamburger">Tours</p>
               </MenuItem>
-              <MenuItem
-                component={<Link to="/transfers" className="hamburger" />}
-              >
-                <p className="hamburger">Transfers</p>
-              </MenuItem>
+              <SubMenu label="Transfers" className="hamburger">
+                <MenuItem
+                  component={
+                    <Link to="/transfers/punta-cana" className="hamburger" />
+                  }
+                >
+                  <p className="hamburger">Local Transfers</p>
+                </MenuItem>
+              </SubMenu>
               <MenuItem component={<Link to="/about" className="hamburger" />}>
                 <p className="hamburger">About</p>
               </MenuItem>

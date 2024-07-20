@@ -5,3 +5,7 @@
 .hamburger {
   @apply no-underline font-lato uppercase text-lg;
 }
+
+.css-z5rm24 {
+  background-color: transparent !important;
+}

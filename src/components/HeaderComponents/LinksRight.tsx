@@ -1,7 +1,7 @@
 import React from "react";
-
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { Link } from "gatsby";
-
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
 const LinksRight = ({ color }) => {
   return (
     <div className="hidden lg:flex lg:w-[28rem] xl:w-[35rem] lg:justify-between">
@@ -11,9 +11,32 @@ const LinksRight = ({ color }) => {
       <Link to="/tours" className="no-underline">
         <button className={`navLinks text-${color}`}>Tours</button>
       </Link>
-      <Link to="/transfers" className="no-underline">
-        <button className={`navLinks text-${color}`}>Transfers</button>
-      </Link>
+      <>
+        <Menu as="div" className="relative inline-block text-left">
+          <div>
+            <MenuButton className={`navLinks text-${color}`}>
+              Transfers  
+              <ChevronDownIcon aria-hidden="true" className="ml-1 h-5 w-5 navLinks text-${color}" />
+            </MenuButton>
+          </div>
+
+          <MenuItems
+            transition
+            className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+          >
+            <div className="py-1">
+              <MenuItem>
+                <Link
+                  to="/transfers/punta-cana"
+                  className={`font-lato uppercase text-${color} no-underline mx-3 data-[focus]:bg-blue-100`}
+                >
+                  Local Transfer
+                </Link>
+              </MenuItem>
+            </div>
+          </MenuItems>
+        </Menu>
+      </>
       <Link to="/about" className="no-underline">
         <button className={`navLinks text-${color}`}>About</button>
       </Link>
