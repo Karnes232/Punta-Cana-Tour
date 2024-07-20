@@ -1,6 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Button = ({ amount, formData, disabled, vehicle }) => {
+  const [host, setHost] = useState("");
+  useEffect(() => {
+    setHost(window.location.origin);
+  }, []);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const redirectHref = `${host}/contact/thankyou/?name=${formData.name}`;
+    const form = document.getElementById("transferInfo");
+    const newFormData = new FormData(form);
+    const formDataObj = {};
+    newFormData.set("price", amount);
+    newFormData.set("vehicle", vehicle.vehicleType);
+    newFormData.forEach((value, key) => (formDataObj[key] = value));
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(newFormData).toString(),
+    }).then(() => {
+        window.location.href = redirectHref;
+    });
+  };
   return (
     <>
       <form
@@ -8,6 +29,7 @@ const Button = ({ amount, formData, disabled, vehicle }) => {
         id="transferInfo"
         data-netlify="true"
         data-netlify-honeypot="bot-field"
+        onSubmit={handleSubmit}
       >
         <div className="hidden">
           <input type="hidden" name="form-name" value="transferInfo" />
