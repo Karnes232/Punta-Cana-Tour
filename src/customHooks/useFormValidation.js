@@ -5,7 +5,7 @@ const useFormValidation = (formData) => {
     formData.telephone !== "" &&
     formData.transferType !== "" &&
     formData.passengerCount !== "" &&
-    formData.flightNumber !== "" &&
+    // formData.flightNumber !== "" &&
     formData.pickUpLocation !== "" &&
     formData.dropOffLocation !== "" &&
     formData.time !== "" &&

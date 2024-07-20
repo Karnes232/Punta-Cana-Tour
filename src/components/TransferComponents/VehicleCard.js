@@ -13,13 +13,25 @@ const VehicleCard = ({ vehicle, formData }) => {
   if (formData.dropOffZone === "2") {
     price = vehicle.zone2Price;
   }
+  if (formData.pickUpZone === "2") {
+    price = vehicle.zone2Price;
+  }
   if (formData.dropOffZone === "3") {
+    price = vehicle.zone3Price;
+  }
+  if (formData.pickUpZone === "3") {
     price = vehicle.zone3Price;
   }
   if (formData.dropOffZone === "4") {
     price = vehicle.zone4Price;
   }
+  if (formData.pickUpZone === "4") {
+    price = vehicle.zone4Price;
+  }
   if (formData.dropOffZone === "5") {
+    price = vehicle.zone5Price;
+  }
+  if (formData.pickUpZone === "5") {
     price = vehicle.zone5Price;
   }
 
