@@ -42,8 +42,18 @@ const FormDominicanRepublic = ({ data, formData, setFormData, cityList }) => {
           handleChange={handleChange}
           setFormData={setFormData}
         />
-        <CitySelect cityList={cityList} formData={formData} setFormData={setFormData} pickup={true}/>
-        <CitySelect cityList={cityList} formData={formData} setFormData={setFormData} dropoff={true}/>
+        <CitySelect
+          cityList={cityList}
+          formData={formData}
+          setFormData={setFormData}
+          pickup={true}
+        />
+        <CitySelect
+          cityList={cityList}
+          formData={formData}
+          setFormData={setFormData}
+          dropoff={true}
+        />
       </form>
     </div>
   );

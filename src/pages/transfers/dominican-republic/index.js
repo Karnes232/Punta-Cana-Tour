@@ -17,7 +17,7 @@ const Index = ({ data }) => {
     pickUpLocation: "",
     dropOffLocation: "",
   });
-  console.log(formData)
+  console.log(formData);
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}

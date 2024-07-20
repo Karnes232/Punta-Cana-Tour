@@ -53,7 +53,6 @@ const Form = ({ data, formData, setFormData, hotels, handleSubmit }) => {
           pickup={false}
           dropoff={true}
         />
-        
       </form>
     </div>
   );

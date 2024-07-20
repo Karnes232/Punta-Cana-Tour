@@ -27,7 +27,6 @@ const CitySelect = ({ cityList, formData, setFormData, pickup, dropoff }) => {
           pickUpLocation: e.label,
         });
       }
-      
     }
     if (dropoff) {
       if (e === null) {
@@ -41,13 +40,15 @@ const CitySelect = ({ cityList, formData, setFormData, pickup, dropoff }) => {
           dropOffLocation: e.label,
         });
       }
-      
     }
   };
   return (
     <div className="relative mb-2 w-full group">
       <CreatableSelect
         isClearable
+        className="contactFormInput"
+        classNamePrefix="select"
+        name="citySelect"
         options={cityOptions}
         styles={style}
         required
