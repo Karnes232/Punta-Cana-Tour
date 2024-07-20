@@ -51,7 +51,7 @@ const ContactInfo = ({ name, setName, formData, setFormData }) => {
           Phone
         </label>
       </div>
-      <div className="relative z-0 mb-6 w-full group">
+      {/* <div className="relative z-0 mb-6 w-full group">
         <input
           type="text"
           name="roomNumber"
@@ -63,7 +63,7 @@ const ContactInfo = ({ name, setName, formData, setFormData }) => {
         <label htmlFor="roomNumber" className="contactFormLabel">
           Room Number
         </label>
-      </div>
+      </div> */}
     </>
   );
 };

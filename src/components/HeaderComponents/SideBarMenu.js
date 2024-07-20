@@ -5,7 +5,6 @@ import {
   Menu,
   MenuItem,
   SubMenu,
-  // SubMenu,
 } from "react-pro-sidebar";
 import { Link } from "gatsby";
 import SocialMedia from "../FooterComponent/SocialMedia";
