@@ -4,6 +4,7 @@ import Seo from "../../../components/seo";
 import { graphql } from "gatsby";
 import TextComponent from "../../../components/TextComponent/TextComponent";
 import FormDominicanRepublic from "../../../components/TransferComponents/FormDominicanRepublic";
+import VehicleCardCountry from "../../../components/TransferComponents/VehicleCardCountry";
 
 const Index = ({ data }) => {
   const [formData, setFormData] = useState({
@@ -17,7 +18,6 @@ const Index = ({ data }) => {
     pickUpLocation: "",
     dropOffLocation: "",
   });
-  console.log(formData);
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -48,6 +48,17 @@ const Index = ({ data }) => {
         setFormData={setFormData}
         cityList={data.allContentfulCityList.nodes[0].cityList}
       />
+      <div className="flex flex-col lg:flex-row lg:flex-wrap max-w-6xl mx-auto justify-center lg:justify-between xl:gap-14 items-center">
+        {data.allContentfulTransferVehicle.edges.map((vehicle, index) => {
+          return (
+            <VehicleCardCountry
+              key={index}
+              vehicle={vehicle.node}
+              formData={formData}
+            />
+          );
+        })}
+      </div>
     </Layout>
   );
 };
@@ -74,6 +85,26 @@ export const query = graphql`
     allContentfulCityList {
       nodes {
         cityList
+      }
+    }
+    allContentfulTransferVehicle(sort: { zone1Price: ASC }) {
+      edges {
+        node {
+          vehicleType
+          amountOfPassengers
+          description
+          zone1Price
+          zone2Price
+          zone3Price
+          zone4Price
+          zone5Price
+          vehiclePhoto {
+            gatsbyImage(formats: WEBP, width: 400)
+            file {
+              url
+            }
+          }
+        }
       }
     }
     allContentfulTransferPageContent(
