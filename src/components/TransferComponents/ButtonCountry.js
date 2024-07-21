@@ -32,7 +32,7 @@ const ButtonCountry = ({ formData, disabled, vehicle }) => {
         onSubmit={handleSubmit}
       >
         <div className="hidden">
-          <input type="hidden" name="form-name" value="transferInfo" />
+          <input type="hidden" name="form-name" value="transferCountryInfo" />
           <input type="text" name="name" defaultValue={formData.name} />
           <input type="email" name="email" defaultValue={formData.email} />
           <input
