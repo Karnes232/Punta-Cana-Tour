@@ -14,11 +14,14 @@ const LinksRight = ({ color }) => {
       <>
         <Menu as="div" className="relative inline-block text-left">
           <div>
-            <MenuButton className={`navLinks text-${color}`} onMouseEnter={({target})=> target.click()}>
+            <MenuButton
+              className={`navLinks text-${color}`}
+              onMouseEnter={({ target }) => target.click()}
+            >
               Transfers
               <ChevronDownIcon
                 aria-hidden="true"
-                className="ml-1 h-5 w-5 navLinks text-${color}"
+                className={`ml-1 h-5 w-5 navLinks text-${color}`}
               />
             </MenuButton>
           </div>
