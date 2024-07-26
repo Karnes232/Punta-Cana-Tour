@@ -24,7 +24,7 @@ const SideBarMenu = ({ toggled, setToggled }) => {
             <div className="mt-7 mb-10 flex justify-center items-center font-yellowtail tracking-wide text-2xl">
               Punta Cana Tour Store
             </div>
-            <Menu className="ml-4 overflow-hidden">
+            <Menu className="ml-0 overflow-hidden">
               <MenuItem component={<Link to="/" className="hamburger" />}>
                 <p className="hamburger">Home</p>
               </MenuItem>
@@ -51,6 +51,38 @@ const SideBarMenu = ({ toggled, setToggled }) => {
                   }
                 >
                   <p>Other Cities</p>
+                </MenuItem>
+              </SubMenu>
+              <SubMenu label="Recommendations" className="hamburger">
+                <MenuItem
+                  component={
+                    <Link
+                      to="/recommendations/attractions"
+                      className="no-underline font-lato uppercase text-sm"
+                    />
+                  }
+                >
+                  <p>Attractions</p>
+                </MenuItem>
+                <MenuItem
+                  component={
+                    <Link
+                      to="/recommendations/places"
+                      className="no-underline font-lato uppercase text-sm"
+                    />
+                  }
+                >
+                  <p>Places</p>
+                </MenuItem>
+                <MenuItem
+                  component={
+                    <Link
+                      to="/recommendations/restaurants"
+                      className="no-underline font-lato uppercase text-sm"
+                    />
+                  }
+                >
+                  <p>Restaurants</p>
                 </MenuItem>
               </SubMenu>
               <MenuItem component={<Link to="/about" className="hamburger" />}>
