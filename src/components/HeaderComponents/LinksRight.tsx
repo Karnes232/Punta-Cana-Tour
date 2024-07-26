@@ -14,7 +14,7 @@ const LinksRight = ({ color }) => {
       <>
         <Menu as="div" className="relative inline-block text-left">
           <div>
-            <MenuButton className={`navLinks text-${color}`}>
+            <MenuButton className={`navLinks text-${color}`} onMouseEnter={({target})=> target.click()}>
               Transfers
               <ChevronDownIcon
                 aria-hidden="true"
