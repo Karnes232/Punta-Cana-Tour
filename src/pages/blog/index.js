@@ -67,6 +67,13 @@ const index = ({ data }) => {
           gImage={data.allContentfulBlogLayout.nodes[0].resturantBlogImage}
           url="restaurants"
         />
+        <BlogCategory
+          title="Famous Places Blogs"
+          gImage={
+            data.allContentfulBlogLayout.nodes[0].famousDominicanPlacesImage
+          }
+          url="places"
+        />
       </div>
     </Layout>
   );
@@ -119,6 +126,9 @@ export const query = graphql`
           gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 400)
         }
         resturantBlogImage {
+          gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 400)
+        }
+        famousDominicanPlacesImage {
           gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 400)
         }
       }

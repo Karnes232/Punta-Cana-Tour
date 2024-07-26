@@ -3,10 +3,11 @@ import Layout from "../../../components/layout";
 import Seo from "../../../components/seo";
 import { graphql } from "gatsby";
 import HeroComponent from "../../../components/HeroComponent/HeroComponent";
-import TextComponent from "../../../components/TextComponent/TextComponent";
+import TextComponent from "../../../components/BlogComponents/TextComponent";
 import PostList from "../../../components/BlogComponents/PostList";
 
 const Index = ({ data }) => {
+  console.log(data.allContentfulBlogPost);
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -23,27 +24,16 @@ const Index = ({ data }) => {
       color="black"
     >
       <HeroComponent
-        imageUrl={
-          data.allContentfulRecommendationPagesLayout.edges[0].node.mainImage
-            .file.url
-        }
         gImage={
-          data.allContentfulRecommendationPagesLayout.edges[0].node.mainImage
+          data.allContentfulBlogLayout.nodes[0].famousDominicanPlacesImage
             .gatsbyImage
         }
-        heroText=""
-        heroText2=""
+        heroText="Famous Dominican Places Blogs"
         button={false}
       />
-
       <TextComponent
-        title={data.allContentfulRecommendationPagesLayout.edges[0].node.title}
-        paragraph={
-          data.allContentfulRecommendationPagesLayout.edges[0].node.paragraph1
-            .paragraph1
-        }
-        className="my-5 text-3xl md:text-4xl"
-        pClassName="mb-4 lg:mb-0"
+        title="Blog Posts"
+        className="my-5 2xl:mb-2 2xl:mt-10 text-2xl md:text-3xl"
       />
       <PostList list={data.allContentfulBlogPost.nodes} />
     </Layout>
@@ -69,40 +59,29 @@ export const query = graphql`
         }
       }
     }
-    allContentfulSeo(filter: { page: { eq: "Attractions" } }) {
+    allContentfulBlogLayout {
       nodes {
-        title
-        keywords
-        description {
-          description
+        famousDominicanPlacesImage {
+          gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 2000)
         }
       }
     }
-    allContentfulRecommendationPagesLayout(
-      filter: { page: { eq: "Attractions" } }
-    ) {
-      edges {
-        node {
-          title
-          paragraph1 {
-            paragraph1
-          }
-          mainImage {
-            gatsbyImage(width: 2000, placeholder: BLURRED, formats: WEBP)
-            file {
-              url
-            }
-          }
-        }
-      }
-    }
-    allContentfulBlogPost(filter: { category: { eq: "Attractions" } }) {
+    allContentfulBlogPost(filter: { category: { eq: "Famous Places" } }) {
       nodes {
         title
         description
         slug
         backgroundImage {
           gatsbyImage(formats: WEBP, width: 400, placeholder: BLURRED)
+        }
+      }
+    }
+    allContentfulSeo(filter: { page: { eq: "Blog Page" } }) {
+      nodes {
+        title
+        keywords
+        description {
+          description
         }
       }
     }
@@ -118,7 +97,7 @@ export const Head = ({ data }) => {
         description={description.description}
         keywords={keywords.join(", ")}
       />
-      <link rel="canonical" href="https://puntacanatourstore.com/transfers/" />
+      <link rel="canonical" href="https://puntacanatourstore.com/blog/" />
     </>
   );
 };

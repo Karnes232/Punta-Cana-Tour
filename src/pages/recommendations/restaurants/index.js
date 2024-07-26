@@ -2,6 +2,9 @@ import React from "react";
 import Layout from "../../../components/layout";
 import Seo from "../../../components/seo";
 import { graphql } from "gatsby";
+import HeroComponent from "../../../components/HeroComponent/HeroComponent";
+import TextComponent from "../../../components/TextComponent/TextComponent";
+import PostList from "../../../components/BlogComponents/PostList";
 
 const Index = ({ data }) => {
   return (
@@ -18,7 +21,32 @@ const Index = ({ data }) => {
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
       color="black"
-    ></Layout>
+    >
+      <HeroComponent
+        imageUrl={
+          data.allContentfulRecommendationPagesLayout.edges[0].node.mainImage
+            .file.url
+        }
+        gImage={
+          data.allContentfulRecommendationPagesLayout.edges[0].node.mainImage
+            .gatsbyImage
+        }
+        heroText=""
+        heroText2=""
+        button={false}
+      />
+
+      <TextComponent
+        title={data.allContentfulRecommendationPagesLayout.edges[0].node.title}
+        paragraph={
+          data.allContentfulRecommendationPagesLayout.edges[0].node.paragraph1
+            .paragraph1
+        }
+        className="my-5 text-3xl md:text-4xl"
+        pClassName="mb-4 lg:mb-0"
+      />
+      <PostList list={data.allContentfulBlogPost.nodes} />
+    </Layout>
   );
 };
 
@@ -47,6 +75,34 @@ export const query = graphql`
         keywords
         description {
           description
+        }
+      }
+    }
+    allContentfulBlogPost(filter: { category: { eq: "Restaurants" } }) {
+      nodes {
+        title
+        description
+        slug
+        backgroundImage {
+          gatsbyImage(formats: WEBP, width: 400, placeholder: BLURRED)
+        }
+      }
+    }
+    allContentfulRecommendationPagesLayout(
+      filter: { page: { eq: "Restaurants" } }
+    ) {
+      edges {
+        node {
+          title
+          paragraph1 {
+            paragraph1
+          }
+          mainImage {
+            gatsbyImage(width: 2000, placeholder: BLURRED, formats: WEBP)
+            file {
+              url
+            }
+          }
         }
       }
     }
