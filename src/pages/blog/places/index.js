@@ -66,7 +66,10 @@ export const query = graphql`
         }
       }
     }
-    allContentfulBlogPost(filter: { category: { eq: "Famous Places" } }) {
+    allContentfulBlogPost(
+      filter: { category: { eq: "Famous Places" } }
+      sort: { createdAt: DESC }
+    ) {
       nodes {
         title
         description

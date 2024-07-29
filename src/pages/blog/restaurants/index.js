@@ -7,7 +7,6 @@ import TextComponent from "../../../components/BlogComponents/TextComponent";
 import PostList from "../../../components/BlogComponents/PostList";
 
 const Index = ({ data }) => {
-  console.log(data.allContentfulBlogPost);
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -65,7 +64,10 @@ export const query = graphql`
         }
       }
     }
-    allContentfulBlogPost(filter: { category: { eq: "Restaurants" } }) {
+    allContentfulBlogPost(
+      filter: { category: { eq: "Restaurants" } }
+      sort: { createdAt: DESC }
+    ) {
       nodes {
         title
         description

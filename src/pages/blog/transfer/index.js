@@ -64,7 +64,10 @@ export const query = graphql`
         }
       }
     }
-    allContentfulBlogPost(filter: { category: { eq: "Transfer" } }) {
+    allContentfulBlogPost(
+      filter: { category: { eq: "Transfer" } }
+      sort: { createdAt: DESC }
+    ) {
       nodes {
         title
         description

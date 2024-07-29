@@ -65,7 +65,10 @@ export const query = graphql`
         }
       }
     }
-    allContentfulBlogPost(filter: { category: { eq: "Car Rental" } }) {
+    allContentfulBlogPost(
+      filter: { category: { eq: "Car Rental" } }
+      sort: { createdAt: DESC }
+    ) {
       nodes {
         title
         description

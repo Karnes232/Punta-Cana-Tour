@@ -64,7 +64,10 @@ export const query = graphql`
         }
       }
     }
-    allContentfulBlogPost(filter: { category: { eq: "Hotel" } }) {
+    allContentfulBlogPost(
+      filter: { category: { eq: "Hotel" } }
+      sort: { createdAt: DESC }
+    ) {
       nodes {
         title
         description

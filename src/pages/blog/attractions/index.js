@@ -65,7 +65,10 @@ export const query = graphql`
         }
       }
     }
-    allContentfulBlogPost(filter: { category: { eq: "Attractions" } }) {
+    allContentfulBlogPost(
+      filter: { category: { eq: "Attractions" } }
+      sort: { createdAt: DESC }
+    ) {
       nodes {
         title
         description
