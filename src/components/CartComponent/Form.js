@@ -16,7 +16,7 @@ const Form = ({ allTours, hotels }) => {
     name: "",
     email: "",
     phone: "",
-    // roomNumber: "",
+    country: "",
     hotelSelect: "",
     additional: "",
     Date1: "",
