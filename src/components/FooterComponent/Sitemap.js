@@ -12,7 +12,7 @@ const Sitemap = () => {
         <Link to="/tours">
           <p className="footerSitemap">Tours</p>
         </Link>
-        <Link to="/transfer/punta-cana">
+        <Link to="/transfers/punta-cana">
           <p className="footerSitemap">Transfer</p>
         </Link>
         <Link to="/recommendations/attractions">
