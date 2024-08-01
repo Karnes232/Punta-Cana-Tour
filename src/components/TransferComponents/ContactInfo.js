@@ -1,6 +1,13 @@
 import React from "react";
-
-const ContactInfo = ({ formData, handleChange }) => {
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
+const ContactInfo = ({ formData, handleChange, setFormData }) => {
+  const handlePhoneChange = (e) => {
+    setFormData({
+      ...formData,
+      phone: e
+    })
+  }
   return (
     <>
       <div className="relative z-0 mb-2 w-full group">
@@ -33,7 +40,17 @@ const ContactInfo = ({ formData, handleChange }) => {
         </label>
       </div>
       <div className="relative z-0 mb-4 w-full group">
-        <input
+      <PhoneInput
+          type="tel"
+          name="phone"
+          id="phone"
+          className="contactFormInput peer"
+          placeholder="Enter phone number"
+          value={formData.phone}
+          onChange={handlePhoneChange}
+          // onCountryChange={handleCountryChange}
+        />
+        {/* <input
           type="tel"
           name="telephone"
           id="telephone"
@@ -44,7 +61,7 @@ const ContactInfo = ({ formData, handleChange }) => {
         />
         <label htmlFor="telephone" className="contactFormLabel">
           Telephone
-        </label>
+        </label> */}
       </div>
     </>
   );

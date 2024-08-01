@@ -14,9 +14,9 @@ const ContactInfo = ({ name, setName, formData, setFormData }) => {
       phone: e
     })
   }
-  const handleCountryChange = (e) => {
-    console.log(e)
-  }
+  // const handleCountryChange = (e) => {
+  //   console.log(e)
+  // }
   return (
     <>
       <div className="relative z-0 mb-6 w-full group">
@@ -65,7 +65,7 @@ const ContactInfo = ({ name, setName, formData, setFormData }) => {
           placeholder="Enter phone number"
           value={formData.phone}
           onChange={handlePhoneChange}
-          onCountryChange={handleCountryChange}
+          // onCountryChange={handleCountryChange}
         />
         {/* <label htmlFor="phone" className="contactFormLabel">
           Phone
