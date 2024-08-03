@@ -12,6 +12,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import YouMayLikeSwiper from "../components/YouMayLikeSwiper/YouMayLikeSwiper";
 import PhotoGrid from "../components/TourPageComponents/PhotoGrid";
+import Video from "../components/TourPageComponents/Video";
 const Tour = ({ pageContext }) => {
   const {
     tour,
@@ -24,7 +25,6 @@ const Tour = ({ pageContext }) => {
     email,
     gImage,
   } = pageContext;
-  console.log(tour.blog_post);
   const notifyAddedToCart = (tour) =>
     toast.success(`${tour.name} added to cart!`, {
       position: "top-center",
@@ -114,6 +114,14 @@ const Tour = ({ pageContext }) => {
 
           <ListGroup tour={tour} />
         </div>
+        {tour.videoUrl ? (
+          <div className="">
+            <Video url={tour.videoUrl} />
+          </div>
+        ) : (
+          <></>
+        )}
+
         <div className="max-w-6xl my-5 mx-5 md:mx-10 xl:mx-auto">
           <h5 className="font-bold text-lg">You Might Also Like</h5>
           <YouMayLikeSwiper tourList={maybeYouLike} />

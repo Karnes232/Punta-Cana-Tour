@@ -4,7 +4,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
   const queryResults = await graphql(`
     query MyQuery {
-      allContentfulTour {
+      allContentfulTours {
         nodes {
           name
           price
@@ -16,6 +16,8 @@ exports.createPages = async ({ graphql, actions }) => {
           featured
           category
           keywords
+          daysAvailable
+          videoUrl
           images {
             url
             gatsbyImage(width: 1920, formats: WEBP)
@@ -99,14 +101,14 @@ exports.createPages = async ({ graphql, actions }) => {
   const tourTemplate = path.resolve(`src/templates/tour.js`);
   const travelAgentTemplate = path.resolve(`src/templates/travelAgent.js`);
   const blogTemplate = path.resolve(`src/templates/blog.js`);
-  queryResults.data.allContentfulTour.nodes.forEach((node) => {
+  queryResults.data.allContentfulTours.nodes.forEach((node) => {
     createPage({
       path: `/tours/${node.url}`,
       component: tourTemplate,
       context: {
         // This time the entire product is passed down as context
         tour: node,
-        tourList: queryResults.data.allContentfulTour.nodes,
+        tourList: queryResults.data.allContentfulTours.nodes,
         logo: queryResults.data.allContentfulLayout.edges[0].node.logo
           .gatsbyImage,
         footerBackground:
