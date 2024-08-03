@@ -5,7 +5,7 @@ import useFormValidationTransferCountry from "../../customHooks/useFormValidatio
 const VehicleCardCountry = ({ vehicle, formData }) => {
   const image = getImage(vehicle.vehiclePhoto.gatsbyImage);
   let disabled = useFormValidationTransferCountry(formData);
-
+  console.log(formData);
   return (
     <div className="max-w-xs min-w-[20rem] xl:max-w-xs my-5 mx-2 rounded-lg overflow-hidden shadow-lg">
       <GatsbyImage

@@ -2,7 +2,8 @@ const useFormValidationTransferCountry = (formData) => {
   if (
     formData.name !== "" &&
     formData.email !== "" &&
-    formData.telephone !== "" &&
+    formData.phone !== "" &&
+    formData.phone !== undefined &&
     formData.transferType !== "" &&
     formData.passengerCount !== "" &&
     formData.pickUpLocation !== "" &&

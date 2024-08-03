@@ -10,6 +10,7 @@ import CartPayPal from "../PayPalButtonWrapper/CartPayPal";
 const Form = ({ allTours, hotels }) => {
   const [name, setName] = useState("");
   const [host, setHost] = useState("");
+  const [phoneAlert, setPhoneAlert] = useState(false);
   const { clearCart, cartItems } = useContext(CartContext);
   const [formData, setFormData] = useState({
     "form-name": "cart",
@@ -83,7 +84,9 @@ const Form = ({ allTours, hotels }) => {
       dateValidation1 === false &&
       dateValidation2 === false &&
       dateValidation3 === false &&
-      dateValidation4 === false
+      dateValidation4 === false &&
+      formData.phone !== "" &&
+      formData.phone !== undefined
     ) {
       const dataFromForm = getFormData(formData);
       fetch("/", {
@@ -104,6 +107,9 @@ const Form = ({ allTours, hotels }) => {
       dateValidation4 === true
     ) {
       setScrollPosition(cartElement);
+    }
+    if (formData.phone === "" || formData.phone === undefined) {
+      setPhoneAlert(true);
     }
   };
 
@@ -150,6 +156,7 @@ const Form = ({ allTours, hotels }) => {
             setName={setName}
             formData={formData}
             setFormData={setFormData}
+            phoneAlert={phoneAlert}
           />
           <MoreInfo
             formData={formData}

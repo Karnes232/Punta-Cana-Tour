@@ -5,9 +5,9 @@ const ContactInfo = ({ formData, handleChange, setFormData }) => {
   const handlePhoneChange = (e) => {
     setFormData({
       ...formData,
-      phone: e
-    })
-  }
+      phone: e,
+    });
+  };
   return (
     <>
       <div className="relative z-0 mb-2 w-full group">
@@ -40,7 +40,7 @@ const ContactInfo = ({ formData, handleChange, setFormData }) => {
         </label>
       </div>
       <div className="relative z-0 mb-4 w-full group">
-      <PhoneInput
+        <PhoneInput
           type="tel"
           name="phone"
           id="phone"

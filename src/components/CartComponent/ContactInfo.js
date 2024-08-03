@@ -1,7 +1,7 @@
 import React from "react";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
-const ContactInfo = ({ name, setName, formData, setFormData }) => {
+const ContactInfo = ({ name, setName, formData, setFormData, phoneAlert }) => {
   const handleChange = ({ target }) => {
     setFormData({
       ...formData,
@@ -11,12 +11,13 @@ const ContactInfo = ({ name, setName, formData, setFormData }) => {
   const handlePhoneChange = (e) => {
     setFormData({
       ...formData,
-      phone: e
-    })
-  }
+      phone: e,
+    });
+  };
   // const handleCountryChange = (e) => {
   //   console.log(e)
   // }
+
   return (
     <>
       <div className="relative z-0 mb-6 w-full group">
@@ -61,7 +62,9 @@ const ContactInfo = ({ name, setName, formData, setFormData }) => {
           type="tel"
           name="phone"
           id="phone"
-          className="contactFormInput peer"
+          className={`contactFormInput peer ${
+            phoneAlert ? "!bg-red-200 placeholder-white" : ""
+          }`}
           placeholder="Enter phone number"
           value={formData.phone}
           onChange={handlePhoneChange}

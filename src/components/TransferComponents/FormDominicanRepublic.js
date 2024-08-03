@@ -31,7 +31,11 @@ const FormDominicanRepublic = ({ data, formData, setFormData, cityList }) => {
         className="w-64 md:w-full max-w-md xl:max-w-lg flex flex-col justify-center items-center my-5"
         onSubmit={handleSubmit}
       >
-        <ContactInfo formData={formData} handleChange={handleChange} setFormData={setFormData}/>
+        <ContactInfo
+          formData={formData}
+          handleChange={handleChange}
+          setFormData={setFormData}
+        />
         <TransferInfo
           formData={formData}
           handleChange={handleChange}

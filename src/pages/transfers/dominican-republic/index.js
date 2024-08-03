@@ -10,7 +10,7 @@ const Index = ({ data }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    telephone: "",
+    phone: "",
     transferType: "",
     passengerCount: "",
     time: "",
