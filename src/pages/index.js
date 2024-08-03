@@ -12,7 +12,7 @@ import FaqsComponent from "../components/FaqsComponent/FaqsComponent";
 import HowItWorks from "../components/HowItWorksComponent/HowItWorks";
 
 const IndexPage = ({ data }) => {
-  const tourList = Array.from(data.allContentfulTour.edges, (x) => x);
+  const tourList = Array.from(data.allContentfulTours.edges, (x) => x);
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -175,7 +175,7 @@ export const query = graphql`
         }
       }
     }
-    allContentfulTour(filter: { featured: { eq: true } }) {
+    allContentfulTours(filter: { featured: { eq: true } }) {
       edges {
         node {
           url

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { CartContext } from "../../context/cart";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -14,7 +14,27 @@ export default function Cart({
   validationAlert,
   cartElement,
   setDateValidations,
+  setWeekDayValidations,
+  weekDayValidationAlert,
 }) {
+  const [selectedWeekDay1, setSelectedWeekDay1] = useState("");
+  const [selectedWeekDay2, setSelectedWeekDay2] = useState("");
+  const [selectedWeekDay3, setSelectedWeekDay3] = useState("");
+  const [selectedWeekDay4, setSelectedWeekDay4] = useState("");
+
+  const selectedWeekDay = [
+    selectedWeekDay1,
+    selectedWeekDay2,
+    selectedWeekDay3,
+    selectedWeekDay4,
+  ];
+
+  const setSelectedWeekDay = [
+    setSelectedWeekDay1,
+    setSelectedWeekDay2,
+    setSelectedWeekDay3,
+    setSelectedWeekDay4,
+  ];
   const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } =
     useContext(CartContext);
 
@@ -62,6 +82,11 @@ export default function Cart({
 
       <div className="flex flex-col gap-4" ref={cartElement}>
         {cartItems.map((tour, index) => {
+          const setWeekDateValidation = setWeekDayValidations[index];
+          // console.log(selectedWeekDay[index])
+          // console.log(tour.daysAvailable)
+          const isInArray = tour.daysAvailable.includes(selectedWeekDay[index]);
+          setWeekDateValidation(isInArray);
           const image = getImage(tour.mainImage?.gatsbyImage);
           let pickupTimeList = [];
           pickupTimes.forEach((tourPickupTime) => {
@@ -137,6 +162,9 @@ export default function Cart({
                 index={index}
                 validationAlert={validationAlert}
                 setDateValidations={setDateValidations}
+                setSelectedWeekDay={setSelectedWeekDay}
+                weekDayValidationAlert={weekDayValidationAlert}
+                daysAvailable={tour.daysAvailable}
               />
             </div>
           );

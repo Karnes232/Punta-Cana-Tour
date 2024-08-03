@@ -32,7 +32,7 @@ const Cart = ({ data }) => {
     >
       <Form
         hotels={data.allContentfulHotelList.edges}
-        allTours={data.allContentfulTour}
+        allTours={data.allContentfulTours}
       />
     </Layout>
   );
@@ -65,7 +65,7 @@ export const query = graphql`
         }
       }
     }
-    allContentfulTour {
+    allContentfulTours {
       nodes {
         name
         providerEmail

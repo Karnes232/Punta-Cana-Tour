@@ -11,7 +11,7 @@ import SwiperCarousel from "../../components/BackgroundCarousel/SwiperCarousel";
 import TextComponent from "../../components/TextComponent/TextComponent";
 import FeaturedTours from "../../components/TravelAgentComponents/FeaturedTours";
 const Index = ({ data }) => {
-  const tourList = Array.from(data.allContentfulTour.edges, (x) => x);
+  const tourList = Array.from(data.allContentfulTours.edges, (x) => x);
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState({});
   const [isAdmin, setIsAdmin] = useState(false);
@@ -175,7 +175,7 @@ export const query = graphql`
         }
       }
     }
-    allContentfulTour(filter: { featured: { eq: true } }) {
+    allContentfulTours(filter: { featured: { eq: true } }) {
       edges {
         node {
           url

@@ -7,8 +7,10 @@ const DatePickerComponent = ({
   index,
   dateAlert,
   setDateValidations,
+  setSelectedWeekDay,
+  weekDayAlert,
 }) => {
-  const [date, setDate] = useState(undefined);
+  const [date, setDate] = useState("");
   const [value, setValue] = useState({
     startDate: date,
     endDate: null,
@@ -26,6 +28,14 @@ const DatePickerComponent = ({
   let bgColor = "";
 
   const handleValueChange = (newValue) => {
+    if (newValue.startDate !== null) {
+      const selectedDate = new Date(newValue.startDate?.replace(/-/g, "/"));
+      const weekday = new Intl.DateTimeFormat("en-US", {
+        weekday: "long",
+      }).format(selectedDate);
+      const setWeekday = setSelectedWeekDay[index];
+      setWeekday(weekday);
+    }
     setValue(newValue);
     setFormData({
       ...formData,
@@ -41,6 +51,12 @@ const DatePickerComponent = ({
     }
   };
   if (dateAlert) {
+    bgColor = "bg-red-200 placeholder-white";
+  } else {
+    bgColor = "bg-white placeholder-gray-400";
+  }
+
+  if (weekDayAlert === false) {
     bgColor = "bg-red-200 placeholder-white";
   } else {
     bgColor = "bg-white placeholder-gray-400";

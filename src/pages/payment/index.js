@@ -13,7 +13,7 @@ const Index = ({ data, location }) => {
   let totalCost = 0;
 
   const newList = tours.map((tour, index) => {
-    let tourPrice = data.allContentfulTour.nodes.find(
+    let tourPrice = data.allContentfulTours.nodes.find(
       (tour) => tour.name === tours[index],
     ).price;
 
@@ -22,7 +22,7 @@ const Index = ({ data, location }) => {
     return {
       tourName: tour,
       guestCount: guests[index],
-      tour: data.allContentfulTour.nodes.find(
+      tour: data.allContentfulTours.nodes.find(
         (tour) => tour.name === tours[index],
       ),
     };
@@ -108,7 +108,7 @@ export const query = graphql`
         }
       }
     }
-    allContentfulTour {
+    allContentfulTours {
       nodes {
         name
         price

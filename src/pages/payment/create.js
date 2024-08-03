@@ -48,7 +48,7 @@ const Create = ({ data }) => {
           </>
           {componentArray.map((_, index) => (
             <>
-              <TourInfo tourList={data.allContentfulTour.nodes} key={index} />
+              <TourInfo tourList={data.allContentfulTours.nodes} key={index} />
             </>
           ))}
           <div className="flex my-4 w-1/3 justify-between">
@@ -91,7 +91,7 @@ export const query = graphql`
         }
       }
     }
-    allContentfulTour {
+    allContentfulTours {
       nodes {
         name
       }

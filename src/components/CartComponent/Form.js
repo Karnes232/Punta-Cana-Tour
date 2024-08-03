@@ -43,6 +43,11 @@ const Form = ({ allTours, hotels }) => {
   const [dateValidation3, setDateValidation3] = useState(false);
   const [dateValidation4, setDateValidation4] = useState(false);
 
+  const [weekDayValidation1, setWeekDayValidation1] = useState(true);
+  const [weekDayValidation2, setWeekDayValidation2] = useState(true);
+  const [weekDayValidation3, setWeekDayValidation3] = useState(true);
+  const [weekDayValidation4, setWeekDayValidation4] = useState(true);
+
   const setScrollPosition = (element) => {
     const area = element.current.getBoundingClientRect();
     window.scrollTo({
@@ -81,6 +86,10 @@ const Form = ({ allTours, hotels }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (
+      weekDayValidation1 === true &&
+      weekDayValidation2 === true &&
+      weekDayValidation3 === true &&
+      weekDayValidation4 === true &&
       dateValidation1 === false &&
       dateValidation2 === false &&
       dateValidation3 === false &&
@@ -104,7 +113,11 @@ const Form = ({ allTours, hotels }) => {
       dateValidation1 === true ||
       dateValidation2 === true ||
       dateValidation3 === true ||
-      dateValidation4 === true
+      dateValidation4 === true ||
+      weekDayValidation1 === false ||
+      weekDayValidation2 === false ||
+      weekDayValidation3 === false ||
+      weekDayValidation4 === false
     ) {
       setScrollPosition(cartElement);
     }
@@ -127,6 +140,20 @@ const Form = ({ allTours, hotels }) => {
     setDateValidation3,
     setDateValidation4,
   ];
+  const setWeekDayValidations = [
+    setWeekDayValidation1,
+    setWeekDayValidation2,
+    setWeekDayValidation3,
+    setWeekDayValidation4,
+  ];
+
+  const weekDayValidationAlert = {
+    weekDayValidation1,
+    weekDayValidation2,
+    weekDayValidation3,
+    weekDayValidation4,
+  };
+
   return (
     <form
       name="cart"
@@ -149,6 +176,8 @@ const Form = ({ allTours, hotels }) => {
           validationAlert={validationAlert}
           cartElement={cartElement}
           setDateValidations={setDateValidations}
+          setWeekDayValidations={setWeekDayValidations}
+          weekDayValidationAlert={weekDayValidationAlert}
         />
         <div className="xl:w-[25rem] flex flex-col mt-5 xl:mt-24">
           <ContactInfo

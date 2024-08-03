@@ -7,9 +7,9 @@ import HeroComponent from "../../components/HeroComponent/HeroComponent";
 import Seo from "../../components/seo";
 
 const Index = ({ data }) => {
-  const backendTourList = data.allContentfulTour.edges;
+  const backendTourList = data.allContentfulTours.edges;
   const [tourList, setTourList] = useState(
-    data.allContentfulTour.edges.sort(() => Math.random() - 0.5),
+    data.allContentfulTours.edges.sort(() => Math.random() - 0.5),
   );
   const [selectedCategory, setSelectedCategory] = useState("All Tours");
   const categories = [
@@ -120,7 +120,7 @@ export const query = graphql`
         }
       }
     }
-    allContentfulTour {
+    allContentfulTours {
       edges {
         node {
           url

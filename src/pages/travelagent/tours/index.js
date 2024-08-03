@@ -8,9 +8,9 @@ import Seo from "../../../components/seo";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../../config/firebase";
 const Index = ({ data }) => {
-  const backendTourList = data.allContentfulTour.edges;
+  const backendTourList = data.allContentfulTours.edges;
   const [tourList, setTourList] = useState(
-    data.allContentfulTour.edges.sort(() => Math.random() - 0.5),
+    data.allContentfulTours.edges.sort(() => Math.random() - 0.5),
   );
   const [selectedCategory, setSelectedCategory] = useState("All Tours");
   const categories = [
@@ -130,7 +130,7 @@ export const query = graphql`
         }
       }
     }
-    allContentfulTour {
+    allContentfulTours {
       edges {
         node {
           url
