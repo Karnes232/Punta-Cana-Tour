@@ -45,9 +45,9 @@ export default function handler(req, res) {
     if (err) {
       console.log(err);
     } else {
-      console.log(data);
+      console.log("Email sent successfully");
     }
   });
 
-  res.status(200);
+  res.status(200).send();
 }

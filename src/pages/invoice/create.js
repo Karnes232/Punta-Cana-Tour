@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../components/layout";
 import { graphql } from "gatsby";
 import ClientInfo from "../../components/InvoiceComponents/ClientInfo";
@@ -7,6 +7,7 @@ import axios from "axios";
 import DatePickerComponent from "../../components/InvoiceComponents/DatePickerComponent";
 
 const Create = ({ data }) => {
+  const [host, setHost] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -15,6 +16,12 @@ const Create = ({ data }) => {
     date: "",
     time: "",
   });
+
+  useEffect(() => {
+    setHost(window.location.origin);
+  }, []);
+
+  console.log(host);
   const handleChange = ({ target }) => {
     setFormData({
       ...formData,
@@ -28,14 +35,20 @@ const Create = ({ data }) => {
         return tour;
       }
     });
-
-    axios.post("/api/invoice", {
-      formData: formData,
-      tour: tour,
-    });
+    try {
+      axios
+        .post("/api/invoice", {
+          formData: formData,
+          tour: tour,
+        })
+        .then((response) => {
+          window.location.href = host;
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  console.log(formData);
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
