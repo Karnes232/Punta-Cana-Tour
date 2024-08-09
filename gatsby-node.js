@@ -75,7 +75,7 @@ exports.createPages = async ({ graphql, actions }) => {
             url
           }
           reference {
-            ... on ContentfulTour {
+            ... on ContentfulTours {
               name
               url
             }
