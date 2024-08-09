@@ -19,6 +19,7 @@ const blog = ({ pageContext }) => {
       }
     }
   });
+  console.log(pageContext.blog)
   return (
     <Layout
       logo={pageContext.layout.logo}
@@ -35,9 +36,9 @@ const blog = ({ pageContext }) => {
       {pageContext.blog.category === "Tours" && (
         <ActivityLink
           name={pageContext.blog?.reference?.name}
-          url={`/${pageContext.blog.category
+          url={`/${pageContext?.blog?.category
             .toLowerCase()
-            .replaceAll(/\s/g, "")}/${pageContext.blog.reference.url}`}
+            .replaceAll(/\s/g, "")}/${pageContext?.blog?.reference?.url}`}
         />
       )}
       <Recommendations list={recommendationList} />
