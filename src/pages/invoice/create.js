@@ -79,8 +79,8 @@ const Create = ({ data }) => {
             formData={formData}
             setFormData={setFormData}
           />
-          <div className="flex justify-around my-2">
-            <div className="relative z-10 w-2/5 group">
+          <div className="flex justify-between my-2 w-full">
+            <div className="relative z-10 w-1/2 group">
               <DatePickerComponent
                 formData={formData}
                 setFormData={setFormData}
@@ -105,7 +105,7 @@ const Create = ({ data }) => {
             </div>
           </div>
 
-          <button>Submit</button>
+          <button className="mt-5">Submit</button>
         </form>
       </main>
     </Layout>
