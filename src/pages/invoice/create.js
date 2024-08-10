@@ -21,7 +21,7 @@ const Create = ({ data }) => {
     setHost(window.location.origin);
   }, []);
 
-  console.log(host);
+
   const handleChange = ({ target }) => {
     setFormData({
       ...formData,

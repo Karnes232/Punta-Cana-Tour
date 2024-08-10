@@ -54,7 +54,7 @@ export default async function handler(req, res) {
         reject(err);
       } else {
         console.log("Email sent successfully");
-        resolve(info);
+        resolve(data);
       }
     });
     
