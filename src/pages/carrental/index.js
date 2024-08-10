@@ -10,11 +10,14 @@ const Index = ({ data }) => {
     name: "",
     email: "",
     phone: "",
-  })
+    startDate: "",
+    endDate: ""
+  });
   const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log(formData)
-  }
+    e.preventDefault();
+    console.log(formData);
+  };
+  console.log(formData)
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}

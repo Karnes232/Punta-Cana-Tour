@@ -1,6 +1,7 @@
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
 import ContactInfo from "../TransferComponents/ContactInfo";
+import DatePickerComponent from "./DatePickerComponent";
 
 const Form = ({ image, handleSubmit, formData, setFormData }) => {
   const carImage = getImage(image.gatsbyImage);
@@ -30,7 +31,7 @@ const Form = ({ image, handleSubmit, formData, setFormData }) => {
           handleChange={handleChange}
           setFormData={setFormData}
         />
-        <button>Boo Hoo</button>
+        <DatePickerComponent formData={formData} setFormData={setFormData} />
       </form>
     </div>
   );
