@@ -55,7 +55,8 @@ export default async function handler(req, res) {
         console.log("Email sent successfully");
       }
     });
+    res.status(200).send();
   });
 
-  res.status(200).send();
+  
 }
