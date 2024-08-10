@@ -21,7 +21,6 @@ const Create = ({ data }) => {
     setHost(window.location.origin);
   }, []);
 
-
   const handleChange = ({ target }) => {
     setFormData({
       ...formData,
@@ -48,7 +47,7 @@ const Create = ({ data }) => {
       console.log(error);
     }
   };
-  console.log(formData)
+  console.log(formData);
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}

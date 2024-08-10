@@ -19,7 +19,7 @@ const Form = ({ data, formData, setFormData, hotels, handleSubmit }) => {
         <GatsbyImage image={image} alt={data.title} className="w-full" />
       </div>
       <form
-        name="contact"
+        name="transfer"
         method="POST"
         action={`/contact/thankyou/`}
         data-netlify="true"
