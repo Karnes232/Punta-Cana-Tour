@@ -11,13 +11,19 @@ import { InvoiceTour } from "../components/Email/InvoiceTour";
 import { InvoiceBody } from "../components/Email/InvoiceBody";
 const transporter = nodemailer.createTransport({
   service: "gmail",
+  host: "smtp.gmail.com",
+  tls: {
+    ciphers: "SSLv3",
+  },
+  port: 587,
+  secure: false,
   auth: {
     user: `${process.env.EMAIL_USER_NEW}`,
     pass: `${process.env.EMAIL_PASSWORD_NEW}`,
   },
 });
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   const clientName = req.body.formData.name;
   const clientEmail = req.body.formData.email;
   const pickupTime = req.body.formData.time;
@@ -41,12 +47,14 @@ export default function handler(req, res) {
     html: htmlString,
   };
 
-  transporter.sendMail(mailDetails, function (err, data) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log("Email sent successfully");
-    }
+  await new Promise((resolve, reject) => {
+    transporter.sendMail(mailDetails, function (err, data) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("Email sent successfully");
+      }
+    });
   });
 
   res.status(200).send();
