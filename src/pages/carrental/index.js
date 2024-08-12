@@ -13,11 +13,9 @@ const Index = ({ data }) => {
     phone: "",
     startDate: "",
     endDate: "",
+    carType: "",
   });
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
-  };
+
   console.log(formData);
   return (
     <Layout
@@ -45,11 +43,14 @@ const Index = ({ data }) => {
       />
       <Form
         image={data.allContentfulTransferPageContent.edges[0].node.airportPhoto}
-        handleSubmit={handleSubmit}
         formData={formData}
         setFormData={setFormData}
       />
-      <CarSelect cars={data.allContentfulCarRentalCarType.nodes} />
+      <CarSelect
+        cars={data.allContentfulCarRentalCarType.nodes}
+        formData={formData}
+        setFormData={setFormData}
+      />
     </Layout>
   );
 };
