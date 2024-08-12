@@ -7,6 +7,7 @@ const ReserveButton = ({ formData }) => {
   }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("hello")
     const redirectHref = `${host}/contact/thankyou/?name=${formData.name}`;
     const form = document.getElementById("carRental");
     const newFormData = new FormData(form);
@@ -45,7 +46,7 @@ const ReserveButton = ({ formData }) => {
       </form>
       <button
         className="px-4 py-2 mt-4 disabled:opacity-60 bg-primary-color text-secondary-color text-xs font-bold uppercase rounded hover:opacity-70 focus:outline-none focus:bg-gray-700"
-        onSubmit={handleSubmit}
+        onClick={handleSubmit}
       >
         Reserve Now
       </button>
