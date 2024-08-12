@@ -43,7 +43,10 @@ const ReserveButton = ({ formData }) => {
           <input type="text" name="car Type" defaultValue={formData.carType} />
         </div>
       </form>
-      <button className="px-4 py-2 mt-4 disabled:opacity-60 bg-primary-color text-secondary-color text-xs font-bold uppercase rounded hover:opacity-70 focus:outline-none focus:bg-gray-700">
+      <button
+        className="px-4 py-2 mt-4 disabled:opacity-60 bg-primary-color text-secondary-color text-xs font-bold uppercase rounded hover:opacity-70 focus:outline-none focus:bg-gray-700"
+        onSubmit={handleSubmit}
+      >
         Reserve Now
       </button>
     </>
