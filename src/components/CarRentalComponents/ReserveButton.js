@@ -1,26 +1,31 @@
 import React, { useEffect, useState } from "react";
 
-const ReserveButton = ({ formData }) => {
+const ReserveButton = ({ formData, disabled }) => {
   const [host, setHost] = useState("");
+  const [missingFormInfo, setMissingFormInfo] = useState(false);
   useEffect(() => {
     setHost(window.location.origin);
   }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("hello");
-    const redirectHref = `${host}/contact/thankyou/?name=${formData.name}`;
-    const form = document.getElementById("carRental");
-    const newFormData = new FormData(form);
-    const formDataObj = {};
-    newFormData.forEach((value, key) => (formDataObj[key] = value));
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(newFormData).toString(),
-    }).then(() => {
-      window.location.href = redirectHref;
-    });
+    if (disabled) {
+      setMissingFormInfo(true);
+    } else {
+      const redirectHref = `${host}/contact/thankyou/?name=${formData.name}`;
+      const form = document.getElementById("carRental");
+      const newFormData = new FormData(form);
+      const formDataObj = {};
+      newFormData.forEach((value, key) => (formDataObj[key] = value));
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(newFormData).toString(),
+      }).then(() => {
+        window.location.href = redirectHref;
+      });
+    }
   };
+  console.log(disabled);
   return (
     <>
       <form
@@ -50,6 +55,13 @@ const ReserveButton = ({ formData }) => {
       >
         Reserve Now
       </button>
+      {missingFormInfo ? (
+        <p className="text-xs lg:text-sm mt-2 text-center text-red-600">
+          Form Required to be Filled & Vehicle Selected
+        </p>
+      ) : (
+        <></>
+      )}
     </>
   );
 };

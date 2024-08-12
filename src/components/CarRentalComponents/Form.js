@@ -3,6 +3,7 @@ import React from "react";
 import ContactInfo from "../TransferComponents/ContactInfo";
 import DatePickerComponent from "./DatePickerComponent";
 import ReserveButton from "./ReserveButton";
+import useCarRentalValidation from "../../customHooks/useCarRentalValidation";
 
 const Form = ({ image, formData, setFormData }) => {
   const carImage = getImage(image.gatsbyImage);
@@ -12,9 +13,9 @@ const Form = ({ image, formData, setFormData }) => {
       [target.name]: target.value,
     });
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+
+  let disabled = useCarRentalValidation(formData);
+
   return (
     <div className="flex flex-col lg:flex-row justify-evenly items-center xl:justify-center xl:space-x-24">
       <div className="max-w-xs lg:max-w-lg my-2 mx-2 rounded-lg overflow-hidden shadow-lg">
@@ -27,7 +28,7 @@ const Form = ({ image, formData, setFormData }) => {
           setFormData={setFormData}
         />
         <DatePickerComponent formData={formData} setFormData={setFormData} />
-        <ReserveButton formData={formData} />
+        <ReserveButton formData={formData} disabled={disabled} />
       </div>
     </div>
   );

@@ -16,7 +16,6 @@ const Index = ({ data }) => {
     carType: "",
   });
 
-  console.log(formData);
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
