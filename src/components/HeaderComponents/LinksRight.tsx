@@ -3,7 +3,7 @@ import { Link } from "gatsby";
 import DropDownMenu from "./DropDownMenu";
 const LinksRight = ({ color }) => {
   return (
-    <div className="hidden lg:flex lg:w-[40rem] xl:w-[45rem] lg:justify-between">
+    <div className="hidden lg:flex lg:w-[50rem] xl:w-[55rem] lg:justify-between">
       <Link to="/" className="no-underline">
         <button className={`navLinks text-${color}`}>Home</button>
       </Link>
@@ -18,6 +18,9 @@ const LinksRight = ({ color }) => {
         ]}
         useHover
       />
+      <Link to="/carrental" className="no-underline">
+        <button className={`navLinks text-${color}`}>Car Rental</button>
+      </Link>
       <DropDownMenu
         name="Recommendations"
         subItems={[

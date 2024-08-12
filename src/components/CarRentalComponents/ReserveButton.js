@@ -7,7 +7,7 @@ const ReserveButton = ({ formData }) => {
   }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("hello")
+    console.log("hello");
     const redirectHref = `${host}/contact/thankyou/?name=${formData.name}`;
     const form = document.getElementById("carRental");
     const newFormData = new FormData(form);

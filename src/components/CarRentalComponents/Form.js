@@ -21,23 +21,12 @@ const Form = ({ image, formData, setFormData }) => {
         <GatsbyImage image={carImage} alt={image.title} className="w-full" />
       </div>
       <div className="w-64 md:w-full max-w-md xl:max-w-lg flex flex-col justify-center">
-        {/* <form
-          name="carrental"
-          method="POST"
-          action={`/contact/thankyou/`}
-          data-netlify="true"
-          data-netlify-honeypot="bot-field"
-          id="contact"
-          className="w-64 md:w-full max-w-md xl:max-w-lg flex flex-col justify-center"
-          onSubmit={handleSubmit}
-        > */}
         <ContactInfo
           formData={formData}
           handleChange={handleChange}
           setFormData={setFormData}
         />
         <DatePickerComponent formData={formData} setFormData={setFormData} />
-        {/* </form> */}
         <ReserveButton formData={formData} />
       </div>
     </div>
