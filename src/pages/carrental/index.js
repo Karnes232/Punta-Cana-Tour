@@ -4,6 +4,7 @@ import Seo from "../../components/seo";
 import { graphql } from "gatsby";
 import TextComponent from "../../components/TextComponent/TextComponent";
 import Form from "../../components/CarRentalComponents/Form";
+import CarSelect from "../../components/CarRentalComponents/CarSelect";
 
 const Index = ({ data }) => {
   const [formData, setFormData] = useState({
@@ -11,13 +12,13 @@ const Index = ({ data }) => {
     email: "",
     phone: "",
     startDate: "",
-    endDate: ""
+    endDate: "",
   });
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
   };
-  console.log(formData)
+  console.log(formData);
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -48,6 +49,7 @@ const Index = ({ data }) => {
         formData={formData}
         setFormData={setFormData}
       />
+      <CarSelect cars={data.allContentfulCarRentalCarType.nodes} />
     </Layout>
   );
 };
@@ -82,6 +84,24 @@ export const query = graphql`
             title
             gatsbyImage(width: 620, formats: WEBP)
           }
+        }
+      }
+    }
+    allContentfulCarRentalCarType {
+      nodes {
+        carType
+        carModel
+        carImage {
+          gatsbyImage(width: 500, formats: WEBP, placeholder: BLURRED)
+          title
+        }
+        passengers
+        luggage
+        gearbox
+        dailyRate
+        vehicleFeatures
+        liabilityStatement {
+          liabilityStatement
         }
       }
     }
