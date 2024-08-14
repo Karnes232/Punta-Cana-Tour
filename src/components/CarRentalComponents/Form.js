@@ -21,7 +21,7 @@ const Form = ({ image, formData, setFormData }) => {
       <div className="max-w-xs lg:max-w-lg my-2 mx-2 rounded-lg overflow-hidden shadow-lg">
         <GatsbyImage image={carImage} alt={image.title} className="w-full" />
       </div>
-      <div className="w-64 md:w-full max-w-md xl:max-w-lg flex flex-col justify-center">
+      <div className="w-64 md:w-full max-w-md lg:max-w-lg flex flex-col justify-center">
         <ContactInfo
           formData={formData}
           handleChange={handleChange}

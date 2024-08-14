@@ -87,7 +87,7 @@ export const query = graphql`
         }
       }
     }
-    allContentfulCarRentalCarType {
+    allContentfulCarRentalCarType(sort: { dailyRate: ASC }) {
       nodes {
         carType
         carModel
