@@ -18,7 +18,6 @@ const IndividualCar = ({ car, formData, setFormData }) => {
   } else {
     borderStyle = "";
   }
-
   return (
     <div
       className={`max-w-sm min-w-[20rem] xl:max-w-xs my-5 mx-2 rounded-2xl overflow-hidden shadow-lg bg-gray-50 ${borderStyle}`}
@@ -26,9 +25,9 @@ const IndividualCar = ({ car, formData, setFormData }) => {
     >
       <div className="flex py-5 px-2 border-b">
         <div className="w-1/2 flex flex-col gap-y-1 ml-2">
-          <div className="font-medium text-xl text-blue-400">{car.carType}</div>
+          <div className="font-medium text-xl text-blue-400 h-14 line-clamp-2">{car.carType}</div>
           <div>
-            <div className="font-light ">{car.carModel}</div>
+            <div className="font-light truncate">{car.carModel}</div>
             <div className="font-light text-xs">or Similar</div>
           </div>
           <div className="flex items-center gap-x-1 text-xs font-medium">
@@ -38,9 +37,13 @@ const IndividualCar = ({ car, formData, setFormData }) => {
             <div className="flex items-center gap-x-1">
               <IoPersonSharp /> {car.passengers}
             </div>
-            <div className="flex items-center gap-x-1">
-              <GiSuitcase /> {car.luggage}
-            </div>
+            {car.luggage ? (
+              <div className="flex gap-x-1">
+                <GiSuitcase size={15}/> {car.luggage}
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
         <div className="w-1/2 my-auto">

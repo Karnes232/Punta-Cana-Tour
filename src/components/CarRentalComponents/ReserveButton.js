@@ -25,7 +25,6 @@ const ReserveButton = ({ formData, disabled }) => {
       });
     }
   };
-  console.log(disabled);
   return (
     <>
       <form
