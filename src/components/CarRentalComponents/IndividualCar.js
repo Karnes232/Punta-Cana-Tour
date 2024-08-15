@@ -54,18 +54,18 @@ const IndividualCar = ({ car, formData, setFormData }) => {
           />
         </div>
       </div>
-      <div className="flex justify-center items-center py-4 text-lg">
+      <div className="flex justify-center items-center py-4 text-lg  border-b">
         from{" "}
         <span className="mx-1 text-2xl text-white bg-blue-400 p-2 rounded-lg">
           ${car.dailyRate}
         </span>{" "}
         Daily
       </div>
-      <div className="flex justify-center items-center gap-x-3 pb-4 border-b">
+      {/* <div className="flex justify-center items-center gap-x-3 pb-4 border-b">
         <button className="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
           Select
         </button>
-      </div>
+      </div> */}
       <div
         className="flex justify-center items-center py-4 gap-x-3"
         onClick={() => setShowMore(!showMore)}
