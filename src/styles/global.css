@@ -6,12 +6,12 @@
   --primary-color: #ffb24c;
   --secondary-color: #002447;
   --primary-bg-color: rgba(245, 245, 245, 1);
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  /* -ms-overflow-style: none; IE and Edge
+  scrollbar-width: none; Firefox */
 }
-:root::-webkit-scrollbar {
+/* :root::-webkit-scrollbar {
   display: none;
-}
+} */
 
 #react-select-2-listbox {
   z-index: 50;
