@@ -25,7 +25,9 @@ const IndividualCar = ({ car, formData, setFormData }) => {
     >
       <div className="flex py-5 px-2 border-b">
         <div className="w-1/2 flex flex-col gap-y-1 ml-2">
-          <div className="font-medium text-xl text-blue-400 h-14 line-clamp-2">{car.carType}</div>
+          <div className="font-medium text-xl text-blue-400 h-14 line-clamp-2">
+            {car.carType}
+          </div>
           <div>
             <div className="font-light truncate">{car.carModel}</div>
             <div className="font-light text-xs">or Similar</div>
@@ -39,7 +41,7 @@ const IndividualCar = ({ car, formData, setFormData }) => {
             </div>
             {car.luggage ? (
               <div className="flex gap-x-1">
-                <GiSuitcase size={15}/> {car.luggage}
+                <GiSuitcase size={15} /> {car.luggage}
               </div>
             ) : (
               <></>

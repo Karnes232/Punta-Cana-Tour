@@ -52,6 +52,16 @@ const SideBarMenu = ({ toggled, setToggled }) => {
                 >
                   <p>Other Cities</p>
                 </MenuItem>
+                <MenuItem
+                  component={
+                    <Link
+                      to="/transfers/flights"
+                      className="no-underline font-lato uppercase text-sm"
+                    />
+                  }
+                >
+                  <p>Charter Flights</p>
+                </MenuItem>
               </SubMenu>
               <SubMenu label="Recommendations" className="hamburger">
                 <MenuItem

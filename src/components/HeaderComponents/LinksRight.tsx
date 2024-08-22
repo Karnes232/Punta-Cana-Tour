@@ -15,6 +15,7 @@ const LinksRight = ({ color }) => {
         subItems={[
           { name: "Punta Cana", url: "/transfers/punta-cana" },
           { name: "Other Cities", url: "/transfers/dominican-republic" },
+          { name: "Charter Flights", url: "/transfers/flights" },
         ]}
         useHover
       />

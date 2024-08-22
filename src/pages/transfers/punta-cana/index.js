@@ -115,7 +115,10 @@ export const query = graphql`
         }
       }
     }
-    allContentfulTransferVehicle(sort: { zone1Price: ASC }) {
+    allContentfulTransferVehicle(
+      filter: { groundOrAir: { eq: "Ground" } }
+      sort: { zone1Price: ASC }
+    ) {
       edges {
         node {
           vehicleType

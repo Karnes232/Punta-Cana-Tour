@@ -3,20 +3,16 @@ import Layout from "../../../components/layout";
 import Seo from "../../../components/seo";
 import { graphql } from "gatsby";
 import TextComponent from "../../../components/TextComponent/TextComponent";
-import FormDominicanRepublic from "../../../components/TransferComponents/FormDominicanRepublic";
-import VehicleCardCountry from "../../../components/TransferComponents/VehicleCardCountry";
+import FormFlights from "../../../components/TransferComponents/FormFlights";
 
 const Index = ({ data }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    transferType: "",
-    passengerCount: "",
-    time: "",
-    date: "",
     pickUpLocation: "",
     dropOffLocation: "",
+    date: "",
   });
   return (
     <Layout
@@ -40,22 +36,21 @@ const Index = ({ data }) => {
             .description
         }
         className="my-5 2xl:mb-2 2xl:mt-10 text-2xl md:text-4xl"
-        pClassName="mb-4 lg:mb-0"
+        pClassName="mb-4"
       />
-      <FormDominicanRepublic
-        data={data.allContentfulTransferPageContent.edges[0].node.airportPhoto}
+      <FormFlights
+        image={data.allContentfulTransferPageContent.edges[0].node.airportPhoto}
         formData={formData}
         setFormData={setFormData}
         cityList={data.allContentfulCityList.nodes[0].cityList}
       />
       <div className="flex flex-col lg:flex-row lg:flex-wrap max-w-6xl mx-auto justify-center lg:justify-between xl:gap-14 items-center">
         {data.allContentfulTransferVehicle.edges.map((vehicle, index) => {
+          console.log(vehicle);
           return (
-            <VehicleCardCountry
-              key={index}
-              vehicle={vehicle.node}
-              formData={formData}
-            />
+            <>
+              <div>Hello</div>
+            </>
           );
         })}
       </div>
@@ -82,13 +77,13 @@ export const query = graphql`
         }
       }
     }
-    allContentfulCityList(filter: { page: { eq: "Cities" } }) {
+    allContentfulCityList(filter: { page: { eq: "Airports" } }) {
       nodes {
         cityList
       }
     }
     allContentfulTransferVehicle(
-      filter: { groundOrAir: { eq: "Ground" } }
+      filter: { groundOrAir: { eq: "Air" } }
       sort: { zone1Price: ASC }
     ) {
       edges {
@@ -111,9 +106,7 @@ export const query = graphql`
         }
       }
     }
-    allContentfulTransferPageContent(
-      filter: { page: { eq: "Dominican Republic" } }
-    ) {
+    allContentfulTransferPageContent(filter: { page: { eq: "Flights" } }) {
       edges {
         node {
           title
