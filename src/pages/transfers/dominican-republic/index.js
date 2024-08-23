@@ -95,7 +95,7 @@ export const query = graphql`
       edges {
         node {
           vehicleType
-          amountOfPassengers
+          passengers
           description
           zone1Price
           zone2Price

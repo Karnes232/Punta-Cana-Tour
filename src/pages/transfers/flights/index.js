@@ -4,6 +4,7 @@ import Seo from "../../../components/seo";
 import { graphql } from "gatsby";
 import TextComponent from "../../../components/TextComponent/TextComponent";
 import FormFlights from "../../../components/TransferComponents/FormFlights";
+import CharterFlightCard from "../../../components/TransferComponents/CharterFlightCard";
 
 const Index = ({ data }) => {
   const [formData, setFormData] = useState({
@@ -13,7 +14,9 @@ const Index = ({ data }) => {
     pickUpLocation: "",
     dropOffLocation: "",
     date: "",
+    vehicleType: "",
   });
+  console.log(data.allContentfulTransferVehicle.edges);
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -44,13 +47,15 @@ const Index = ({ data }) => {
         setFormData={setFormData}
         cityList={data.allContentfulCityList.nodes[0].cityList}
       />
-      <div className="flex flex-col lg:flex-row lg:flex-wrap max-w-6xl mx-auto justify-center lg:justify-between xl:gap-14 items-center">
+      <div className="flex flex-col lg:flex-row lg:flex-wrap max-w-6xl mx-auto justify-center lg:justify-between xl:gap-14">
         {data.allContentfulTransferVehicle.edges.map((vehicle, index) => {
-          console.log(vehicle);
           return (
-            <>
-              <div>Hello</div>
-            </>
+            <CharterFlightCard
+              key={index}
+              vehicle={vehicle.node}
+              formData={formData}
+              setFormData={setFormData}
+            />
           );
         })}
       </div>
@@ -84,25 +89,26 @@ export const query = graphql`
     }
     allContentfulTransferVehicle(
       filter: { groundOrAir: { eq: "Air" } }
-      sort: { zone1Price: ASC }
+      sort: { passengers: ASC }
     ) {
       edges {
         node {
           vehicleType
-          amountOfPassengers
           description
-          zone1Price
-          zone2Price
-          zone3Price
-          zone4Price
-          zone5Price
           vehiclePhoto {
             gatsbyImage(formats: WEBP, width: 400, placeholder: BLURRED)
+            title
             file {
               url
             }
           }
+          passengers
           groundOrAir
+          planeHelicopterFeatures
+          airCraftPhotos {
+            gatsbyImage(formats: WEBP, width: 400, placeholder: BLURRED)
+            title
+          }
         }
       }
     }

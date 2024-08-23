@@ -55,9 +55,11 @@ const VehicleCard = ({ vehicle, formData }) => {
           </div>
         </div>
         <p className="text-gray-700 mb-2 text-sm">
-          {vehicle.amountOfPassengers}
+          From 1 to {vehicle.passengers} passengers
         </p>
-        <p className="text-gray-700 text-xs h-24 line-clamp-[6]">{vehicle.description}</p>
+        <p className="text-gray-700 text-xs h-24 line-clamp-[6]">
+          {vehicle.description}
+        </p>
       </div>
 
       <div className="px-6 pb-2 flex items-end flex-wrap justify-center">
