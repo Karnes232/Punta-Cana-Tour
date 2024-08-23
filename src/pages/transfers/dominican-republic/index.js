@@ -18,6 +18,7 @@ const Index = ({ data }) => {
     pickUpLocation: "",
     dropOffLocation: "",
   });
+
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -127,7 +128,7 @@ export const query = graphql`
         }
       }
     }
-    allContentfulSeo(filter: { page: { eq: "Transfers" } }) {
+    allContentfulSeo(filter: { page: { eq: "Transfers Dominican Republic" } }) {
       nodes {
         title
         keywords

@@ -120,7 +120,7 @@ export const query = graphql`
         }
       }
     }
-    allContentfulSeo(filter: { page: { eq: "Transfers" } }) {
+    allContentfulSeo(filter: { page: { eq: "Transfers Charter Flights" } }) {
       nodes {
         title
         keywords

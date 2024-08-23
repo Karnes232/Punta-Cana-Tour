@@ -84,7 +84,7 @@ export const query = graphql`
         }
       }
     }
-    allContentfulSeo(filter: { page: { eq: "Transfers" } }) {
+    allContentfulSeo(filter: { page: { eq: "Transfers Punta Cana" } }) {
       nodes {
         title
         keywords
