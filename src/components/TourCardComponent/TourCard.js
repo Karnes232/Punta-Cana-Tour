@@ -18,8 +18,8 @@ const TourCard = ({ tour, featured }) => {
               <div className="truncate mr-3">{name}</div>
               <div>${price}</div>
             </div>
-            <p className="text-gray-700 h-32 text-base">
-              {description1.description1}
+            <p className="text-gray-700 min-h-[9rem] text-base line-clamp-6">
+              {description1.description1} 
             </p>
           </div>
 
