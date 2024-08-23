@@ -3,6 +3,8 @@ import React from "react";
 import ContactInfo from "./ContactInfo";
 import CitySelect from "./CitySelect";
 import DatePickerComponent from "./DatePickerComponent";
+import FlightReserveButton from "./FlightReserveButton";
+import useCharterFlightValidation from "../../customHooks/useCharterFlightValidation";
 
 const FormFlights = ({ image, formData, setFormData, cityList }) => {
   const airportImage = getImage(image.gatsbyImage);
@@ -15,6 +17,9 @@ const FormFlights = ({ image, formData, setFormData, cityList }) => {
       [target.name]: target.value,
     });
   };
+
+  let disabled = useCharterFlightValidation(formData);
+
   return (
     <div className="flex flex-col lg:flex-row justify-evenly items-center xl:justify-center xl:space-x-24">
       <div className="max-w-xs lg:max-w-lg xl:max-w-xl my-2 mx-2 rounded-lg overflow-hidden shadow-lg">
@@ -24,16 +29,7 @@ const FormFlights = ({ image, formData, setFormData, cityList }) => {
           className="w-full"
         />
       </div>
-      <form
-        name="flightContact"
-        method="POST"
-        action={`/contact/thankyou/`}
-        data-netlify="true"
-        data-netlify-honeypot="bot-field"
-        id="flightContact"
-        className="w-64 md:w-full max-w-md xl:max-w-lg flex flex-col justify-center items-center my-5"
-        onSubmit={handleSubmit}
-      >
+      <div className="w-80 md:w-full max-w-md lg:max-w-lg flex flex-col justify-center">
         <ContactInfo
           formData={formData}
           handleChange={handleChange}
@@ -56,7 +52,8 @@ const FormFlights = ({ image, formData, setFormData, cityList }) => {
           handleChange={handleChange}
           setFormData={setFormData}
         />
-      </form>
+        <FlightReserveButton formData={formData} disabled={disabled} />
+      </div>
     </div>
   );
 };

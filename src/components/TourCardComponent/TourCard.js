@@ -19,7 +19,7 @@ const TourCard = ({ tour, featured }) => {
               <div>${price}</div>
             </div>
             <p className="text-gray-700 min-h-[9rem] text-base line-clamp-6">
-              {description1.description1} 
+              {description1.description1}
             </p>
           </div>
 

@@ -16,7 +16,6 @@ const Index = ({ data }) => {
     date: "",
     vehicleType: "",
   });
-  console.log(data.allContentfulTransferVehicle.edges);
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
