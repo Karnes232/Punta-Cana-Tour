@@ -41,9 +41,9 @@ const CitySelect = ({ cityList, formData, setFormData, pickup, dropoff }) => {
         });
       }
     }
-  };
+  }; 
   return (
-    <div className="relative mb-2 w-full group z-50">
+    <div className="relative mb-2 w-full group">
       <CreatableSelect
         isClearable
         className="contactFormInput"
