@@ -14,7 +14,14 @@ module.exports = {
     "gatsby-transformer-sharp",
     "gatsby-plugin-postcss",
     "gatsby-plugin-sitemap",
-    "gatsby-plugin-robots-txt",
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://puntacanatourstore.com/',
+        sitemap: 'https://puntacanatourstore.com/sitemap-0.xml',
+        policy: [{userAgent: '*', allow: '/'}]
+      }
+    },
     {
       resolve: `gatsby-source-contentful`,
       options: {
