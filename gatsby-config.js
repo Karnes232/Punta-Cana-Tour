@@ -15,6 +15,14 @@ module.exports = {
     "gatsby-plugin-postcss",
     "gatsby-plugin-sitemap",
     {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://puntacanatourstore.com/',
+        sitemap: 'https://puntacanatourstore.com/sitemap-0.xml',
+        policy: [{userAgent: '*', allow: '/'}]
+      }
+    },
+    {
       resolve: `gatsby-source-contentful`,
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
