@@ -119,7 +119,7 @@ const Index = ({ data }) => {
         pClassName="mb-4 lg:mb-0"
       />
       <div>
-        <nav className="flex flex-row items-center overflow-x-scroll xl:overflow-x-auto whitespace-nowrap mx-5 xl:justify-center">
+        <nav className="flex flex-row items-center overflow-x-scroll xl:overflow-x-auto whitespace-nowrap mx-5 justify-center">
           {saleOrRent.map((option, index) => {
             let active = "";
             if (option === selectedSaleOrRent) {
