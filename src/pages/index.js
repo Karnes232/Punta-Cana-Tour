@@ -262,17 +262,6 @@ export const Head = ({ data }) => {
         schemaMarkup={schema}
       />
       <link rel="canonical" href="https://puntacanatourstore.com/" />
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@algolia/algoliasearch-netlify-frontend@1/dist/algoliasearchNetlify.css" />
-      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@algolia/algoliasearch-netlify-frontend@1/dist/algoliasearchNetlify.js"></script>
-      <script type="text/javascript">
-        algoliasearchNetlify({
-          appId: 'VL220EA99J',
-          apiKey: '471abcc30bdb5f1a81a0aea549b90ba7',
-          siteId: '3ebb0ed6-ee0d-44e0-b046-25478ac04a95',
-          branch: 'main',
-          selector: 'div#search',
-        });
-      </script>
     </>
   );
 };
