@@ -1,12 +1,89 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../components/layout";
 import Seo from "../../components/seo";
 import { graphql } from "gatsby";
 import HeroComponent from "../../components/HeroComponent/HeroComponent";
 import TextComponent from "../../components/TextComponent/TextComponent";
+import PropertyCard from "../../components/PropertyComonents/PropertyCard";
 
 const Index = ({ data }) => {
-  console.log(data.allContentfulProperty.edges[0].node);
+  const [forSaleList, setForSaleList] = useState([]);
+  const [forRentList, setForRentList] = useState([]);
+
+  const [showedList, setShowedList] = useState([]);
+
+  const [selectedSaleOrRent, setSelectedSaleOrRent] = useState("For Sale");
+  const [selectedPropertyType, setSelectedPropertyType] =
+    useState("All Properties");
+  const saleOrRent = ["For Sale", "For Rent"];
+  const propertyType = [
+    "All Properties",
+    "Villa",
+    "House",
+    "Apartment",
+    "Condo",
+  ];
+
+  useEffect(() => {
+    const forSalePropertyList = data.allContentfulProperty.edges.filter(
+      (property) => {
+        if (property.node.saleOrRent === "For Sale") {
+          return property;
+        }
+      },
+    );
+    const forRentPropertyList = data.allContentfulProperty.edges.filter(
+      (property) => {
+        if (property.node.saleOrRent === "For Rent") {
+          return property;
+        }
+      },
+    );
+    setForSaleList(forSalePropertyList.sort(() => Math.random() - 0.5));
+    setForRentList(forRentPropertyList.sort(() => Math.random() - 0.5));
+    setShowedList(forSalePropertyList.sort(() => Math.random() - 0.5));
+  }, []);
+
+  const setFilter = (e) => {
+    if (selectedSaleOrRent === e.target.dataset.option) {
+      return;
+    }
+    setSelectedPropertyType("All Properties");
+    setSelectedSaleOrRent(e.target.dataset.option);
+    if (e.target.dataset.option === "For Sale") {
+      setShowedList(forSaleList);
+    }
+    if (e.target.dataset.option === "For Rent") {
+      setShowedList(forRentList);
+    }
+  };
+
+  const filterPropertyType = (e) => {
+    setSelectedPropertyType(e.target.dataset.option);
+    if (selectedSaleOrRent === "For Sale") {
+      const filteredPropertyList = forSaleList.filter((property) => {
+        if (e.target.innerText === "All Properties") {
+          return property;
+        }
+        if (property.node.propertyType === e.target.dataset.option) {
+          return property;
+        }
+      });
+      setShowedList(filteredPropertyList.sort(() => Math.random() - 0.5));
+    }
+    if (selectedSaleOrRent === "For Rent") {
+      const filteredPropertyList = forRentList.filter((property) => {
+        if (e.target.innerText === "All Properties") {
+          return property;
+        }
+        if (property.node.propertyType === e.target.dataset.option) {
+          return property;
+        }
+      });
+      setShowedList(filteredPropertyList.sort(() => Math.random() - 0.5));
+    }
+  };
+
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -41,6 +118,54 @@ const Index = ({ data }) => {
         className="my-5 2xl:my-2 text-3xl md:text-4xl"
         pClassName="mb-4 lg:mb-0"
       />
+      <div>
+        <nav className="flex flex-row items-center overflow-x-scroll xl:overflow-x-auto whitespace-nowrap mx-5 xl:justify-center">
+          {saleOrRent.map((option, index) => {
+            let active = "";
+            if (option === selectedSaleOrRent) {
+              active = "font-extrabold";
+            }
+            return (
+              <button
+                key={index}
+                data-option={option}
+                onClick={setFilter}
+                value={option}
+                translate="no"
+                className={`cursor-pointer no-underline flex items-center px-5 h-10 ${active} transition-all duration-300 translatedText `}
+              >
+                {option}
+              </button>
+            );
+          })}
+        </nav>
+        <nav className="flex flex-row items-center overflow-x-scroll xl:overflow-x-auto whitespace-nowrap mx-5 xl:justify-center">
+          {propertyType.map((option, index) => {
+            let active = "";
+            if (option === selectedPropertyType) {
+              active = "font-extrabold";
+            }
+            return (
+              <button
+                key={index}
+                data-option={option}
+                onClick={filterPropertyType}
+                value={option}
+                translate="no"
+                className={`cursor-pointer no-underline flex items-center px-5 h-10 ${active} transition-all duration-300 translatedText `}
+              >
+                {option}
+              </button>
+            );
+          })}
+        </nav>
+
+        <div className="flex flex-col md:flex-row md:flex-wrap md:justify-evenly max-w-5xl xl:max-w-6xl mx-auto">
+          {showedList.map((property, index) => {
+            return <PropertyCard property={property.node} key={index} />;
+          })}
+        </div>
+      </div>
     </Layout>
   );
 };
@@ -75,12 +200,10 @@ export const query = graphql`
           generalLocation
           bedrooms
           bathrooms
-          amenities
-          seoTitle
-          seoDescription
-          seoKeywords
+          squareFeet
           mainImage {
             gatsbyImage(width: 400, formats: WEBP, placeholder: BLURRED)
+            title
           }
         }
       }
