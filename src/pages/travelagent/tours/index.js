@@ -61,10 +61,10 @@ const Index = ({ data }) => {
     >
       <HeroComponent
         imageUrl={
-          data.allContentfulTourPageContent.edges[0].node.mainImage.file.url
+          data.allContentfulPageContent.edges[0].node.mainImage.file.url
         }
         gImage={
-          data.allContentfulTourPageContent.edges[0].node.mainImage.gatsbyImage
+          data.allContentfulPageContent.edges[0].node.mainImage.gatsbyImage
         }
         heroText=""
         heroText2=""
@@ -72,9 +72,9 @@ const Index = ({ data }) => {
       />
 
       <TextComponent
-        title={data.allContentfulTourPageContent.edges[0].node.title}
+        title={data.allContentfulPageContent.edges[0].node.title}
         paragraph={
-          data.allContentfulTourPageContent.edges[0].node.paragraph1.paragraph1
+          data.allContentfulPageContent.edges[0].node.paragraph1.paragraph1
         }
         className="my-5 2xl:my-2 text-3xl md:text-4xl"
         pClassName="mb-4 lg:mb-0"
@@ -149,18 +149,18 @@ export const query = graphql`
         }
       }
     }
-    allContentfulTourPageContent {
+    allContentfulPageContent(filter: { page: { eq: "Tour Page" } }) {
       edges {
         node {
-          mainImage {
-            gatsbyImage(width: 1920, formats: WEBP)
-            file {
-              url
-            }
-          }
           title
           paragraph1 {
             paragraph1
+          }
+          mainImage {
+            gatsbyImage(width: 1920, formats: WEBP, placeholder: BLURRED)
+            file {
+              url
+            }
           }
         }
       }
@@ -186,7 +186,10 @@ export const Head = ({ data }) => {
         description={description.description}
         keywords={keywords.join(", ")}
       />
-      <link rel="canonical" href="https://puntacanatourstore.com/tours/" />
+      <link
+        rel="canonical"
+        href="https://puntacanatourstore.com/travelagent/tours/"
+      />
     </>
   );
 };

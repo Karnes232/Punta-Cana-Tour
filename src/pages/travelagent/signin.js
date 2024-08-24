@@ -86,7 +86,7 @@ export const Head = ({ data }) => {
       />
       <link
         rel="canonical"
-        href="https://puntacanatourstore.com/travelagent/"
+        href="https://puntacanatourstore.com/travelagent/signin/"
       />
       <meta
         name="viewport"

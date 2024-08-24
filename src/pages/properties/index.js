@@ -1,11 +1,12 @@
 import React from "react";
+import Layout from "../../components/layout";
+import Seo from "../../components/seo";
 import { graphql } from "gatsby";
-import Layout from "../../../components/TravelAgentComponents/Layout";
+import HeroComponent from "../../components/HeroComponent/HeroComponent";
+import TextComponent from "../../components/TextComponent/TextComponent";
 
-import Seo from "../../../components/seo";
-import ContactForm from "../../../components/ContactFormComponent/ContactForm";
-import HeroComponent from "../../../components/HeroComponent/HeroComponent";
-const index = ({ data }) => {
+const Index = ({ data }) => {
+  console.log(data.allContentfulProperty.edges[0].node);
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -23,18 +24,22 @@ const index = ({ data }) => {
     >
       <HeroComponent
         imageUrl={
-          data.allContentfulAboutPageContent.edges[0].node.aboutHero.file.url
+          data.allContentfulPageContent.edges[0].node.mainImage.file.url
         }
         gImage={
-          data.allContentfulAboutPageContent.edges[0].node.aboutHero.gatsbyImage
+          data.allContentfulPageContent.edges[0].node.mainImage.gatsbyImage
         }
         heroText=""
         heroText2=""
         button={false}
-      />
-      <ContactForm
-        formName="travelAgentContact"
-        url="/travelagent/contact/thankyou/?name="
+      />{" "}
+      <TextComponent
+        title={data.allContentfulPageContent.edges[0].node.title}
+        paragraph={
+          data.allContentfulPageContent.edges[0].node.paragraph1.paragraph1
+        }
+        className="my-5 2xl:my-2 text-3xl md:text-4xl"
+        pClassName="mb-4 lg:mb-0"
       />
     </Layout>
   );
@@ -59,11 +64,36 @@ export const query = graphql`
         }
       }
     }
-    allContentfulAboutPageContent {
+    allContentfulProperty {
       edges {
         node {
-          aboutHero {
-            gatsbyImage(width: 1920, formats: WEBP)
+          title
+          urlSlug
+          saleOrRent
+          propertyType
+          price
+          generalLocation
+          bedrooms
+          bathrooms
+          amenities
+          seoTitle
+          seoDescription
+          seoKeywords
+          mainImage {
+            gatsbyImage(width: 400, formats: WEBP, placeholder: BLURRED)
+          }
+        }
+      }
+    }
+    allContentfulPageContent(filter: { page: { eq: "Properties Page" } }) {
+      edges {
+        node {
+          title
+          paragraph1 {
+            paragraph1
+          }
+          mainImage {
+            gatsbyImage(width: 1920, formats: WEBP, placeholder: BLURRED)
             file {
               url
             }
@@ -71,7 +101,7 @@ export const query = graphql`
         }
       }
     }
-    allContentfulSeo(filter: { page: { eq: "Contact Page" } }) {
+    allContentfulSeo(filter: { page: { eq: "Properties Page" } }) {
       nodes {
         title
         keywords
@@ -92,12 +122,9 @@ export const Head = ({ data }) => {
         description={description.description}
         keywords={keywords.join(", ")}
       />
-      <link
-        rel="canonical"
-        href="https://puntacanatourstore.com/travelagent/contact/"
-      />
+      <link rel="canonical" href="https://puntacanatourstore.com/properties/" />
     </>
   );
 };
 
-export default index;
+export default Index;

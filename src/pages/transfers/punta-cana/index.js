@@ -150,7 +150,10 @@ export const Head = ({ data }) => {
         description={description.description}
         keywords={keywords.join(", ")}
       />
-      <link rel="canonical" href="https://puntacanatourstore.com/transfers/punta-cana/" />
+      <link
+        rel="canonical"
+        href="https://puntacanatourstore.com/transfers/punta-cana/"
+      />
     </>
   );
 };
