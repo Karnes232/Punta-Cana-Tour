@@ -26,7 +26,7 @@ const index = ({ data }) => {
         heroText="Blog Posts"
         button={false}
       />
-      <div className="flex flex-col xl:mt-5 md:flex-row md:flex-wrap md:justify-evenly md:space-x-10 max-w-5xl xl:max-w-6xl mx-auto">
+      <div className="flex flex-col xl:mt-5 md:flex-row md:flex-wrap md:justify-evenly  max-w-5xl xl:max-w-6xl mx-auto md:gap-5">
         <BlogCategory
           title="Tour Blogs"
           gImage={data.allContentfulBlogLayout.nodes[0].tourBlogImage}

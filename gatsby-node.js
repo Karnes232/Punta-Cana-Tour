@@ -45,6 +45,33 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      allContentfulProperty {
+        nodes {
+          title
+          urlSlug
+          saleOrRent
+          propertyType
+          price
+          generalLocation
+          bedrooms
+          bathrooms
+          amenities
+          seoTitle
+          seoDescription
+          seoKeywords
+          mainImage {
+            gatsbyImage(width: 2000, formats: WEBP, placeholder: BLURRED)
+            title
+            url
+          }
+          squareFeet
+          images {
+            title
+            gatsbyImage(width: 2000, placeholder: BLURRED, formats: WEBP)
+            url
+          }
+        }
+      }
       allContentfulLayout {
         edges {
           node {
@@ -101,6 +128,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const tourTemplate = path.resolve(`src/templates/tour.js`);
   const travelAgentTemplate = path.resolve(`src/templates/travelAgent.js`);
   const blogTemplate = path.resolve(`src/templates/blog.js`);
+  const propertyTemplate = path.resolve(`src/templates/property.js`);
   queryResults.data.allContentfulTours.nodes.forEach((node) => {
     createPage({
       path: `/tours/${node.url}`,
@@ -154,6 +182,16 @@ exports.createPages = async ({ graphql, actions }) => {
         blog: node,
         layout: queryResults.data.allContentfulLayout.edges[0].node,
         blogList: queryResults.data.allContentfulBlogPost.nodes,
+      },
+    });
+  });
+  queryResults.data.allContentfulProperty.nodes.forEach((node) => {
+    createPage({
+      path: `/properties/${node.urlSlug}`,
+      component: propertyTemplate,
+      context: {
+        property: node,
+        layout: queryResults.data.allContentfulLayout.edges[0].node,
       },
     });
   });
