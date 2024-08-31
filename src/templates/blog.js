@@ -54,7 +54,7 @@ export const Head = ({ pageContext }) => {
         description={pageContext.blog.description}
         keywords={pageContext.blog?.tags?.join(", ")}
       />
-      <link rel="canonical" href="https://puntacanatourstore.com/contact/" />
+      <link rel="canonical" href={`https://puntacanatourstore.com/blog/${pageContext.blog.slug}`}/>
     </>
   );
 };
