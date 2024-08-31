@@ -5,10 +5,10 @@ const LinksRight = ({ color }) => {
   return (
     <div className="hidden lg:flex lg:w-[50rem] xl:w-[55rem] lg:justify-between">
       <Link to="/" className="no-underline">
-        <button className={`navLinks text-${color}`}>Home</button>
+        <button className={`navLinks text-${color}`} translate="no">Home</button>
       </Link>
       <Link to="/tours" className="no-underline">
-        <button className={`navLinks text-${color}`}>Tours</button>
+        <button className={`navLinks text-${color}`} translate="no">Tours</button>
       </Link>
       <DropDownMenu
         name="Transfers"
@@ -20,7 +20,7 @@ const LinksRight = ({ color }) => {
         useHover
       />
       <Link to="/carrental" className="no-underline">
-        <button className={`navLinks text-${color}`}>Car Rental</button>
+        <button className={`navLinks text-${color}`} translate="no">Car Rental</button>
       </Link>
       <DropDownMenu
         name="Recommendations"
@@ -33,7 +33,7 @@ const LinksRight = ({ color }) => {
       />
 
       <Link to="/contact" className="no-underline">
-        <button className={`navLinks text-${color}`}>Contact</button>
+        <button className={`navLinks text-${color}`} translate="no">Contact</button>
       </Link>
     </div>
   );

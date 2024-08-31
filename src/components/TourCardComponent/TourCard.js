@@ -15,7 +15,7 @@ const TourCard = ({ tour, featured }) => {
           />
           <div className="px-6 py-4">
             <div className="font-bold h-10 text-lg mb-2 flex justify-between">
-              <div className="truncate mr-3">{name}</div>
+              <div className="truncate mr-3" translate="no">{name}</div>
               <div>${price}</div>
             </div>
             <p className="text-gray-700 min-h-[9rem] text-base line-clamp-6">
@@ -28,6 +28,7 @@ const TourCard = ({ tour, featured }) => {
               <span
                 className="flex justify-center items-center h-7 min-w-fit bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
                 key={index}
+                translate="no"
               >
                 {category}
               </span>

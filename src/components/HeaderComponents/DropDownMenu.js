@@ -47,6 +47,7 @@ const DropDownMenu = ({ name, subItems, useHover }) => {
               className={`navLinks text-black`}
               //   as={useHover ? "a" : "button"}
               //   href={useHover ? url : null}
+              translate="no"
             >
               {name}
               <ChevronDownIcon
