@@ -4,10 +4,11 @@ import HeroComponent from "../components/HeroComponent/HeroComponent";
 import PhotoGrid from "../components/TourPageComponents/PhotoGrid";
 import PropertyInfo from "../components/PropertyComonents/PropertyInfo";
 import Seo from "../components/seo";
-import BlogBody from "../components/BlogComponents/BlogBody";
+import PropertyBody from "../components/PropertyComonents/PropertyBody";
+import Amenities from "../components/PropertyComonents/Amenities";
 
 const Property = ({ pageContext }) => {
-  console.log(pageContext.property);
+  // console.log(pageContext.property);
   return (
     <Layout
       logo={pageContext.layout.logo}
@@ -42,8 +43,9 @@ const Property = ({ pageContext }) => {
           bedrooms={pageContext.property.bedrooms}
           sqFeet={pageContext.property.squareFeet}
         />
+        <Amenities amenities={pageContext.property.amenities} />
       </div>
-      <BlogBody context={pageContext.property.description} />
+      <PropertyBody context={pageContext.property.description} />
     </Layout>
   );
 };
