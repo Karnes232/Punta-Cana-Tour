@@ -4,6 +4,7 @@ import { graphql } from "gatsby";
 import Seo from "../../components/seo";
 import HeroComponent from "../../components/HeroComponent/HeroComponent";
 import BlogCategory from "../../components/BlogComponents/BlogCategory";
+import TextComponent from "../../components/BlogComponents/TextComponent";
 
 const index = ({ data }) => {
   return (
@@ -25,6 +26,12 @@ const index = ({ data }) => {
         gImage={data.allContentfulBlogLayout.nodes[0].mainImage.gatsbyImage}
         heroText="Blog Posts"
         button={false}
+      />
+      <TextComponent
+        paragraph={
+          data.allContentfulBlogLayout.nodes[0].mainDescription.mainDescription
+        }
+        pClassName="my-2 2xl:my-10"
       />
       <div className="flex flex-col xl:mt-5 md:flex-row md:flex-wrap md:justify-evenly  max-w-5xl xl:max-w-6xl mx-auto md:gap-5">
         <BlogCategory
@@ -101,6 +108,9 @@ export const query = graphql`
     allContentfulBlogLayout {
       nodes {
         page
+        mainDescription {
+          mainDescription
+        }
         mainImage {
           gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 2000)
         }

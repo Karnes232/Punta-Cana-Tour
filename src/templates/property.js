@@ -42,7 +42,6 @@ const Property = ({ pageContext }) => {
           bedrooms={pageContext.property.bedrooms}
           sqFeet={pageContext.property.squareFeet}
         />
-        
       </div>
       <BlogBody context={pageContext.property.description} />
     </Layout>

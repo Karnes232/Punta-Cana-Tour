@@ -7,7 +7,6 @@ import TextComponent from "../../../components/BlogComponents/TextComponent";
 import PostList from "../../../components/BlogComponents/PostList";
 
 const Index = ({ data }) => {
-  console.log(data.allContentfulBlogPost);
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -32,8 +31,14 @@ const Index = ({ data }) => {
       />
       <TextComponent
         title="Blog Posts"
-        className="my-5 2xl:mb-2 2xl:mt-10 text-2xl md:text-3xl"
+        className="mt-5 2xl:mb-2 2xl:mt-10 text-2xl md:text-3xl"
+        paragraph={
+          data.allContentfulBlogLayout.nodes[0].attractionsBlogDescription
+            .attractionsBlogDescription
+        }
+        pClassName="my-2 2xl:mb-10"
       />
+
       <PostList list={data.allContentfulBlogPost.nodes} />
     </Layout>
   );
@@ -62,6 +67,9 @@ export const query = graphql`
       nodes {
         attractionsBlogImage {
           gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 2000)
+        }
+        attractionsBlogDescription {
+          attractionsBlogDescription
         }
       }
     }

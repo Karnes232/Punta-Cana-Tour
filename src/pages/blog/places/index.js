@@ -34,6 +34,11 @@ const Index = ({ data }) => {
       <TextComponent
         title="Blog Posts"
         className="my-5 2xl:mb-2 2xl:mt-10 text-2xl md:text-3xl"
+        paragraph={
+          data.allContentfulBlogLayout.nodes[0].famousDominicanPlacesDescription
+            .famousDominicanPlacesDescription
+        }
+        pClassName="my-2 2xl:mb-10"
       />
       <PostList list={data.allContentfulBlogPost.nodes} />
     </Layout>
@@ -63,6 +68,9 @@ export const query = graphql`
       nodes {
         famousDominicanPlacesImage {
           gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 2000)
+        }
+        famousDominicanPlacesDescription {
+          famousDominicanPlacesDescription
         }
       }
     }
