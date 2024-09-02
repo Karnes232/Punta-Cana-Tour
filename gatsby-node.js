@@ -56,6 +56,9 @@ exports.createPages = async ({ graphql, actions }) => {
           bedrooms
           bathrooms
           amenities
+          description {
+            raw
+          }
           seoTitle
           seoDescription
           seoKeywords

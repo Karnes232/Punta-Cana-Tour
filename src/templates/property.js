@@ -4,6 +4,7 @@ import HeroComponent from "../components/HeroComponent/HeroComponent";
 import PhotoGrid from "../components/TourPageComponents/PhotoGrid";
 import PropertyInfo from "../components/PropertyComonents/PropertyInfo";
 import Seo from "../components/seo";
+import BlogBody from "../components/BlogComponents/BlogBody";
 
 const Property = ({ pageContext }) => {
   console.log(pageContext.property);
@@ -30,7 +31,7 @@ const Property = ({ pageContext }) => {
       <div className="hidden lg:flex max-w-6xl mx-auto">
         <PhotoGrid tourPhotos={pageContext?.property?.images} />
       </div>
-      <div className="max-w-6xl my-5 mx-5 md:mx-10 xl:w-full xl:mx-auto">
+      <div className="max-w-6xl my-5 mx-5 md:mx-10  xl:mx-auto">
         <PropertyInfo
           title={pageContext.property.title}
           propertyType={pageContext.property.propertyType}
@@ -41,7 +42,9 @@ const Property = ({ pageContext }) => {
           bedrooms={pageContext.property.bedrooms}
           sqFeet={pageContext.property.squareFeet}
         />
+        
       </div>
+      <BlogBody context={pageContext.property.description} />
     </Layout>
   );
 };
