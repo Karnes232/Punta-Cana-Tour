@@ -33,7 +33,7 @@ const ContactForm = ({ property, email }) => {
         body: new URLSearchParams(dataFromForm).toString(),
       }).then(() => {
         console.log("Form successfully submitted");
-        setContacted(true);
+        // setContacted(true);
       });
     }
   };
