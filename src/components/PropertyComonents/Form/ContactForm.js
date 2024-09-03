@@ -31,9 +31,12 @@ const ContactForm = ({ property, email }) => {
           "Content-Type": "application/x-www-form-urlencoded",
         },
         body: new URLSearchParams(dataFromForm).toString(),
-      }).then(() => {
+      }).then((e) => {
+        console.log(e)
         console.log("Form successfully submitted");
         // setContacted(true);
+      }).catch((err) => {
+        console.error(err);
       });
     }
   };
