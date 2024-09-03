@@ -50,7 +50,7 @@ const Property = ({ pageContext }) => {
       </div>
       <div className="flex flex-col lg:flex-row justify-between max-w-6xl xl:mx-auto">
         <PropertyBody context={pageContext.property.description} />
-        <div className="flex flex-col-reverse lg:flex-col lg:w-6/12 flex-grow ml-5">
+        <div className="flex flex-col-reverse lg:flex-col lg:w-6/12 flex-grow lg:ml-5">
           <ContactForm
             property={pageContext.property}
             email={pageContext.layout.email}
