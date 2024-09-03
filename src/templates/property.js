@@ -6,6 +6,7 @@ import PropertyInfo from "../components/PropertyComonents/PropertyInfo";
 import Seo from "../components/seo";
 import PropertyBody from "../components/PropertyComonents/PropertyBody";
 import Amenities from "../components/PropertyComonents/Amenities";
+import ContactForm from "../components/PropertyComonents/Form/ContactForm";
 
 const Property = ({ pageContext }) => {
   // console.log(pageContext.property);
@@ -45,7 +46,10 @@ const Property = ({ pageContext }) => {
         />
         <Amenities amenities={pageContext.property.amenities} />
       </div>
-      <PropertyBody context={pageContext.property.description} />
+      <div className="flex flex-col lg:flex-row justify-between max-w-6xl xl:mx-auto">
+        <PropertyBody context={pageContext.property.description} />
+        <ContactForm property={pageContext.property} />
+      </div>
     </Layout>
   );
 };

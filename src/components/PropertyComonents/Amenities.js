@@ -15,7 +15,7 @@ const Amenities = ({ amenities }) => {
       <h4 className="text-xl md:text-2xl tracking-wide my-2">Amenities</h4>
       <div className="flex flex-col md:flex-row md:flex-wrap  max-w-6xl xl:max-w-6xl mx-auto">
         {amenities.includes("Swimming Pool") ? (
-          <div class="flex items-center w-80 h-12">
+          <div className="flex items-center w-80 h-12">
             <MdPool className="mr-2" size={30} />
             Swimming Pool
           </div>
@@ -23,7 +23,7 @@ const Amenities = ({ amenities }) => {
           <></>
         )}
         {amenities.includes("Fitness Center/Gym") ? (
-          <div class="flex items-center w-80 h-12">
+          <div className="flex items-center w-80 h-12">
             <MdFitnessCenter className="mr-2" size={30} />
             Fitness Center/Gym
           </div>
@@ -31,7 +31,7 @@ const Amenities = ({ amenities }) => {
           <></>
         )}
         {amenities.includes("BBQ/Picnic Area") ? (
-          <div class="flex items-center w-80 h-12">
+          <div className="flex items-center w-80 h-12">
             <MdOutdoorGrill className="mr-2" size={30} />
             BBQ/Picnic Area
           </div>
@@ -39,7 +39,7 @@ const Amenities = ({ amenities }) => {
           <></>
         )}
         {amenities.includes("Gated Community/Security") ? (
-          <div class="flex items-center w-80 h-12">
+          <div className="flex items-center w-80 h-12">
             <MdOutlineSecurity className="mr-2" size={30} />
             Gated Community/Security
           </div>
@@ -47,7 +47,7 @@ const Amenities = ({ amenities }) => {
           <></>
         )}
         {amenities.includes("Balcony/Patio") ? (
-          <div class="flex items-center w-80 h-12">
+          <div className="flex items-center w-80 h-12">
             <MdBalcony className="mr-2" size={30} />
             Balcony/Patio
           </div>
@@ -55,7 +55,7 @@ const Amenities = ({ amenities }) => {
           <></>
         )}
         {amenities.includes("Dishwasher") ? (
-          <div class="flex items-center w-80 h-12">
+          <div className="flex items-center w-80 h-12">
             <FaKitchenSet className="mr-2" size={30} />
             Dishwasher
           </div>
@@ -63,7 +63,7 @@ const Amenities = ({ amenities }) => {
           <></>
         )}
         {amenities.includes("Smart Home Features") ? (
-          <div class="flex items-center w-80 h-12">
+          <div className="flex items-center w-80 h-12">
             <SiSmartthings className="mr-2" size={30} />
             Smart Home Features
           </div>
@@ -71,7 +71,7 @@ const Amenities = ({ amenities }) => {
           <></>
         )}
         {amenities.includes("Solar Panels") ? (
-          <div class="flex items-center w-80 h-12">
+          <div className="flex items-center w-80 h-12">
             <MdSolarPower className="mr-2" size={30} />
             Solar Panels
           </div>
