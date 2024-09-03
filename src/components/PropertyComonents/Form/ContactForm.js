@@ -25,19 +25,21 @@ const ContactForm = ({ property, email }) => {
     }
     if (formData.phone !== "" && formData.phone !== undefined) {
       const dataFromForm = getFormData(formData);
-      fetch("/properties/", {
+      fetch("/", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
         body: new URLSearchParams(dataFromForm).toString(),
-      }).then((e) => {
-        console.log(e)
-        console.log("Form successfully submitted");
-        // setContacted(true);
-      }).catch((err) => {
-        console.error(err);
-      });
+      })
+        .then((e) => {
+          console.log(e);
+          console.log("Form successfully submitted");
+          // setContacted(true);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     }
   };
 
@@ -77,6 +79,16 @@ const ContactForm = ({ property, email }) => {
             Contact Us
           </div>
           <input type="hidden" name="form-name" value="PropertyForm" />
+          <input
+            type="hidden"
+            name="propertyName"
+            value={formData.propertyName}
+          />
+          <input
+            type="hidden"
+            name="propertyPrice"
+            value={formData.propertyPrice}
+          />
           <ContactInfo
             formData={formData}
             setFormData={setFormData}
