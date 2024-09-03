@@ -48,7 +48,10 @@ const Property = ({ pageContext }) => {
       </div>
       <div className="flex flex-col lg:flex-row justify-between max-w-6xl xl:mx-auto">
         <PropertyBody context={pageContext.property.description} />
-        <ContactForm property={pageContext.property} />
+        <ContactForm
+          property={pageContext.property}
+          email={pageContext.layout.email}
+        />
       </div>
     </Layout>
   );

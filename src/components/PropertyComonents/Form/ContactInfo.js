@@ -1,7 +1,7 @@
 import React from "react";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
-const ContactInfo = ({ formData, setFormData }) => {
+const ContactInfo = ({ formData, setFormData, phoneAlert }) => {
   const handleChange = ({ target }) => {
     setFormData({
       ...formData,
@@ -14,7 +14,6 @@ const ContactInfo = ({ formData, setFormData }) => {
       phone: e,
     });
   };
-  let phoneAlert = false;
   return (
     <>
       <div className="relative z-0 mb-6 w-full group">
