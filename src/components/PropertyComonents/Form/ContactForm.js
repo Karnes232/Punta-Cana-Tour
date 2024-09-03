@@ -68,12 +68,11 @@ const ContactForm = ({ property, email }) => {
         <form
           name="PropertyForm"
           method="POST"
-          action={`/`}
+          action={`/contact/thankyou/?name=${formData.name}`}
           data-netlify="true"
           data-netlify-honeypot="bot-field"
           id="PropertyForm"
           className="w-full px-5 flex flex-col justify-center items-center mx-auto my-5 lg:my-0"
-          onSubmit={handleSubmit}
         >
           <div className="relative z-0 w-full text-xl font-medium mb-5">
             Contact Us
