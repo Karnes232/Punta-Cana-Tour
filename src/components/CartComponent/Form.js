@@ -106,7 +106,7 @@ const Form = ({ allTours, hotels }) => {
         body: new URLSearchParams(dataFromForm).toString(),
       }).then(() => {
         console.log("Form successfully submitted");
-        collectUserData(dataFromForm, clearCart, redirectHref);
+        // collectUserData(dataFromForm, clearCart, redirectHref);
       });
     }
     if (

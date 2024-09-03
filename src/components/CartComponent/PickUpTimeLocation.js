@@ -26,8 +26,6 @@ const PickUpTimeLocation = ({
   if (weekDayValidationAlert !== undefined) {
     weekDayAlert = weekDayValidationAlert[`weekDayValidation${index + 1}`];
   }
-  console.log(daysAvailable);
-  console.log(weekDayValidationAlert);
   return (
     <div className="flex flex-col">
       <div className="flex justify-around my-2">
