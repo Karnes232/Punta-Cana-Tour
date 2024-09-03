@@ -56,6 +56,7 @@ exports.createPages = async ({ graphql, actions }) => {
           bedrooms
           bathrooms
           amenities
+          videoUrl
           description {
             raw
           }
@@ -72,6 +73,8 @@ exports.createPages = async ({ graphql, actions }) => {
             title
             gatsbyImage(width: 2000, placeholder: BLURRED, formats: WEBP)
             url
+            width
+            height
           }
         }
       }

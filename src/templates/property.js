@@ -7,9 +7,11 @@ import Seo from "../components/seo";
 import PropertyBody from "../components/PropertyComonents/PropertyBody";
 import Amenities from "../components/PropertyComonents/Amenities";
 import ContactForm from "../components/PropertyComonents/Form/ContactForm";
+import CarouselLightBox from "../components/PropertyComonents/CarouselLightBox";
+import Video from "../components/TourPageComponents/Video";
 
 const Property = ({ pageContext }) => {
-  // console.log(pageContext.property);
+  //console.log(pageContext.property.videoUrl);
   return (
     <Layout
       logo={pageContext.layout.logo}
@@ -48,11 +50,22 @@ const Property = ({ pageContext }) => {
       </div>
       <div className="flex flex-col lg:flex-row justify-between max-w-6xl xl:mx-auto">
         <PropertyBody context={pageContext.property.description} />
-        <ContactForm
-          property={pageContext.property}
-          email={pageContext.layout.email}
-        />
+        <div className="flex flex-col-reverse lg:flex-col lg:w-6/12 flex-grow ml-5">
+          <ContactForm
+            property={pageContext.property}
+            email={pageContext.layout.email}
+          />
+          <CarouselLightBox photoList={pageContext?.property?.images} />
+        </div>
       </div>
+      {pageContext?.property?.videoUrl?.map((video, index) => {
+        console.log(video);
+        return (
+          <div className="" key={index}>
+            <Video url={video} />
+          </div>
+        );
+      })}
     </Layout>
   );
 };

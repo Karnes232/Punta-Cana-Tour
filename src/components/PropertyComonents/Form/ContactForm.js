@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ContactInfo from "./ContactInfo";
 
 const ContactForm = ({ property, email }) => {
@@ -13,38 +13,38 @@ const ContactForm = ({ property, email }) => {
     propertyPrice: property.price,
   });
 
-  function getFormData(object) {
-    const newFormData = new FormData();
-    Object.keys(object).forEach((key) => newFormData.append(key, object[key]));
-    return newFormData;
-  }
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (formData.phone === "" || formData.phone === undefined) {
-      setPhoneAlert(true);
-    }
-    if (formData.phone !== "" && formData.phone !== undefined) {
-      const dataFromForm = getFormData(formData);
-      fetch("/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams(dataFromForm).toString(),
-      })
-        .then((e) => {
-          console.log(e);
-          console.log("Form successfully submitted");
-          // setContacted(true);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    }
-  };
+  // function getFormData(object) {
+  //   const newFormData = new FormData();
+  //   Object.keys(object).forEach((key) => newFormData.append(key, object[key]));
+  //   return newFormData;
+  // }
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (formData.phone === "" || formData.phone === undefined) {
+  //     setPhoneAlert(true);
+  //   }
+  //   if (formData.phone !== "" && formData.phone !== undefined) {
+  //     const dataFromForm = getFormData(formData);
+  //     fetch("/", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/x-www-form-urlencoded",
+  //       },
+  //       body: new URLSearchParams(dataFromForm).toString(),
+  //     })
+  //       .then((e) => {
+  //         console.log(e);
+  //         console.log("Form successfully submitted");
+  //         // setContacted(true);
+  //       })
+  //       .catch((err) => {
+  //         console.error(err);
+  //       });
+  //   }
+  // };
 
   return (
-    <div className="lg:w-4/12">
+    <div className="">
       {contacted ? (
         <div className="h-[28rem] flex flex-col justify-center items-center text-slate-600 ">
           <div className="text-2xl xl:text-4xl font-serif text-center mt-6">
