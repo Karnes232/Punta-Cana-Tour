@@ -25,7 +25,7 @@ const ContactForm = ({ property, email }) => {
     }
     if (formData.phone !== "" && formData.phone !== undefined) {
       const dataFromForm = getFormData(formData);
-      fetch("/", {
+      fetch("/properties/", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
