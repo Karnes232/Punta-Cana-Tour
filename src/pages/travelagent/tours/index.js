@@ -190,7 +190,7 @@ export const Head = ({ data }) => {
         rel="canonical"
         href="https://puntacanatourstore.com/travelagent/tours/"
       />
-      <meta name="robots" content="noindex,nofollow"/>  
+      <meta name="robots" content="noindex,nofollow" />
     </>
   );
 };

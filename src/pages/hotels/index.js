@@ -1,21 +1,11 @@
-import React, { useEffect } from "react";
-import Layout from "../../../components/TravelAgentComponents/Layout";
-import { graphql, navigate } from "gatsby";
-import Seo from "../../../components/seo";
-import Form from "../../../components/TravelAgentComponents/CartComponents/Form";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../../../config/firebase";
+import React from "react";
+import Layout from "../../components/layout";
+import Seo from "../../components/seo";
+import { graphql } from "gatsby";
+import HeroComponent from "../../components/HeroComponent/HeroComponent";
+import TextComponent from "../../components/TextComponent/TextComponent";
 
-const Cart = ({ data }) => {
-  useEffect(() => {
-    onAuthStateChanged(auth, async (user) => {
-      const currentUser = auth.currentUser;
-      if (!currentUser) {
-        navigate("/travelagent/signin");
-      }
-    });
-  }, []);
-
+const Index = ({ data }) => {
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -29,10 +19,26 @@ const Cart = ({ data }) => {
       gImage={
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
+      color="black"
     >
-      <Form
-        hotels={data.allContentfulHotelList.edges}
-        allTours={data.allContentfulTours}
+      <HeroComponent
+        imageUrl={
+          data.allContentfulPageContent.edges[0].node.mainImage.file.url
+        }
+        gImage={
+          data.allContentfulPageContent.edges[0].node.mainImage.gatsbyImage
+        }
+        heroText=""
+        heroText2=""
+        button={false}
+      />{" "}
+      <TextComponent
+        title={data.allContentfulPageContent.edges[0].node.title}
+        paragraph={
+          data.allContentfulPageContent.edges[0].node.paragraph1.paragraph1
+        }
+        className="my-5 2xl:my-2 text-3xl md:text-4xl"
+        pClassName="mb-4 lg:mb-0"
       />
     </Layout>
   );
@@ -57,33 +63,23 @@ export const query = graphql`
         }
       }
     }
-    allContentfulHotelList {
+    allContentfulPageContent(filter: { page: { eq: "Hotels Page" } }) {
       edges {
         node {
-          zone
-          hotelName
-        }
-      }
-    }
-    allContentfulTours {
-      nodes {
-        name
-        providerEmail
-        price
-        mainImage {
-          gatsbyImage(width: 400, formats: WEBP)
-          file {
-            url
+          title
+          paragraph1 {
+            paragraph1
           }
-        }
-        pickupTime {
-          internal {
-            content
+          mainImage {
+            gatsbyImage(width: 1920, formats: WEBP, placeholder: BLURRED)
+            file {
+              url
+            }
           }
         }
       }
     }
-    allContentfulSeo(filter: { page: { eq: "Cart" } }) {
+    allContentfulSeo(filter: { page: { eq: "Hotels Page" } }) {
       nodes {
         title
         keywords
@@ -95,8 +91,6 @@ export const query = graphql`
   }
 `;
 
-export default Cart;
-
 export const Head = ({ data }) => {
   const { title, description, keywords } = data.allContentfulSeo.nodes[0];
   return (
@@ -106,15 +100,9 @@ export const Head = ({ data }) => {
         description={description.description}
         keywords={keywords.join(", ")}
       />
-      <link
-        rel="canonical"
-        href="https://puntacanatourstore.com/travelagent/cart/"
-      />
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1"
-      />
-      <meta name="robots" content="noindex,nofollow" />
+      <link rel="canonical" href="https://puntacanatourstore.com/properties/" />
     </>
   );
 };
+
+export default Index;

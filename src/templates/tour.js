@@ -134,7 +134,7 @@ const Tour = ({ pageContext }) => {
 export default Tour;
 
 export const Head = ({ pageContext }) => {
-  const urlHref = `https://puntacanatourstore.com/tours/${pageContext.tour.url}`
+  const urlHref = `https://puntacanatourstore.com/tours/${pageContext.tour.url}`;
   return (
     <>
       <Seo
@@ -152,7 +152,7 @@ export const Head = ({ pageContext }) => {
             "url": ${urlHref},
             "priceCurrency": "USD",
             "price": ${pageContext.tour.price},
-          }`
+          }`,
         }}
       />
       <link

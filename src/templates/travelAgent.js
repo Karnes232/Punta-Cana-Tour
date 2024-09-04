@@ -117,7 +117,7 @@ export const Head = ({ pageContext }) => {
         rel="canonical"
         href={`https://puntacanatourstore.com/travelagent/tours/${pageContext.tour.url}`}
       />
-      <meta name="robots" content="noindex,nofollow"/>  
+      <meta name="robots" content="noindex,nofollow" />
     </>
   );
 };
