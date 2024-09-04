@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../components/layout";
 import HeroComponent from "../components/HeroComponent/HeroComponent";
 import Button from "../components/TourPageComponents/Button";
@@ -134,6 +134,11 @@ const Tour = ({ pageContext }) => {
 export default Tour;
 
 export const Head = ({ pageContext }) => {
+  const [urlHref, setUrlHref] = useState(undefined)
+  useEffect(() => {
+    setUrlHref(window.location.href)
+  }, [])
+  
   return (
     <>
       <Seo
@@ -146,6 +151,12 @@ export const Head = ({ pageContext }) => {
           name: pageContext.tour.name,
           image: `https://www.puntacanatourstore.com${pageContext.tour.mainImage.gatsbyImage.images.fallback.src}`,
           description: pageContext.tour.description1.description1,
+          offers: `{
+            "@type": "Offer",
+            "url": ${urlHref},
+            "priceCurrency": "USD",
+            "price": ${pageContext.tour.price},
+          }`
         }}
       />
       <link
