@@ -78,6 +78,35 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      allContentfulHotelsOrHostel {
+        nodes {
+          title
+          urlSlug
+          hotelType
+          price
+          generalLocation
+          mainImage {
+            gatsbyImage(width: 2000, formats: WEBP, placeholder: BLURRED)
+            title
+            url
+          }
+          images {
+            title
+            gatsbyImage(width: 2000, placeholder: BLURRED, formats: WEBP)
+            url
+            width
+            height
+          }
+          description {
+            raw
+          }
+          seoTitle
+          seoDescription
+          seoKeywords
+          videoUrl
+          amenities
+        }
+      }
       allContentfulLayout {
         edges {
           node {
@@ -135,6 +164,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const travelAgentTemplate = path.resolve(`src/templates/travelAgent.js`);
   const blogTemplate = path.resolve(`src/templates/blog.js`);
   const propertyTemplate = path.resolve(`src/templates/property.js`);
+  const hotelTemplate = path.resolve(`src/templates/hotel.js`);
   queryResults.data.allContentfulTours.nodes.forEach((node) => {
     createPage({
       path: `/tours/${node.url}`,
@@ -197,6 +227,16 @@ exports.createPages = async ({ graphql, actions }) => {
       component: propertyTemplate,
       context: {
         property: node,
+        layout: queryResults.data.allContentfulLayout.edges[0].node,
+      },
+    });
+  });
+  queryResults.data.allContentfulHotelsOrHostel.nodes.forEach((node) => {
+    createPage({
+      path: `/hotels/${node.urlSlug}`,
+      component: hotelTemplate,
+      context: {
+        hotel: node,
         layout: queryResults.data.allContentfulLayout.edges[0].node,
       },
     });
