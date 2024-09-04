@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Layout from "../components/layout";
 import HeroComponent from "../components/HeroComponent/HeroComponent";
 import Button from "../components/TourPageComponents/Button";
@@ -134,11 +134,7 @@ const Tour = ({ pageContext }) => {
 export default Tour;
 
 export const Head = ({ pageContext }) => {
-  const [urlHref, setUrlHref] = useState(undefined)
-  useEffect(() => {
-    setUrlHref(window.location.href)
-  }, [])
-  
+  const urlHref = `https://puntacanatourstore.com/tours/${pageContext.tour.url}`
   return (
     <>
       <Seo
