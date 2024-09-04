@@ -54,12 +54,12 @@ const Property = ({ pageContext }) => {
           <ContactForm
             property={pageContext.property}
             email={pageContext.layout.email}
+            formName='PropertyForm'
           />
           <CarouselLightBox photoList={pageContext?.property?.images} />
         </div>
       </div>
       {pageContext?.property?.videoUrl?.map((video, index) => {
-        console.log(video);
         return (
           <div className="" key={index}>
             <Video url={video} />

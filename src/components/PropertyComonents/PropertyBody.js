@@ -118,7 +118,7 @@ const PropertyBody = ({ context }) => {
   );
   return (
     <>
-      <div className="flex flex-col lg:pr-5 mx-5 lg:mx-0 max-w-6xl lg:w-7/12">
+      <div className="flex flex-col lg:pr-5 mx-5 lg:mx-0 max-w-6xl lg:w-7/12 justify-center">
         {propertyDocument}
       </div>
     </>

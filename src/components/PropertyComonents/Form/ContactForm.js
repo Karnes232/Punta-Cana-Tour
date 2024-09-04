@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ContactInfo from "./ContactInfo";
 
-const ContactForm = ({ property, email }) => {
+const ContactForm = ({ property, email, formName }) => {
   const [phoneAlert, setPhoneAlert] = useState(false);
   const [contacted, setContacted] = useState(false);
   const [formData, setFormData] = useState({
@@ -66,18 +66,18 @@ const ContactForm = ({ property, email }) => {
         </div>
       ) : (
         <form
-          name="PropertyForm"
+          name={formName}
           method="POST"
           action={`/contact/thankyou/?name=${formData.name}`}
           data-netlify="true"
           data-netlify-honeypot="bot-field"
-          id="PropertyForm"
+          id={formName}
           className="w-full px-5 flex flex-col justify-center items-center mx-auto my-5 lg:my-0"
         >
           <div className="relative z-0 w-full text-xl font-medium mb-5">
             Contact Us
           </div>
-          <input type="hidden" name="form-name" value="PropertyForm" />
+          <input type="hidden" name="form-name" value={formName} />
           <input
             type="hidden"
             name="propertyName"

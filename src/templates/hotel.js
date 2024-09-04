@@ -5,6 +5,10 @@ import HeroComponent from "../components/HeroComponent/HeroComponent";
 import PhotoGrid from "../components/TourPageComponents/PhotoGrid";
 import HotelInfo from "../components/HotelComponents/HotelInfo";
 import Amenities from "../components/PropertyComonents/Amenities";
+import PropertyBody from "../components/PropertyComonents/PropertyBody";
+import ContactForm from "../components/PropertyComonents/Form/ContactForm";
+import CarouselLightBox from "../components/PropertyComonents/CarouselLightBox";
+import Video from "../components/TourPageComponents/Video";
 
 const Hotel = ({ pageContext }) => {
   console.log(pageContext.hotel);
@@ -40,6 +44,24 @@ const Hotel = ({ pageContext }) => {
         />
         <Amenities amenities={pageContext.hotel.amenities} />
       </div>
+      <div className="flex flex-col lg:flex-row justify-between max-w-6xl xl:mx-auto">
+        <PropertyBody context={pageContext.hotel.description} />
+        <div className="flex flex-col-reverse lg:flex-col lg:w-6/12 flex-grow lg:ml-5">
+          <ContactForm
+            property={pageContext.hotel}
+            email={pageContext.layout.email}
+            formName='HotelForm'
+          />
+          <CarouselLightBox photoList={pageContext?.hotel?.images} />
+        </div>
+      </div>
+      {pageContext?.hotel?.videoUrl?.map((video, index) => {
+        return (
+          <div className="" key={index}>
+            <Video url={video} />
+          </div>
+        );
+      })}
     </Layout>
   );
 };
