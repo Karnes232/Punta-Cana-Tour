@@ -8,6 +8,7 @@ import DatePickerComponent from "../../components/InvoiceComponents/DatePickerCo
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../../config/firebase";
 import { doc, getDoc } from "firebase/firestore";
+import Seo from "../../components/seo";
 
 const Tour = ({ data }) => {
   const [host, setHost] = useState("");
@@ -180,3 +181,20 @@ export const query = graphql`
 `;
 
 export default Tour;
+
+export const Head = ({ data }) => {
+  return (
+    <>
+      <Seo title="" description="" keywords="" />
+      <link
+        rel="canonical"
+        href="https://puntacanatourstore.com/invoice/tour"
+      />
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <meta name="robots" content="noindex,nofollow" />
+    </>
+  );
+};
