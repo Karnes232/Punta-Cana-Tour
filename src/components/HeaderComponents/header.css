@@ -1,5 +1,5 @@
 .navLinks {
-  @apply hidden font-lato uppercase h-6 md:inline-flex cursor-pointer hover:scale-105 transition-all duration-150 ease-out lg:text-lg xl:text-xl;
+  @apply hidden font-lato uppercase h-6 md:inline-flex cursor-pointer hover:scale-105 transition-all duration-150 ease-out lg:text-base xl:text-lg;
 }
 
 .hamburger {

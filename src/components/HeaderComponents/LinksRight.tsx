@@ -4,11 +4,11 @@ import DropDownMenu from "./DropDownMenu";
 const LinksRight = ({ color }) => {
   return (
     <div className="hidden lg:flex lg:w-[50rem] xl:w-[55rem] lg:justify-between">
-      <Link to="/" className="no-underline">
+      {/* <Link to="/" className="no-underline">
         <button className={`navLinks text-${color}`} translate="no">
           Home
         </button>
-      </Link>
+      </Link> */}
       <Link to="/tours" className="no-underline">
         <button className={`navLinks text-${color}`} translate="no">
           Tours
@@ -23,11 +23,7 @@ const LinksRight = ({ color }) => {
         ]}
         useHover
       />
-      <Link to="/carrental" className="no-underline">
-        <button className={`navLinks text-${color}`} translate="no">
-          Car Rental
-        </button>
-      </Link>
+
       <DropDownMenu
         name="Recommendations"
         subItems={[
@@ -37,6 +33,19 @@ const LinksRight = ({ color }) => {
         ]}
         useHover
       />
+      <DropDownMenu
+        name="Accommodation"
+        subItems={[
+          { name: "Property for Sale", url: "/properties" },
+          { name: "Hotel Rental", url: "/hotels" },
+        ]}
+        useHover
+      />
+      <Link to="/carrental" className="no-underline">
+        <button className={`navLinks text-${color}`} translate="no">
+          Car Rental
+        </button>
+      </Link>
 
       <Link to="/contact" className="no-underline">
         <button className={`navLinks text-${color}`} translate="no">
