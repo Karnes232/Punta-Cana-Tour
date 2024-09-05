@@ -1,11 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../../components/layout";
 import Seo from "../../components/seo";
 import { graphql } from "gatsby";
 import HeroComponent from "../../components/HeroComponent/HeroComponent";
 import TextComponent from "../../components/TextComponent/TextComponent";
+import HotelCard from "../../components/HotelComponents/HotelCard";
 
 const Index = ({ data }) => {
+  const backendHotelList = data.allContentfulHotelsOrHostel.edges;
+  const [hotelList, setHotelList] = useState(
+    data.allContentfulHotelsOrHostel.edges.sort(() => Math.random() - 0.5),
+  );
+  const [selectedCategory, setSelectedCategory] = useState("All Hotels");
+  const categories = [
+    "All Hotels",
+    "Luxury Hotel",
+    "All-Inclusive Resort",
+    "Business Hotel",
+    "Hostel",
+  ];
+
+  const setFilter = (e) => {
+    setSelectedCategory(e.target.dataset.category);
+    const filteredHotelList = backendHotelList.filter((hotel) => {
+      console.log(hotel);
+      if (e.target.innerText === "All Hotels") {
+        return hotel;
+      }
+      const categoryList = hotel.node.hotelType;
+      return categoryList.includes(e.target.dataset.category);
+    });
+    setHotelList(filteredHotelList.sort(() => Math.random() - 0.5));
+  };
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -40,6 +66,32 @@ const Index = ({ data }) => {
         className="my-5 2xl:my-2 text-3xl md:text-4xl"
         pClassName="mb-4 lg:mb-0"
       />
+      <nav className="flex flex-row items-center overflow-x-scroll xl:overflow-x-auto whitespace-nowrap mx-5 lg:justify-center">
+        {/* <button onClick={()=>setFilter('All')}>All</button> */}
+        {categories.map((category, index) => {
+          let active = "";
+          if (category === selectedCategory) {
+            active = "font-extrabold";
+          }
+          return (
+            <button
+              key={index}
+              data-category={category}
+              onClick={setFilter}
+              value={category}
+              translate="no"
+              className={`cursor-pointer no-underline flex items-center px-5 h-10 ${active} transition-all duration-300 translatedText `}
+            >
+              {category}
+            </button>
+          );
+        })}
+      </nav>
+      <div className="flex flex-col md:flex-row md:flex-wrap md:justify-evenly max-w-5xl xl:max-w-6xl mx-auto">
+        {hotelList.map((hotel, index) => {
+          return <HotelCard hotel={hotel.node} key={index} />;
+        })}
+      </div>
     </Layout>
   );
 };
@@ -60,6 +112,22 @@ export const query = graphql`
           facebook
           instagram
           whatsApp
+        }
+      }
+    }
+    allContentfulHotelsOrHostel {
+      edges {
+        node {
+          title
+          urlSlug
+          hotelType
+          price
+          generalLocation
+          mainImage {
+            gatsbyImage(width: 2000, formats: WEBP, placeholder: BLURRED)
+            title
+            url
+          }
         }
       }
     }

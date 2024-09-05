@@ -54,7 +54,7 @@ const Property = ({ pageContext }) => {
           <ContactForm
             property={pageContext.property}
             email={pageContext.layout.email}
-            formName='PropertyForm'
+            formName="PropertyForm"
           />
           <CarouselLightBox photoList={pageContext?.property?.images} />
         </div>

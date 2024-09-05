@@ -50,7 +50,7 @@ const Hotel = ({ pageContext }) => {
           <ContactForm
             property={pageContext.hotel}
             email={pageContext.layout.email}
-            formName='HotelForm'
+            formName="HotelForm"
           />
           <CarouselLightBox photoList={pageContext?.hotel?.images} />
         </div>
