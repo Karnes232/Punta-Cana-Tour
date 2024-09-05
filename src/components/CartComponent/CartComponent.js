@@ -83,8 +83,6 @@ export default function Cart({
       <div className="flex flex-col gap-4" ref={cartElement}>
         {cartItems.map((tour, index) => {
           const setWeekDateValidation = setWeekDayValidations[index];
-          // console.log(selectedWeekDay[index])
-          // console.log(tour.daysAvailable)
           const isInArray = tour.daysAvailable.includes(selectedWeekDay[index]);
           setWeekDateValidation(isInArray);
           const image = getImage(tour.mainImage?.gatsbyImage);
@@ -95,7 +93,7 @@ export default function Cart({
                 let times = JSON.parse(tourPickupTime?.pickupTimes);
                 pickupTimeList = times[selectedHotel.trim()];
               } catch (error) {
-                let times = undefined;
+                console.log(error)
               }
             }
           });

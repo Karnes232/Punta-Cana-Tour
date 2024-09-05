@@ -23,7 +23,6 @@ const Index = ({ data }) => {
   const setFilter = (e) => {
     setSelectedCategory(e.target.dataset.category);
     const filteredHotelList = backendHotelList.filter((hotel) => {
-      console.log(hotel);
       if (e.target.innerText === "All Hotels") {
         return hotel;
       }
