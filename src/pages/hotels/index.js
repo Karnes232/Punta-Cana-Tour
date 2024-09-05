@@ -87,7 +87,7 @@ const Index = ({ data }) => {
           );
         })}
       </nav>
-      <div className="flex flex-col md:flex-row md:flex-wrap md:justify-evenly max-w-5xl xl:max-w-6xl mx-auto">
+      <div className="flex flex-col md:flex-row md:flex-wrap md:justify-evenly max-w-5xl xl:max-w-6xl mx-auto gap-8">
         {hotelList.map((hotel, index) => {
           return <HotelCard hotel={hotel.node} key={index} />;
         })}

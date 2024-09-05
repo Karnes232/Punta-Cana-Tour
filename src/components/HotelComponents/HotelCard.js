@@ -14,7 +14,7 @@ const HotelCard = ({ hotel }) => {
   return (
     <>
       <Link to={hotel.urlSlug}>
-        <div className="max-w-sm min-w-[20rem] xl:max-w-xs my-5 mx-2 rounded-lg overflow-hidden shadow-lg">
+        <div className="max-w-sm min-w-[20rem] xl:max-w-xs my-5 rounded-lg overflow-hidden shadow-lg">
           <GatsbyImage
             image={image}
             alt={hotel?.mainImage?.title}
