@@ -93,7 +93,7 @@ export default function Cart({
                 let times = JSON.parse(tourPickupTime?.pickupTimes);
                 pickupTimeList = times[selectedHotel.trim()];
               } catch (error) {
-                console.log(error)
+                console.log(error);
               }
             }
           });

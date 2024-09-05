@@ -4,7 +4,7 @@ import {
   // menuClasses,
   Menu,
   MenuItem,
-  // SubMenu,
+  SubMenu,
 } from "react-pro-sidebar";
 import { Link } from "gatsby";
 import SocialMedia from "../FooterComponent/SocialMedia";
@@ -116,6 +116,18 @@ const SideBarMenu = ({ toggled, setToggled }) => {
 
               {user.isAdmin ? (
                 <>
+                  <SubMenu label="Invoices" className="hamburger">
+                    <MenuItem
+                      component={
+                        <Link
+                          to="/invoice/tour"
+                          className="no-underline font-lato uppercase text-sm"
+                        />
+                      }
+                    >
+                      <p>Tours</p>
+                    </MenuItem>
+                  </SubMenu>
                   <MenuItem
                     component={
                       <Link
