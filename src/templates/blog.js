@@ -7,6 +7,7 @@ import Seo from "../components/seo";
 import Recommendations from "../components/BlogComponents/Recommendations";
 import ActivityLink from "../components/BlogComponents/ActivityLink";
 import TransferLink from "../components/BlogComponents/TransferLink";
+import CarRentalLink from "../components/BlogComponents/CarRentalLink";
 const blog = ({ pageContext }) => {
   let recommendationList = [];
   pageContext.blogList.forEach((blog) => {
@@ -20,7 +21,7 @@ const blog = ({ pageContext }) => {
       }
     }
   });
-  console.log(pageContext.blog.category);
+  console.log(pageContext.blog.reference);
   return (
     <Layout
       logo={pageContext.layout.logo}
@@ -36,7 +37,7 @@ const blog = ({ pageContext }) => {
       <BlogBody context={pageContext.blog.body} />
 
       {pageContext.blog.category === "Tours" &&
-        pageContext.blog.reference !== null && (
+        pageContext.blog.reference !== null && pageContext.blog?.reference?.name !== undefined &&(
           <ActivityLink
             name={pageContext.blog?.reference?.name}
             url={`/${pageContext?.blog?.category
@@ -45,8 +46,16 @@ const blog = ({ pageContext }) => {
           />
         )}
       {pageContext.blog.category === "Transfer" &&
-        pageContext.blog.reference !== null && (
+        pageContext.blog.reference !== null && pageContext.blog?.reference?.page !== undefined && (
           <TransferLink name={pageContext.blog?.reference?.page} />
+        )}
+        {pageContext.blog.category === "Flights" &&
+        pageContext.blog.reference !== null && pageContext.blog?.reference?.page !== undefined &&(
+          <TransferLink name={pageContext.blog?.reference?.page} />
+        )}
+      {pageContext.blog.category === "Car Rental" &&
+        pageContext.blog.reference !== null && pageContext.blog?.reference?.page !== undefined &&(
+          <CarRentalLink name={pageContext.blog?.reference?.page} />
         )}
       <Recommendations
         list={recommendationList}

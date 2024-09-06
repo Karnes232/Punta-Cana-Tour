@@ -26,7 +26,6 @@ const FlightReserveButton = ({ formData, disabled }) => {
     }
   };
 
-  console.log(formData);
   return (
     <>
       <form
