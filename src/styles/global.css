@@ -20,3 +20,8 @@
 #react-select-3-listbox {
   z-index: 50;
 }
+
+html {
+  overflow: scroll !important;
+  padding-right: 0 !important;
+}

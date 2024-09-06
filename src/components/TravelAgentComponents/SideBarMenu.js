@@ -70,30 +70,69 @@ const SideBarMenu = ({ toggled, setToggled }) => {
                   >
                     <p className="hamburger">Home</p>
                   </MenuItem>
-                  <MenuItem
-                    component={
-                      <Link to="/travelagent/tours" className="hamburger" />
-                    }
-                  >
-                    <p className="hamburger">Tours</p>
-                  </MenuItem>
-                  <MenuItem
-                    component={
-                      <Link to="/travelagent/cart" className="hamburger" />
-                    }
-                  >
-                    <p className="hamburger">Cart</p>
-                  </MenuItem>
-                  <MenuItem
-                    component={
-                      <Link
-                        to={`/travelagent/${user.id}`}
-                        className="hamburger"
-                      />
-                    }
-                  >
-                    <p className="hamburger">My Bookings</p>
-                  </MenuItem>
+                  {user.isAdmin ? (
+                    <>
+                      <SubMenu label="Tours & Bookings" className="hamburger">
+                        <MenuItem
+                          component={
+                            <Link
+                              to="/travelagent/tours"
+                              className="hamburger"
+                            />
+                          }
+                        >
+                          <p className="hamburger">Tours</p>
+                        </MenuItem>
+                        <MenuItem
+                          component={
+                            <Link
+                              to="/travelagent/cart"
+                              className="hamburger"
+                            />
+                          }
+                        >
+                          <p className="hamburger">Cart</p>
+                        </MenuItem>
+                        <MenuItem
+                          component={
+                            <Link
+                              to={`/travelagent/${user.id}`}
+                              className="hamburger"
+                            />
+                          }
+                        >
+                          <p className="hamburger">My Bookings</p>
+                        </MenuItem>
+                      </SubMenu>
+                    </>
+                  ) : (
+                    <>
+                      <MenuItem
+                        component={
+                          <Link to="/travelagent/tours" className="hamburger" />
+                        }
+                      >
+                        <p className="hamburger">Tours</p>
+                      </MenuItem>
+                      <MenuItem
+                        component={
+                          <Link to="/travelagent/cart" className="hamburger" />
+                        }
+                      >
+                        <p className="hamburger">Cart</p>
+                      </MenuItem>
+                      <MenuItem
+                        component={
+                          <Link
+                            to={`/travelagent/${user.id}`}
+                            className="hamburger"
+                          />
+                        }
+                      >
+                        <p className="hamburger">My Bookings</p>
+                      </MenuItem>
+                    </>
+                  )}
                 </>
               ) : (
                 <>
@@ -128,6 +167,39 @@ const SideBarMenu = ({ toggled, setToggled }) => {
                       <p>Tours</p>
                     </MenuItem>
                   </SubMenu>
+
+                  <SubMenu label="Booked Clients" className="hamburger">
+                    <MenuItem
+                      component={
+                        <Link
+                          to="/travelagent/transfer"
+                          className="hamburger"
+                        />
+                      }
+                    >
+                      <p className="hamburger">Transfer Clients</p>
+                    </MenuItem>
+                    <MenuItem
+                      component={
+                        <Link
+                          to="/travelagent/reserved"
+                          className="hamburger"
+                        />
+                      }
+                    >
+                      <p className="hamburger">Reserved Clients</p>
+                    </MenuItem>
+                    <MenuItem
+                      component={
+                        <Link
+                          to="/travelagent/agentbooking"
+                          className="hamburger"
+                        />
+                      }
+                    >
+                      <p className="hamburger">Agent Bookings</p>
+                    </MenuItem>
+                  </SubMenu>
                   <MenuItem
                     component={
                       <Link
@@ -137,30 +209,6 @@ const SideBarMenu = ({ toggled, setToggled }) => {
                     }
                   >
                     <p className="hamburger">Tour Operators</p>
-                  </MenuItem>
-                  <MenuItem
-                    component={
-                      <Link to="/travelagent/transfer" className="hamburger" />
-                    }
-                  >
-                    <p className="hamburger">Transfer Clients</p>
-                  </MenuItem>
-                  <MenuItem
-                    component={
-                      <Link to="/travelagent/reserved" className="hamburger" />
-                    }
-                  >
-                    <p className="hamburger">Reserved Clients</p>
-                  </MenuItem>
-                  <MenuItem
-                    component={
-                      <Link
-                        to="/travelagent/agentbooking"
-                        className="hamburger"
-                      />
-                    }
-                  >
-                    <p className="hamburger">Agent Bookings</p>
                   </MenuItem>
                 </>
               ) : (
