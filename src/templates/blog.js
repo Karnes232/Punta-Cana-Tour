@@ -19,7 +19,7 @@ const blog = ({ pageContext }) => {
       }
     }
   });
-
+  console.log(pageContext)
   return (
     <Layout
       logo={pageContext.layout.logo}
