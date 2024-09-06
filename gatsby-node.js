@@ -18,6 +18,15 @@ exports.createPages = async ({ graphql, actions }) => {
           keywords
           daysAvailable
           videoUrl
+          blogReference {
+            title
+            description
+            slug
+            backgroundImage {
+              id
+              gatsbyImage(width: 300, placeholder: BLURRED, formats: WEBP)
+            }
+          }
           images {
             url
             gatsbyImage(width: 1920, formats: WEBP)

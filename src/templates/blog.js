@@ -19,7 +19,7 @@ const blog = ({ pageContext }) => {
       }
     }
   });
-  console.log(pageContext)
+
   return (
     <Layout
       logo={pageContext.layout.logo}
@@ -41,7 +41,10 @@ const blog = ({ pageContext }) => {
             .replaceAll(/\s/g, "")}/${pageContext?.blog?.reference?.url}`}
         />
       )}
-      <Recommendations list={recommendationList} />
+      <Recommendations
+        list={recommendationList}
+        title={"You Might Also Like"}
+      />
     </Layout>
   );
 };
