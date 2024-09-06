@@ -150,6 +150,9 @@ exports.createPages = async ({ graphql, actions }) => {
               name
               url
             }
+            ... on ContentfulTransferPageContent {
+              page
+            }
           }
           body {
             raw

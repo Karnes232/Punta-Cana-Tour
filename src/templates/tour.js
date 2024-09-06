@@ -84,7 +84,7 @@ const Tour = ({ pageContext }) => {
   const newList = blogList.filter(
     (obj1, i, arr) => arr.findIndex((obj2) => obj2.slug === obj1.slug) === i,
   );
-  
+
   return (
     <>
       <Layout

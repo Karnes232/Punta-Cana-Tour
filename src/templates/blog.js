@@ -6,6 +6,7 @@ import HeroImage from "../components/BlogComponents/HeroImage";
 import Seo from "../components/seo";
 import Recommendations from "../components/BlogComponents/Recommendations";
 import ActivityLink from "../components/BlogComponents/ActivityLink";
+import TransferLink from "../components/BlogComponents/TransferLink";
 const blog = ({ pageContext }) => {
   let recommendationList = [];
   pageContext.blogList.forEach((blog) => {
@@ -19,7 +20,7 @@ const blog = ({ pageContext }) => {
       }
     }
   });
-
+  console.log(pageContext.blog.category);
   return (
     <Layout
       logo={pageContext.layout.logo}
@@ -33,14 +34,20 @@ const blog = ({ pageContext }) => {
     >
       <HeroImage backgroundImages={pageContext.blog.backgroundImage} />
       <BlogBody context={pageContext.blog.body} />
-      {pageContext.blog.category === "Tours" && (
-        <ActivityLink
-          name={pageContext.blog?.reference?.name}
-          url={`/${pageContext?.blog?.category
-            .toLowerCase()
-            .replaceAll(/\s/g, "")}/${pageContext?.blog?.reference?.url}`}
-        />
-      )}
+
+      {pageContext.blog.category === "Tours" &&
+        pageContext.blog.reference !== null && (
+          <ActivityLink
+            name={pageContext.blog?.reference?.name}
+            url={`/${pageContext?.blog?.category
+              .toLowerCase()
+              .replaceAll(/\s/g, "")}/${pageContext?.blog?.reference?.url}`}
+          />
+        )}
+      {pageContext.blog.category === "Transfer" &&
+        pageContext.blog.reference !== null && (
+          <TransferLink name={pageContext.blog?.reference?.page} />
+        )}
       <Recommendations
         list={recommendationList}
         title={"You Might Also Like"}
