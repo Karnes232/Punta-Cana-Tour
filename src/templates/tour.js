@@ -69,16 +69,22 @@ const Tour = ({ pageContext }) => {
   });
 
   let blogList = [];
-  tour.blogReference.forEach((blog) => {
-    blogList.push(blog);
-  });
-  tour.blog_post.forEach((blog) => {
-    blogList.push(blog);
-  });
+
+  if (tour.blogReference !== null) {
+    tour.blogReference.forEach((blog) => {
+      blogList.push(blog);
+    });
+  }
+  if (tour.blog_post !== null) {
+    tour.blog_post.forEach((blog) => {
+      blogList.push(blog);
+    });
+  }
+
   const newList = blogList.filter(
     (obj1, i, arr) => arr.findIndex((obj2) => obj2.slug === obj1.slug) === i,
   );
-
+  
   return (
     <>
       <Layout
@@ -139,7 +145,13 @@ const Tour = ({ pageContext }) => {
           <h5 className="font-bold text-lg">You Might Also Like</h5>
           <YouMayLikeSwiper tourList={maybeYouLike} />
         </div>
-        <Recommendations list={newList} title={"Related Articles"} />
+        {newList.length !== 0 ? (
+          <>
+            <Recommendations list={newList} title={"Related Articles"} />
+          </>
+        ) : (
+          <></>
+        )}
       </Layout>
     </>
   );
