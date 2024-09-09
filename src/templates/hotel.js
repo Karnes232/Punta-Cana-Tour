@@ -34,7 +34,9 @@ const Hotel = ({ pageContext, data }) => {
         />
       </div>
       <div className="hidden lg:flex max-w-6xl mx-auto">
-        <PhotoGrid tourPhotos={data?.allContentfulHotelsOrHostel?.nodes[0]?.images} />
+        <PhotoGrid
+          tourPhotos={data?.allContentfulHotelsOrHostel?.nodes[0]?.images}
+        />
       </div>
       <div className="max-w-6xl my-5 mx-5 md:mx-10  xl:mx-auto">
         <HotelInfo
@@ -43,45 +45,56 @@ const Hotel = ({ pageContext, data }) => {
           location={data?.allContentfulHotelsOrHostel?.nodes[0].generalLocation}
           price={data?.allContentfulHotelsOrHostel?.nodes[0].price}
         />
-        <Amenities amenities={data?.allContentfulHotelsOrHostel?.nodes[0].amenities} />
+        <Amenities
+          amenities={data?.allContentfulHotelsOrHostel?.nodes[0].amenities}
+        />
       </div>
       <div className="flex flex-col lg:flex-row justify-between max-w-6xl xl:mx-auto">
-        <PropertyBody context={data?.allContentfulHotelsOrHostel?.nodes[0].description} />
+        <PropertyBody
+          context={data?.allContentfulHotelsOrHostel?.nodes[0].description}
+        />
         <div className="flex flex-col-reverse lg:flex-col lg:w-6/12 flex-grow lg:ml-5">
           <ContactForm
             property={data?.allContentfulHotelsOrHostel?.nodes[0]}
             email={pageContext.layout.email}
             formName="HotelForm"
           />
-          <CarouselLightBox photoList={data?.allContentfulHotelsOrHostel?.nodes[0].images} />
+          <CarouselLightBox
+            photoList={data?.allContentfulHotelsOrHostel?.nodes[0].images}
+          />
         </div>
       </div>
-      {data?.allContentfulHotelsOrHostel?.nodes[0]?.videoUrl?.map((video, index) => {
-        return (
-          <div className="" key={index}>
-            <Video url={video} />
-          </div>
-        );
-      })}
+      {data?.allContentfulHotelsOrHostel?.nodes[0]?.videoUrl?.map(
+        (video, index) => {
+          return (
+            <div className="" key={index}>
+              <Video url={video} />
+            </div>
+          );
+        },
+      )}
     </Layout>
   );
 };
 
 export default Hotel;
 
-export const Head = ({ pageContext, data }) => {
+export const Head = ({ data }) => {
   return (
     <>
       <Seo
         title={data?.allContentfulHotelsOrHostel?.nodes[0].seoTitle}
         description={data?.allContentfulHotelsOrHostel?.nodes[0].seoDescription}
-        keywords={data?.allContentfulHotelsOrHostel?.nodes[0].seoKeywords?.join(", ")}
+        keywords={data?.allContentfulHotelsOrHostel?.nodes[0].seoKeywords?.join(
+          ", ",
+        )}
         schemaMarkup={{
           "@context": "https://schema.org/",
           "@type": "Product",
           name: data?.allContentfulHotelsOrHostel?.nodes[0].title,
           image: `https://www.puntacanatourstore.com${data?.allContentfulHotelsOrHostel?.nodes[0].mainImage.gatsbyImage.images.fallback.src}`,
-          description: data?.allContentfulHotelsOrHostel?.nodes[0].seoDescription,
+          description:
+            data?.allContentfulHotelsOrHostel?.nodes[0].seoDescription,
         }}
       />
       <link

@@ -9,9 +9,9 @@ import Amenities from "../components/PropertyComonents/Amenities";
 import ContactForm from "../components/PropertyComonents/Form/ContactForm";
 import CarouselLightBox from "../components/PropertyComonents/CarouselLightBox";
 import Video from "../components/TourPageComponents/Video";
+import { graphql } from "gatsby";
 
-const Property = ({ pageContext }) => {
-  //console.log(pageContext.property.videoUrl);
+const Property = ({ pageContext, data }) => {
   return (
     <Layout
       logo={pageContext.layout.logo}
@@ -25,41 +25,47 @@ const Property = ({ pageContext }) => {
     >
       <div className="lg:hidden">
         <HeroComponent
-          imageUrl={pageContext?.property?.mainImage?.url}
-          gImage={pageContext?.property?.mainImage?.gatsbyImage}
+          imageUrl={data?.allContentfulProperty?.nodes[0]?.mainImage?.url}
+          gImage={data?.allContentfulProperty?.nodes[0]?.mainImage?.gatsbyImage}
           heroText=""
           heroText2=""
           button={false}
         />
       </div>
       <div className="hidden lg:flex max-w-6xl mx-auto">
-        <PhotoGrid tourPhotos={pageContext?.property?.images} />
+        <PhotoGrid tourPhotos={data?.allContentfulProperty?.nodes[0]?.images} />
       </div>
       <div className="max-w-6xl my-5 mx-5 md:mx-10  xl:mx-auto">
         <PropertyInfo
-          title={pageContext.property.title}
-          propertyType={pageContext.property.propertyType}
-          location={pageContext.property.generalLocation}
-          saleOrRent={pageContext.property.saleOrRent}
-          price={pageContext.property.price}
-          bathrooms={pageContext.property.bathrooms}
-          bedrooms={pageContext.property.bedrooms}
-          sqFeet={pageContext.property.squareFeet}
+          title={data?.allContentfulProperty?.nodes[0].title}
+          propertyType={data?.allContentfulProperty?.nodes[0].propertyType}
+          location={data?.allContentfulProperty?.nodes[0].generalLocation}
+          saleOrRent={data?.allContentfulProperty?.nodes[0].saleOrRent}
+          price={data?.allContentfulProperty?.nodes[0].price}
+          bathrooms={data?.allContentfulProperty?.nodes[0].bathrooms}
+          bedrooms={data?.allContentfulProperty?.nodes[0].bedrooms}
+          sqFeet={data?.allContentfulProperty?.nodes[0].squareFeet}
         />
-        <Amenities amenities={pageContext.property.amenities} />
+        <Amenities
+          amenities={data?.allContentfulProperty?.nodes[0].amenities}
+        />
       </div>
       <div className="flex flex-col lg:flex-row justify-between max-w-6xl xl:mx-auto">
-        <PropertyBody context={pageContext.property.description} />
+        <PropertyBody
+          context={data?.allContentfulProperty?.nodes[0].description}
+        />
         <div className="flex flex-col-reverse lg:flex-col lg:w-6/12 flex-grow lg:ml-5">
           <ContactForm
-            property={pageContext.property}
+            property={data?.allContentfulProperty?.nodes[0]}
             email={pageContext.layout.email}
             formName="PropertyForm"
           />
-          <CarouselLightBox photoList={pageContext?.property?.images} />
+          <CarouselLightBox
+            photoList={data?.allContentfulProperty?.nodes[0]?.images}
+          />
         </div>
       </div>
-      {pageContext?.property?.videoUrl?.map((video, index) => {
+      {data?.allContentfulProperty?.nodes[0]?.videoUrl?.map((video, index) => {
         return (
           <div className="" key={index}>
             <Video url={video} />
@@ -72,25 +78,64 @@ const Property = ({ pageContext }) => {
 
 export default Property;
 
-export const Head = ({ pageContext }) => {
+export const Head = ({ data }) => {
   return (
     <>
       <Seo
-        title={pageContext.property.seoTitle}
-        description={pageContext.property.seoDescription}
-        keywords={pageContext.property.seoKeywords?.join(", ")}
+        title={data?.allContentfulProperty?.nodes[0].seoTitle}
+        description={data?.allContentfulProperty?.nodes[0].seoDescription}
+        keywords={data?.allContentfulProperty?.nodes[0].seoKeywords?.join(", ")}
         schemaMarkup={{
           "@context": "https://schema.org/",
           "@type": "Product",
-          name: pageContext.property.title,
-          image: `https://www.puntacanatourstore.com${pageContext.property.mainImage.gatsbyImage.images.fallback.src}`,
-          description: pageContext.property.seoDescription,
+          name: data?.allContentfulProperty?.nodes[0].title,
+          image: `https://www.puntacanatourstore.com${data?.allContentfulProperty?.nodes[0].mainImage.gatsbyImage.images.fallback.src}`,
+          description: data?.allContentfulProperty?.nodes[0].seoDescription,
         }}
       />
       <link
         rel="canonical"
-        href={`https://puntacanatourstore.com/properties/${pageContext.property.urlSlug}`}
+        href={`https://puntacanatourstore.com/properties/${data?.allContentfulProperty?.nodes[0].urlSlug}`}
       />
     </>
   );
 };
+
+export const query = graphql`
+  query MyQuery($id: String) {
+    allContentfulProperty(filter: { id: { eq: $id } }) {
+      nodes {
+        id
+        title
+        urlSlug
+        saleOrRent
+        propertyType
+        price
+        generalLocation
+        bedrooms
+        bathrooms
+        amenities
+        videoUrl
+        description {
+          raw
+        }
+        seoTitle
+        seoDescription
+        seoKeywords
+        mainImage {
+          gatsbyImage(width: 2000, formats: WEBP, placeholder: BLURRED)
+          title
+          url
+        }
+        squareFeet
+        images {
+          title
+          gatsbyImage(width: 2000, placeholder: BLURRED, formats: WEBP)
+          url
+          width
+          height
+        }
+      }
+    }
+  }
+`;
