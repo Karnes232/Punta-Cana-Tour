@@ -14,9 +14,9 @@ import YouMayLikeSwiper from "../components/YouMayLikeSwiper/YouMayLikeSwiper";
 import PhotoGrid from "../components/TourPageComponents/PhotoGrid";
 import Video from "../components/TourPageComponents/Video";
 import Recommendations from "../components/BlogComponents/Recommendations";
-const Tour = ({ pageContext }) => {
+import { graphql } from "gatsby";
+const Tour = ({ pageContext, data }) => {
   const {
-    tour,
     tourList,
     logo,
     footerBackground,
@@ -26,7 +26,7 @@ const Tour = ({ pageContext }) => {
     email,
     gImage,
   } = pageContext;
-
+  const tour = data.allContentfulTours.nodes[0];
   const notifyAddedToCart = (tour) =>
     toast.success(`${tour.name} added to cart!`, {
       position: "top-center",
@@ -159,32 +159,88 @@ const Tour = ({ pageContext }) => {
 
 export default Tour;
 
-export const Head = ({ pageContext }) => {
-  const urlHref = `https://puntacanatourstore.com/tours/${pageContext.tour.url}`;
+export const Head = ({ data }) => {
+  const urlHref = `https://puntacanatourstore.com/tours/${data.allContentfulTours.nodes[0].url}`;
   return (
     <>
       <Seo
-        title={pageContext.tour.name}
-        description={pageContext.tour.description1.description1}
-        keywords={pageContext.tour.keywords?.join(", ")}
+        title={data.allContentfulTours.nodes[0].name}
+        description={data.allContentfulTours.nodes[0].description1.description1}
+        keywords={data.allContentfulTours.nodes[0].keywords?.join(", ")}
         schemaMarkup={{
           "@context": "https://schema.org/",
           "@type": "Product",
-          name: pageContext.tour.name,
-          image: `https://www.puntacanatourstore.com${pageContext.tour.mainImage.gatsbyImage.images.fallback.src}`,
-          description: pageContext.tour.description1.description1,
+          name: data.allContentfulTours.nodes[0].name,
+          image: `https://www.puntacanatourstore.com${data.allContentfulTours.nodes[0].mainImage.gatsbyImage.images.fallback.src}`,
+          description:
+            data.allContentfulTours.nodes[0].description1.description1,
           offers: `{
             "@type": "Offer",
             "url": ${urlHref},
             "priceCurrency": "USD",
-            "price": ${pageContext.tour.price},
+            "price": ${data.allContentfulTours.nodes[0].price},
           }`,
         }}
       />
       <link
         rel="canonical"
-        href={`https://puntacanatourstore.com/tours/${pageContext.tour.url}`}
+        href={`https://puntacanatourstore.com/tours/${data.allContentfulTours.nodes[0].url}`}
       />
     </>
   );
 };
+
+export const query = graphql`
+  query MyQuery($id: String) {
+    allContentfulTours(filter: { id: { eq: $id } }) {
+      nodes {
+        name
+        price
+        url
+        included
+        whatToBring
+        importantNotes
+        duration1
+        featured
+        category
+        keywords
+        daysAvailable
+        videoUrl
+        blogReference {
+          title
+          description
+          slug
+          backgroundImage {
+            id
+            gatsbyImage(width: 300, placeholder: BLURRED, formats: WEBP)
+          }
+        }
+        images {
+          url
+          gatsbyImage(width: 1920, formats: WEBP)
+        }
+        mainImage {
+          url
+          gatsbyImage(width: 1920, formats: WEBP)
+        }
+        description1 {
+          description1
+        }
+        tourPageDescription1 {
+          tourPageDescription1
+        }
+        tourPageDescription2 {
+          tourPageDescription2
+        }
+        blog_post {
+          title
+          description
+          slug
+          backgroundImage {
+            gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 400)
+          }
+        }
+      }
+    }
+  }
+`;

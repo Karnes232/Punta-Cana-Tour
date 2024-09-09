@@ -10,48 +10,13 @@ exports.createPages = async ({ graphql, actions }) => {
           name
           price
           url
-          included
-          whatToBring
-          importantNotes
-          duration1
-          featured
           category
-          keywords
-          daysAvailable
-          videoUrl
-          blogReference {
-            title
-            description
-            slug
-            backgroundImage {
-              id
-              gatsbyImage(width: 300, placeholder: BLURRED, formats: WEBP)
-            }
-          }
-          images {
-            url
-            gatsbyImage(width: 1920, formats: WEBP)
-          }
           mainImage {
             url
             gatsbyImage(width: 1920, formats: WEBP)
           }
           description1 {
             description1
-          }
-          tourPageDescription1 {
-            tourPageDescription1
-          }
-          tourPageDescription2 {
-            tourPageDescription2
-          }
-          blog_post {
-            title
-            description
-            slug
-            backgroundImage {
-              gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 400)
-            }
           }
         }
       }
@@ -110,6 +75,7 @@ exports.createPages = async ({ graphql, actions }) => {
       component: tourTemplate,
       context: {
         // This time the entire product is passed down as context
+        id: node.id,
         tour: node,
         tourList: queryResults.data.allContentfulTours.nodes,
         logo: queryResults.data.allContentfulLayout.edges[0].node.logo

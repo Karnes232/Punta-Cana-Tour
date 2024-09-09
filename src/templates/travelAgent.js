@@ -108,7 +108,7 @@ const tour = ({ pageContext, data }) => {
 
 export default tour;
 
-export const Head = ({ pageContext, data }) => {
+export const Head = ({ data }) => {
   return (
     <>
       <Seo
@@ -129,7 +129,6 @@ export const query = graphql`
   query MyQuery($id: String) {
     allContentfulTours(filter: { id: { eq: $id } }) {
       nodes {
-        id
         name
         price
         url
