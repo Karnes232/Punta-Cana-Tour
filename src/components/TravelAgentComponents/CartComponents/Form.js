@@ -9,8 +9,20 @@ import { auth, db } from "../../../config/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import TravelAgenetPayPal from "../../PayPalButtonWrapper/TravelAgenetPayPal";
 const Form = ({ hotels, allTours }) => {
+  const [name, setName] = useState("");
+  const [host, setHost] = useState("");
   const [user, setUser] = useState({});
+  const [dateValidation1, setDateValidation1] = useState(false);
+  const [dateValidation2, setDateValidation2] = useState(false);
+  const [dateValidation3, setDateValidation3] = useState(false);
+  const [dateValidation4, setDateValidation4] = useState(false);
+
+  const [weekDayValidation1, setWeekDayValidation1] = useState(true);
+  const [weekDayValidation2, setWeekDayValidation2] = useState(true);
+  const [weekDayValidation3, setWeekDayValidation3] = useState(true);
+  const [weekDayValidation4, setWeekDayValidation4] = useState(true);
   const { clearCart, cartItems } = useContext(TravelAgentCartContext);
+  const [phoneAlert, setPhoneAlert] = useState(false);
   const [formData, setFormData] = useState({
     "form-name": "travelAgentCart",
     "Tour Rep": "",
@@ -58,6 +70,7 @@ const Form = ({ hotels, allTours }) => {
     setUser(docSnap.data());
   };
   useEffect(() => {
+    setHost(window.location.origin);
     onAuthStateChanged(auth, async (user) => {
       const currentUser = auth.currentUser;
       if (currentUser) {
@@ -82,6 +95,33 @@ const Form = ({ hotels, allTours }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
   };
+
+  const validationAlert = {
+    dateValidation1,
+    dateValidation2,
+    dateValidation3,
+    dateValidation4,
+  };
+  const setDateValidations = [
+    setDateValidation1,
+    setDateValidation2,
+    setDateValidation3,
+    setDateValidation4,
+  ];
+  const setWeekDayValidations = [
+    setWeekDayValidation1,
+    setWeekDayValidation2,
+    setWeekDayValidation3,
+    setWeekDayValidation4,
+  ];
+
+  const weekDayValidationAlert = {
+    weekDayValidation1,
+    weekDayValidation2,
+    weekDayValidation3,
+    weekDayValidation4,
+  };
+
   return (
     <form
       name="travelAgentCart"
@@ -100,6 +140,10 @@ const Form = ({ hotels, allTours }) => {
           pickupTimes={pickupTimes}
           formData={formData}
           setFormData={setFormData}
+          validationAlert={validationAlert}
+          setDateValidations={setDateValidations}
+          setWeekDayValidations={setWeekDayValidations}
+          weekDayValidationAlert={weekDayValidationAlert}
         />
         <div className="xl:w-[25rem] flex flex-col mt-5 xl:mt-24">
           <ContactInfo formData={formData} setFormData={setFormData} />

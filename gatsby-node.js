@@ -6,6 +6,7 @@ exports.createPages = async ({ graphql, actions }) => {
     query MyQuery {
       allContentfulTours {
         nodes {
+          id
           name
           price
           url
@@ -131,6 +132,7 @@ exports.createPages = async ({ graphql, actions }) => {
       component: travelAgentTemplate,
       context: {
         // This time the entire product is passed down as context
+        id: node.id,
         tour: node,
         logo: queryResults.data.allContentfulLayout.edges[0].node.logo
           .gatsbyImage,

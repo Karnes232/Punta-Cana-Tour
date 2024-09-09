@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { TravelAgentCartContext } from "../../../context/travelAgentCart";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -11,10 +11,31 @@ export default function Cart({
   pickupTimes,
   formData,
   setFormData,
+  validationAlert,
+  setDateValidations,
+  setWeekDayValidations,
+  weekDayValidationAlert,
 }) {
   const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } =
     useContext(TravelAgentCartContext);
+  const [selectedWeekDay1, setSelectedWeekDay1] = useState("");
+  const [selectedWeekDay2, setSelectedWeekDay2] = useState("");
+  const [selectedWeekDay3, setSelectedWeekDay3] = useState("");
+  const [selectedWeekDay4, setSelectedWeekDay4] = useState("");
 
+  const selectedWeekDay = [
+    selectedWeekDay1,
+    selectedWeekDay2,
+    selectedWeekDay3,
+    selectedWeekDay4,
+  ];
+
+  const setSelectedWeekDay = [
+    setSelectedWeekDay1,
+    setSelectedWeekDay2,
+    setSelectedWeekDay3,
+    setSelectedWeekDay4,
+  ];
   const emptyCart = cartItems.length === 0;
   const notifyRemovedFromCart = (tour) =>
     toast.error(`${tour.name} removed from cart!`, {
@@ -60,6 +81,9 @@ export default function Cart({
 
       <div className="flex flex-col gap-4">
         {cartItems.map((tour, index) => {
+          const setWeekDateValidation = setWeekDayValidations[index];
+          const isInArray = tour.daysAvailable.includes(selectedWeekDay[index]);
+          setWeekDateValidation(isInArray);
           const image = getImage(tour.mainImage?.gatsbyImage);
           let pickupTimeList = [];
           pickupTimes.forEach((tourPickupTime) => {
@@ -75,6 +99,7 @@ export default function Cart({
 
           const agentPrice = tour.price * 0.85;
           const tourTotalPrice = agentPrice * tour.quantity;
+          console.log(tour);
           return (
             <div key={tour.name}>
               <div className="flex justify-between mt-2 mb-5" key={tour.name}>
@@ -133,6 +158,11 @@ export default function Cart({
                 formData={formData}
                 setFormData={setFormData}
                 index={index}
+                validationAlert={validationAlert}
+                setDateValidations={setDateValidations}
+                setSelectedWeekDay={setSelectedWeekDay}
+                weekDayValidationAlert={weekDayValidationAlert}
+                daysAvailable={tour.daysAvailable}
               />
             </div>
           );

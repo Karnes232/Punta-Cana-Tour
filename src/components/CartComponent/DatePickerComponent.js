@@ -17,8 +17,8 @@ const DatePickerComponent = ({
   });
   let dateName = `Date${index + 1}`;
   useEffect(() => {
-    const setData = setDateValidations[index];
-    setData(true);
+    // const setData = setDateValidations[index];
+    // setData(true);
     const futureDays = 0;
     const date = new Date();
     date.setDate(date.getDate() + futureDays);

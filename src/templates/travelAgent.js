@@ -11,9 +11,9 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import TourButton from "../components/TravelAgentComponents/TourButton";
 import PhotoGrid from "../components/TourPageComponents/PhotoGrid";
-const tour = ({ pageContext }) => {
+import { graphql } from "gatsby";
+const tour = ({ pageContext, data }) => {
   const {
-    tour,
     logo,
     footerBackground,
     facebook,
@@ -22,6 +22,8 @@ const tour = ({ pageContext }) => {
     email,
     gImage,
   } = pageContext;
+
+  const tour = data.allContentfulTours.nodes[0];
   const newPrice = tour.price * 0.85;
   const notifyAddedToCart = (tour) =>
     toast.success(`${tour.name} added to cart!`, {
@@ -52,6 +54,7 @@ const tour = ({ pageContext }) => {
         color: "#fff",
       },
     });
+
   return (
     <Layout
       logo={logo}
@@ -105,19 +108,75 @@ const tour = ({ pageContext }) => {
 
 export default tour;
 
-export const Head = ({ pageContext }) => {
+export const Head = ({ pageContext, data }) => {
   return (
     <>
       <Seo
-        title={pageContext.tour.name}
-        description={pageContext.tour.description1.description1}
-        keywords={pageContext.tour.keywords?.join(", ")}
+        title={data.allContentfulTours.nodes[0].name}
+        description={data.allContentfulTours.nodes[0].description1.description1}
+        keywords={data.allContentfulTours.nodes[0].keywords?.join(", ")}
       />
       <link
         rel="canonical"
-        href={`https://puntacanatourstore.com/travelagent/tours/${pageContext.tour.url}`}
+        href={`https://puntacanatourstore.com/travelagent/tours/${data.allContentfulTours.nodes[0].url}`}
       />
       <meta name="robots" content="noindex,nofollow" />
     </>
   );
 };
+
+export const query = graphql`
+  query MyQuery($id: String) {
+    allContentfulTours(filter: { id: { eq: $id } }) {
+      nodes {
+        id
+        name
+        price
+        url
+        included
+        whatToBring
+        importantNotes
+        duration1
+        featured
+        category
+        keywords
+        daysAvailable
+        videoUrl
+        blogReference {
+          title
+          description
+          slug
+          backgroundImage {
+            id
+            gatsbyImage(width: 300, placeholder: BLURRED, formats: WEBP)
+          }
+        }
+        images {
+          url
+          gatsbyImage(width: 1920, formats: WEBP)
+        }
+        mainImage {
+          url
+          gatsbyImage(width: 1920, formats: WEBP)
+        }
+        description1 {
+          description1
+        }
+        tourPageDescription1 {
+          tourPageDescription1
+        }
+        tourPageDescription2 {
+          tourPageDescription2
+        }
+        blog_post {
+          title
+          description
+          slug
+          backgroundImage {
+            gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 400)
+          }
+        }
+      }
+    }
+  }
+`;
