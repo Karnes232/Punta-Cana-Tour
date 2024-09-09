@@ -17,7 +17,6 @@ import { IoBed } from "react-icons/io5";
 import { FaKitchenSet, FaWifi } from "react-icons/fa6";
 import { SiSmartthings } from "react-icons/si";
 const Amenities = ({ amenities }) => {
-  console.log(amenities);
   return (
     <>
       <h4 className="text-xl md:text-2xl tracking-wide my-2">Amenities</h4>

@@ -11,7 +11,7 @@ const CarouselLightBox = ({ photoList }) => {
   const updateIndex = ({ index: current }) => setIndex(current);
 
   let slides = [];
-  photoList.forEach((image, key) => {
+  photoList?.forEach((image, key) => {
     const photoObject = {
       src: image.url,
       width: image.width,

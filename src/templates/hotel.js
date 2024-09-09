@@ -9,9 +9,10 @@ import PropertyBody from "../components/PropertyComonents/PropertyBody";
 import ContactForm from "../components/PropertyComonents/Form/ContactForm";
 import CarouselLightBox from "../components/PropertyComonents/CarouselLightBox";
 import Video from "../components/TourPageComponents/Video";
+import { graphql } from "gatsby";
 
-const Hotel = ({ pageContext }) => {
-  console.log(pageContext.hotel);
+const Hotel = ({ pageContext, data }) => {
+  console.log(data?.allContentfulHotelsOrHostel?.nodes[0]);
   return (
     <Layout
       logo={pageContext.layout.logo}
@@ -25,37 +26,37 @@ const Hotel = ({ pageContext }) => {
     >
       <div className="lg:hidden">
         <HeroComponent
-          imageUrl={pageContext?.hotel?.mainImage?.url}
-          gImage={pageContext?.hotel?.mainImage?.gatsbyImage}
+          imageUrl={data?.allContentfulHotelsOrHostel?.nodes[0]?.url}
+          gImage={data?.allContentfulHotelsOrHostel?.nodes[0]?.gatsbyImage}
           heroText=""
           heroText2=""
           button={false}
         />
       </div>
       <div className="hidden lg:flex max-w-6xl mx-auto">
-        <PhotoGrid tourPhotos={pageContext?.hotel?.images} />
+        <PhotoGrid tourPhotos={data?.allContentfulHotelsOrHostel?.nodes[0]?.images} />
       </div>
       <div className="max-w-6xl my-5 mx-5 md:mx-10  xl:mx-auto">
         <HotelInfo
-          title={pageContext.hotel.title}
-          propertyType={pageContext.hotel.hotelType}
-          location={pageContext.hotel.generalLocation}
-          price={pageContext.hotel.price}
+          title={data?.allContentfulHotelsOrHostel?.nodes[0].title}
+          propertyType={data?.allContentfulHotelsOrHostel?.nodes[0].hotelType}
+          location={data?.allContentfulHotelsOrHostel?.nodes[0].generalLocation}
+          price={data?.allContentfulHotelsOrHostel?.nodes[0].price}
         />
-        <Amenities amenities={pageContext.hotel.amenities} />
+        <Amenities amenities={data?.allContentfulHotelsOrHostel?.nodes[0].amenities} />
       </div>
       <div className="flex flex-col lg:flex-row justify-between max-w-6xl xl:mx-auto">
-        <PropertyBody context={pageContext.hotel.description} />
+        <PropertyBody context={data?.allContentfulHotelsOrHostel?.nodes[0].description} />
         <div className="flex flex-col-reverse lg:flex-col lg:w-6/12 flex-grow lg:ml-5">
           <ContactForm
-            property={pageContext.hotel}
+            property={data?.allContentfulHotelsOrHostel?.nodes[0]}
             email={pageContext.layout.email}
             formName="HotelForm"
           />
-          <CarouselLightBox photoList={pageContext?.hotel?.images} />
+          <CarouselLightBox photoList={data?.allContentfulHotelsOrHostel?.nodes[0].images} />
         </div>
       </div>
-      {pageContext?.hotel?.videoUrl?.map((video, index) => {
+      {data?.allContentfulHotelsOrHostel?.nodes[0]?.videoUrl?.map((video, index) => {
         return (
           <div className="" key={index}>
             <Video url={video} />
@@ -68,26 +69,59 @@ const Hotel = ({ pageContext }) => {
 
 export default Hotel;
 
-export const Head = ({ pageContext }) => {
-  console.log(pageContext);
+export const Head = ({ pageContext, data }) => {
   return (
     <>
       <Seo
-        title={pageContext.hotel.seoTitle}
-        description={pageContext.hotel.seoDescription}
-        keywords={pageContext.hotel.seoKeywords?.join(", ")}
+        title={data?.allContentfulHotelsOrHostel?.nodes[0].seoTitle}
+        description={data?.allContentfulHotelsOrHostel?.nodes[0].seoDescription}
+        keywords={data?.allContentfulHotelsOrHostel?.nodes[0].seoKeywords?.join(", ")}
         schemaMarkup={{
           "@context": "https://schema.org/",
           "@type": "Product",
-          name: pageContext.hotel.title,
-          image: `https://www.puntacanatourstore.com${pageContext.hotel.mainImage.gatsbyImage.images.fallback.src}`,
-          description: pageContext.hotel.seoDescription,
+          name: data?.allContentfulHotelsOrHostel?.nodes[0].title,
+          image: `https://www.puntacanatourstore.com${data?.allContentfulHotelsOrHostel?.nodes[0].mainImage.gatsbyImage.images.fallback.src}`,
+          description: data?.allContentfulHotelsOrHostel?.nodes[0].seoDescription,
         }}
       />
       <link
         rel="canonical"
-        href={`https://puntacanatourstore.com/hotels/${pageContext.hotel.urlSlug}`}
+        href={`https://puntacanatourstore.com/hotels/${data?.allContentfulHotelsOrHostel?.nodes[0].urlSlug}`}
       />
     </>
   );
 };
+
+export const query = graphql`
+  query MyQuery($id: String) {
+    allContentfulHotelsOrHostel(filter: { id: { eq: $id } }) {
+      nodes {
+        title
+        urlSlug
+        hotelType
+        price
+        generalLocation
+        mainImage {
+          gatsbyImage(width: 2000, formats: WEBP, placeholder: BLURRED)
+          title
+          url
+        }
+        images {
+          title
+          gatsbyImage(width: 2000, placeholder: BLURRED, formats: WEBP)
+          url
+          width
+          height
+        }
+        description {
+          raw
+        }
+        seoTitle
+        seoDescription
+        seoKeywords
+        videoUrl
+        amenities
+      }
+    }
+  }
+`;
