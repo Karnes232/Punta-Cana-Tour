@@ -1,16 +1,16 @@
 import { Link } from "gatsby";
 import React from "react";
 
-const ActivityLink = ({ name, url, page }) => {
+const HotelLink = ({ name, url, page }) => {
   return (
     <>
       {page === undefined ? (
         <></>
       ) : (
         <div className="flex flex-col max-w-5xl mx-5 lg:p-2 xl:mx-auto xl:min-w-[64rem]">
-          <p className="font-montserrat lg:text-lg text-gray-700">
+          <p className="font-montserrat lg:text-lg text-gray-700 lg:px-2">
             Visit our website for more information on the{" "}
-            <Link className="italic underline text-blue-600" to={`/tours`}>
+            <Link className="italic underline text-blue-600" to={`/hotels`}>
               {page}!
             </Link>{" "}
           </p>
@@ -20,16 +20,12 @@ const ActivityLink = ({ name, url, page }) => {
         <></>
       ) : (
         <div className="flex flex-col max-w-5xl mx-5 lg:p-2 xl:mx-auto xl:min-w-[64rem]">
-          <p className="font-montserrat lg:text-lg text-gray-700">
-            Ready to explore{" "}
+          <p className="font-montserrat lg:text-lg text-gray-700 lg:px-2">
+            So, what are you waiting for? Pack your bags and get ready to
+            experience the true spirit of Punta Cana at the{" "}
             <Link className="italic underline text-blue-600" to={`${url}`}>
               {name}
             </Link>
-            ? Visit our{" "}
-            <Link className="italic underline text-blue-600" to={`/tours`}>
-              Tour Page
-            </Link>{" "}
-            to book your excursions and embark on a magical journey.
           </p>
         </div>
       )}
@@ -37,4 +33,4 @@ const ActivityLink = ({ name, url, page }) => {
   );
 };
 
-export default ActivityLink;
+export default HotelLink;

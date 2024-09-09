@@ -8,6 +8,8 @@ import Recommendations from "../components/BlogComponents/Recommendations";
 import ActivityLink from "../components/BlogComponents/ActivityLink";
 import TransferLink from "../components/BlogComponents/TransferLink";
 import CarRentalLink from "../components/BlogComponents/CarRentalLink";
+import PropertyLink from "../components/BlogComponents/PropertyLink";
+import HotelLink from "../components/BlogComponents/HotelLink";
 const blog = ({ pageContext }) => {
   let recommendationList = [];
   pageContext.blogList.forEach((blog) => {
@@ -21,7 +23,7 @@ const blog = ({ pageContext }) => {
       }
     }
   });
-  console.log(pageContext.blog.reference);
+  console.log(pageContext.blog);
   return (
     <Layout
       logo={pageContext.layout.logo}
@@ -37,25 +39,42 @@ const blog = ({ pageContext }) => {
       <BlogBody context={pageContext.blog.body} />
 
       {pageContext.blog.category === "Tours" &&
-        pageContext.blog.reference !== null && pageContext.blog?.reference?.name !== undefined &&(
+        pageContext.blog.reference !== null && (
           <ActivityLink
             name={pageContext.blog?.reference?.name}
             url={`/${pageContext?.blog?.category
               .toLowerCase()
               .replaceAll(/\s/g, "")}/${pageContext?.blog?.reference?.url}`}
+            page={pageContext.blog?.reference?.page}
           />
         )}
       {pageContext.blog.category === "Transfer" &&
-        pageContext.blog.reference !== null && pageContext.blog?.reference?.page !== undefined && (
+        pageContext.blog.reference !== null && (
           <TransferLink name={pageContext.blog?.reference?.page} />
         )}
-        {pageContext.blog.category === "Flights" &&
-        pageContext.blog.reference !== null && pageContext.blog?.reference?.page !== undefined &&(
+      {pageContext.blog.category === "Flights" &&
+        pageContext.blog.reference !== null && (
           <TransferLink name={pageContext.blog?.reference?.page} />
         )}
       {pageContext.blog.category === "Car Rental" &&
-        pageContext.blog.reference !== null && pageContext.blog?.reference?.page !== undefined &&(
+        pageContext.blog.reference !== null && (
           <CarRentalLink name={pageContext.blog?.reference?.page} />
+        )}
+      {pageContext.blog.category === "Property" &&
+        pageContext.blog.reference !== null && (
+          <PropertyLink
+            name={pageContext.blog?.reference?.title}
+            url={pageContext.blog?.reference?.urlSlug}
+            page={pageContext.blog?.reference?.page}
+          />
+        )}
+      {pageContext.blog.category === "Hotel" &&
+        pageContext.blog.reference !== null && (
+          <HotelLink
+            name={pageContext.blog?.reference?.title}
+            url={pageContext.blog?.reference?.urlSlug}
+            page={pageContext.blog?.reference?.page}
+          />
         )}
       <Recommendations
         list={recommendationList}

@@ -3,8 +3,7 @@ import Layout from "../../../components/TravelAgentComponents/Layout";
 import Seo from "../../../components/seo";
 import { graphql } from "gatsby";
 import { doc, getDoc } from "firebase/firestore";
-import { auth, db } from "../../../config/firebase";
-import { onAuthStateChanged } from "firebase/auth";
+import { db } from "../../../config/firebase";
 import IndividualUser from "../../../components/TravelAgentComponents/IndividualUser";
 const TourRep = ({ location, data }) => {
   const [user, setUser] = useState({});

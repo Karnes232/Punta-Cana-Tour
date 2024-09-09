@@ -3,7 +3,7 @@ import Layout from "../../../components/TravelAgentComponents/Layout";
 import Seo from "../../../components/seo";
 import { graphql } from "gatsby";
 import { doc, getDoc } from "firebase/firestore";
-import { auth, db } from "../../../config/firebase";
+import { db } from "../../../config/firebase";
 import IndividualReserved from "../../../components/TravelAgentComponents/IndividualReserved";
 
 const TransferClient = ({ location, data }) => {

@@ -1,7 +1,10 @@
 import { Link } from "gatsby";
 import React from "react";
 
-const ActivityLink = ({ name, url, page }) => {
+const PropertyLink = ({ name, url, page }) => {
+  console.log(name);
+  console.log(url);
+  console.log(page);
   return (
     <>
       {page === undefined ? (
@@ -10,7 +13,7 @@ const ActivityLink = ({ name, url, page }) => {
         <div className="flex flex-col max-w-5xl mx-5 lg:p-2 xl:mx-auto xl:min-w-[64rem]">
           <p className="font-montserrat lg:text-lg text-gray-700">
             Visit our website for more information on the{" "}
-            <Link className="italic underline text-blue-600" to={`/tours`}>
+            <Link className="italic underline text-blue-600" to={`/properties`}>
               {page}!
             </Link>{" "}
           </p>
@@ -21,15 +24,13 @@ const ActivityLink = ({ name, url, page }) => {
       ) : (
         <div className="flex flex-col max-w-5xl mx-5 lg:p-2 xl:mx-auto xl:min-w-[64rem]">
           <p className="font-montserrat lg:text-lg text-gray-700">
-            Ready to explore{" "}
-            <Link className="italic underline text-blue-600" to={`${url}`}>
-              {name}
-            </Link>
-            ? Visit our{" "}
-            <Link className="italic underline text-blue-600" to={`/tours`}>
-              Tour Page
+            Visit our website for more information on{" "}
+            <Link
+              className="italic underline text-blue-600"
+              to={`/properties/${url}`}
+            >
+              {name}!
             </Link>{" "}
-            to book your excursions and embark on a magical journey.
           </p>
         </div>
       )}
@@ -37,4 +38,4 @@ const ActivityLink = ({ name, url, page }) => {
   );
 };
 
-export default ActivityLink;
+export default PropertyLink;
