@@ -85,49 +85,14 @@ exports.createPages = async ({ graphql, actions }) => {
       }
       allContentfulBlogPost {
         nodes {
-          title
-          tags
           slug
-          publishedDate(formatString: "MMMM do, YYYY")
+          id
+          title
           description
           category
           backgroundImage {
             gatsbyImage(width: 2000, placeholder: BLURRED, formats: WEBP)
             url
-          }
-          reference {
-            ... on ContentfulTours {
-              name
-              url
-            }
-            ... on ContentfulTransferPageContent {
-              page
-            }
-            ... on ContentfulProperty {
-              title
-              urlSlug
-            }
-            ... on ContentfulPageContent {
-              page
-            }
-            ... on ContentfulHotelsOrHostel {
-              title
-              urlSlug
-            }
-          }
-          body {
-            raw
-            references {
-              ... on ContentfulAsset {
-                contentful_id
-                __typename
-                title
-                file {
-                  url
-                }
-                gatsbyImage(placeholder: BLURRED, formats: WEBP, width: 2000)
-              }
-            }
           }
         }
       }
@@ -188,6 +153,7 @@ exports.createPages = async ({ graphql, actions }) => {
       path: `/blog/${node.slug}`,
       component: blogTemplate,
       context: {
+        id: node.id,
         blog: node,
         layout: queryResults.data.allContentfulLayout.edges[0].node,
         blogList: queryResults.data.allContentfulBlogPost.nodes,
