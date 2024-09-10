@@ -1,5 +1,5 @@
 import React from "react";
-
+import PhoneInput from "react-phone-number-input";
 const ContactInfo = ({ name, setName }) => {
   return (
     <>
@@ -30,6 +30,18 @@ const ContactInfo = ({ name, setName }) => {
         <label htmlFor="email" className="contactFormLabel">
           Email address
         </label>
+      </div>
+      <div className="relative z-0 mb-6 w-full group">
+        <PhoneInput
+          type="tel"
+          name="phone"
+          id="phone"
+          className={`contactFormInput peer `}
+          placeholder="Enter phone number"
+          // value={formData.phone}
+          // onChange={handlePhoneChange}
+          // onCountryChange={handleCountryChange}
+        />
       </div>
       <div className="relative z-0 mb-6 w-full group"></div>
     </>

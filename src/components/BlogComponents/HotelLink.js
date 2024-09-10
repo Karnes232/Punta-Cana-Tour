@@ -2,6 +2,7 @@ import { Link } from "gatsby";
 import React from "react";
 
 const HotelLink = ({ name, url, page }) => {
+  console.log(url);
   return (
     <>
       {page === undefined ? (
@@ -23,7 +24,10 @@ const HotelLink = ({ name, url, page }) => {
           <p className="font-montserrat lg:text-lg text-gray-700 lg:px-2">
             So, what are you waiting for? Pack your bags and get ready to
             experience the true spirit of Punta Cana at the{" "}
-            <Link className="italic underline text-blue-600" to={`${url}`}>
+            <Link
+              className="italic underline text-blue-600"
+              to={`/hotels/${url}`}
+            >
               {name}
             </Link>
           </p>
