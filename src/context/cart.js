@@ -25,7 +25,9 @@ export const CartProvider = ({ children }) => {
         ),
       );
     } else {
-      setCartItems([...cartItems, { ...item, quantity: 1 }]);
+      if (cartItems.length < 4) {
+        setCartItems([...cartItems, { ...item, quantity: 1 }]);
+      }
     }
   };
 

@@ -7,17 +7,27 @@ const Button = ({
   tour,
   notifyAddedToCart,
   notifyRemovedFromCart,
+  notifyCartFull,
+  sticky,
 }) => {
   const { cartItems, addToCart, removeFromCart } = useContext(CartContext);
   function handleClick(e) {
     e.preventDefault();
     addToCart(tour);
-    notifyAddedToCart(tour);
+    if (cartItems.length < 4) {
+      notifyAddedToCart(tour);
+    } else {
+      notifyCartFull(tour);
+    }
     // addVariantToCart(variantId, quantity)
   }
 
   return (
-    <div className="mb-2">
+    <div
+      className={`mb-2 ${
+        sticky ? "fixed top-28 md:top-40 z-50 bg-white rounded" : ""
+      }`}
+    >
       {!cartItems.find((item) => item.name === tour.name) ? (
         <button
           type="submit"

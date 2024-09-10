@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../components/layout";
 import HeroComponent from "../components/HeroComponent/HeroComponent";
 import Button from "../components/TourPageComponents/Button";
@@ -41,7 +41,45 @@ const Tour = ({ pageContext, data }) => {
         color: "#000",
       },
     });
+  const notifyCartFull = (tour) =>
+    toast.error(`Your Cart is Full!`, {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "colored",
+      style: {
+        backgroundColor: "#fff",
+        color: "#000",
+      },
+    });
 
+  const [isSticky, setIsSticky] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY; // Get current scroll position
+
+      // Define the scroll position at which the button should become sticky
+      const triggerPosition = 500; // Adjust this value based on your page layout
+
+      // Set the sticky state based on scroll position
+      if (scrollY > triggerPosition) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+    };
+
+    // Add the scroll event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   const notifyRemovedFromCart = (tour) =>
     toast.error(`${tour.name} removed from cart!`, {
       position: "top-center",
@@ -110,48 +148,52 @@ const Tour = ({ pageContext, data }) => {
         <div className="hidden lg:flex max-w-6xl mx-auto">
           <PhotoGrid tourPhotos={tour.images} />
         </div>
-        <div className="max-w-6xl my-5 mx-5 md:mx-10 xl:mx-auto">
-          <TourInfo name={tour.name} category={tour.category} />
-          <Button
-            text="Book Now"
-            customClass=""
-            tour={tour}
-            notifyAddedToCart={notifyAddedToCart}
-            notifyRemovedFromCart={notifyRemovedFromCart}
-          />
-          <Price price={tour.price} duration={tour.duration1} />
-          <TextComponent paragraph={tour.description1.description1} />
-        </div>
-        <SwiperCarousel className="mt-5" photoList={tour.images} />
-        <div className="max-w-6xl my-5 mx-5 md:mx-10 xl:mx-auto">
-          <TextComponent
-            paragraph={tour.tourPageDescription1.tourPageDescription1}
-          />
-          <TextComponent
-            paragraph={tour.tourPageDescription2.tourPageDescription2}
-          />
-
-          <ListGroup tour={tour} />
-        </div>
-        {tour.videoUrl ? (
-          <div className="">
-            <Video url={tour.videoUrl} />
+        <div className="relative">
+          <div className="max-w-6xl my-5 mx-5 md:mx-10 xl:mx-auto">
+            <TourInfo name={tour.name} category={tour.category} />
+            <Button
+              text="Book Now"
+              customClass=""
+              tour={tour}
+              notifyAddedToCart={notifyAddedToCart}
+              notifyRemovedFromCart={notifyRemovedFromCart}
+              notifyCartFull={notifyCartFull}
+              sticky={isSticky}
+            />
+            <Price price={tour.price} duration={tour.duration1} />
+            <TextComponent paragraph={tour.description1.description1} />
           </div>
-        ) : (
-          <></>
-        )}
+          <SwiperCarousel className="mt-5" photoList={tour.images} />
+          <div className="max-w-6xl my-5 mx-5 md:mx-10 xl:mx-auto">
+            <TextComponent
+              paragraph={tour.tourPageDescription1.tourPageDescription1}
+            />
+            <TextComponent
+              paragraph={tour.tourPageDescription2.tourPageDescription2}
+            />
 
-        <div className="max-w-6xl my-5 mx-5 md:mx-10 xl:mx-auto">
-          <h5 className="font-bold text-lg">You Might Also Like</h5>
-          <YouMayLikeSwiper tourList={maybeYouLike} />
+            <ListGroup tour={tour} />
+          </div>
+          {tour.videoUrl ? (
+            <div className="">
+              <Video url={tour.videoUrl} />
+            </div>
+          ) : (
+            <></>
+          )}
+
+          <div className="max-w-6xl my-5 mx-5 md:mx-10 xl:mx-auto">
+            <h5 className="font-bold text-lg">You Might Also Like</h5>
+            <YouMayLikeSwiper tourList={maybeYouLike} />
+          </div>
+          {newList.length !== 0 ? (
+            <>
+              <Recommendations list={newList} title={"Related Articles"} />
+            </>
+          ) : (
+            <></>
+          )}
         </div>
-        {newList.length !== 0 ? (
-          <>
-            <Recommendations list={newList} title={"Related Articles"} />
-          </>
-        ) : (
-          <></>
-        )}
       </Layout>
     </>
   );

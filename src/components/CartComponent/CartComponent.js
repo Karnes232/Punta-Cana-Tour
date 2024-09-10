@@ -73,7 +73,6 @@ export default function Cart({
     removeFromCart(tour);
     notifyRemovedFromCart(tour);
   };
-
   let cartTotalPrice = getCartTotal();
   return (
     <div className="flex-col flex items-center justify-center my-10">
