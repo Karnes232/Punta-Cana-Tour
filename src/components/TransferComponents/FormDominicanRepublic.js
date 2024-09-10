@@ -22,7 +22,7 @@ const FormDominicanRepublic = ({ data, formData, setFormData, cityList }) => {
         <GatsbyImage image={image} alt={data.title} className="w-full" />
       </div>
       <form
-        name="contact"
+        name="transferDominicanRepublic"
         method="POST"
         action={`/contact/thankyou/`}
         data-netlify="true"
