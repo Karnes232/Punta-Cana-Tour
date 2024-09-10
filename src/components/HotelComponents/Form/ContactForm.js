@@ -10,7 +10,7 @@ const ContactForm = ({ property, email, formName }) => {
     email: "",
     phone: "",
     message: "",
-    stateDate: "",
+    startDate: "",
     endDate: "",
     propertyName: property.title,
     propertyPrice: property.price,
@@ -61,7 +61,7 @@ const ContactForm = ({ property, email, formName }) => {
             name="propertyPrice"
             value={formData.propertyPrice}
           />
-          <input type="hidden" name="startDate" value={formData.stateDate} />
+          <input type="hidden" name="startDate" value={formData.startDate} />
           <input type="hidden" name="endDate" value={formData.endDate} />
           <ContactInfo
             formData={formData}
