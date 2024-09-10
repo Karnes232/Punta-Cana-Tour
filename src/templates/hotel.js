@@ -6,13 +6,12 @@ import PhotoGrid from "../components/TourPageComponents/PhotoGrid";
 import HotelInfo from "../components/HotelComponents/HotelInfo";
 import Amenities from "../components/PropertyComonents/Amenities";
 import PropertyBody from "../components/PropertyComonents/PropertyBody";
-import ContactForm from "../components/PropertyComonents/Form/ContactForm";
+import ContactForm from "../components/HotelComponents/Form/ContactForm";
 import CarouselLightBox from "../components/PropertyComonents/CarouselLightBox";
 import Video from "../components/TourPageComponents/Video";
 import { graphql } from "gatsby";
 
 const Hotel = ({ pageContext, data }) => {
-  console.log(data?.allContentfulHotelsOrHostel?.nodes[0]);
   return (
     <Layout
       logo={pageContext.layout.logo}
