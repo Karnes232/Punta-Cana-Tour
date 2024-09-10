@@ -22,6 +22,7 @@ const Index = ({ data }) => {
     "House",
     "Apartment",
     "Condo",
+    "Land"
   ];
 
   useEffect(() => {

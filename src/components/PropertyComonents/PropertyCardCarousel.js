@@ -18,7 +18,6 @@ const PropertyCardCarousel = ({ mainImage, imageList }) => {
     photoListEdited.push(image);
   });
 
-  console.log(photoListEdited);
   return (
     <>
       <Swiper
