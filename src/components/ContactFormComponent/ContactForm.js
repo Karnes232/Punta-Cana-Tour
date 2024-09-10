@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import ContactInfo from "./ContactInfo";
 import MoreInfo from "./MoreInfo";
-
+import PhoneInput from "react-phone-number-input";
 const ContactForm = ({ formName, url }) => {
   const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const handlePhoneChange = (e) => {
+    setPhone(e);
+  };
+
   return (
     <>
       <form
@@ -17,6 +22,19 @@ const ContactForm = ({ formName, url }) => {
       >
         <input type="hidden" name="form-name" value={formName} />
         <ContactInfo name={name} setName={setName} />
+        <div className="relative z-0 mb-6 w-full group">
+          <PhoneInput
+            type="tel"
+            name="telphone"
+            id="telphone"
+            className={`contactFormInput peer `}
+            placeholder="Enter phone number"
+            value={phone}
+            onChange={handlePhoneChange}
+            // onCountryChange={handleCountryChange}
+          />
+          <input type="hidden" value={phone} name="phone" id="phone" />
+        </div>
         <MoreInfo />
         <button
           type="submit"
