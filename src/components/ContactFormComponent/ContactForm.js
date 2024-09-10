@@ -33,7 +33,6 @@ const ContactForm = ({ formName, url }) => {
             onChange={handlePhoneChange}
             // onCountryChange={handleCountryChange}
           />
-          <input type="hidden" value={phone} name="phone" id="phone" />
         </div>
         <MoreInfo />
         <button
