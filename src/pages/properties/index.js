@@ -205,6 +205,10 @@ export const query = graphql`
             gatsbyImage(width: 400, formats: WEBP, placeholder: BLURRED)
             title
           }
+          images {
+            gatsbyImage(width: 400, formats: WEBP, placeholder: BLURRED)
+            title
+          }
         }
       }
     }

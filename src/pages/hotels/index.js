@@ -127,6 +127,10 @@ export const query = graphql`
             title
             url
           }
+          images {
+            title
+            gatsbyImage(width: 400, formats: WEBP, placeholder: BLURRED)
+          }
         }
       }
     }

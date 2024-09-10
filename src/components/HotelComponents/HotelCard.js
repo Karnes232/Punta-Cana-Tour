@@ -2,6 +2,7 @@ import { Link } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
 import { FaLocationDot } from "react-icons/fa6";
+import PropertyCardCarousel from "../PropertyComonents/PropertyCardCarousel";
 
 const HotelCard = ({ hotel }) => {
   const image = getImage(hotel?.mainImage?.gatsbyImage);
@@ -11,14 +12,14 @@ const HotelCard = ({ hotel }) => {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   });
+  console.log(hotel);
   return (
     <>
       <Link to={hotel.urlSlug}>
         <div className="max-w-sm min-w-[20rem] xl:max-w-xs my-5 rounded-lg overflow-hidden shadow-lg">
-          <GatsbyImage
-            image={image}
-            alt={hotel?.mainImage?.title}
-            className="w-full object-cover h-64 lg:h-60"
+          <PropertyCardCarousel
+            mainImage={hotel?.mainImage}
+            imageList={hotel.images}
           />
           <div className="px-6 py-4">
             <div className="font-bold text-lg">

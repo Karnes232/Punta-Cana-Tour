@@ -4,6 +4,7 @@ import React from "react";
 import { FaLocationDot } from "react-icons/fa6";
 import { IoBedOutline } from "react-icons/io5";
 import { LuBath } from "react-icons/lu";
+import PropertyCardCarousel from "./PropertyCardCarousel";
 
 const PropertyCard = ({ property }) => {
   const image = getImage(property?.mainImage?.gatsbyImage);
@@ -18,10 +19,9 @@ const PropertyCard = ({ property }) => {
     <>
       <Link to={property.urlSlug}>
         <div className="max-w-sm min-w-[20rem] xl:max-w-xs my-5 mx-2 rounded-lg overflow-hidden shadow-lg">
-          <GatsbyImage
-            image={image}
-            alt={property?.mainImage?.title}
-            className="w-full object-cover h-64 lg:h-60"
+          <PropertyCardCarousel
+            mainImage={property?.mainImage}
+            imageList={property.images}
           />
           <div className="px-6 py-4">
             <div className="font-bold text-lg">
