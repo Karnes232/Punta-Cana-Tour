@@ -19,7 +19,7 @@ const PropertyCardCarousel = ({ mainImage, imageList }) => {
   });
 
   return (
-    <>
+    <div>
       <Swiper
         effect={"fade"}
         loop={true}
@@ -43,7 +43,7 @@ const PropertyCardCarousel = ({ mainImage, imageList }) => {
           );
         })}
       </Swiper>
-    </>
+    </div>
   );
 };
 
