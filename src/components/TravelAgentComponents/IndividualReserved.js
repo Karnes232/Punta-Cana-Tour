@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "gatsby";
 const IndividualReserved = ({ client }) => {
   let purchasedDate = new Date(client.createdAt?.seconds * 1000);
-  console.log(client);
   return (
     <>
       <table className="mx-auto text-base text-left text-gray-500 shadow rounded-xl overflow-hidden w-11/12 lg:w-1/2 xl:w-1/3">

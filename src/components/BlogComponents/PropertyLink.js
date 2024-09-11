@@ -2,9 +2,6 @@ import { Link } from "gatsby";
 import React from "react";
 
 const PropertyLink = ({ name, url, page }) => {
-  console.log(name);
-  console.log(url);
-  console.log(page);
   return (
     <>
       {page === undefined ? (

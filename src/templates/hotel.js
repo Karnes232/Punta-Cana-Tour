@@ -12,6 +12,7 @@ import Video from "../components/TourPageComponents/Video";
 import { graphql } from "gatsby";
 
 const Hotel = ({ pageContext, data }) => {
+  console.log(data);
   return (
     <Layout
       logo={pageContext.layout.logo}
@@ -133,6 +134,17 @@ export const query = graphql`
         seoKeywords
         videoUrl
         amenities
+        hotel_room {
+          roomName
+          dormRoom
+          images {
+            gatsbyImage(width: 400, placeholder: BLURRED, formats: WEBP)
+          }
+          description
+          sleeps
+          bedType
+          price
+        }
       }
     }
   }

@@ -39,7 +39,6 @@ const Tour = ({ data }) => {
     onAuthStateChanged(auth, async (user) => {
       const currentUser = auth.currentUser;
       if (currentUser) {
-        console.log(currentUser);
         findUser(currentUser.uid);
         setLoggedIn(true);
       } else {

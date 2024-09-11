@@ -2,7 +2,6 @@ import { Link } from "gatsby";
 import React from "react";
 
 const Button = ({ text, customClass, url, name }) => {
-  console.log(url);
   return (
     <div className="flex flex-col max-w-5xl mt-5 mx-5 lg:p-2 xl:mx-auto xl:min-w-[64rem]">
       <Link to={`/tours/${url}`}>

@@ -6,7 +6,6 @@ const collectUserData = async (formData, clearCart, redirectHref) => {
   const formDataObj = {};
   formData.forEach((value, key) => (formDataObj[key] = value));
   const id = uuidv4();
-  console.log(formDataObj);
   await setDoc(doc(db, "reservationsClientes", id), {
     id: id,
     email: formDataObj.email,

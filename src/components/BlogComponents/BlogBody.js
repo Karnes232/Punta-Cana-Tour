@@ -101,19 +101,6 @@ const BlogBody = ({ context }) => {
           </div>
         );
       },
-      // [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
-      //   console.log(node.data.target.sys.id)
-      //   console.log(context.references)
-      //   return (
-      //     <></>
-      //   )
-      // },
-      // [BLOCKS.EMBEDDED_RESOURCE]: (node, children) => {
-      //   console.log(children)
-      //   return (
-      //     <></>
-      //   )
-      // },
       [INLINES.HYPERLINK]: (node, children) => {
         return (
           <a href={node.data.uri} className="italic underline text-blue-600">

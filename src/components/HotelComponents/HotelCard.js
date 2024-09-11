@@ -12,7 +12,6 @@ const HotelCard = ({ hotel }) => {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   });
-  console.log(hotel);
   return (
     <>
       <Link to={hotel.urlSlug}>

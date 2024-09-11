@@ -6,7 +6,6 @@ const IndividualUser = ({ user }) => {
       window.location.href = `/travelagent/touroperators/${user.referredBy.id}`;
     }
   };
-  console.log(user);
   return (
     <>
       <table className="mx-auto text-base text-left text-gray-500 shadow rounded-xl overflow-hidden w-11/12 lg:w-1/2 xl:w-1/3">

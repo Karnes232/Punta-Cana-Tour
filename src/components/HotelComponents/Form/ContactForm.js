@@ -15,7 +15,6 @@ const ContactForm = ({ property, email, formName }) => {
     propertyName: property.title,
     propertyPrice: property.price,
   });
-  console.log(formData);
   return (
     <div className="">
       {contacted ? (

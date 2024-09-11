@@ -14,9 +14,6 @@ const ContactInfo = ({ name, setName, formData, setFormData, phoneAlert }) => {
       phone: e,
     });
   };
-  // const handleCountryChange = (e) => {
-  //   console.log(e)
-  // }
 
   return (
     <>

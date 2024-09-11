@@ -2,7 +2,6 @@ import { Link } from "gatsby";
 import React from "react";
 
 const HotelLink = ({ name, url, page }) => {
-  console.log(url);
   return (
     <>
       {page === undefined ? (

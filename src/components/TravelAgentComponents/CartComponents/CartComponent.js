@@ -99,7 +99,7 @@ export default function Cart({
 
           const agentPrice = tour.price * 0.85;
           const tourTotalPrice = agentPrice * tour.quantity;
-          console.log(tour);
+
           return (
             <div key={tour.name}>
               <div className="flex justify-between mt-2 mb-5" key={tour.name}>
