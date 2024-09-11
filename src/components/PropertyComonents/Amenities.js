@@ -21,7 +21,7 @@ const Amenities = ({ amenities }) => {
     <>
       <h4 className="text-xl md:text-2xl tracking-wide my-2">Amenities</h4>
       <div className="flex flex-col md:flex-row md:flex-wrap  max-w-6xl xl:max-w-6xl mx-auto">
-        {amenities.includes("All Inclusive") ? (
+        {amenities?.includes("All Inclusive") ? (
           <div className="flex items-center w-80 h-12">
             <MdAllInclusive className="mr-2" size={30} />
             All Inclusive
@@ -29,7 +29,7 @@ const Amenities = ({ amenities }) => {
         ) : (
           <></>
         )}
-        {amenities.includes("Swimming Pool") ? (
+        {amenities?.includes("Swimming Pool") ? (
           <div className="flex items-center w-80 h-12">
             <MdPool className="mr-2" size={30} />
             Swimming Pool
@@ -37,7 +37,7 @@ const Amenities = ({ amenities }) => {
         ) : (
           <></>
         )}
-        {amenities.includes("Wi-Fi") ? (
+        {amenities?.includes("Wi-Fi") ? (
           <div className="flex items-center w-80 h-12">
             <FaWifi className="mr-2" size={30} />
             Wi-Fi
@@ -45,7 +45,7 @@ const Amenities = ({ amenities }) => {
         ) : (
           <></>
         )}
-        {amenities.includes("Fitness Center/Gym") ? (
+        {amenities?.includes("Fitness Center/Gym") ? (
           <div className="flex items-center w-80 h-12">
             <MdFitnessCenter className="mr-2" size={30} />
             Fitness Center/Gym
@@ -53,7 +53,7 @@ const Amenities = ({ amenities }) => {
         ) : (
           <></>
         )}
-        {amenities.includes("Private Rooms") ? (
+        {amenities?.includes("Private Rooms") ? (
           <div className="flex items-center w-80 h-12">
             <IoBed className="mr-2" size={30} />
             Private Rooms
@@ -61,7 +61,7 @@ const Amenities = ({ amenities }) => {
         ) : (
           <></>
         )}
-        {amenities.includes("Shared Kitchen") ? (
+        {amenities?.includes("Shared Kitchen") ? (
           <div className="flex items-center w-80 h-12">
             <MdKitchen className="mr-2" size={30} />
             Shared Kitchen
@@ -69,7 +69,7 @@ const Amenities = ({ amenities }) => {
         ) : (
           <></>
         )}
-        {amenities.includes("Spa Services") ? (
+        {amenities?.includes("Spa Services") ? (
           <div className="flex items-center w-80 h-12">
             <MdSpa className="mr-2" size={30} />
             Spa Services
@@ -77,7 +77,7 @@ const Amenities = ({ amenities }) => {
         ) : (
           <></>
         )}
-        {amenities.includes("BBQ/Picnic Area") ? (
+        {amenities?.includes("BBQ/Picnic Area") ? (
           <div className="flex items-center w-80 h-12">
             <MdOutdoorGrill className="mr-2" size={30} />
             BBQ/Picnic Area
@@ -85,7 +85,7 @@ const Amenities = ({ amenities }) => {
         ) : (
           <></>
         )}
-        {amenities.includes("Gated Community/Security") ? (
+        {amenities?.includes("Gated Community/Security") ? (
           <div className="flex items-center w-80 h-12">
             <MdOutlineSecurity className="mr-2" size={30} />
             Gated Community/Security
@@ -93,7 +93,7 @@ const Amenities = ({ amenities }) => {
         ) : (
           <></>
         )}
-        {amenities.includes("Lockers") ? (
+        {amenities?.includes("Lockers") ? (
           <div className="flex items-center w-80 h-12">
             <GiLockers className="mr-2" size={30} />
             Lockers
@@ -101,7 +101,7 @@ const Amenities = ({ amenities }) => {
         ) : (
           <></>
         )}
-        {amenities.includes("Parking") ? (
+        {amenities?.includes("Parking") ? (
           <div className="flex items-center w-80 h-12">
             <MdLocalParking className="mr-2" size={30} />
             Parking
@@ -109,7 +109,7 @@ const Amenities = ({ amenities }) => {
         ) : (
           <></>
         )}
-        {amenities.includes("Balcony/Patio") ? (
+        {amenities?.includes("Balcony/Patio") ? (
           <div className="flex items-center w-80 h-12">
             <MdBalcony className="mr-2" size={30} />
             Balcony/Patio
@@ -117,7 +117,7 @@ const Amenities = ({ amenities }) => {
         ) : (
           <></>
         )}
-        {amenities.includes("Dishwasher") ? (
+        {amenities?.includes("Dishwasher") ? (
           <div className="flex items-center w-80 h-12">
             <FaKitchenSet className="mr-2" size={30} />
             Dishwasher
@@ -125,7 +125,7 @@ const Amenities = ({ amenities }) => {
         ) : (
           <></>
         )}
-        {amenities.includes("Laundry") ? (
+        {amenities?.includes("Laundry") ? (
           <div className="flex items-center w-80 h-12">
             <MdLocalLaundryService className="mr-2" size={30} />
             Laundry
@@ -133,7 +133,7 @@ const Amenities = ({ amenities }) => {
         ) : (
           <></>
         )}
-        {amenities.includes("Smart Home Features") ? (
+        {amenities?.includes("Smart Home Features") ? (
           <div className="flex items-center w-80 h-12">
             <SiSmartthings className="mr-2" size={30} />
             Smart Home Features
@@ -141,7 +141,7 @@ const Amenities = ({ amenities }) => {
         ) : (
           <></>
         )}
-        {amenities.includes("Solar Panels") ? (
+        {amenities?.includes("Solar Panels") ? (
           <div className="flex items-center w-80 h-12">
             <MdSolarPower className="mr-2" size={30} />
             Solar Panels

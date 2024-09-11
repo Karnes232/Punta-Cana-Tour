@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropertyCardCarousel from "../PropertyComonents/PropertyCardCarousel";
 import { IoBed, IoPeople } from "react-icons/io5";
 import { FaArrowCircleDown, FaArrowCircleUp } from "react-icons/fa";
-const HotelRoomCard = ({ hotelRoom }) => {
+const HotelRoomCard = ({ hotelRoom, formData, setFormData }) => {
   const [showMore, setShowMore] = useState(false);
   const currencyFormatter = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -10,9 +10,25 @@ const HotelRoomCard = ({ hotelRoom }) => {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   });
+  const handleClick = (e) => {
+    setFormData({
+      ...formData,
+      hotelRoom: hotelRoom.roomName,
+      price: hotelRoom.price,
+    });
+  };
+  let borderStyle = "";
+  if (formData.hotelRoom === hotelRoom.roomName) {
+    borderStyle = "border-solid border-blue-400 border";
+  } else {
+    borderStyle = "";
+  }
   return (
     <>
-      <div className="max-w-sm min-w-[20rem] xl:max-w-xs my-5 rounded-lg overflow-hidden shadow-lg flex flex-col">
+      <div
+        className={`max-w-sm min-w-[20rem] xl:max-w-xs my-5 mx-2 rounded-2xl overflow-hidden shadow-lg bg-gray-50 ${borderStyle}`}
+        onClick={handleClick}
+      >
         <PropertyCardCarousel mainImage={[]} imageList={hotelRoom.images} />
         <div className="px-6 py-4 flex flex-col flex-grow">
           <div className="font-bold text-lg">

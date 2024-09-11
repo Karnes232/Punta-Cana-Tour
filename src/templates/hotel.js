@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
 import HeroComponent from "../components/HeroComponent/HeroComponent";
@@ -11,9 +11,20 @@ import CarouselLightBox from "../components/PropertyComonents/CarouselLightBox";
 import Video from "../components/TourPageComponents/Video";
 import { graphql } from "gatsby";
 import HotelRoomCard from "../components/HotelComponents/HotelRoomCard";
+import HotelCardSwiper from "../components/HotelComponents/HotelCardSwiper";
 
 const Hotel = ({ pageContext, data }) => {
-  console.log(data.allContentfulHotelsOrHostel.nodes[0].hotel_room);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    startDate: "",
+    endDate: "",
+    hotel: data?.allContentfulHotelsOrHostel?.nodes[0].title,
+    hotelRoom: "",
+    price: "",
+  });
+  console.log(data.allContentfulHotelsOrHostel.nodes[0].hotelType);
   return (
     <Layout
       logo={pageContext.layout.logo}
@@ -65,15 +76,77 @@ const Hotel = ({ pageContext, data }) => {
           />
         </div>
       </div>
-
-      <div className="flex flex-col lg:flex-row lg:flex-wrap max-w-6xl mx-auto justify-center lg:justify-between xl:gap-14">
+      <div className="max-w-6xl w-full mx-5 xl:mx-auto text-xl font-bold">
+        Choose your room
+      </div>
+      <div className="hidden lg:flex flex-col lg:flex-row lg:flex-wrap max-w-6xl xl:mx-auto justify-around xl:justify-between xl:gap-14">
         {data?.allContentfulHotelsOrHostel?.nodes[0]?.hotel_room?.map(
           (hotelRoom, index) => {
-            console.log(hotelRoom);
-            return <HotelRoomCard hotelRoom={hotelRoom} key={index} />;
+            return (
+              <>
+                {hotelRoom.dormRoom === false ? (
+                  <>
+                    <HotelRoomCard
+                      hotelRoom={hotelRoom}
+                      key={index}
+                      formData={formData}
+                      setFormData={setFormData}
+                    />
+                  </>
+                ) : (
+                  <></>
+                )}
+              </>
+            );
           },
         )}
       </div>
+      <div className="flex flex-col lg:hidden lg:flex-row justify-evenly items-start xl:justify-center xl:space-x-24">
+        <HotelCardSwiper
+          hotelList={data?.allContentfulHotelsOrHostel?.nodes[0]?.hotel_room}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      </div>
+      {data.allContentfulHotelsOrHostel.nodes[0].hotelType === "Hostel" && (
+        <>
+          <div className="max-w-6xl w-full mx-5 xl:mx-auto text-xl font-bold">
+            Dorm rooms
+          </div>
+          <div className="hidden lg:flex flex-col lg:flex-row lg:flex-wrap max-w-6xl xl:mx-auto justify-around xl:justify-between xl:gap-14">
+            {data?.allContentfulHotelsOrHostel?.nodes[0]?.hotel_room?.map(
+              (hotelRoom, index) => {
+                return (
+                  <>
+                    {hotelRoom.dormRoom ? (
+                      <>
+                        <HotelRoomCard
+                          hotelRoom={hotelRoom}
+                          key={index}
+                          formData={formData}
+                          setFormData={setFormData}
+                        />
+                      </>
+                    ) : (
+                      <></>
+                    )}
+                  </>
+                );
+              },
+            )}
+          </div>
+          <div className="flex flex-col lg:hidden lg:flex-row justify-evenly items-start xl:justify-center xl:space-x-24">
+            <HotelCardSwiper
+              hotelList={
+                data?.allContentfulHotelsOrHostel?.nodes[0]?.hotel_room
+              }
+              formData={formData}
+              setFormData={setFormData}
+            />
+          </div>
+        </>
+      )}
+
       {data?.allContentfulHotelsOrHostel?.nodes[0]?.videoUrl?.map(
         (video, index) => {
           return (

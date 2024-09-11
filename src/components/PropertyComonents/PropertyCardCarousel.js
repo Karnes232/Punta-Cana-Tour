@@ -9,15 +9,19 @@ import { Autoplay, EffectFade, Navigation } from "swiper/modules";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 const PropertyCardCarousel = ({ mainImage, imageList }) => {
   let photoListEdited = [];
-  imageList.push(mainImage);
-  imageList?.forEach((e) => {
-    let image = {
-      title: e.title,
-      image: getImage(e.gatsbyImage),
-    };
-    photoListEdited.push(image);
-  });
+  if (mainImage.length !== 0) {
+    imageList.push(mainImage);
+  }
 
+  imageList?.forEach((e) => {
+    if (e.length !== 0) {
+      let image = {
+        title: e.title,
+        image: getImage(e.gatsbyImage),
+      };
+      photoListEdited.push(image);
+    }
+  });
   return (
     <div>
       <Swiper
