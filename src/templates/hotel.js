@@ -18,7 +18,14 @@ const Hotel = ({ pageContext, data }) => {
     hotel: data?.allContentfulHotelsOrHostel?.nodes[0].title,
     hotelRoom: "",
     price: "",
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+    startDate: "",
+    endDate: "",
   });
+
   console.log(hotelFormData);
   return (
     <Layout
@@ -65,6 +72,7 @@ const Hotel = ({ pageContext, data }) => {
             property={data?.allContentfulHotelsOrHostel?.nodes[0]}
             email={pageContext.layout.email}
             hotelFormData={hotelFormData}
+            setHotelFormData={setHotelFormData}
             formName="HotelForm"
           />
           <CarouselLightBox

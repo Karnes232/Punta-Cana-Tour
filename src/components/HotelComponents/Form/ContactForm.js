@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import ContactInfo from "./ContactInfo";
 import DatePickerComponent from "../../CarRentalComponents/DatePickerComponent";
 
-const ContactForm = ({ property, email, hotelFormData, formName }) => {
+const ContactForm = ({
+  property,
+  email,
+  hotelFormData,
+  setHotelFormData,
+  formName,
+}) => {
   const [phoneAlert, setPhoneAlert] = useState(false);
   const [contacted, setContacted] = useState(false);
   const [formData, setFormData] = useState({
@@ -19,13 +25,13 @@ const ContactForm = ({ property, email, hotelFormData, formName }) => {
     propertyPrice: property.price,
   });
 
-  console.log(formData)
   return (
     <div className="">
       {contacted ? (
         <div className="h-[28rem] flex flex-col justify-center items-center text-slate-600 ">
           <div className="text-2xl xl:text-4xl font-serif text-center mt-6">
-            Thank you {formData.name}, our team will reach out to you shortly!
+            Thank you {hotelFormData.name}, our team will reach out to you
+            shortly!
           </div>
 
           <div className="text-center text-sm xl:text-base mt-2 xl:mt-6">
@@ -45,7 +51,7 @@ const ContactForm = ({ property, email, hotelFormData, formName }) => {
         <form
           name={formName}
           method="POST"
-          action={`/contact/thankyou/?name=${formData.name}`}
+          action={`/contact/thankyou/?name=${hotelFormData.name}`}
           data-netlify="true"
           data-netlify-honeypot="bot-field"
           id={formName}
@@ -58,18 +64,28 @@ const ContactForm = ({ property, email, hotelFormData, formName }) => {
           <input
             type="hidden"
             name="propertyName"
-            value={formData.propertyName}
+            value={hotelFormData.hotel}
+          />
+          <input
+            type="hidden"
+            name="hotelRoom"
+            value={hotelFormData.hotelRoom}
+            required
           />
           <input
             type="hidden"
             name="propertyPrice"
-            value={formData.propertyPrice}
+            value={hotelFormData.price}
           />
-          <input type="hidden" name="startDate" value={formData.startDate} />
-          <input type="hidden" name="endDate" value={formData.endDate} />
+          <input
+            type="hidden"
+            name="startDate"
+            value={hotelFormData.startDate}
+          />
+          <input type="hidden" name="endDate" value={hotelFormData.endDate} />
           <ContactInfo
-            formData={formData}
-            setFormData={setFormData}
+            hotelFormData={hotelFormData}
+            setHotelFormData={setHotelFormData}
             phoneAlert={phoneAlert}
           />
 

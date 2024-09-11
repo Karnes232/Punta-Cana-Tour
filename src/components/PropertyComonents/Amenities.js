@@ -17,11 +17,12 @@ import { IoBed } from "react-icons/io5";
 import { FaKitchenSet, FaWifi } from "react-icons/fa6";
 import { SiSmartthings } from "react-icons/si";
 const Amenities = ({ amenities }) => {
-  console.log(amenities)
   return (
     <>
-      {amenities && <h4 className="text-xl md:text-2xl tracking-wide my-2">Amenities</h4> }
- 
+      {amenities && (
+        <h4 className="text-xl md:text-2xl tracking-wide my-2">Amenities</h4>
+      )}
+
       <div className="flex flex-col md:flex-row md:flex-wrap  max-w-6xl xl:max-w-6xl mx-auto">
         {amenities?.includes("All Inclusive") ? (
           <div className="flex items-center w-80 h-12">

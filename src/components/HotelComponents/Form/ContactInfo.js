@@ -2,16 +2,16 @@ import React from "react";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import DatePickerComponent from "../../CarRentalComponents/DatePickerComponent";
-const ContactInfo = ({ formData, setFormData, phoneAlert }) => {
+const ContactInfo = ({ hotelFormData, setHotelFormData, phoneAlert }) => {
   const handleChange = ({ target }) => {
-    setFormData({
-      ...formData,
+    setHotelFormData({
+      ...hotelFormData,
       [target.name]: target.value,
     });
   };
   const handlePhoneChange = (e) => {
-    setFormData({
-      ...formData,
+    setHotelFormData({
+      ...hotelFormData,
       phone: e,
     });
   };
@@ -54,11 +54,14 @@ const ContactInfo = ({ formData, setFormData, phoneAlert }) => {
             phoneAlert ? "!bg-red-200 placeholder-white" : ""
           }`}
           placeholder="Enter phone number"
-          value={formData.phone}
+          value={hotelFormData.phone}
           onChange={handlePhoneChange}
         />
       </div>
-      <DatePickerComponent formData={formData} setFormData={setFormData} />
+      <DatePickerComponent
+        formData={hotelFormData}
+        setFormData={setHotelFormData}
+      />
       <div className="relative z-0 my-6 w-full group">
         <label
           htmlFor="message"
