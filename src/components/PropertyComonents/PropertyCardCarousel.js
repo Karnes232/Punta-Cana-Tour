@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-fade";
-import { Autoplay, EffectFade } from "swiper/modules";
+import { Autoplay, EffectFade, Navigation } from "swiper/modules";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 const PropertyCardCarousel = ({ mainImage, imageList }) => {
   let photoListEdited = [];
@@ -23,11 +23,12 @@ const PropertyCardCarousel = ({ mainImage, imageList }) => {
       <Swiper
         effect={"fade"}
         loop={true}
+        navigation={true}
         autoplay={{
           delay: 3000,
           disableOnInteraction: false,
         }}
-        modules={[Autoplay, EffectFade]}
+        modules={[Autoplay, EffectFade, Navigation]}
         className={``}
       >
         {photoListEdited.map((image, index) => {

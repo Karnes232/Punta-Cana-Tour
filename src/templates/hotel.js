@@ -10,9 +10,10 @@ import ContactForm from "../components/HotelComponents/Form/ContactForm";
 import CarouselLightBox from "../components/PropertyComonents/CarouselLightBox";
 import Video from "../components/TourPageComponents/Video";
 import { graphql } from "gatsby";
+import HotelRoomCard from "../components/HotelComponents/HotelRoomCard";
 
 const Hotel = ({ pageContext, data }) => {
-  console.log(data);
+  console.log(data.allContentfulHotelsOrHostel.nodes[0].hotel_room);
   return (
     <Layout
       logo={pageContext.layout.logo}
@@ -63,6 +64,15 @@ const Hotel = ({ pageContext, data }) => {
             photoList={data?.allContentfulHotelsOrHostel?.nodes[0].images}
           />
         </div>
+      </div>
+
+      <div className="flex flex-col lg:flex-row lg:flex-wrap max-w-6xl mx-auto justify-center lg:justify-between xl:gap-14">
+        {data?.allContentfulHotelsOrHostel?.nodes[0]?.hotel_room?.map(
+          (hotelRoom, index) => {
+            console.log(hotelRoom);
+            return <HotelRoomCard hotelRoom={hotelRoom} key={index} />;
+          },
+        )}
       </div>
       {data?.allContentfulHotelsOrHostel?.nodes[0]?.videoUrl?.map(
         (video, index) => {
@@ -139,6 +149,7 @@ export const query = graphql`
           dormRoom
           images {
             gatsbyImage(width: 400, placeholder: BLURRED, formats: WEBP)
+            title
           }
           description
           sleeps

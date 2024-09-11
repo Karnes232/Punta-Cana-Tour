@@ -2,3 +2,10 @@
   -webkit-clip-path: polygon(0 10%, 100% 0, 100% 90%, 0% 100%);
   clip-path: polygon(0 10%, 100% 0, 100% 90%, 0% 100%);
 } */
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  color: rgb(88, 88, 88) !important;
+  font-size: 20px !important;
+  font-weight: bold;
+}
