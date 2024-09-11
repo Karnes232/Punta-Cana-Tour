@@ -9,7 +9,7 @@ import "swiper/css/effect-coverflow";
 import { EffectCoverflow, Pagination } from "swiper/modules";
 import HotelRoomCard from "./HotelRoomCard";
 
-const HotelCardSwiper = ({ hotelList, formData, setFormData }) => {
+const HotelCardSwiper = ({ hotelList, hotelFormData, setHotelFormData }) => {
   return (
     <Swiper
       slidesPerView={"auto"}
@@ -32,7 +32,7 @@ const HotelCardSwiper = ({ hotelList, formData, setFormData }) => {
       modules={[EffectCoverflow, Pagination]}
       className="max-w-sm min-w-[20rem] lg:max-w-5xl"
     >
-      {hotelList.map((hotelRoom, index) => {
+      {hotelList?.map((hotelRoom, index) => {
         return (
           <SwiperSlide
             className="relative max-w-sm min-w-[20rem] xl:max-w-xs"
@@ -40,8 +40,8 @@ const HotelCardSwiper = ({ hotelList, formData, setFormData }) => {
           >
             <HotelRoomCard
               hotelRoom={hotelRoom}
-              formData={formData}
-              setFormData={setFormData}
+              hotelFormData={hotelFormData}
+              setHotelFormData={setHotelFormData}
             />
           </SwiperSlide>
         );

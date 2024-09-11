@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import ContactInfo from "./ContactInfo";
 import DatePickerComponent from "../../CarRentalComponents/DatePickerComponent";
 
-const ContactForm = ({ property, email, formName }) => {
+const ContactForm = ({ property, email, hotelFormData, formName }) => {
   const [phoneAlert, setPhoneAlert] = useState(false);
   const [contacted, setContacted] = useState(false);
   const [formData, setFormData] = useState({
+    hotel: hotelFormData.hotel,
+    hotelRoom: hotelFormData.hotelRoom,
+    price: hotelFormData.price,
     name: "",
     email: "",
     phone: "",
@@ -15,6 +18,8 @@ const ContactForm = ({ property, email, formName }) => {
     propertyName: property.title,
     propertyPrice: property.price,
   });
+
+  console.log(formData)
   return (
     <div className="">
       {contacted ? (

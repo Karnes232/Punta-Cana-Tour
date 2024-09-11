@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropertyCardCarousel from "../PropertyComonents/PropertyCardCarousel";
 import { IoBed, IoPeople } from "react-icons/io5";
 import { FaArrowCircleDown, FaArrowCircleUp } from "react-icons/fa";
-const HotelRoomCard = ({ hotelRoom, formData, setFormData }) => {
+const HotelRoomCard = ({ hotelRoom, hotelFormData, setHotelFormData }) => {
   const [showMore, setShowMore] = useState(false);
   const currencyFormatter = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -11,14 +11,14 @@ const HotelRoomCard = ({ hotelRoom, formData, setFormData }) => {
     maximumFractionDigits: 0,
   });
   const handleClick = (e) => {
-    setFormData({
-      ...formData,
+    setHotelFormData({
+      ...hotelFormData,
       hotelRoom: hotelRoom.roomName,
       price: hotelRoom.price,
     });
   };
   let borderStyle = "";
-  if (formData.hotelRoom === hotelRoom.roomName) {
+  if (hotelFormData.hotelRoom === hotelRoom.roomName) {
     borderStyle = "border-solid border-blue-400 border";
   } else {
     borderStyle = "";

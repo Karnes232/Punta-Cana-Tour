@@ -14,17 +14,12 @@ import HotelRoomCard from "../components/HotelComponents/HotelRoomCard";
 import HotelCardSwiper from "../components/HotelComponents/HotelCardSwiper";
 
 const Hotel = ({ pageContext, data }) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    startDate: "",
-    endDate: "",
+  const [hotelFormData, setHotelFormData] = useState({
     hotel: data?.allContentfulHotelsOrHostel?.nodes[0].title,
     hotelRoom: "",
     price: "",
   });
-  console.log(data.allContentfulHotelsOrHostel.nodes[0].hotelType);
+  console.log(hotelFormData);
   return (
     <Layout
       logo={pageContext.layout.logo}
@@ -69,6 +64,7 @@ const Hotel = ({ pageContext, data }) => {
           <ContactForm
             property={data?.allContentfulHotelsOrHostel?.nodes[0]}
             email={pageContext.layout.email}
+            hotelFormData={hotelFormData}
             formName="HotelForm"
           />
           <CarouselLightBox
@@ -89,8 +85,8 @@ const Hotel = ({ pageContext, data }) => {
                     <HotelRoomCard
                       hotelRoom={hotelRoom}
                       key={index}
-                      formData={formData}
-                      setFormData={setFormData}
+                      hotelFormData={hotelFormData}
+                      setHotelFormData={setHotelFormData}
                     />
                   </>
                 ) : (
@@ -104,8 +100,8 @@ const Hotel = ({ pageContext, data }) => {
       <div className="flex flex-col lg:hidden lg:flex-row justify-evenly items-start xl:justify-center xl:space-x-24">
         <HotelCardSwiper
           hotelList={data?.allContentfulHotelsOrHostel?.nodes[0]?.hotel_room}
-          formData={formData}
-          setFormData={setFormData}
+          hotelFormData={hotelFormData}
+          setHotelFormData={setHotelFormData}
         />
       </div>
       {data.allContentfulHotelsOrHostel.nodes[0].hotelType === "Hostel" && (
@@ -123,8 +119,8 @@ const Hotel = ({ pageContext, data }) => {
                         <HotelRoomCard
                           hotelRoom={hotelRoom}
                           key={index}
-                          formData={formData}
-                          setFormData={setFormData}
+                          hotelFormData={hotelFormData}
+                          setHotelFormData={setHotelFormData}
                         />
                       </>
                     ) : (
@@ -140,8 +136,8 @@ const Hotel = ({ pageContext, data }) => {
               hotelList={
                 data?.allContentfulHotelsOrHostel?.nodes[0]?.hotel_room
               }
-              formData={formData}
-              setFormData={setFormData}
+              hotelFormData={hotelFormData}
+              setHotelFormData={setHotelFormData}
             />
           </div>
         </>
