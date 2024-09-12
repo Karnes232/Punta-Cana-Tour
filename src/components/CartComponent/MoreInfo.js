@@ -1,5 +1,4 @@
 import React from "react";
-import DatePickerComponent from "./DatePickerComponent";
 import HotelSelect from "./HotelSelect";
 
 const MoreInfo = ({ formData, setFormData, hotels, pickupTimes }) => {

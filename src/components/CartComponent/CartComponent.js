@@ -131,9 +131,10 @@ export default function Cart({
                         className="px-4 py-2 bg-secondary-color text-primary-color text-xs font-bold uppercase rounded hover:opacity-70 focus:outline-none focus:bg-gray-700"
                         onClick={(e) => {
                           e.preventDefault();
-                          const cartItem = cartItems.find(
-                            (tour) => tour.name === tour.name,
-                          );
+                          // console.log(e)
+                          // const cartItem = cartItems.find(
+                          //   (tour) => tour.name === tour.name,
+                          // );
                           if (tour.quantity === 1) {
                             const setData = setDateValidations[index];
                             setData(false);

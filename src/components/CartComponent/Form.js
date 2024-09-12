@@ -6,7 +6,6 @@ import Button from "./Button";
 import CartComponent from "./CartComponent";
 import { CartContext } from "../../context/cart";
 import collectUserData from "../../customHooks/collectUserData";
-import CartPayPal from "../PayPalButtonWrapper/CartPayPal";
 const Form = ({ allTours, hotels }) => {
   const [name, setName] = useState("");
   const [host, setHost] = useState("");

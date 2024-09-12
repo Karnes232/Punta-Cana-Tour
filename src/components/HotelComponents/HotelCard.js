@@ -1,11 +1,9 @@
 import { Link } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
 import { FaLocationDot } from "react-icons/fa6";
 import PropertyCardCarousel from "../PropertyComonents/PropertyCardCarousel";
 
 const HotelCard = ({ hotel }) => {
-  const image = getImage(hotel?.mainImage?.gatsbyImage);
   const currencyFormatter = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",

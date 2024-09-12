@@ -18,7 +18,7 @@ const TravelAgentPayPalWrapper = ({
   const style = { layout: "vertical", shape: "pill" };
   const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
   const [host, setHost] = useState("");
-  const { clearCart, cartItems } = useContext(TravelAgentCartContext);
+  const { clearCart } = useContext(TravelAgentCartContext);
   useEffect(() => {
     dispatch({
       type: "resetOptions",

@@ -1,6 +1,5 @@
 import React from "react";
 import useWindowWidth from "../../customHooks/useWindowWidth";
-import { Link } from "gatsby";
 const HeroComponent = ({ gImage }) => {
   const windowWidth = useWindowWidth();
   let image = gImage?.images?.fallback?.srcSet.split(",");
