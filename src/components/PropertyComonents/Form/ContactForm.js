@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import ContactInfo from "./ContactInfo";
+import usePropertyFormValidation from "../../../customHooks/usePropertyFormValidation";
 
 const ContactForm = ({ property, email, formName }) => {
   const [phoneAlert, setPhoneAlert] = useState(false);
   const [contacted, setContacted] = useState(false);
+  const [missingFormInfo, setMissingFormInfo] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -12,6 +14,25 @@ const ContactForm = ({ property, email, formName }) => {
     propertyName: property.title,
     propertyPrice: property.price,
   });
+  let disabled = usePropertyFormValidation(formData);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (disabled) {
+      setMissingFormInfo(true);
+    } else {
+      const form = document.getElementById("PropertyForm");
+      const newFormData = new FormData(form);
+      const formDataObj = {};
+      newFormData.forEach((value, key) => (formDataObj[key] = value));
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(newFormData).toString(),
+      }).then(() => {
+        setContacted(true);
+      });
+    }
+  };
 
   return (
     <div className="">
@@ -43,6 +64,7 @@ const ContactForm = ({ property, email, formName }) => {
           data-netlify-honeypot="bot-field"
           id={formName}
           className="w-full px-5 flex flex-col justify-center items-center mx-auto my-5 lg:my-0"
+          onSubmit={handleSubmit}
         >
           <div className="relative z-0 w-full text-xl font-medium mb-5">
             Contact Us
@@ -70,6 +92,13 @@ const ContactForm = ({ property, email, formName }) => {
           >
             Send a Message
           </button>
+          {missingFormInfo ? (
+            <p className="text-xs lg:text-sm mt-2 text-center text-red-600">
+              Form Required to be Filled
+            </p>
+          ) : (
+            <></>
+          )}
         </form>
       )}
     </div>
