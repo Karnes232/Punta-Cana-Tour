@@ -58,6 +58,8 @@ const Tour = ({ data }) => {
     const tour = data.allContentfulTours.nodes.filter((tour) => {
       if (formData.tour === tour.name) {
         return tour;
+      } else {
+        return null;
       }
     });
     try {

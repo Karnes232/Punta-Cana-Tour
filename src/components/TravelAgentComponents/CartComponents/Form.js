@@ -91,7 +91,7 @@ const Form = ({ hotels, allTours }) => {
     return newFormData;
   }
   const data = getFormData(formData);
-
+  console.log(data);
   const handleSubmit = (event) => {
     event.preventDefault();
   };

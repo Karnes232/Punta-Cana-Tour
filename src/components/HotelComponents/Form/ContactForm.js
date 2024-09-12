@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import ContactInfo from "./ContactInfo";
-import DatePickerComponent from "../../CarRentalComponents/DatePickerComponent";
 
 const ContactForm = ({
-  property,
   email,
   hotelFormData,
   setHotelFormData,
@@ -11,21 +9,21 @@ const ContactForm = ({
   disabled,
 }) => {
   const [missingFormInfo, setMissingFormInfo] = useState(false);
-  const [phoneAlert, setPhoneAlert] = useState(false);
+
   const [contacted, setContacted] = useState(false);
-  const [formData, setFormData] = useState({
-    hotel: hotelFormData.hotel,
-    hotelRoom: hotelFormData.hotelRoom,
-    price: hotelFormData.price,
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-    startDate: "",
-    endDate: "",
-    propertyName: property.title,
-    propertyPrice: property.price,
-  });
+  // const [formData, setFormData] = useState({
+  //   hotel: hotelFormData.hotel,
+  //   hotelRoom: hotelFormData.hotelRoom,
+  //   price: hotelFormData.price,
+  //   name: "",
+  //   email: "",
+  //   phone: "",
+  //   message: "",
+  //   startDate: "",
+  //   endDate: "",
+  //   propertyName: property.title,
+  //   propertyPrice: property.price,
+  // });
   const handleSubmit = (e) => {
     e.preventDefault();
     if (disabled) {
@@ -39,7 +37,9 @@ const ContactForm = ({
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(newFormData).toString(),
-      }).then(() => {});
+      }).then(() => {
+        setContacted(true);
+      });
     }
   };
 
@@ -105,7 +105,7 @@ const ContactForm = ({
           <ContactInfo
             hotelFormData={hotelFormData}
             setHotelFormData={setHotelFormData}
-            phoneAlert={phoneAlert}
+            phoneAlert={false}
           />
 
           <button

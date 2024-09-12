@@ -13,24 +13,24 @@ import { signOut } from "firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 const SideBarMenu = ({ toggled, setToggled }) => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  // const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState({});
-  const [isAdmin, setIsAdmin] = useState(false);
+  // const [isAdmin, setIsAdmin] = useState(false);
   const findUser = async (id) => {
     const docRef = doc(db, "users", id);
     const docSnap = await getDoc(docRef);
     setUser(docSnap.data());
-    const user = docSnap.data();
-    if (user.isAdmin) {
-      setIsAdmin(true);
-    }
+    // const user = docSnap.data();
+    // if (user.isAdmin) {
+    //   setIsAdmin(true);
+    // }
   };
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
       const currentUser = auth.currentUser;
       if (currentUser) {
         findUser(currentUser.uid);
-        setLoggedIn(true);
+        // setLoggedIn(true);
       }
     });
   }, []);
