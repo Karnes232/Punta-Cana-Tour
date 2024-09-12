@@ -10,7 +10,7 @@ const ContactForm = ({
 }) => {
   const [missingFormInfo, setMissingFormInfo] = useState(false);
 
-  const [contacted, setContacted] = useState(true);
+  const [contacted, setContacted] = useState(false);
   // const [formData, setFormData] = useState({
   //   hotel: hotelFormData.hotel,
   //   hotelRoom: hotelFormData.hotelRoom,
