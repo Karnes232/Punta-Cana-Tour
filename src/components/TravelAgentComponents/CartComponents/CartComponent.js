@@ -87,12 +87,13 @@ export default function Cart({
           const image = getImage(tour.mainImage?.gatsbyImage);
           let pickupTimeList = [];
           pickupTimes.forEach((tourPickupTime) => {
+            let times;
             if (tourPickupTime.name === tour.name) {
               try {
-                let times = JSON.parse(tourPickupTime?.pickupTimes);
+                times = JSON.parse(tourPickupTime?.pickupTimes);
                 pickupTimeList = times[selectedHotel.trim()];
               } catch (error) {
-                let times = undefined;
+                // let times = undefined;
               }
             }
           });

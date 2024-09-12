@@ -16,7 +16,7 @@ const TransferClient = ({ location, data }) => {
   const userId = location.pathname.split("/");
   useEffect(() => {
     findClient(userId[3]);
-  }, []);
+  }, [userId]);
 
   return (
     <Layout

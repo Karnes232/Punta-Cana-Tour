@@ -13,7 +13,7 @@ import Seo from "../../components/seo";
 const Tour = ({ data }) => {
   const [host, setHost] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
-  const [user, setUser] = useState({});
+  // const [user, setUser] = useState({});
   const [isAdmin, setIsAdmin] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -27,7 +27,7 @@ const Tour = ({ data }) => {
   const findUser = async (id) => {
     const docRef = doc(db, "users", id);
     const docSnap = await getDoc(docRef);
-    setUser(docSnap.data());
+    // setUser(docSnap.data());
     const user = docSnap.data();
     if (user.isAdmin) {
       setIsAdmin(true);
@@ -88,7 +88,7 @@ const Tour = ({ data }) => {
       }
       color="black"
     >
-      {loggedIn ? (
+      {loggedIn && isAdmin ? (
         <main className="mt-28 md:mt-32 xl:mt-40">
           <form
             name="payment"

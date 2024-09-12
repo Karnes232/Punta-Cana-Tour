@@ -15,7 +15,7 @@ const TourRep = ({ location, data }) => {
   const userId = location.pathname.split("/");
   useEffect(() => {
     findUser(userId[3]);
-  }, []);
+  }, [userId]);
 
   return (
     <Layout

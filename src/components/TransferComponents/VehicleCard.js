@@ -1,7 +1,6 @@
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
 import useFormValidation from "../../customHooks/useFormValidation";
-import TransferPayPalWrapper from "../PayPalButtonWrapper/TransferPayPalWrapper";
 import Button from "./Button";
 
 const VehicleCard = ({ vehicle, formData }) => {

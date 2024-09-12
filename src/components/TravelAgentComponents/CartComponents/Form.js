@@ -9,8 +9,8 @@ import { auth, db } from "../../../config/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import TravelAgenetPayPal from "../../PayPalButtonWrapper/TravelAgenetPayPal";
 const Form = ({ hotels, allTours }) => {
-  const [name, setName] = useState("");
-  const [host, setHost] = useState("");
+  // const [name, setName] = useState("");
+  // const [host, setHost] = useState("");
   const [user, setUser] = useState({});
   const [dateValidation1, setDateValidation1] = useState(false);
   const [dateValidation2, setDateValidation2] = useState(false);
@@ -21,8 +21,8 @@ const Form = ({ hotels, allTours }) => {
   const [weekDayValidation2, setWeekDayValidation2] = useState(true);
   const [weekDayValidation3, setWeekDayValidation3] = useState(true);
   const [weekDayValidation4, setWeekDayValidation4] = useState(true);
-  const { clearCart, cartItems } = useContext(TravelAgentCartContext);
-  const [phoneAlert, setPhoneAlert] = useState(false);
+  const { cartItems } = useContext(TravelAgentCartContext);
+  // const [phoneAlert, setPhoneAlert] = useState(false);
   const [formData, setFormData] = useState({
     "form-name": "travelAgentCart",
     "Tour Rep": "",
@@ -70,7 +70,7 @@ const Form = ({ hotels, allTours }) => {
     setUser(docSnap.data());
   };
   useEffect(() => {
-    setHost(window.location.origin);
+    // setHost(window.location.origin);
     onAuthStateChanged(auth, async (user) => {
       const currentUser = auth.currentUser;
       if (currentUser) {

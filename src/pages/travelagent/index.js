@@ -14,16 +14,16 @@ const Index = ({ data }) => {
   const tourList = Array.from(data.allContentfulTours.edges, (x) => x);
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState({});
-  const [isAdmin, setIsAdmin] = useState(false);
+  // const [isAdmin, setIsAdmin] = useState(false);
 
   const findUser = async (id) => {
     const docRef = doc(db, "users", id);
     const docSnap = await getDoc(docRef);
     setUser(docSnap.data());
-    const user = docSnap.data();
-    if (user.isAdmin) {
-      setIsAdmin(true);
-    }
+    // const user = docSnap.data();
+    // if (user.isAdmin) {
+    //   setIsAdmin(true);
+    // }
   };
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const Index = ({ data }) => {
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
     >
-      {loggedIn ? (
+      {loggedIn && user ? (
         <>
           <HeroComponent
             imageUrl={

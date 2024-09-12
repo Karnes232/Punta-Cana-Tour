@@ -8,9 +8,9 @@ import useCharterFlightValidation from "../../customHooks/useCharterFlightValida
 
 const FormFlights = ({ image, formData, setFormData, cityList }) => {
   const airportImage = getImage(image.gatsbyImage);
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  // };
   const handleChange = ({ target }) => {
     setFormData({
       ...formData,

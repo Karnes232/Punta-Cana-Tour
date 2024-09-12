@@ -30,20 +30,26 @@ const Index = ({ data }) => {
       (property) => {
         if (property.node.saleOrRent === "For Sale") {
           return property;
+        } else {
+          return null;
         }
       },
     );
+
     const forRentPropertyList = data.allContentfulProperty.edges.filter(
       (property) => {
         if (property.node.saleOrRent === "For Rent") {
           return property;
+        } else {
+          return null;
         }
       },
     );
+    console.log(forRentPropertyList);
     setForSaleList(forSalePropertyList.sort(() => Math.random() - 0.5));
     setForRentList(forRentPropertyList.sort(() => Math.random() - 0.5));
     setShowedList(forSalePropertyList.sort(() => Math.random() - 0.5));
-  }, []);
+  }, [data.allContentfulProperty.edges]);
 
   const setFilter = (e) => {
     if (selectedSaleOrRent === e.target.dataset.option) {
@@ -68,6 +74,8 @@ const Index = ({ data }) => {
         }
         if (property.node.propertyType === e.target.dataset.option) {
           return property;
+        } else {
+          return null;
         }
       });
       setShowedList(filteredPropertyList.sort(() => Math.random() - 0.5));
@@ -79,6 +87,8 @@ const Index = ({ data }) => {
         }
         if (property.node.propertyType === e.target.dataset.option) {
           return property;
+        } else {
+          return null;
         }
       });
       setShowedList(filteredPropertyList.sort(() => Math.random() - 0.5));

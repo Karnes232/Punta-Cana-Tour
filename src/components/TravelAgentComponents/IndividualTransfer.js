@@ -1,7 +1,7 @@
 import React from "react";
 
 const IndividualTransfer = ({ client }) => {
-  let purchasedDate = new Date(client.createdAt?.seconds * 1000);
+  let purchasedDate = new Date(client?.createdAt?.seconds * 1000);
   return (
     <table className="mx-auto text-base text-left text-gray-500 shadow rounded-xl overflow-hidden w-5/6 lg:w-1/2 xl:w-1/3">
       <tbody>

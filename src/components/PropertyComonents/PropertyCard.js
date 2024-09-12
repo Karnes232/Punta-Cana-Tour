@@ -1,5 +1,4 @@
 import { Link } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
 import { FaLocationDot } from "react-icons/fa6";
 import { IoBedOutline } from "react-icons/io5";
@@ -7,7 +6,6 @@ import { LuBath } from "react-icons/lu";
 import PropertyCardCarousel from "./PropertyCardCarousel";
 
 const PropertyCard = ({ property }) => {
-  const image = getImage(property?.mainImage?.gatsbyImage);
   const currencyFormatter = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",

@@ -3,7 +3,7 @@ import React from "react";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 const MaybeLikeTourCard = ({ tour }) => {
-  const { name, price, mainImage, description1, url, category } = tour;
+  const { name, price, mainImage, description1, url } = tour;
   const image = getImage(mainImage?.gatsbyImage);
   return (
     <>

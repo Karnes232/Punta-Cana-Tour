@@ -8,14 +8,14 @@ import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import UserList from "../../../components/TravelAgentComponents/UserList";
 import UserListMobile from "../../../components/TravelAgentComponents/UserListMobile";
 const Touroperators = ({ data }) => {
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [user, setUser] = useState({});
+  // const [loggedIn, setLoggedIn] = useState(false);
+  // const [user, setUser] = useState({});
   const [isAdmin, setIsAdmin] = useState(false);
   const [users, setUsers] = useState([]);
   const findUser = async (id) => {
     const docRef = doc(db, "users", id);
     const docSnap = await getDoc(docRef);
-    setUser(docSnap.data());
+    // setUser(docSnap.data());
     const user = docSnap.data();
     if (user.isAdmin) {
       setIsAdmin(true);
@@ -29,7 +29,7 @@ const Touroperators = ({ data }) => {
       const currentUser = auth.currentUser;
       if (currentUser) {
         findUser(currentUser.uid);
-        setLoggedIn(true);
+        // setLoggedIn(true);
         const querySnapshot = await getDocs(collection(db, "users"));
         querySnapshot.forEach((doc) => {
           setUsers((prevUsers) => [...prevUsers, doc.data()]);
@@ -54,40 +54,46 @@ const Touroperators = ({ data }) => {
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
     >
-      <div className="flex flex-col items-center justify-center text-center max-w-5xl lg:p-2 mx-auto">
-        <table className="mx-auto text-sm text-left text-gray-500 hidden md:block shadow rounded-xl overflow-hidden">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50">
-            <tr>
-              <th scope="col" className="px-6 py-3">
-                Company Name
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Tour Rep
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Email
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Country
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Phone Number
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user, index) => {
-              return <UserList key={index} user={user} />;
-            })}
-          </tbody>
-        </table>
+      {isAdmin ? (
+        <>
+          <div className="flex flex-col items-center justify-center text-center max-w-5xl lg:p-2 mx-auto">
+            <table className="mx-auto text-sm text-left text-gray-500 hidden md:block shadow rounded-xl overflow-hidden">
+              <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                  <th scope="col" className="px-6 py-3">
+                    Company Name
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Tour Rep
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Email
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Country
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Phone Number
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {users.map((user, index) => {
+                  return <UserList key={index} user={user} />;
+                })}
+              </tbody>
+            </table>
 
-        <div className="md:hidden min-w-[90vw] my-5 space-y-4">
-          {users.map((user, index) => {
-            return <UserListMobile key={index} user={user} />;
-          })}
-        </div>
-      </div>
+            <div className="md:hidden min-w-[90vw] my-5 space-y-4">
+              {users.map((user, index) => {
+                return <UserListMobile key={index} user={user} />;
+              })}
+            </div>
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
     </Layout>
   );
 };

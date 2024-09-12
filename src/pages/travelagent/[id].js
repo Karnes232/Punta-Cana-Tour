@@ -35,7 +35,7 @@ const TourRep = ({ location, data }) => {
   useEffect(() => {
     findUser(userId[2]);
     findBookedTours(userId[2]);
-  }, []);
+  }, [userId]);
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -50,45 +50,52 @@ const TourRep = ({ location, data }) => {
         data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
       }
     >
-      <div className="flex flex-col items-center justify-center text-center max-w-5xl lg:p-2 mx-auto">
-        <table className="mx-auto text-sm text-left text-gray-500 hidden md:block shadow rounded-xl overflow-hidden">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50">
-            <tr>
-              <th scope="col" className="px-6 py-3">
-                Client Name
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Client Email
-              </th>
+      {user && (
+        <>
+          <div className="flex flex-col items-center justify-center text-center max-w-5xl lg:p-2 mx-auto">
+            <table className="mx-auto text-sm text-left text-gray-500 hidden md:block shadow rounded-xl overflow-hidden">
+              <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                  <th scope="col" className="px-6 py-3">
+                    Client Name
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Client Email
+                  </th>
 
-              <th scope="col" className="px-6 py-3">
-                Purchased Date:
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Total Price
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Deposit
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {bookingList.map((booking, index) => {
-              return (
-                <IndividualAgentClientList key={index} booking={booking} />
-              );
-            })}
-          </tbody>
-        </table>
+                  <th scope="col" className="px-6 py-3">
+                    Purchased Date:
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Total Price
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Deposit
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {bookingList.map((booking, index) => {
+                  return (
+                    <IndividualAgentClientList key={index} booking={booking} />
+                  );
+                })}
+              </tbody>
+            </table>
 
-        <div className="md:hidden min-w-[90vw] my-5 space-y-4">
-          {bookingList.map((booking, index) => {
-            return (
-              <IndividualAgentClientListMobile key={index} booking={booking} />
-            );
-          })}
-        </div>
-      </div>
+            <div className="md:hidden min-w-[90vw] my-5 space-y-4">
+              {bookingList.map((booking, index) => {
+                return (
+                  <IndividualAgentClientListMobile
+                    key={index}
+                    booking={booking}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        </>
+      )}
     </Layout>
   );
 };
