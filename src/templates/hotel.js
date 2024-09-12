@@ -12,6 +12,7 @@ import Video from "../components/TourPageComponents/Video";
 import { graphql } from "gatsby";
 import HotelRoomCard from "../components/HotelComponents/HotelRoomCard";
 import HotelCardSwiper from "../components/HotelComponents/HotelCardSwiper";
+import useHotelBookingValidation from "../customHooks/useHotelBookingValidation";
 
 const Hotel = ({ pageContext, data }) => {
   const [hotelFormData, setHotelFormData] = useState({
@@ -25,8 +26,8 @@ const Hotel = ({ pageContext, data }) => {
     startDate: "",
     endDate: "",
   });
+  let disabled = useHotelBookingValidation(hotelFormData);
 
-  console.log(hotelFormData);
   return (
     <Layout
       logo={pageContext.layout.logo}
@@ -74,6 +75,7 @@ const Hotel = ({ pageContext, data }) => {
             hotelFormData={hotelFormData}
             setHotelFormData={setHotelFormData}
             formName="HotelForm"
+            disabled={disabled}
           />
           <CarouselLightBox
             photoList={data?.allContentfulHotelsOrHostel?.nodes[0].images}

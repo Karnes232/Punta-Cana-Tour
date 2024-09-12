@@ -8,7 +8,9 @@ const ContactForm = ({
   hotelFormData,
   setHotelFormData,
   formName,
+  disabled,
 }) => {
+  const [missingFormInfo, setMissingFormInfo] = useState(false);
   const [phoneAlert, setPhoneAlert] = useState(false);
   const [contacted, setContacted] = useState(false);
   const [formData, setFormData] = useState({
@@ -26,16 +28,19 @@ const ContactForm = ({
   });
   const handleSubmit = (e) => {
     e.preventDefault();
-    const form = document.getElementById("HotelForm");
-    const newFormData = new FormData(form);
-    const formDataObj = {};
-    newFormData.forEach((value, key) => (formDataObj[key] = value));
-    console.log(newFormData);
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(newFormData).toString(),
-    }).then(() => {});
+    if (disabled) {
+      setMissingFormInfo(true);
+    } else {
+      const form = document.getElementById("HotelForm");
+      const newFormData = new FormData(form);
+      const formDataObj = {};
+      newFormData.forEach((value, key) => (formDataObj[key] = value));
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(newFormData).toString(),
+      }).then(() => {});
+    }
   };
 
   return (
@@ -110,6 +115,13 @@ const ContactForm = ({
           >
             Send a Message
           </button>
+          {missingFormInfo ? (
+            <p className="text-xs lg:text-sm mt-2 text-center text-red-600">
+              Form Required to be Filled & Hotel Room Selected
+            </p>
+          ) : (
+            <></>
+          )}
         </form>
       )}
     </div>
