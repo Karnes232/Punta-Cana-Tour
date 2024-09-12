@@ -87,20 +87,17 @@ const Hotel = ({ pageContext, data }) => {
         {data?.allContentfulHotelsOrHostel?.nodes[0]?.hotel_room?.map(
           (hotelRoom, index) => {
             return (
-              <>
+              <div key={index}>
                 {hotelRoom.dormRoom === false ? (
-                  <>
-                    <HotelRoomCard
-                      hotelRoom={hotelRoom}
-                      key={index}
-                      hotelFormData={hotelFormData}
-                      setHotelFormData={setHotelFormData}
-                    />
-                  </>
+                  <HotelRoomCard
+                    hotelRoom={hotelRoom}
+                    hotelFormData={hotelFormData}
+                    setHotelFormData={setHotelFormData}
+                  />
                 ) : (
                   <></>
                 )}
-              </>
+              </div>
             );
           },
         )}
@@ -121,20 +118,17 @@ const Hotel = ({ pageContext, data }) => {
             {data?.allContentfulHotelsOrHostel?.nodes[0]?.hotel_room?.map(
               (hotelRoom, index) => {
                 return (
-                  <>
+                  <div key={index}>
                     {hotelRoom.dormRoom ? (
-                      <>
-                        <HotelRoomCard
-                          hotelRoom={hotelRoom}
-                          key={index}
-                          hotelFormData={hotelFormData}
-                          setHotelFormData={setHotelFormData}
-                        />
-                      </>
+                      <HotelRoomCard
+                        hotelRoom={hotelRoom}
+                        hotelFormData={hotelFormData}
+                        setHotelFormData={setHotelFormData}
+                      />
                     ) : (
                       <></>
                     )}
-                  </>
+                  </div>
                 );
               },
             )}

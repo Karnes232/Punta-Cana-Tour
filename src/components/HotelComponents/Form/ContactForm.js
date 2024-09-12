@@ -24,6 +24,19 @@ const ContactForm = ({
     propertyName: property.title,
     propertyPrice: property.price,
   });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = document.getElementById("HotelForm");
+    const newFormData = new FormData(form);
+    const formDataObj = {};
+    newFormData.forEach((value, key) => (formDataObj[key] = value));
+    console.log(newFormData);
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(newFormData).toString(),
+    }).then(() => {});
+  };
 
   return (
     <div className="">
@@ -56,6 +69,7 @@ const ContactForm = ({
           data-netlify-honeypot="bot-field"
           id={formName}
           className="w-full px-5 flex flex-col justify-center items-center mx-auto my-5 lg:my-0"
+          onSubmit={handleSubmit}
         >
           <div className="relative z-0 w-full text-xl font-medium mb-5">
             Contact Us
