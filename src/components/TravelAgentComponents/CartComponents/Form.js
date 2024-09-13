@@ -9,6 +9,7 @@ import { auth, db } from "../../../config/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import TravelAgenetPayPal from "../../PayPalButtonWrapper/TravelAgenetPayPal";
 import Button from "../../CartComponent/Button";
+import collectUserDataTravelAgent2 from "../../../customHooks/collectUserDataTravelAgent2";
 const Form = ({ hotels, allTours }) => {
   // const [name, setName] = useState("");
   // const [host, setHost] = useState("");
@@ -22,8 +23,7 @@ const Form = ({ hotels, allTours }) => {
   const [weekDayValidation2, setWeekDayValidation2] = useState(true);
   const [weekDayValidation3, setWeekDayValidation3] = useState(true);
   const [weekDayValidation4, setWeekDayValidation4] = useState(true);
-  const { cartItems } = useContext(TravelAgentCartContext);
-  // const [phoneAlert, setPhoneAlert] = useState(false);
+  const { cartItems, clearCart } = useContext(TravelAgentCartContext);
   const [formData, setFormData] = useState({
     "form-name": "travelAgentCart",
     "Tour Rep": "",
@@ -101,6 +101,7 @@ const Form = ({ hotels, allTours }) => {
     Object.keys(object).forEach((key) => newFormData.append(key, object[key]));
     return newFormData;
   }
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (
@@ -124,6 +125,7 @@ const Form = ({ hotels, allTours }) => {
         body: new URLSearchParams(dataFromForm).toString(),
       }).then(() => {
         console.log("Form successfully submitted");
+        collectUserDataTravelAgent2(formData, clearCart);
         // collectUserData(dataFromForm, clearCart, redirectHref);
       });
     }
@@ -206,7 +208,7 @@ const Form = ({ hotels, allTours }) => {
       </div>
       <HiddenInputs formData={formData} setFormData={setFormData} />
       <Button />
-      <TravelAgenetPayPal formData={formData} allTours={allTours} />
+      {/* <TravelAgenetPayPal formData={formData} allTours={allTours} /> */}
     </form>
   );
 };
