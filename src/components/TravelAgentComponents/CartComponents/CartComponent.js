@@ -15,6 +15,7 @@ export default function Cart({
   setDateValidations,
   setWeekDayValidations,
   weekDayValidationAlert,
+  cartElement,
 }) {
   const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } =
     useContext(TravelAgentCartContext);
@@ -79,7 +80,7 @@ export default function Cart({
       <ToastContainer />
       {emptyCart ? <></> : <h1 className="text-2xl font-bold mb-5">Cart</h1>}
 
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4" ref={cartElement}>
         {cartItems.map((tour, index) => {
           const setWeekDateValidation = setWeekDayValidations[index];
           const isInArray = tour.daysAvailable.includes(selectedWeekDay[index]);

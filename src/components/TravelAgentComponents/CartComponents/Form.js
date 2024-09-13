@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { TravelAgentCartContext } from "../../../context/travelAgentCart";
 import CartComponent from "../CartComponents/CartComponent";
 import ContactInfo from "./ContactInfo";
@@ -8,6 +8,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../../../config/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import TravelAgenetPayPal from "../../PayPalButtonWrapper/TravelAgenetPayPal";
+import Button from "../../CartComponent/Button";
 const Form = ({ hotels, allTours }) => {
   // const [name, setName] = useState("");
   // const [host, setHost] = useState("");
@@ -16,7 +17,7 @@ const Form = ({ hotels, allTours }) => {
   const [dateValidation2, setDateValidation2] = useState(false);
   const [dateValidation3, setDateValidation3] = useState(false);
   const [dateValidation4, setDateValidation4] = useState(false);
-
+  const [phoneAlert, setPhoneAlert] = useState(false);
   const [weekDayValidation1, setWeekDayValidation1] = useState(true);
   const [weekDayValidation2, setWeekDayValidation2] = useState(true);
   const [weekDayValidation3, setWeekDayValidation3] = useState(true);
@@ -49,6 +50,7 @@ const Form = ({ hotels, allTours }) => {
     Tour4: "",
     Pax4: "",
   });
+  const cartElement = useRef();
   useEffect(() => {
     setFormData({
       ...formData,
@@ -64,6 +66,15 @@ const Form = ({ hotels, allTours }) => {
       "Tour Rep Id": user.id,
     });
   }, [cartItems, user]);
+
+  const setScrollPosition = (element) => {
+    const area = element.current.getBoundingClientRect();
+    window.scrollTo({
+      top: area.bottom,
+      behavior: "smooth",
+    });
+  };
+
   const findUser = async (id) => {
     const docRef = doc(db, "users", id);
     const docSnap = await getDoc(docRef);
@@ -90,10 +101,47 @@ const Form = ({ hotels, allTours }) => {
     Object.keys(object).forEach((key) => newFormData.append(key, object[key]));
     return newFormData;
   }
-  const data = getFormData(formData);
-  console.log(data);
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (
+      weekDayValidation1 === true &&
+      weekDayValidation2 === true &&
+      weekDayValidation3 === true &&
+      weekDayValidation4 === true &&
+      dateValidation1 === false &&
+      dateValidation2 === false &&
+      dateValidation3 === false &&
+      dateValidation4 === false &&
+      formData.phone !== "" &&
+      formData.phone !== undefined
+    ) {
+      const dataFromForm = getFormData(formData);
+      fetch("/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams(dataFromForm).toString(),
+      }).then(() => {
+        console.log("Form successfully submitted");
+        // collectUserData(dataFromForm, clearCart, redirectHref);
+      });
+    }
+    if (
+      dateValidation1 === true ||
+      dateValidation2 === true ||
+      dateValidation3 === true ||
+      dateValidation4 === true ||
+      weekDayValidation1 === false ||
+      weekDayValidation2 === false ||
+      weekDayValidation3 === false ||
+      weekDayValidation4 === false
+    ) {
+      setScrollPosition(cartElement);
+    }
+    if (formData.phone === "" || formData.phone === undefined) {
+      setPhoneAlert(true);
+    }
   };
 
   const validationAlert = {
@@ -144,6 +192,7 @@ const Form = ({ hotels, allTours }) => {
           setDateValidations={setDateValidations}
           setWeekDayValidations={setWeekDayValidations}
           weekDayValidationAlert={weekDayValidationAlert}
+          cartElement={cartElement}
         />
         <div className="xl:w-[25rem] flex flex-col mt-5 xl:mt-24">
           <ContactInfo formData={formData} setFormData={setFormData} />
@@ -156,6 +205,7 @@ const Form = ({ hotels, allTours }) => {
         </div>
       </div>
       <HiddenInputs formData={formData} setFormData={setFormData} />
+      <Button />
       <TravelAgenetPayPal formData={formData} allTours={allTours} />
     </form>
   );
