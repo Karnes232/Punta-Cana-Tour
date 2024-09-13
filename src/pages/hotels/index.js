@@ -7,7 +7,7 @@ import TextComponent from "../../components/TextComponent/TextComponent";
 import HotelCard from "../../components/HotelComponents/HotelCard";
 
 const Index = ({ data }) => {
-  const backendHotelList = data.allContentfulHotelsOrHostel.edges;
+  const backendHotelList = data?.allContentfulHotelsOrHostel?.edges;
   const [hotelList, setHotelList] = useState(
     data.allContentfulHotelsOrHostel.edges.sort(() => Math.random() - 0.5),
   );
@@ -120,7 +120,6 @@ export const query = graphql`
           title
           urlSlug
           hotelType
-          price
           generalLocation
           mainImage {
             gatsbyImage(width: 2000, formats: WEBP, placeholder: BLURRED)
@@ -130,6 +129,9 @@ export const query = graphql`
           images {
             title
             gatsbyImage(width: 400, formats: WEBP, placeholder: BLURRED)
+          }
+          hotel_room {
+            price
           }
         }
       }

@@ -10,6 +10,9 @@ const HotelCard = ({ hotel }) => {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   });
+  let cheapestPrice = hotel.hotel_room.reduce((prev, curr) =>
+    prev.price < curr.price ? prev : curr,
+  );
   return (
     <>
       <Link to={hotel.urlSlug}>
@@ -27,7 +30,8 @@ const HotelCard = ({ hotel }) => {
                 <FaLocationDot className="mr-2" /> {hotel.generalLocation}
               </div>
               <div className="flex items-center font-medium mt-2">
-                {currencyFormatter.format(hotel.price)}
+                <span className="text-xs mr-2 font-light">Starting at</span>{" "}
+                {currencyFormatter.format(cheapestPrice.price)}
               </div>
             </div>
           </div>

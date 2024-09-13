@@ -58,7 +58,6 @@ const Hotel = ({ pageContext, data }) => {
           title={data?.allContentfulHotelsOrHostel?.nodes[0].title}
           propertyType={data?.allContentfulHotelsOrHostel?.nodes[0].hotelType}
           location={data?.allContentfulHotelsOrHostel?.nodes[0].generalLocation}
-          price={data?.allContentfulHotelsOrHostel?.nodes[0].price}
         />
         <Amenities
           amenities={data?.allContentfulHotelsOrHostel?.nodes[0].amenities}
@@ -109,9 +108,10 @@ const Hotel = ({ pageContext, data }) => {
           hotelList={data?.allContentfulHotelsOrHostel?.nodes[0]?.hotel_room}
           hotelFormData={hotelFormData}
           setHotelFormData={setHotelFormData}
+          dorm={false}
         />
       </div>
-      {data.allContentfulHotelsOrHostel.nodes[0].hotelType === "Hostel" && (
+      {data?.allContentfulHotelsOrHostel?.nodes[0]?.hotelType === "Hostel" && (
         <>
           <div className="max-w-6xl w-full mx-5 xl:mx-auto text-xl font-bold">
             Dorm rooms
@@ -142,6 +142,7 @@ const Hotel = ({ pageContext, data }) => {
               }
               hotelFormData={hotelFormData}
               setHotelFormData={setHotelFormData}
+              dorm
             />
           </div>
         </>
@@ -195,7 +196,6 @@ export const query = graphql`
         title
         urlSlug
         hotelType
-        price
         generalLocation
         mainImage {
           gatsbyImage(width: 2000, formats: WEBP, placeholder: BLURRED)
