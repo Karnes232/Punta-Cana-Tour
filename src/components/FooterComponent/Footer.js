@@ -3,6 +3,7 @@ import Copyright from "./Copyright";
 import Sitemap from "./Sitemap";
 import SocialMedia from "./SocialMedia";
 import useWindowWidth from "../../customHooks/useWindowWidth";
+import Signature from "./Signature";
 const Footer = ({
   footerBackground,
   facebook,
@@ -49,6 +50,7 @@ const Footer = ({
           <Copyright />
         </div>
       </div>
+      <Signature />
     </footer>
   );
 };

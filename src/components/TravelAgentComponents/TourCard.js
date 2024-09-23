@@ -8,7 +8,7 @@ const TourCard = ({ tour, featured }) => {
   const newPrice = price * 0.85;
   return (
     <>
-      <Link to={featured ? `tours/${url}` : `${url}`}>
+      <Link to={featured ? `tours/${url.trim()}` : `${url.trim()}`}>
         <div className="max-w-sm min-w-[20rem] xl:max-w-xs my-5 mx-2 rounded-lg overflow-hidden shadow-lg">
           <GatsbyImage
             image={image}
