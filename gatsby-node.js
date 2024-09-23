@@ -71,7 +71,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const hotelTemplate = path.resolve(`src/templates/hotel.js`);
   queryResults.data.allContentfulTours.nodes.forEach((node) => {
     createPage({
-      path: `/tours/${node.url.trim()}`,
+      path: `/tours/${node.url?.trim()}`,
       component: tourTemplate,
       context: {
         // This time the entire product is passed down as context
@@ -94,7 +94,7 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
     createPage({
-      path: `/travelagent/tours/${node.url.trim()}`,
+      path: `/travelagent/tours/${node.url?.trim()}`,
       component: travelAgentTemplate,
       context: {
         // This time the entire product is passed down as context
@@ -118,7 +118,7 @@ exports.createPages = async ({ graphql, actions }) => {
   });
   queryResults.data.allContentfulBlogPost.nodes.forEach((node) => {
     createPage({
-      path: `/blog/${node.slug.trim()}`,
+      path: `/blog/${node.slug?.trim()}`,
       component: blogTemplate,
       context: {
         id: node.id,
@@ -130,7 +130,7 @@ exports.createPages = async ({ graphql, actions }) => {
   });
   queryResults.data.allContentfulProperty.nodes.forEach((node) => {
     createPage({
-      path: `/properties/${node.urlSlug.trim()}`,
+      path: `/properties/${node.urlSlug?.trim()}`,
       component: propertyTemplate,
       context: {
         id: node.id,
@@ -141,7 +141,7 @@ exports.createPages = async ({ graphql, actions }) => {
   });
   queryResults.data.allContentfulHotelsOrHostel.nodes.forEach((node) => {
     createPage({
-      path: `/hotels/${node.urlSlug.trim()}`,
+      path: `/hotels/${node.urlSlug?.trim()}`,
       component: hotelTemplate,
       context: {
         id: node.id,

@@ -6,7 +6,7 @@ const TourCard = ({ tour, featured }) => {
   const image = getImage(mainImage?.gatsbyImage);
   return (
     <>
-      <Link to={featured ? `tours/${url.trim()}` : `${url.trim()}`}>
+      <Link to={featured ? `tours/${url?.trim()}` : `${url?.trim()}`}>
         <div className="max-w-sm min-w-[20rem] xl:max-w-xs my-5 mx-2 rounded-lg overflow-hidden shadow-lg">
           <GatsbyImage
             image={image}

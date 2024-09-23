@@ -15,7 +15,7 @@ const HotelCard = ({ hotel }) => {
   );
   return (
     <>
-      <Link to={hotel.urlSlug.trim()}>
+      <Link to={hotel.urlSlug?.trim()}>
         <div className="max-w-sm min-w-[20rem] xl:max-w-xs my-5 rounded-lg overflow-hidden shadow-lg">
           <PropertyCardCarousel
             mainImage={hotel?.mainImage}

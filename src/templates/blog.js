@@ -47,7 +47,7 @@ const blog = ({ pageContext, data }) => {
             url={`/${data?.allContentfulBlogPost?.nodes[0]?.category
               .toLowerCase()
               .replaceAll(/\s/g, "")}/${
-              data?.allContentfulBlogPost?.nodes[0]?.reference?.url.trim()
+              data?.allContentfulBlogPost?.nodes[0]?.reference?.url?.trim()
             }`}
             page={data?.allContentfulBlogPost?.nodes[0]?.reference?.page}
           />
@@ -74,7 +74,7 @@ const blog = ({ pageContext, data }) => {
         data?.allContentfulBlogPost?.nodes[0].reference !== null && (
           <PropertyLink
             name={data?.allContentfulBlogPost?.nodes[0]?.reference?.title}
-            url={data?.allContentfulBlogPost?.nodes[0]?.reference?.urlSlug.trim()}
+            url={data?.allContentfulBlogPost?.nodes[0]?.reference?.urlSlug?.trim()}
             page={data?.allContentfulBlogPost?.nodes[0]?.reference?.page}
           />
         )}
@@ -82,7 +82,7 @@ const blog = ({ pageContext, data }) => {
         data?.allContentfulBlogPost?.nodes[0].reference !== null && (
           <HotelLink
             name={data?.allContentfulBlogPost?.nodes[0]?.reference?.title}
-            url={data?.allContentfulBlogPost?.nodes[0]?.reference?.urlSlug.trim()}
+            url={data?.allContentfulBlogPost?.nodes[0]?.reference?.urlSlug?.trim()}
             page={data?.allContentfulBlogPost?.nodes[0]?.reference?.page}
           />
         )}
@@ -104,7 +104,7 @@ export const Head = ({ data }) => {
       />
       <link
         rel="canonical"
-        href={`https://puntacanatourstore.com/blog/${data?.allContentfulBlogPost?.nodes[0].slug.trim()}`}
+        href={`https://puntacanatourstore.com/blog/${data?.allContentfulBlogPost?.nodes[0].slug?.trim()}`}
       />
     </>
   );

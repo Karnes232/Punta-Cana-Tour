@@ -95,7 +95,7 @@ export const Head = ({ data }) => {
       />
       <link
         rel="canonical"
-        href={`https://puntacanatourstore.com/properties/${data?.allContentfulProperty?.nodes[0].urlSlug.trim()}`}
+        href={`https://puntacanatourstore.com/properties/${data?.allContentfulProperty?.nodes[0].urlSlug?.trim()}`}
       />
     </>
   );

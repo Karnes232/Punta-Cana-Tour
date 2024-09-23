@@ -5,7 +5,7 @@ const RecommendationCard = ({ blog }) => {
   const image = getImage(blog.backgroundImage[0].gatsbyImage);
   return (
     <>
-      <Link to={`/blog/${blog.slug.trim()}`}>
+      <Link to={`/blog/${blog.slug?.trim()}`}>
         <div className="w-80 mx-auto my-5 rounded-lg overflow-hidden shadow-lg">
           <GatsbyImage
             image={image}

@@ -202,7 +202,7 @@ const Tour = ({ pageContext, data }) => {
 export default Tour;
 
 export const Head = ({ data }) => {
-  const urlHref = `https://puntacanatourstore.com/tours/${data.allContentfulTours.nodes[0].url}`;
+  const urlHref = `https://puntacanatourstore.com/tours/${data.allContentfulTours.nodes[0].url?.trim()}`;
   return (
     <>
       <Seo
@@ -226,7 +226,7 @@ export const Head = ({ data }) => {
       />
       <link
         rel="canonical"
-        href={`https://puntacanatourstore.com/tours/${data.allContentfulTours.nodes[0].url.trim()}`}
+        href={`https://puntacanatourstore.com/tours/${data.allContentfulTours.nodes[0].url?.trim()}`}
       />
     </>
   );
