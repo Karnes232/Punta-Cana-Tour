@@ -116,7 +116,7 @@ module.exports = {
         trackingIds: [
           "AW-16699319337",
           // Google Analytics / GA
-          "G-KZBKYRQKGP", // Google Ads / Adwords / AW
+          // "G-KZBKYRQKGP", // Google Ads / Adwords / AW
           // Marketing Platform advertising products (Display & Video 360, Search Ads 360, and Campaign Manager)
         ],
         // This object gets passed directly to the gtag config command
