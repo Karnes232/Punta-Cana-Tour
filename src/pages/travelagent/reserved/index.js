@@ -38,7 +38,7 @@ const PaidClients = ({ data }) => {
         findUser(currentUser.uid);
         // setLoggedIn(true);
 
-        const paidRef = collection(db, "paidClientes");
+        const paidRef = collection(db, "reservationsClientes");
         const q = query(paidRef, orderBy("createdAt", "desc"));
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
@@ -81,10 +81,7 @@ const PaidClients = ({ data }) => {
                     Purchased Date:
                   </th>
                   <th scope="col" className="px-6 py-3">
-                    Total Price
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Deposit
+                    Tour
                   </th>
                 </tr>
               </thead>

@@ -10,7 +10,7 @@ const PaidClientListMobile = ({ client }) => {
           <span className="font-semibold">
             <Link to={`/travelagent/reserved/${client.id}`}>
               {" "}
-              {client.name.given_name} {client.name.surname}
+              {client.name}
             </Link>
           </span>
         </div>
@@ -21,10 +21,8 @@ const PaidClientListMobile = ({ client }) => {
           Purchased Date: {purchasedDate.toLocaleDateString("en-CA")}
         </div>
         <div className="font-normal text-left">
-          Total Price: ${client.totalPrice}
+          Tour: {client.formInfo.Tour1?.split("-")[1]}
         </div>
-
-        <div className="font-normal text-left">Deposit: ${client.deposit}</div>
       </div>
     </>
   );

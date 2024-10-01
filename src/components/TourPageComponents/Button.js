@@ -25,7 +25,9 @@ const Button = ({
   return (
     <div
       className={`mb-2 ${
-        sticky ? "fixed bottom-20 right-6 xl:right-10 z-50 bg-white rounded" : ""
+        sticky
+          ? "fixed bottom-20 right-6 xl:right-10 z-50 bg-white rounded"
+          : ""
       }`}
     >
       {!cartItems.find((item) => item.name === tour.name) ? (

@@ -72,7 +72,7 @@ const SideBarMenu = ({ toggled, setToggled }) => {
                   </MenuItem>
                   {user.isAdmin ? (
                     <>
-                      <SubMenu label="Tours & Bookings" className="hamburger">
+                      {/* <SubMenu label="Tours & Bookings" className="hamburger">
                         <MenuItem
                           component={
                             <Link
@@ -103,11 +103,11 @@ const SideBarMenu = ({ toggled, setToggled }) => {
                         >
                           <p className="hamburger">My Bookings</p>
                         </MenuItem>
-                      </SubMenu>
+                      </SubMenu> */}
                     </>
                   ) : (
                     <>
-                      <MenuItem
+                      {/* <MenuItem
                         component={
                           <Link to="/travelagent/tours" className="hamburger" />
                         }
@@ -130,7 +130,7 @@ const SideBarMenu = ({ toggled, setToggled }) => {
                         }
                       >
                         <p className="hamburger">My Bookings</p>
-                      </MenuItem>
+                      </MenuItem> */}
                     </>
                   )}
                 </>
@@ -169,7 +169,7 @@ const SideBarMenu = ({ toggled, setToggled }) => {
                   </SubMenu>
 
                   <SubMenu label="Booked Clients" className="hamburger">
-                    <MenuItem
+                    {/* <MenuItem
                       component={
                         <Link
                           to="/travelagent/transfer"
@@ -178,7 +178,7 @@ const SideBarMenu = ({ toggled, setToggled }) => {
                       }
                     >
                       <p className="hamburger">Transfer Clients</p>
-                    </MenuItem>
+                    </MenuItem> */}
                     <MenuItem
                       component={
                         <Link
@@ -189,7 +189,7 @@ const SideBarMenu = ({ toggled, setToggled }) => {
                     >
                       <p className="hamburger">Reserved Clients</p>
                     </MenuItem>
-                    <MenuItem
+                    {/* <MenuItem
                       component={
                         <Link
                           to="/travelagent/agentbooking"
@@ -198,9 +198,9 @@ const SideBarMenu = ({ toggled, setToggled }) => {
                       }
                     >
                       <p className="hamburger">Agent Bookings</p>
-                    </MenuItem>
+                    </MenuItem> */}
                   </SubMenu>
-                  <MenuItem
+                  {/* <MenuItem
                     component={
                       <Link
                         to="/travelagent/touroperators"
@@ -209,7 +209,7 @@ const SideBarMenu = ({ toggled, setToggled }) => {
                     }
                   >
                     <p className="hamburger">Tour Operators</p>
-                  </MenuItem>
+                  </MenuItem> */}
                 </>
               ) : (
                 <></>

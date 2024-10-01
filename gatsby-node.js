@@ -64,7 +64,7 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `);
-  
+
   const tourTemplate = path.resolve(`src/templates/tour.js`);
   const travelAgentTemplate = path.resolve(`src/templates/travelAgent.js`);
   const blogTemplate = path.resolve(`src/templates/blog.js`);

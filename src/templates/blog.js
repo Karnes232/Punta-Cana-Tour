@@ -46,9 +46,10 @@ const blog = ({ pageContext, data }) => {
             name={data?.allContentfulBlogPost?.nodes[0]?.reference?.name}
             url={`/${data?.allContentfulBlogPost?.nodes[0]?.category
               .toLowerCase()
-              .replaceAll(/\s/g, "")}/${
-              data?.allContentfulBlogPost?.nodes[0]?.reference?.url?.trim()
-            }`}
+              .replaceAll(
+                /\s/g,
+                "",
+              )}/${data?.allContentfulBlogPost?.nodes[0]?.reference?.url?.trim()}`}
             page={data?.allContentfulBlogPost?.nodes[0]?.reference?.page}
           />
         )}
