@@ -10,6 +10,7 @@ import Seo from "../components/seo";
 import CtaButton from "../components/CtaButton/CtaButton";
 import FaqsComponent from "../components/FaqsComponent/FaqsComponent";
 import HowItWorks from "../components/HowItWorksComponent/HowItWorks";
+import RichTextComponent from "../components/TextComponent/RichTextComponent";
 
 const IndexPage = ({ data }) => {
   const tourList = Array.from(data.allContentfulTours.edges, (x) => x);
@@ -41,49 +42,22 @@ const IndexPage = ({ data }) => {
       />
       <TextComponent
         title={data.allContentfulIndexPageContent.edges[0].node.title}
-        paragraph={
-          data.allContentfulIndexPageContent.edges[0].node.paragraph1.paragraph1
-        }
         className="my-5 2xl:mb-2 2xl:mt-10 text-3xl md:text-4xl"
-        pClassName="mb-4 lg:mb-0"
       />
-      <TextComponent
-        paragraph={
-          data.allContentfulIndexPageContent.edges[0].node.paragraph2.paragraph2
-        }
-        pClassName="2xl:mb-10"
+      <RichTextComponent
+        context={data.allContentfulIndexPageContent.edges[0].node.body1}
       />
+
       <SwiperCarousel
-        className="mt-5"
+        className="my-5 2xl:mb-10"
         photoList={
           data.allContentfulSwiperPhotoCarousel.edges[0].node.photoList
         }
       />
-      <TextComponent
-        paragraph={
-          data.allContentfulIndexPageContent.edges[0].node.paragraph3.paragraph3
-        }
-        className="mt-5 2xl:mt-10"
-        pClassName="mb-4 lg:mb-0"
+      <RichTextComponent
+        context={data.allContentfulIndexPageContent.edges[0].node.body2}
       />
-      <TextComponent
-        paragraph={
-          data.allContentfulIndexPageContent.edges[0].node.paragraph4.paragraph4
-        }
-        pClassName="mb-4 lg:mb-0"
-      />
-      <TextComponent
-        paragraph={
-          data.allContentfulIndexPageContent.edges[0].node.paragraph5.paragraph5
-        }
-        pClassName="mb-4 lg:mb-0"
-      />
-      <TextComponent
-        paragraph={
-          data.allContentfulIndexPageContent.edges[0].node.paragraph6.paragraph6
-        }
-        pClassName="mb-4 2xl:mb-10"
-      />
+
       <FeaturedTours tours={tourList} link="/tours/" />
       <TextComponent
         paragraph={
@@ -114,23 +88,11 @@ export const query = graphql`
         node {
           title
           whyUs
-          paragraph1 {
-            paragraph1
+          body1 {
+            raw
           }
-          paragraph2 {
-            paragraph2
-          }
-          paragraph3 {
-            paragraph3
-          }
-          paragraph4 {
-            paragraph4
-          }
-          paragraph5 {
-            paragraph5
-          }
-          paragraph6 {
-            paragraph6
+          body2 {
+            raw
           }
           paragraph7 {
             paragraph7

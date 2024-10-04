@@ -5,6 +5,7 @@ import TextComponent from "../../components/TextComponent/TextComponent";
 import SwiperCarousel from "../../components/BackgroundCarousel/SwiperCarousel";
 import HeroComponent from "../../components/HeroComponent/HeroComponent";
 import Seo from "../../components/seo";
+import RichTextComponent from "../../components/TextComponent/RichTextComponent";
 const index = ({ data }) => {
   return (
     <Layout
@@ -34,34 +35,20 @@ const index = ({ data }) => {
       />
       <TextComponent
         title={data.allContentfulAboutPageContent.edges[0].node.title}
-        paragraph={
-          data.allContentfulAboutPageContent.edges[0].node.paragraph1.paragraph1
-        }
         className="my-5 2xl:my-2 text-3xl md:text-4xl"
-        pClassName="mb-4 lg:mb-0"
       />
-      <TextComponent
-        paragraph={
-          data.allContentfulAboutPageContent.edges[0].node.paragraph2.paragraph2
-        }
+      <RichTextComponent
+        context={data.allContentfulAboutPageContent.edges[0].node.body1}
       />
+
       <SwiperCarousel
-        className="mt-5"
+        className="my-5"
         photoList={
           data.allContentfulSwiperPhotoCarousel.edges[0].node.photoList
         }
       />
-      <TextComponent
-        paragraph={
-          data.allContentfulAboutPageContent.edges[0].node.paragraph3.paragraph3
-        }
-        className="mt-5"
-        pClassName="mb-4 lg:mb-0"
-      />
-      <TextComponent
-        paragraph={
-          data.allContentfulAboutPageContent.edges[0].node.paragraph4.paragraph4
-        }
+      <RichTextComponent
+        context={data.allContentfulAboutPageContent.edges[0].node.body2}
       />
     </Layout>
   );
@@ -90,17 +77,11 @@ export const query = graphql`
       edges {
         node {
           title
-          paragraph1 {
-            paragraph1
+          body1 {
+            raw
           }
-          paragraph2 {
-            paragraph2
-          }
-          paragraph3 {
-            paragraph3
-          }
-          paragraph4 {
-            paragraph4
+          body2 {
+            raw
           }
           heroText1
           heroText2
