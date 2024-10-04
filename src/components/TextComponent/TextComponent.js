@@ -13,13 +13,19 @@ const TextComponent = ({ title, paragraph, className, pClassName }) => {
         }}
         className="flex flex-col items-center justify-center text-center max-w-5xl mx-5 lg:p-2 xl:mx-auto"
       >
-        <h1 className={`font-lato tracking-wider font-semibold  ${className}`}>
-          {title}
-        </h1>
-        <p
-          className={`font-montserrat lg:text-lg text-gray-700 lg:mt-5 ${pClassName}`}
-          dangerouslySetInnerHTML={{ __html: paragraph }}
-        ></p>
+        {title && (
+          <h1
+            className={`font-lato tracking-wider font-semibold  ${className}`}
+          >
+            {title}
+          </h1>
+        )}
+        {paragraph && (
+          <p
+            className={`font-montserrat lg:text-lg text-gray-700 lg:mt-5 ${pClassName}`}
+            dangerouslySetInnerHTML={{ __html: paragraph }}
+          ></p>
+        )}
       </motion.div>
     </div>
   );

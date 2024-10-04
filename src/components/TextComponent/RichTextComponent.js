@@ -3,9 +3,9 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { monokai } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import TextComponent from "./TextComponent";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-const BlogBody = ({ context }) => {
+import PageContentText from "./PageContentText";
+const RichTextComponent = ({ context }) => {
   const options = {
     renderMark: {
       [MARKS.CODE]: (text) => {
@@ -24,49 +24,49 @@ const BlogBody = ({ context }) => {
     },
     renderNode: {
       [BLOCKS.HEADING_1]: (node, children) => (
-        <TextComponent
+        <PageContentText
           title={children}
           heading="h1"
           className="my-5 2xl:mb-2 2xl:mt-10 text-3xl md:text-4xl text-center"
         />
       ),
       [BLOCKS.HEADING_2]: (node, children) => (
-        <TextComponent
+        <PageContentText
           title={children}
           heading="h2"
-          className="my-5 2xl:mb-2 2xl:mt-10 text-2xl md:text-3xl"
+          className="my-5 2xl:mb-2 2xl:mt-10 text-2xl md:text-3xl text-center"
         />
       ),
       [BLOCKS.HEADING_3]: (node, children) => (
-        <TextComponent
+        <PageContentText
           title={children}
           heading="h3"
           className="my-5 2xl:mb-2 2xl:mt-10 text-2xl md:text-3xl"
         />
       ),
       [BLOCKS.HEADING_4]: (node, children) => (
-        <TextComponent
+        <PageContentText
           title={children}
           heading="h4"
           className="my-5 2xl:mb-2 2xl:mt-10 text-xl md:text-2xl"
         />
       ),
       [BLOCKS.HEADING_5]: (node, children) => (
-        <TextComponent
+        <PageContentText
           title={children}
           heading="h5"
           className="my-5 2xl:mb-2 2xl:mt-10 text-xl md:text-2xl"
         />
       ),
       [BLOCKS.HEADING_6]: (node, children) => (
-        <TextComponent
+        <PageContentText
           title={children}
           heading="h6"
           className="my-5 2xl:mb-2 2xl:mt-10 text-lg md:text-xl"
         />
       ),
       [BLOCKS.PARAGRAPH]: (node, children) => (
-        <TextComponent paragraph={children} pClassName="mb-4" />
+        <PageContentText paragraph={children} pClassName="mb-4" />
       ),
       [BLOCKS.UL_LIST]: (node, children) => (
         <ul className="list-disc ml-5">{children}</ul>
@@ -129,4 +129,4 @@ const BlogBody = ({ context }) => {
   );
 };
 
-export default BlogBody;
+export default RichTextComponent;

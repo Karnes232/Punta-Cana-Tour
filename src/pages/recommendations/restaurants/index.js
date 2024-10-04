@@ -5,6 +5,7 @@ import { graphql } from "gatsby";
 import HeroComponent from "../../../components/HeroComponent/HeroComponent";
 import TextComponent from "../../../components/TextComponent/TextComponent";
 import PostList from "../../../components/BlogComponents/PostList";
+import RichTextComponent from "../../../components/TextComponent/RichTextComponent";
 
 const Index = ({ data }) => {
   return (
@@ -38,12 +39,10 @@ const Index = ({ data }) => {
 
       <TextComponent
         title={data.allContentfulRecommendationPagesLayout.edges[0].node.title}
-        paragraph={
-          data.allContentfulRecommendationPagesLayout.edges[0].node.paragraph1
-            .paragraph1
-        }
         className="my-5 text-3xl md:text-4xl"
-        pClassName="mb-4 lg:mb-0"
+      />
+      <RichTextComponent
+        context={data.allContentfulRecommendationPagesLayout.edges[0].node.body}
       />
       <PostList list={data.allContentfulBlogPost.nodes} />
     </Layout>
@@ -94,8 +93,8 @@ export const query = graphql`
       edges {
         node {
           title
-          paragraph1 {
-            paragraph1
+          body {
+            raw
           }
           mainImage {
             gatsbyImage(width: 2000, placeholder: BLURRED, formats: WEBP)

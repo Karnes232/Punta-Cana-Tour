@@ -5,6 +5,7 @@ import { graphql } from "gatsby";
 import HeroComponent from "../../components/HeroComponent/HeroComponent";
 import TextComponent from "../../components/TextComponent/TextComponent";
 import HotelCard from "../../components/HotelComponents/HotelCard";
+import RichTextComponent from "../../components/TextComponent/RichTextComponent";
 
 const Index = ({ data }) => {
   const backendHotelList = data?.allContentfulHotelsOrHostel?.edges;
@@ -59,11 +60,10 @@ const Index = ({ data }) => {
       />{" "}
       <TextComponent
         title={data.allContentfulPageContent.edges[0].node.title}
-        paragraph={
-          data.allContentfulPageContent.edges[0].node.paragraph1.paragraph1
-        }
         className="my-5 2xl:my-2 text-3xl md:text-4xl"
-        pClassName="mb-4 lg:mb-0"
+      />
+      <RichTextComponent
+        context={data.allContentfulPageContent.edges[0].node.body}
       />
       <nav className="flex flex-row items-center overflow-x-scroll xl:overflow-x-auto whitespace-nowrap mx-5 lg:justify-center">
         {/* <button onClick={()=>setFilter('All')}>All</button> */}
@@ -140,8 +140,8 @@ export const query = graphql`
       edges {
         node {
           title
-          paragraph1 {
-            paragraph1
+          body {
+            raw
           }
           mainImage {
             gatsbyImage(width: 1920, formats: WEBP, placeholder: BLURRED)

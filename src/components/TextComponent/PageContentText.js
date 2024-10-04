@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-const TextComponent = ({
+const PageContentText = ({
   title,
   heading,
   paragraph,
@@ -17,9 +17,9 @@ const TextComponent = ({
           duration: 3,
           delay: 0.3,
         }}
-        className="flex flex-col justify-center max-w-5xl mx-5 lg:p-2 xl:mx-auto"
+        className="flex flex-col items-center justify-center text-center max-w-5xl mx-5 lg:p-2 xl:mx-auto"
       >
-        {heading === "h1" || heading === undefined ? (
+        {heading === "h1" ? (
           <h1
             className={`font-lato tracking-wider font-semibold  ${className}`}
           >
@@ -88,4 +88,4 @@ const TextComponent = ({
   );
 };
 
-export default TextComponent;
+export default PageContentText;
