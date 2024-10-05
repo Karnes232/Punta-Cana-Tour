@@ -44,11 +44,17 @@ const OverallRatingComponent = ({ tour }) => {
   }, 0);
   let flexibilityAvg = flexibilityTotal / reviews.length;
 
-  let overAllRating = (qualityOfServiceAvg + responsivenessAvg + professionalismAvg + valueAvg + flexibilityAvg) / 5
-  
+  let overAllRating =
+    (qualityOfServiceAvg +
+      responsivenessAvg +
+      professionalismAvg +
+      valueAvg +
+      flexibilityAvg) /
+    5;
+
   return (
     <div className="flex flex-col md:flex-row gap-4 md:gap-0 my-5 md:justify-between lg:max-w-2xl">
-      <StarRating tour={tour} overAllRating={overAllRating}/>
+      <StarRating tour={tour} overAllRating={overAllRating} />
       <ProgressBars
         qualityOfServiceAvg={qualityOfServiceAvg}
         responsivenessAvg={responsivenessAvg}

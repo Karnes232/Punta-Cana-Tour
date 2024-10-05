@@ -2,7 +2,14 @@ import React from "react";
 import ReactStars from "react-stars";
 import WriteReview from "./WriteReview";
 const StarRating = ({ tour, overAllRating }) => {
-  const rating = overAllRating;
+  let rating = 0;
+
+  if (isNaN(overAllRating)) {
+    rating = 4.8;
+  } else {
+    rating = overAllRating;
+  }
+
   let ratingWord = "";
   if (rating > 4.5) {
     ratingWord = "Excellent";
