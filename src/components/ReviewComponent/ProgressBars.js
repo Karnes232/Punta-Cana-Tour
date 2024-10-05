@@ -1,6 +1,12 @@
 import React from "react";
 
-const ProgressBars = () => {
+const ProgressBars = ({
+  qualityOfServiceAvg,
+  responsivenessAvg,
+  professionalismAvg,
+  valueAvg,
+  flexibilityAvg,
+}) => {
   return (
     <div className="flex flex-col gap-3 md:w-[22rem]">
       <div className="flex items-center justify-between">
@@ -8,10 +14,16 @@ const ProgressBars = () => {
         <div className="flex gap-2">
           <progress
             max={5}
-            value={3.5}
+            value={qualityOfServiceAvg}
             className="[&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-primary-color [&::-moz-progress-bar]:bg-primary-color"
           />
-          <p className="text-xs">3.5</p>
+          <p className="text-xs w-4 text-right">
+            {isNaN(qualityOfServiceAvg) ? (
+              <></>
+            ) : (
+              <>{qualityOfServiceAvg.toFixed(1)}</>
+            )}
+          </p>
         </div>
       </div>
       <div className="flex items-center justify-between">
@@ -19,10 +31,16 @@ const ProgressBars = () => {
         <div className="flex gap-2">
           <progress
             max={5}
-            value={4.5}
+            value={responsivenessAvg}
             className="[&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-primary-color [&::-moz-progress-bar]:bg-primary-color"
           />
-          <p className="text-xs">4.5</p>
+          <p className="text-xs w-4 text-right">
+            {isNaN(responsivenessAvg) ? (
+              <></>
+            ) : (
+              <>{responsivenessAvg.toFixed(1)}</>
+            )}
+          </p>
         </div>
       </div>
       <div className="flex items-center justify-between">
@@ -30,10 +48,16 @@ const ProgressBars = () => {
         <div className="flex gap-2">
           <progress
             max={5}
-            value={2.4}
+            value={professionalismAvg}
             className="[&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-primary-color [&::-moz-progress-bar]:bg-primary-color"
           />
-          <p className="text-xs">2.4</p>
+          <p className="text-xs w-4 text-right">
+            {isNaN(professionalismAvg) ? (
+              <></>
+            ) : (
+              <>{professionalismAvg.toFixed(1)}</>
+            )}
+          </p>
         </div>
       </div>
       <div className="flex items-center justify-between">
@@ -41,10 +65,12 @@ const ProgressBars = () => {
         <div className="flex gap-2">
           <progress
             max={5}
-            value={4.9}
+            value={valueAvg}
             className="[&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-primary-color [&::-moz-progress-bar]:bg-primary-color"
           />
-          <p className="text-xs">4.9</p>
+          <p className="text-xs w-4 text-right">
+            {isNaN(valueAvg) ? <></> : <>{valueAvg.toFixed(1)}</>}
+          </p>
         </div>
       </div>
       <div className="flex items-center justify-between">
@@ -52,10 +78,12 @@ const ProgressBars = () => {
         <div className="flex gap-2">
           <progress
             max={5}
-            value={4.1}
+            value={flexibilityAvg}
             className="[&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-primary-color [&::-moz-progress-bar]:bg-primary-color"
           />
-          <p className="text-xs">4.1</p>
+          <p className="text-xs w-4 text-right">
+            {isNaN(flexibilityAvg) ? <></> : <>{flexibilityAvg.toFixed(1)}</>}
+          </p>
         </div>
       </div>
     </div>

@@ -222,9 +222,9 @@ export const Head = ({ data }) => {
             data.allContentfulTours.nodes[0].description1.description1,
           offers: `{
             "@type": "Offer",
-            "url": ${urlHref},
+            "url": "${urlHref}",
             "priceCurrency": "USD",
-            "price": ${data.allContentfulTours.nodes[0].price},
+            "price": "${data.allContentfulTours.nodes[0].price.toString()}",
           }`,
         }}
       />

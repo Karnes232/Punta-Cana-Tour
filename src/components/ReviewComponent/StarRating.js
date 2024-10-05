@@ -1,8 +1,8 @@
 import React from "react";
 import ReactStars from "react-stars";
 import WriteReview from "./WriteReview";
-const StarRating = ({ tour }) => {
-  const rating = 4.8;
+const StarRating = ({ tour, overAllRating }) => {
+  const rating = overAllRating;
   let ratingWord = "";
   if (rating > 4.5) {
     ratingWord = "Excellent";
