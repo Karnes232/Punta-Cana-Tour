@@ -15,6 +15,7 @@ import PhotoGrid from "../components/TourPageComponents/PhotoGrid";
 import Video from "../components/TourPageComponents/Video";
 import Recommendations from "../components/BlogComponents/Recommendations";
 import { graphql } from "gatsby";
+import ReviewComponent from "../components/ReviewComponent/ReviewComponent";
 const Tour = ({ pageContext, data }) => {
   const {
     tourList,
@@ -181,6 +182,9 @@ const Tour = ({ pageContext, data }) => {
           ) : (
             <></>
           )}
+          <div className="max-w-6xl my-5 mx-5 md:mx-10 xl:mx-auto">
+            <ReviewComponent tour={tour} />
+          </div>
 
           <div className="max-w-6xl my-5 mx-5 md:mx-10 xl:mx-auto">
             <h5 className="font-bold text-lg">You Might Also Like</h5>
