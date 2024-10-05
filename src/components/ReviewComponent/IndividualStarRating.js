@@ -8,7 +8,7 @@ const IndividualStarRating = ({ title, formTitle, formData, setFormData }) => {
     });
   };
   return (
-    <>
+    <div className="flex flex-col justify-center items-center">
       <div>{title}</div>
       <ReactStars
         count={5}
@@ -18,7 +18,7 @@ const IndividualStarRating = ({ title, formTitle, formData, setFormData }) => {
         color2={"#ffd700"}
         edit={true}
       />
-    </>
+    </div>
   );
 };
 

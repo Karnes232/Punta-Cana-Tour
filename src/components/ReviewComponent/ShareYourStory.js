@@ -8,7 +8,7 @@ const ShareYourStory = ({ formData, setFormData }) => {
     });
   };
   return (
-    <>
+    <div className="lg:max-w-3xl lg:mx-auto space-y-4">
       <Description className="font-bold text-center text-xl">
         Share your story!
       </Description>
@@ -25,7 +25,7 @@ const ShareYourStory = ({ formData, setFormData }) => {
         placeholder="How was your experience? We'd love to hear your thoughts!"
         onChange={handleChange}
       ></Textarea>
-    </>
+    </div>
   );
 };
 
