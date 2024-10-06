@@ -3,9 +3,11 @@ import StarRating from "./StarRating";
 import ProgressBars from "./ProgressBars";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../config/firebase";
+import ReviewPhotoGrid from "./ReviewPhotoGrid";
 
 const OverallRatingComponent = ({ tour }) => {
   const [reviews, setReviews] = useState([]);
+  const [imageArray, setImageArray] = useState([]);
 
   let reviewCollectionName = `reviews-${tour.url}`;
   const findReviews = async () => {
@@ -13,6 +15,9 @@ const OverallRatingComponent = ({ tour }) => {
     querySnapshot.forEach((doc) => {
       setReviews((prevReviews) => [...prevReviews, doc.data()]);
       const data = doc.data();
+      data.ImagesUrl.forEach((image) => {
+        setImageArray((prevImages) => [...prevImages, { url: image }]);
+      });
     });
   };
   useEffect(() => {
@@ -52,17 +57,24 @@ const OverallRatingComponent = ({ tour }) => {
       flexibilityAvg) /
     5;
 
+  console.log(imageArray);
+
   return (
-    <div className="flex flex-col md:flex-row gap-4 md:gap-0 my-5 md:justify-between lg:max-w-2xl">
-      <StarRating tour={tour} overAllRating={overAllRating} />
-      <ProgressBars
-        qualityOfServiceAvg={qualityOfServiceAvg}
-        responsivenessAvg={responsivenessAvg}
-        professionalismAvg={professionalismAvg}
-        valueAvg={valueAvg}
-        flexibilityAvg={flexibilityAvg}
-      />
-    </div>
+    <>
+      <div className="flex flex-col md:flex-row gap-4 md:gap-0 my-5 md:justify-between lg:max-w-2xl">
+        <StarRating tour={tour} overAllRating={overAllRating} />
+        <ProgressBars
+          qualityOfServiceAvg={qualityOfServiceAvg}
+          responsivenessAvg={responsivenessAvg}
+          professionalismAvg={professionalismAvg}
+          valueAvg={valueAvg}
+          flexibilityAvg={flexibilityAvg}
+        />
+      </div>
+      <div className="flex flex-col md:flex-row gap-4 md:gap-0 my-5 md:justify-between lg:max-w-7xl">
+        <ReviewPhotoGrid photos={imageArray} />
+      </div>
+    </>
   );
 };
 

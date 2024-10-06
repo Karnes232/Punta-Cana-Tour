@@ -9,7 +9,7 @@ const GoogleSignIn = ({ formData }) => {
   const [uploading, setUploading] = useState(false);
   const [host, setHost] = useState("");
   const provider = new GoogleAuthProvider();
- 
+
   useEffect(() => {
     setHost(window.location.origin);
   }, []);
@@ -17,16 +17,16 @@ const GoogleSignIn = ({ formData }) => {
   const uploadToFirebase = async (result) => {
     if (formData.Images.length === 0) return;
     setUploading(true);
-    let imageArray = []
+    let imageArray = [];
     try {
       for await (const image of formData.Images) {
         const id = uuidv4();
-        const fileName = `${image.name} - ${id}`
+        const fileName = `${image.name} - ${id}`;
         const storageRef = ref(storage, fileName);
-        await uploadBytes(storageRef, image).then(async(snapshot) => {
+        await uploadBytes(storageRef, image).then(async (snapshot) => {
           console.log("Uploaded a blob or file!");
-          await getDownloadURL(snapshot.ref).then(async(downloadURL) => {
-            await imageArray.push(downloadURL)
+          await getDownloadURL(snapshot.ref).then(async (downloadURL) => {
+            await imageArray.push(downloadURL);
           });
         });
       }
