@@ -72,7 +72,8 @@ const OverallRatingComponent = ({ tour }) => {
         />
       </div>
       <div className="flex flex-col md:flex-row gap-4 md:gap-0 my-5 md:justify-between lg:max-w-7xl">
-        <ReviewPhotoGrid photos={imageArray} />
+        {imageArray.length > 0 && <ReviewPhotoGrid photos={imageArray} />}
+        
       </div>
     </>
   );
