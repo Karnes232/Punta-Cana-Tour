@@ -8,6 +8,7 @@ const reviewDataFirebase = async (
   userName,
   userPhoto,
   redirectHref,
+  imageArray,
 ) => {
   const createdAt = new Date();
   const id = uuidv4();
@@ -28,6 +29,7 @@ const reviewDataFirebase = async (
     flexibility: formData.flexibility,
     title: formData.title,
     description: formData.description,
+    ImagesUrl: imageArray,
   });
   window.location.href = redirectHref;
 };

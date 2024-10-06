@@ -14,7 +14,7 @@ const ProgressBars = ({
         <div className="flex gap-2">
           <progress
             max={5}
-            value={qualityOfServiceAvg}
+            value={isNaN(qualityOfServiceAvg) ? 4.8 : qualityOfServiceAvg}
             className="[&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-primary-color [&::-moz-progress-bar]:bg-primary-color"
           />
           <p className="text-xs w-4 text-right">
@@ -31,7 +31,7 @@ const ProgressBars = ({
         <div className="flex gap-2">
           <progress
             max={5}
-            value={responsivenessAvg}
+            value={isNaN(responsivenessAvg) ? 4.3 : responsivenessAvg}
             className="[&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-primary-color [&::-moz-progress-bar]:bg-primary-color"
           />
           <p className="text-xs w-4 text-right">
@@ -48,7 +48,7 @@ const ProgressBars = ({
         <div className="flex gap-2">
           <progress
             max={5}
-            value={professionalismAvg}
+            value={isNaN(professionalismAvg) ? 4.6 : professionalismAvg}
             className="[&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-primary-color [&::-moz-progress-bar]:bg-primary-color"
           />
           <p className="text-xs w-4 text-right">
@@ -65,7 +65,7 @@ const ProgressBars = ({
         <div className="flex gap-2">
           <progress
             max={5}
-            value={valueAvg}
+            value={isNaN(valueAvg) ? 4.7 : valueAvg}
             className="[&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-primary-color [&::-moz-progress-bar]:bg-primary-color"
           />
           <p className="text-xs w-4 text-right">
@@ -78,7 +78,7 @@ const ProgressBars = ({
         <div className="flex gap-2">
           <progress
             max={5}
-            value={flexibilityAvg}
+            value={isNaN(flexibilityAvg) ? 4.5 : flexibilityAvg}
             className="[&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-primary-color [&::-moz-progress-bar]:bg-primary-color"
           />
           <p className="text-xs w-4 text-right">

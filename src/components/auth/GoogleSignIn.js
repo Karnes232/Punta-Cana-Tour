@@ -1,35 +1,57 @@
 import React, { useEffect, useState } from "react";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { auth } from "../../config/firebase";
+import { auth, storage } from "../../config/firebase";
 import { FcGoogle } from "react-icons/fc";
 import reviewDataFirebase from "../../customHooks/reviewDataFirebase";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { v4 as uuidv4 } from "uuid";
 const GoogleSignIn = ({ formData }) => {
+  const [uploading, setUploading] = useState(false);
   const [host, setHost] = useState("");
   const provider = new GoogleAuthProvider();
-
+ 
   useEffect(() => {
     setHost(window.location.origin);
   }, []);
 
+  const uploadToFirebase = async (result) => {
+    if (formData.Images.length === 0) return;
+    setUploading(true);
+    let imageArray = []
+    try {
+      for await (const image of formData.Images) {
+        const id = uuidv4();
+        const fileName = `${image.name} - ${id}`
+        const storageRef = ref(storage, fileName);
+        await uploadBytes(storageRef, image).then(async(snapshot) => {
+          console.log("Uploaded a blob or file!");
+          await getDownloadURL(snapshot.ref).then(async(downloadURL) => {
+            await imageArray.push(downloadURL)
+          });
+        });
+      }
+      const userPhoto = result.user.photoURL;
+      const userName = result.user.displayName;
+      const userEmail = result.user.email;
+      let redirectHref = `${host}/contact/thankyou/?name=${userName}`;
+      await reviewDataFirebase(
+        formData,
+        userEmail,
+        userName,
+        userPhoto,
+        redirectHref,
+        imageArray,
+      );
+    } catch (error) {
+      console.error("Upload failed:", error);
+    }
+  };
   const signIn = async () => {
     try {
-      signInWithPopup(auth, provider)
-        .then((result) => {
-          const userPhoto = result.user.photoURL;
-          const userName = result.user.displayName;
-          const userEmail = result.user.email;
-          let redirectHref = `${host}/contact/thankyou/?name=${userName}`;
-          console.log(userPhoto);
-          console.log(userName);
-          console.log(userEmail);
-          console.log(formData);
-          reviewDataFirebase(
-            formData,
-            userEmail,
-            userName,
-            userPhoto,
-            redirectHref,
-          );
+      await signInWithPopup(auth, provider)
+        .then(async (result) => {
+          await uploadToFirebase(result);
+
           // This gives you a Google Access Token. You can use it to access the Google API.
           // const credential = GoogleAuthProvider.credentialFromResult(result);
           // const token = credential.accessToken;

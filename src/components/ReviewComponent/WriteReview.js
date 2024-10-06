@@ -10,6 +10,7 @@ import Recommend from "./Recommend";
 import RateTour from "./RateTour";
 import ShareYourStory from "./ShareYourStory";
 import SubmitReview from "./SubmitReview";
+import ImageUploadComponent from "./ImageUploadComponent";
 const WriteReview = ({ tour }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -23,6 +24,7 @@ const WriteReview = ({ tour }) => {
     flexibility: 0,
     title: "",
     description: "",
+    Images: [],
   });
   return (
     <>
@@ -53,6 +55,10 @@ const WriteReview = ({ tour }) => {
             <Recommend formData={formData} setFormData={setFormData} />
             <RateTour formData={formData} setFormData={setFormData} />
             <ShareYourStory formData={formData} setFormData={setFormData} />
+            <ImageUploadComponent
+              formData={formData}
+              setFormData={setFormData}
+            />
             <SubmitReview formData={formData} />
           </DialogPanel>
         </div>

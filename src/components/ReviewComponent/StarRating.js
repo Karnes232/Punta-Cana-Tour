@@ -28,7 +28,8 @@ const StarRating = ({ tour, overAllRating }) => {
   return (
     <div className="flex flex-col">
       <div className="flex gap-3 items-center font-medium">
-        <span className="text-3xl font-bold">{rating}</span> {ratingWord}
+        <span className="text-3xl font-bold">{rating.toFixed(1)}</span>{" "}
+        {ratingWord}
       </div>
       <div>
         <ReactStars
