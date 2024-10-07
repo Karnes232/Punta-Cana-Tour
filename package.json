@@ -55,6 +55,7 @@
     "react-photo-album": "^2.3.0",
     "react-player": "^2.16.0",
     "react-pro-sidebar": "^1.1.0-alpha.1",
+    "react-responsive": "^10.0.0",
     "react-select": "^5.7.5",
     "react-stars": "^2.2.5",
     "react-syntax-highlighter": "^15.5.0",

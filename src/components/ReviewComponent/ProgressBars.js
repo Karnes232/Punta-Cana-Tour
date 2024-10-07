@@ -6,7 +6,9 @@ const ProgressBars = ({
   professionalismAvg,
   valueAvg,
   flexibilityAvg,
+  small,
 }) => {
+  console.log(qualityOfServiceAvg);
   return (
     <div className="flex flex-col gap-3 md:w-[22rem]">
       <div className="flex items-center justify-between">
@@ -15,7 +17,9 @@ const ProgressBars = ({
           <progress
             max={5}
             value={isNaN(qualityOfServiceAvg) ? 4.8 : qualityOfServiceAvg}
-            className="[&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-primary-color [&::-moz-progress-bar]:bg-primary-color"
+            className={`[&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-primary-color [&::-moz-progress-bar]:bg-primary-color ${
+              small ? "h-3" : "h-4"
+            }`}
           />
           <p className="text-xs w-4 text-right">
             {isNaN(qualityOfServiceAvg) ? (
@@ -32,7 +36,9 @@ const ProgressBars = ({
           <progress
             max={5}
             value={isNaN(responsivenessAvg) ? 4.3 : responsivenessAvg}
-            className="[&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-primary-color [&::-moz-progress-bar]:bg-primary-color"
+            className={`[&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-primary-color [&::-moz-progress-bar]:bg-primary-color ${
+              small ? "h-3" : "h-4"
+            }`}
           />
           <p className="text-xs w-4 text-right">
             {isNaN(responsivenessAvg) ? (
@@ -49,7 +55,9 @@ const ProgressBars = ({
           <progress
             max={5}
             value={isNaN(professionalismAvg) ? 4.6 : professionalismAvg}
-            className="[&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-primary-color [&::-moz-progress-bar]:bg-primary-color"
+            className={`[&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-primary-color [&::-moz-progress-bar]:bg-primary-color ${
+              small ? "h-3" : "h-4"
+            }`}
           />
           <p className="text-xs w-4 text-right">
             {isNaN(professionalismAvg) ? (
@@ -66,7 +74,9 @@ const ProgressBars = ({
           <progress
             max={5}
             value={isNaN(valueAvg) ? 4.7 : valueAvg}
-            className="[&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-primary-color [&::-moz-progress-bar]:bg-primary-color"
+            className={`[&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-primary-color [&::-moz-progress-bar]:bg-primary-color ${
+              small ? "h-3" : "h-4"
+            }`}
           />
           <p className="text-xs w-4 text-right">
             {isNaN(valueAvg) ? <></> : <>{valueAvg.toFixed(1)}</>}
@@ -79,7 +89,9 @@ const ProgressBars = ({
           <progress
             max={5}
             value={isNaN(flexibilityAvg) ? 4.5 : flexibilityAvg}
-            className="[&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-primary-color [&::-moz-progress-bar]:bg-primary-color"
+            className={`[&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-primary-color [&::-moz-progress-bar]:bg-primary-color ${
+              small ? "h-3" : "h-4"
+            }`}
           />
           <p className="text-xs w-4 text-right">
             {isNaN(flexibilityAvg) ? <></> : <>{flexibilityAvg.toFixed(1)}</>}

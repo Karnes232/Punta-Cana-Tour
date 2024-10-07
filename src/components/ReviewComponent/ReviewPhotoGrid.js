@@ -34,7 +34,7 @@ const ReviewPhotoGrid = ({ photos = [] }) => {
                 key={index}
                 src={photo?.url}
                 alt={`Review photo ${index + 2}`}
-                className="w-full h-full object-cover rounded-lg shadow-2xl cursor-pointer"
+                className="w-full h-[11.5rem] object-cover rounded-lg shadow-2xl cursor-pointer"
                 onClick={() => handlePhotoClick(index + 1)} // Open lightbox for additional photos
               />
             ))}
@@ -43,7 +43,7 @@ const ReviewPhotoGrid = ({ photos = [] }) => {
                 <img
                   src={additionalPhotos[3]?.url}
                   alt="More photos"
-                  className="w-full h-full object-cover rounded-lg brightness-50"
+                  className="w-full h-[11.5rem] object-cover rounded-lg brightness-50"
                   onClick={() => handlePhotoClick(4)} // Open lightbox for more photos
                 />
                 <div

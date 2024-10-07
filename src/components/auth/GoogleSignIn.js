@@ -15,10 +15,25 @@ const GoogleSignIn = ({ formData }) => {
   }, []);
 
   const uploadToFirebase = async (result) => {
-    if (formData.Images.length === 0) return;
+    if (formData.Images.length === 0) {
+      let imageArray = [];
+      const userPhoto = result.user.photoURL;
+      const userName = result.user.displayName;
+      const userEmail = result.user.email;
+      let redirectHref = `${host}/contact/thankyou/?name=${userName}`;
+      await reviewDataFirebase(
+        formData,
+        userEmail,
+        userName,
+        userPhoto,
+        redirectHref,
+        imageArray,
+      );
+    }
     setUploading(true);
     let imageArray = [];
     try {
+      console.log(formData);
       for await (const image of formData.Images) {
         const id = uuidv4();
         const fileName = `${image.name} - ${id}`;
