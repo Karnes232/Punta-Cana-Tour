@@ -6,7 +6,7 @@ import ReviewCard from "./ReviewCard";
 const ReviewSection = ({ reviews }) => {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   return (
-    <div className="max-w-7xl mx-auto px-4">
+    <div className="max-w-full lg:max-w-7xl mx-auto">
       {isMobile ? (
         <Swiper spaceBetween={20} slidesPerView={1}>
           {reviews.map((review, index) => (

@@ -9,7 +9,6 @@ import { IoClose } from "react-icons/io5";
 import ReactStars from "react-stars";
 import ProgressBars from "./ProgressBars";
 const IndividualReviewPopup = ({ review }) => {
-  console.log(review);
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
