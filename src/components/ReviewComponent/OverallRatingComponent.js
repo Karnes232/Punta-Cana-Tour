@@ -23,7 +23,11 @@ const OverallRatingComponent = ({ tour }) => {
   let reviewCollectionImages = `reviews-${tour.url}-Images`;
   const findReviews = async (loadMore = false) => {
     const reviewRef = collection(db, reviewCollectionName);
-    let reviewsQuery = query(reviewRef, orderBy("overAllRating", "desc"), limit(3));
+    let reviewsQuery = query(
+      reviewRef,
+      orderBy("overAllRating", "desc"),
+      limit(3),
+    );
     // if (loadMore && lastVisible) {
     //   reviewsQuery = query(reviewsQuery, startAfter(lastVisible));
     // }

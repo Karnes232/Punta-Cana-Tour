@@ -23,7 +23,7 @@ const IndividualReviewPopup = ({ review }) => {
         onClose={() => setIsOpen(false)}
         className="relative z-50"
       >
-        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+        <div className="fixed inset-0 z-10 w-screen overflow-y-auto bg-gray-400/70">
           <div className="flex min-h-full items-center justify-center p-4">
             <DialogPanel className="w-full max-w-3xl rounded-xl bg-white lg:p-6 backdrop-blur-2xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0">
               <div className="fixed top-5 right-5">
