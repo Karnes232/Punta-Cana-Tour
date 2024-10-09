@@ -2,7 +2,6 @@ import React from "react";
 import ReactStars from "react-stars";
 import IndividualReviewPopup from "./IndividualReviewPopup";
 const ReviewCard = ({ review }) => {
-  console.log(review);
   return (
     <div className="bg-white rounded-lg p-6 shadow-lg h-[32rem] flex flex-col">
       <div className="flex items-center mb-4">

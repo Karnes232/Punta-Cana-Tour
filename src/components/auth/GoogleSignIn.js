@@ -5,15 +5,17 @@ import { FcGoogle } from "react-icons/fc";
 import reviewDataFirebase from "../../customHooks/reviewDataFirebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
+import useReviewValidation from "../../customHooks/useReviewValidation";
 const GoogleSignIn = ({ formData }) => {
   const [uploading, setUploading] = useState(false);
   const [host, setHost] = useState("");
   const provider = new GoogleAuthProvider();
-
+  const [missingFormInfo, setMissingFormInfo] = useState(false);
   useEffect(() => {
     setHost(window.location.origin);
   }, []);
-
+  const valid = useReviewValidation(formData);
+  console.log(valid);
   const uploadToFirebase = async (result) => {
     if (formData.Images.length === 0) {
       let imageArray = [];
@@ -33,7 +35,6 @@ const GoogleSignIn = ({ formData }) => {
     setUploading(true);
     let imageArray = [];
     try {
-      console.log(formData);
       for await (const image of formData.Images) {
         const id = uuidv4();
         const fileName = `${image.name} - ${id}`;
@@ -62,41 +63,54 @@ const GoogleSignIn = ({ formData }) => {
     }
   };
   const signIn = async () => {
-    try {
-      await signInWithPopup(auth, provider)
-        .then(async (result) => {
-          await uploadToFirebase(result);
+    if (valid) {
+      try {
+        await signInWithPopup(auth, provider)
+          .then(async (result) => {
+            await uploadToFirebase(result);
 
-          // This gives you a Google Access Token. You can use it to access the Google API.
-          // const credential = GoogleAuthProvider.credentialFromResult(result);
-          // const token = credential.accessToken;
-          // // The signed-in user info.
-          // const user = result.user;
-          // IdP data available using getAdditionalUserInfo(result)
-          // ...
-        })
-        .catch((error) => {
-          // Handle Errors here.
-          // const errorCode = error.code;
-          // const errorMessage = error.message;
-          // // The email of the user's account used.
-          // const email = error.customData.email;
-          // // The AuthCredential type that was used.
-          // const credential = GoogleAuthProvider.credentialFromError(error);
-          // ...
-        });
-    } catch (error) {
-      console.error(error);
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            // const credential = GoogleAuthProvider.credentialFromResult(result);
+            // const token = credential.accessToken;
+            // // The signed-in user info.
+            // const user = result.user;
+            // IdP data available using getAdditionalUserInfo(result)
+            // ...
+          })
+          .catch((error) => {
+            // Handle Errors here.
+            // const errorCode = error.code;
+            // const errorMessage = error.message;
+            // // The email of the user's account used.
+            // const email = error.customData.email;
+            // // The AuthCredential type that was used.
+            // const credential = GoogleAuthProvider.credentialFromError(error);
+            // ...
+          });
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      setMissingFormInfo(true);
     }
   };
 
   return (
-    <button
-      className="flex justify-center items-center px-5 py-2 gap-4 border rounded-lg w-full"
-      onClick={signIn}
-    >
-      <FcGoogle className="text-2xl" /> Sign in with Google
-    </button>
+    <>
+      <button
+        className="flex justify-center items-center px-5 py-2 gap-4 border rounded-lg w-full"
+        onClick={signIn}
+      >
+        <FcGoogle className="text-2xl" /> Sign in with Google
+      </button>
+      {missingFormInfo ? (
+        <p className="text-xs lg:text-sm mt-2 text-center text-red-600">
+          Form Required to be Filled
+        </p>
+      ) : (
+        <></>
+      )}
+    </>
   );
 };
 

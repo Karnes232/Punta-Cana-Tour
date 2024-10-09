@@ -8,7 +8,6 @@ const ProgressBars = ({
   flexibilityAvg,
   small,
 }) => {
-  console.log(qualityOfServiceAvg);
   return (
     <div className="flex flex-col gap-3 md:w-[22rem]">
       <div className="flex items-center justify-between">
