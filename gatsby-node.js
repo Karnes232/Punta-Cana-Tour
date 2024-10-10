@@ -1,5 +1,17 @@
 const path = require("path");
+const admin = require('firebase-admin');
+// const serviceAccount = require('./src/data/punta-cana-tour-store-firebase-adminsdk-jrnbr-ee3468fd7b.json'); 
+require("dotenv").config();
 
+
+admin.initializeApp({
+  credential: admin.credential.cert({
+    project_id: process.env.FIREBASE_PROJECT_ID,
+    private_key: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    client_email: process.env.FIREBASE_CLIENT_EMAIL,
+  }), // You can add this for clarity but it's optional
+});
+const db = admin.firestore();
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
   const queryResults = await graphql(`
@@ -70,6 +82,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const blogTemplate = path.resolve(`src/templates/blog.js`);
   const propertyTemplate = path.resolve(`src/templates/property.js`);
   const hotelTemplate = path.resolve(`src/templates/hotel.js`);
+  const reviewsTemplate = path.resolve(`src/templates/reviews.js`);
   queryResults.data.allContentfulTours.nodes.forEach((node) => {
     createPage({
       path: `/tours/${node.url?.trim()}`,
@@ -79,6 +92,37 @@ exports.createPages = async ({ graphql, actions }) => {
         id: node.id,
         tour: node,
         tourList: queryResults.data.allContentfulTours.nodes,
+        logo: queryResults.data.allContentfulLayout.edges[0].node.logo
+          .gatsbyImage,
+        footerBackground:
+          queryResults.data.allContentfulLayout.edges[0].node.footerBackground
+            .url,
+        facebook: queryResults.data.allContentfulLayout.edges[0].node.facebook,
+        whatsApp: queryResults.data.allContentfulLayout.edges[0].node.whatsApp,
+        instagram:
+          queryResults.data.allContentfulLayout.edges[0].node.instagram,
+        email: queryResults.data.allContentfulLayout.edges[0].node.email,
+        gImage:
+          queryResults.data.allContentfulLayout.edges[0].node.footerBackground
+            .gatsbyImage,
+      },
+    });
+    let tourReviews = []
+    const fetchReviews = async () => {
+      const reviewsSnapshot = await db.collection(`reviews-${node.url}`).get();
+      const reviews = reviewsSnapshot.docs.map(doc => doc.data());
+      tourReviews.push(reviews)
+      return reviews;
+    }; 
+    fetchReviews()
+    createPage({
+      path: `/reviews/${node.url?.trim()}`,
+      component: reviewsTemplate,
+      context: {
+        // This time the entire product is passed down as context
+        id: node.id,
+        tour: node,
+        tourReviews: tourReviews,
         logo: queryResults.data.allContentfulLayout.edges[0].node.logo
           .gatsbyImage,
         footerBackground:

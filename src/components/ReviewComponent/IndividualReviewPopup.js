@@ -75,7 +75,7 @@ const IndividualReviewPopup = ({ review }) => {
                   flexibilityAvg={review.flexibility}
                   small
                 />
-                <DialogTitle className="font-medium text-left text-xl mt-5">
+                <DialogTitle className="font-medium text-left text-xl mt-5 mb-2">
                   {review.title}
                 </DialogTitle>
                 <Description className="text-left">
