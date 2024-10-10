@@ -3,8 +3,10 @@ import { useMediaQuery } from "react-responsive";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import ReviewCard from "./ReviewCard";
-const ReviewSection = ({ reviews }) => {
+import { Link } from "gatsby";
+const ReviewSection = ({ reviews, url }) => {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+
   return (
     <div className="max-w-full lg:max-w-7xl mx-auto">
       {isMobile ? (
@@ -24,9 +26,11 @@ const ReviewSection = ({ reviews }) => {
       )}
 
       <div className="text-center mt-8">
-        <button className="px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors">
-          See all reviews
-        </button>
+        <Link to={`/reviews/${url}`} className="no-underline" aria-label="Home">
+          <button className="px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+            See all reviews
+          </button>
+        </Link>
       </div>
     </div>
   );

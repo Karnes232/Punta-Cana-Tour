@@ -16,39 +16,15 @@ import ReviewSection from "./ReviewSection";
 const OverallRatingComponent = ({ tour }) => {
   const [reviews, setReviews] = useState([]);
   const [imageArray, setImageArray] = useState([]);
-  // const [lastVisible, setLastVisible] = useState(null); // To track the last document for pagination
-  // const [loading, setLoading] = useState(false);
 
   let reviewCollectionName = `reviews-${tour.url}`;
-  let reviewCollectionImages = `reviews-${tour.url}-Images`;
+  // let reviewCollectionImages = `reviews-${tour.url}-Images`;
   const findReviews = async (loadMore = false) => {
     const reviewRef = collection(db, reviewCollectionName);
-    let reviewsQuery = query(
-      reviewRef,
-      orderBy("overAllRating", "desc"),
-      limit(3),
-    );
-    // if (loadMore && lastVisible) {
-    //   reviewsQuery = query(reviewsQuery, startAfter(lastVisible));
-    // }
+    let reviewsQuery = query(reviewRef, orderBy("overAllRating", "desc"));
     const reviewsSnapshot = await getDocs(reviewsQuery);
-    // const querySnapshot = await getDocs(collection(db, reviewCollectionName));
     reviewsSnapshot.forEach((doc) => {
       setReviews((prevReviews) => [...prevReviews, doc.data()]);
-      // const data = doc.data();
-      // data.ImagesUrl.forEach((image) => {
-      //   setImageArray((prevImages) => [...prevImages, { url: image }]);
-      // });
-    });
-    // setLastVisible(reviewsSnapshot.docs[reviewsSnapshot.docs.length - 1]);
-    // }
-  };
-
-  const findImages = async () => {
-    const reviewRef = collection(db, reviewCollectionImages);
-    let reviewsQuery = query(reviewRef, orderBy("createdAt", "desc"));
-    const reviewsSnapshot = await getDocs(reviewsQuery);
-    reviewsSnapshot.forEach((doc) => {
       const data = doc.data();
       data.ImagesUrl.forEach((image) => {
         setImageArray((prevImages) => [...prevImages, { url: image }]);
@@ -56,9 +32,21 @@ const OverallRatingComponent = ({ tour }) => {
     });
   };
 
+  // const findImages = async () => {
+  //   const reviewRef = collection(db, reviewCollectionImages);
+  //   let reviewsQuery = query(reviewRef, orderBy("createdAt", "desc"));
+  //   const reviewsSnapshot = await getDocs(reviewsQuery);
+  //   reviewsSnapshot.forEach((doc) => {
+  //     const data = doc.data();
+  //     data.ImagesUrl.forEach((image) => {
+  //       setImageArray((prevImages) => [...prevImages, { url: image }]);
+  //     });
+  //   });
+  // };
+
   useEffect(() => {
     findReviews();
-    findImages();
+    // findImages();
   }, []);
 
   let qualityOfServiceTotal = reviews.reduce(function (prev, current) {
@@ -93,7 +81,7 @@ const OverallRatingComponent = ({ tour }) => {
       valueAvg +
       flexibilityAvg) /
     5;
-
+  console.log(tour);
   return (
     <>
       <div className="flex flex-col md:flex-row gap-4 md:gap-0 my-5 md:justify-between lg:max-w-2xl">
@@ -110,7 +98,9 @@ const OverallRatingComponent = ({ tour }) => {
         {imageArray.length > 0 && <ReviewPhotoGrid photos={imageArray} />}
       </div>
       <div className="flex flex-col md:flex-row gap-4 md:gap-0 my-5 md:justify-between lg:max-w-7xl">
-        {reviews.length > 0 && <ReviewSection reviews={reviews} />}
+        {reviews.length > 0 && (
+          <ReviewSection reviews={reviews} url={tour.url} />
+        )}
       </div>
     </>
   );

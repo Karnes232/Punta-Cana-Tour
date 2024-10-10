@@ -22,14 +22,14 @@ const reviewDataFirebase = async (
       formData.flexibility) /
     5;
 
-  if (imageArray.length > 0) {
-    await setDoc(doc(db, reviewCollectionImages, id), {
-      id: id,
-      createdAt: createdAt,
-      ImagesUrl: imageArray,
-    });
-  }
-  console.log(imageArray);
+  // if (imageArray.length > 0) {
+  //   await setDoc(doc(db, reviewCollectionImages, id), {
+  //     id: id,
+  //     createdAt: createdAt,
+  //     ImagesUrl: imageArray,
+  //   });
+  // }
+  // console.log(imageArray);
   await setDoc(doc(db, reviewCollectionName, id), {
     id: id,
     createdAt: createdAt,

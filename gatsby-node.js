@@ -1,13 +1,12 @@
 const path = require("path");
-const admin = require('firebase-admin');
-// const serviceAccount = require('./src/data/punta-cana-tour-store-firebase-adminsdk-jrnbr-ee3468fd7b.json'); 
+const admin = require("firebase-admin");
+// const serviceAccount = require('./src/data/punta-cana-tour-store-firebase-adminsdk-jrnbr-ee3468fd7b.json');
 require("dotenv").config();
-
 
 admin.initializeApp({
   credential: admin.credential.cert({
     project_id: process.env.FIREBASE_PROJECT_ID,
-    private_key: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    private_key: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n"),
     client_email: process.env.FIREBASE_CLIENT_EMAIL,
   }), // You can add this for clarity but it's optional
 });
@@ -107,14 +106,14 @@ exports.createPages = async ({ graphql, actions }) => {
             .gatsbyImage,
       },
     });
-    let tourReviews = []
+    let tourReviews = [];
     const fetchReviews = async () => {
       const reviewsSnapshot = await db.collection(`reviews-${node.url}`).get();
-      const reviews = reviewsSnapshot.docs.map(doc => doc.data());
-      tourReviews.push(reviews)
+      const reviews = reviewsSnapshot.docs.map((doc) => doc.data());
+      tourReviews.push(reviews);
       return reviews;
-    }; 
-    fetchReviews()
+    };
+    fetchReviews();
     createPage({
       path: `/reviews/${node.url?.trim()}`,
       component: reviewsTemplate,
