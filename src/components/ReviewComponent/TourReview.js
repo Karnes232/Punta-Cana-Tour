@@ -41,7 +41,7 @@ const TourReview = ({ review }) => {
       </div>
       <h4 className="mt-4 font-bold text-gray-900">{review.title}</h4>
       {review.description.length > 200 && (
-        <p className="mt-2 text-gray-700">
+        <p className="mt-2 text-gray-700 lg:w-[40rem]">
           {readMore
             ? review.description
             : `${review.description.substring(0, 200)}...`}
@@ -55,7 +55,7 @@ const TourReview = ({ review }) => {
         </p>
       )}
       {review.description.length < 200 && (
-        <p className="mt-2 text-gray-700">{review.description}</p>
+        <p className="mt-2 text-gray-700 lg:w-[40rem]">{review.description}</p>
       )}
 
       <div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-6">
