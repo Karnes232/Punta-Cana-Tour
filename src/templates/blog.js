@@ -125,6 +125,7 @@ export const query = graphql`
         description
         category
         backgroundImage {
+          title
           gatsbyImage(width: 2000, placeholder: BLURRED, formats: WEBP)
           url
         }

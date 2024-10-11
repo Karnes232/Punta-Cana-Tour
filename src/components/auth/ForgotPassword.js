@@ -19,7 +19,7 @@ const ForgotPassword = ({ image }) => {
     <div className="w-[90vw] lg:max-w-lg rounded-lg overflow-hidden shadow-lg mx-auto">
       <GatsbyImage
         image={travelAgentImage}
-        alt=""
+        alt="Travel Agent"
         className="w-full object-cover h-60"
       />
       <div className="p-5">

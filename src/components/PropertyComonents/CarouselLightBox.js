@@ -16,6 +16,7 @@ const CarouselLightBox = ({ photoList }) => {
       src: image.url,
       width: image.width,
       height: image.height,
+      alt: image.title,
     };
     slides.push(photoObject);
   });

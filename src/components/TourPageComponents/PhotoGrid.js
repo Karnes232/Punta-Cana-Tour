@@ -7,6 +7,7 @@ const PhotoGrid = ({ tourPhotos }) => {
       src: image.url,
       width: image.gatsbyImage.width,
       height: image.gatsbyImage.height,
+      alt: image.title,
     };
     photoList.push(photoObject);
   });

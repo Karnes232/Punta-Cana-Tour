@@ -11,7 +11,7 @@ const MaybeLikeTourCard = ({ tour }) => {
         <div className="w-80 mx-auto my-5 rounded-lg overflow-hidden shadow-lg">
           <GatsbyImage
             image={image}
-            alt=""
+            alt={name}
             className="w-full object-cover h-40"
           />
           <div className="px-6 py-4">

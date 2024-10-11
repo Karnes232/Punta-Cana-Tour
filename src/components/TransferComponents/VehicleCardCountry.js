@@ -9,7 +9,7 @@ const VehicleCardCountry = ({ vehicle, formData }) => {
     <div className="max-w-xs min-w-[20rem] xl:max-w-xs my-5 mx-2 rounded-lg overflow-hidden shadow-lg">
       <GatsbyImage
         image={image}
-        alt=""
+        alt={vehicle.vehicleType}
         className="w-full object-cover h-64 lg:h-60"
       />
       <div className="px-6 py-4">

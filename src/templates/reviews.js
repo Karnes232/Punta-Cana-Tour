@@ -206,6 +206,7 @@ export const myQuery = graphql`
         }
         images {
           url
+          title
           gatsbyImage(width: 1920, formats: WEBP)
         }
         mainImage {
