@@ -18,7 +18,8 @@ export default function Layout({
 }) {
   return (
     <CartProvider>
-      <div className="min-h-screen font-montserrat flex flex-col justify-between overflow-x-hidden bg-primary-bg-color">
+      {/* <div className="min-h-screen font-montserrat flex flex-col justify-between overflow-x-hidden bg-primary-bg-color"> */}
+      <div className="min-h-screen font-montserrat flex flex-col justify-between bg-primary-bg-color">
         <Header logo={logo} color={color} />
         {children}
         <FloatingCartButton />
