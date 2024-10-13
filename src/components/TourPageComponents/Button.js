@@ -34,7 +34,7 @@ const Button = ({
         <button
           type="submit"
           onClick={handleClick}
-          className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded ${customClass}`}
+          className={`bg-primary-color hover:bg-[#FFA41C] text-white font-bold py-1 px-4 rounded ${customClass}`}
         >
           {text}
         </button>
@@ -43,7 +43,7 @@ const Button = ({
           <button
             type="submit"
             onClick={handleClick}
-            className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded ${customClass}`}
+            className={`bg-primary-color hover:bg-[#FFA41C] text-white font-bold py-1 px-4 rounded ${customClass}`}
           >
             +
           </button>{" "}
@@ -63,7 +63,7 @@ const Button = ({
                 removeFromCart(tour);
               }
             }}
-            className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded ${customClass}`}
+            className={`bg-primary-color hover:bg-[#FFA41C] text-white font-bold py-1 px-4 rounded ${customClass}`}
           >
             -
           </button>
