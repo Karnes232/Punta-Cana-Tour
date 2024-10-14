@@ -7,7 +7,7 @@ const Video = ({ url }) => {
         url={url}
         muted
         controls
-        // playing={false}
+        playing={true}
         loop
         width="100%"
         height="100%"

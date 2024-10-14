@@ -6,7 +6,9 @@ import SwiperCarousel from "../../components/BackgroundCarousel/SwiperCarousel";
 import HeroComponent from "../../components/HeroComponent/HeroComponent";
 import Seo from "../../components/seo";
 import RichTextComponent from "../../components/TextComponent/RichTextComponent";
+import Video from "../../components/TourPageComponents/Video";
 const index = ({ data }) => {
+  console.log(data.allContentfulAboutPageContent.edges[0].node.videoUrl);
   return (
     <Layout
       logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
@@ -33,6 +35,15 @@ const index = ({ data }) => {
         heroText2={data.allContentfulAboutPageContent.edges[0].node.heroText2}
         button={false}
       />
+      {data.allContentfulAboutPageContent.edges[0].node.videoUrl ? (
+        <div className="">
+          <Video
+            url={data.allContentfulAboutPageContent.edges[0].node.videoUrl}
+          />
+        </div>
+      ) : (
+        <></>
+      )}
       <TextComponent
         title={data.allContentfulAboutPageContent.edges[0].node.title}
         className="my-5 2xl:my-2 text-3xl md:text-4xl"
@@ -41,12 +52,22 @@ const index = ({ data }) => {
         context={data.allContentfulAboutPageContent.edges[0].node.body1}
       />
 
-      <SwiperCarousel
+      {data.allContentfulAboutPageContent.edges[0].node.videoUrl ? (
+        <div className="mb-5">
+          <Video
+            url={data.allContentfulAboutPageContent.edges[0].node.videoUrl}
+          />
+        </div>
+      ) : (
+        <></>
+      )}
+
+      {/* <SwiperCarousel
         className="my-5"
         photoList={
           data.allContentfulSwiperPhotoCarousel.edges[0].node.photoList
         }
-      />
+      /> */}
       <RichTextComponent
         context={data.allContentfulAboutPageContent.edges[0].node.body2}
       />
@@ -85,6 +106,7 @@ export const query = graphql`
           }
           heroText1
           heroText2
+          videoUrl
           aboutHero {
             gatsbyImage(width: 1920, formats: WEBP)
             file {
