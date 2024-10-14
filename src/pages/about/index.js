@@ -35,15 +35,7 @@ const index = ({ data }) => {
         heroText2={data.allContentfulAboutPageContent.edges[0].node.heroText2}
         button={false}
       />
-      {data.allContentfulAboutPageContent.edges[0].node.videoUrl ? (
-        <div className="">
-          <Video
-            url={data.allContentfulAboutPageContent.edges[0].node.videoUrl}
-          />
-        </div>
-      ) : (
-        <></>
-      )}
+  
       <TextComponent
         title={data.allContentfulAboutPageContent.edges[0].node.title}
         className="my-5 2xl:my-2 text-3xl md:text-4xl"
