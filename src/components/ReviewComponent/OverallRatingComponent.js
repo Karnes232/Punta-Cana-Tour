@@ -81,7 +81,6 @@ const OverallRatingComponent = ({ tour }) => {
       valueAvg +
       flexibilityAvg) /
     5;
-  console.log(tour);
   return (
     <>
       <div className="flex flex-col md:flex-row gap-4 md:gap-0 my-5 md:justify-between lg:max-w-2xl">
