@@ -81,6 +81,11 @@ const index = ({ data }) => {
           }
           url="places"
         />
+        <BlogCategory
+          title="Local Business Blogs"
+          gImage={data.allContentfulBlogLayout.nodes[0].localBusinessImage}
+          url="local-business"
+        />
       </div>
     </Layout>
   );
@@ -139,6 +144,9 @@ export const query = graphql`
           gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 400)
         }
         famousDominicanPlacesImage {
+          gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 400)
+        }
+        localBusinessImage {
           gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 400)
         }
       }

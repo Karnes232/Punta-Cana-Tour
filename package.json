@@ -15,7 +15,8 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "kill": "npx kill-port 8000",
-    "memory": "export NODE_OPTIONS='--max-old-space-size=8192'"
+    "memory": "export NODE_OPTIONS='--max-old-space-size=8192'",
+    "dev": "node --max-old-space-size=8192 node_modules/.bin/gatsby develop"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.22.1",

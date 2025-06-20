@@ -24,7 +24,11 @@ function Seo({ description, title, keywords, children, schemaMarkup }) {
 
   return (
     <>
-      <script src="https://analytics.ahrefs.com/analytics.js" data-key="X6o1J7WFsPmCozyJoUl7AQ" defer="true"></script>
+      <script
+        src="https://analytics.ahrefs.com/analytics.js"
+        data-key="X6o1J7WFsPmCozyJoUl7AQ"
+        defer="true"
+      ></script>
       <title>{defaultTitle ? `${title} | ${defaultTitle}` : title}</title>
       <meta name="description" content={description} />
       <meta property="og:title" content={defaultTitle} />
