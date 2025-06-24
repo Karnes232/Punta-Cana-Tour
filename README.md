@@ -353,9 +353,8 @@ This project is licensed under the [MIT License](LICENSE).
 ## 📞 Support
 
 For technical support or questions about the website:
-- **Email**: [support email]
-- **Documentation**: [link to documentation]
-- **Issues**: [GitHub issues page]
+- **Email**: karnes.james@gmail.com
+
 
 ---
 
