@@ -16,9 +16,9 @@ const Step = ({ title, description, image }) => {
         className="flex flex-col items-center justify-center text-center max-w-5xl lg:p-2 xl:mx-auto"
       >
         <GatsbyImage image={icon} alt={title} className="w-20 md:w-24" />
-        <h1 className="font-lato tracking-wider font-semibold text-lg md:text-xl my-4">
+        <h4 className="font-lato tracking-wider font-semibold text-lg md:text-xl my-4">
           {title}
-        </h1>
+        </h4>
         <p
           className="font-montserrat text-sm md:text-base text-gray-700 max-w-xs lg:max-w-[18rem]"
           dangerouslySetInnerHTML={{ __html: description }}

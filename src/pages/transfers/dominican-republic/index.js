@@ -36,6 +36,7 @@ const Index = ({ data }) => {
     >
       <TextComponent
         title={data.allContentfulTransferPageContent.edges[0].node.title}
+        heading="h2"
         paragraph={
           data.allContentfulTransferPageContent.edges[0].node.description
             .description

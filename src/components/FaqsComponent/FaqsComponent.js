@@ -7,6 +7,7 @@ const FaqsComponent = ({ faqs }) => {
     <div className="mb-5">
       <TextComponent
         title="Punta Cana FAQS"
+        heading="h2"
         className="mt-5 mb-2 text-2xl md:text-3xl"
       />
 

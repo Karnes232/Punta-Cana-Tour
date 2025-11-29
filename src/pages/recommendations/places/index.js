@@ -39,6 +39,7 @@ const Index = ({ data }) => {
 
       <TextComponent
         title={data.allContentfulRecommendationPagesLayout.edges[0].node.title}
+        heading="h1"
         className="my-5 text-3xl md:text-4xl"
       />
       <RichTextComponent

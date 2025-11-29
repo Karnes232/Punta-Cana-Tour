@@ -42,6 +42,7 @@ const IndexPage = ({ data }) => {
       />
       <TextComponent
         title={data.allContentfulIndexPageContent.edges[0].node.title}
+        heading="h2"
         className="my-5 2xl:mb-2 2xl:mt-10 text-3xl md:text-4xl"
       />
       <RichTextComponent
@@ -69,6 +70,7 @@ const IndexPage = ({ data }) => {
       <FaqsComponent faqs={data.allContentfulFaqsComponent.edges[0].node} />
       <TextComponent
         title={data.allContentfulIndexPageContent.edges[0].node.whyUs}
+        heading="h2"
         paragraph={
           data.allContentfulIndexPageContent.edges[0].node.paragraph8.paragraph8
         }

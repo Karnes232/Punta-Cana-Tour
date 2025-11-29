@@ -7,6 +7,7 @@ const HowItWorks = ({ data }) => {
     <div>
       <TextComponent
         title="How it Works"
+        heading="h3"
         className="mt-5 mb-2 text-2xl md:text-3xl"
         // pClassName="mb-4 2xl:mb-10"
       />

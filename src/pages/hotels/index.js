@@ -60,6 +60,7 @@ const Index = ({ data }) => {
       />{" "}
       <TextComponent
         title={data.allContentfulPageContent.edges[0].node.title}
+        heading="h1"
         className="my-5 2xl:my-2 text-3xl md:text-4xl"
       />
       <RichTextComponent

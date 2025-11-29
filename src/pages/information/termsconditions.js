@@ -21,6 +21,7 @@ const TermsConditions = ({ data }) => {
     >
       <TextComponent
         title={data.allContentfulInformationLayout.nodes[0].title1}
+        heading="h2"
         paragraph={
           data.allContentfulInformationLayout.nodes[0].paragraph1?.paragraph1
         }
@@ -29,6 +30,7 @@ const TermsConditions = ({ data }) => {
       />
       <TextComponent
         title={data.allContentfulInformationLayout.nodes[0].title2}
+        heading="h2"
         paragraph={
           data.allContentfulInformationLayout.nodes[0].paragraph2?.paragraph2
         }
@@ -37,6 +39,7 @@ const TermsConditions = ({ data }) => {
       />
       <TextComponent
         title={data.allContentfulInformationLayout.nodes[0].title3}
+        heading="h2"
         paragraph={
           data.allContentfulInformationLayout.nodes[0].paragraph3?.paragraph3
         }
@@ -45,6 +48,7 @@ const TermsConditions = ({ data }) => {
       />
       <TextComponent
         title={data.allContentfulInformationLayout.nodes[0].title4}
+        heading="h2"
         paragraph={
           data.allContentfulInformationLayout.nodes[0].paragraph4?.paragraph4
         }
@@ -53,6 +57,7 @@ const TermsConditions = ({ data }) => {
       />
       <TextComponent
         title={data.allContentfulInformationLayout.nodes[0].title5}
+        heading="h2"
         paragraph={
           data.allContentfulInformationLayout.nodes[0].paragraph5?.paragraph5
         }
@@ -61,6 +66,7 @@ const TermsConditions = ({ data }) => {
       />
       <TextComponent
         title={data.allContentfulInformationLayout.nodes[0].title6}
+        heading="h2"
         paragraph={
           data.allContentfulInformationLayout.nodes[0].paragraph6?.paragraph6
         }

@@ -38,6 +38,7 @@ const index = ({ data }) => {
 
       <TextComponent
         title={data.allContentfulAboutPageContent.edges[0].node.title}
+        heading="h2"
         className="my-5 2xl:my-2 text-3xl md:text-4xl"
       />
       <RichTextComponent

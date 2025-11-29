@@ -108,9 +108,9 @@ export default function Cart({
                   />
                   <div className="flex flex-col md:justify-around lg:flex-row w-40 md:w-72 lg:w-[30rem] xl:w-[25rem]">
                     <div className="flex flex-col md:flex-row gap-2 md:gap-8 mb-1 mx-4">
-                      <h1 className="text-lg font-bold truncate lg:whitespace-normal">
+                      <h3 className="text-lg font-bold truncate lg:whitespace-normal">
                         {tour.name}
-                      </h1>
+                      </h3>
                       <p className="text-gray-600 text-end flex items-center justify-end">
                         ${tour.price}
                       </p>
@@ -204,7 +204,7 @@ export default function Cart({
         </div>
       ) : (
         <div className="flex flex-col justify-center items-center max-w-sm">
-          <h1 className="text-lg font-bold">Your cart is empty</h1>
+          <h3 className="text-lg font-bold">Your cart is empty</h3>
           <p className="text-sm text-center my-3">
             Looks like you haven’t found anything yet. We understand that
             sometimes it’s hard to choose — maybe this helps:
