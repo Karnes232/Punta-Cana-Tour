@@ -123,14 +123,14 @@ export const query = graphql`
         seoDescription
         seoKeywords
         mainImage {
-          gatsbyImage(width: 2000, formats: WEBP, placeholder: BLURRED)
+          gatsbyImage(width: 2000, formats: WEBP, placeholder: DOMINANT_COLOR)
           title
           url
         }
         squareFeet
         images {
           title
-          gatsbyImage(width: 2000, placeholder: BLURRED, formats: WEBP)
+          gatsbyImage(width: 2000, placeholder: DOMINANT_COLOR, formats: WEBP)
           url
           width
           height

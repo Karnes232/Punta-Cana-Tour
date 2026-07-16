@@ -104,7 +104,7 @@ export const query = graphql`
           zone4Price
           zone5Price
           vehiclePhoto {
-            gatsbyImage(formats: WEBP, width: 400, placeholder: BLURRED)
+            gatsbyImage(formats: WEBP, width: 400, placeholder: DOMINANT_COLOR)
             file {
               url
             }
@@ -124,7 +124,7 @@ export const query = graphql`
           }
           airportPhoto {
             title
-            gatsbyImage(width: 620, formats: WEBP, placeholder: BLURRED)
+            gatsbyImage(width: 620, formats: WEBP, placeholder: DOMINANT_COLOR)
           }
         }
       }

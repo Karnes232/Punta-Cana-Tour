@@ -65,7 +65,7 @@ export const query = graphql`
     allContentfulBlogLayout {
       nodes {
         transferBlogImage {
-          gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 2000)
+          gatsbyImage(formats: WEBP, placeholder: DOMINANT_COLOR, width: 2000)
         }
         transferBlogDescription {
           transferBlogDescription
@@ -81,7 +81,7 @@ export const query = graphql`
         description
         slug
         backgroundImage {
-          gatsbyImage(formats: WEBP, width: 400, placeholder: BLURRED)
+          gatsbyImage(formats: WEBP, width: 400, placeholder: DOMINANT_COLOR)
         }
       }
     }

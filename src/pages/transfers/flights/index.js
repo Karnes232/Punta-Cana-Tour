@@ -96,7 +96,7 @@ export const query = graphql`
           vehicleType
           description
           vehiclePhoto {
-            gatsbyImage(formats: WEBP, width: 400, placeholder: BLURRED)
+            gatsbyImage(formats: WEBP, width: 400, placeholder: DOMINANT_COLOR)
             title
             file {
               url
@@ -106,7 +106,7 @@ export const query = graphql`
           groundOrAir
           planeHelicopterFeatures
           airCraftPhotos {
-            gatsbyImage(formats: WEBP, width: 400, placeholder: BLURRED)
+            gatsbyImage(formats: WEBP, width: 400, placeholder: DOMINANT_COLOR)
             title
           }
         }
@@ -121,7 +121,7 @@ export const query = graphql`
           }
           airportPhoto {
             title
-            gatsbyImage(width: 620, formats: WEBP, placeholder: BLURRED)
+            gatsbyImage(width: 620, formats: WEBP, placeholder: DOMINANT_COLOR)
           }
         }
       }

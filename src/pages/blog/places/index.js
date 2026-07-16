@@ -66,7 +66,7 @@ export const query = graphql`
     allContentfulBlogLayout {
       nodes {
         famousDominicanPlacesImage {
-          gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 2000)
+          gatsbyImage(formats: WEBP, placeholder: DOMINANT_COLOR, width: 2000)
         }
         famousDominicanPlacesDescription {
           famousDominicanPlacesDescription
@@ -82,7 +82,7 @@ export const query = graphql`
         description
         slug
         backgroundImage {
-          gatsbyImage(formats: WEBP, width: 400, placeholder: BLURRED)
+          gatsbyImage(formats: WEBP, width: 400, placeholder: DOMINANT_COLOR)
         }
       }
     }

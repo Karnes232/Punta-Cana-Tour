@@ -157,7 +157,7 @@ export const query = graphql`
             raw
           }
           mainImage {
-            gatsbyImage(width: 1920, formats: WEBP, placeholder: BLURRED)
+            gatsbyImage(width: 1920, formats: WEBP, placeholder: DOMINANT_COLOR)
             file {
               url
             }

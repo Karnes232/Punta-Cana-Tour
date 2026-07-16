@@ -123,13 +123,13 @@ export const query = graphql`
           hotelType
           generalLocation
           mainImage {
-            gatsbyImage(width: 2000, formats: WEBP, placeholder: BLURRED)
+            gatsbyImage(width: 2000, formats: WEBP, placeholder: DOMINANT_COLOR)
             title
             url
           }
           images {
             title
-            gatsbyImage(width: 400, formats: WEBP, placeholder: BLURRED)
+            gatsbyImage(width: 400, formats: WEBP, placeholder: DOMINANT_COLOR)
           }
           hotel_room {
             price
@@ -145,7 +145,7 @@ export const query = graphql`
             raw
           }
           mainImage {
-            gatsbyImage(width: 1920, formats: WEBP, placeholder: BLURRED)
+            gatsbyImage(width: 1920, formats: WEBP, placeholder: DOMINANT_COLOR)
             file {
               url
             }

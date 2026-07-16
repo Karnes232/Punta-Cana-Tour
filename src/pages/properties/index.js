@@ -212,11 +212,11 @@ export const query = graphql`
           bathrooms
           squareFeet
           mainImage {
-            gatsbyImage(width: 400, formats: WEBP, placeholder: BLURRED)
+            gatsbyImage(width: 400, formats: WEBP, placeholder: DOMINANT_COLOR)
             title
           }
           images {
-            gatsbyImage(width: 400, formats: WEBP, placeholder: BLURRED)
+            gatsbyImage(width: 400, formats: WEBP, placeholder: DOMINANT_COLOR)
             title
           }
         }
@@ -230,7 +230,7 @@ export const query = graphql`
             raw
           }
           mainImage {
-            gatsbyImage(width: 1920, formats: WEBP, placeholder: BLURRED)
+            gatsbyImage(width: 1920, formats: WEBP, placeholder: DOMINANT_COLOR)
             file {
               url
             }

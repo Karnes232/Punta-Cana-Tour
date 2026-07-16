@@ -93,7 +93,7 @@ export const query = graphql`
         carType
         carModel
         carImage {
-          gatsbyImage(width: 500, formats: WEBP, placeholder: BLURRED)
+          gatsbyImage(width: 500, formats: WEBP, placeholder: DOMINANT_COLOR)
           title
         }
         passengers

@@ -1,16 +1,6 @@
 const path = require("path");
-const admin = require("firebase-admin");
-// const serviceAccount = require('./src/data/punta-cana-tour-store-firebase-adminsdk-jrnbr-ee3468fd7b.json');
 require("dotenv").config();
 
-admin.initializeApp({
-  credential: admin.credential.cert({
-    project_id: process.env.FIREBASE_PROJECT_ID,
-    private_key: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n"),
-    client_email: process.env.FIREBASE_CLIENT_EMAIL,
-  }), // You can add this for clarity but it's optional
-});
-const db = admin.firestore();
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
   const queryResults = await graphql(`
@@ -24,7 +14,7 @@ exports.createPages = async ({ graphql, actions }) => {
           category
           mainImage {
             url
-            gatsbyImage(width: 1920, formats: WEBP)
+            gatsbyImage(width: 400, placeholder: DOMINANT_COLOR, formats: WEBP)
           }
           description1 {
             description1
@@ -68,7 +58,7 @@ exports.createPages = async ({ graphql, actions }) => {
           description
           category
           backgroundImage {
-            gatsbyImage(width: 2000, placeholder: BLURRED, formats: WEBP)
+            gatsbyImage(width: 400, placeholder: DOMINANT_COLOR, formats: WEBP)
             url
           }
         }
@@ -106,14 +96,6 @@ exports.createPages = async ({ graphql, actions }) => {
             .gatsbyImage,
       },
     });
-    let tourReviews = [];
-    const fetchReviews = async () => {
-      const reviewsSnapshot = await db.collection(`reviews-${node.url}`).get();
-      const reviews = reviewsSnapshot.docs.map((doc) => doc.data());
-      tourReviews.push(reviews);
-      return reviews;
-    };
-    fetchReviews();
     createPage({
       path: `/reviews/${node.url?.trim()}`,
       component: reviewsTemplate,
@@ -121,7 +103,9 @@ exports.createPages = async ({ graphql, actions }) => {
         // This time the entire product is passed down as context
         id: node.id,
         tour: node,
-        tourReviews: tourReviews,
+        // Reviews are fetched client-side (see src/templates/reviews.js); no
+        // build-time Firestore reads.
+        tourReviews: [],
         logo: queryResults.data.allContentfulLayout.edges[0].node.logo
           .gatsbyImage,
         footerBackground:

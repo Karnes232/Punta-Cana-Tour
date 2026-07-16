@@ -2,13 +2,16 @@
  * @type {import('gatsby').GatsbyConfig}
  */
 require("dotenv").config();
+const adapter = require("gatsby-adapter-netlify").default;
 module.exports = {
+  adapter: adapter(),
   siteMetadata: {
     title: `Punta Cana Tour Store`,
     author: `@karnes232`,
     siteUrl: `https://puntacanatourstore.com/`,
   },
   plugins: [
+    "gatsby-plugin-netlify",
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",

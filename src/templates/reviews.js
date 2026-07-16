@@ -19,7 +19,7 @@ import AllReviewPageOverall from "../components/ReviewComponent/AllReviewPageOve
 import ReviewPhotoGrid from "../components/ReviewComponent/ReviewPhotoGrid";
 import TourReview from "../components/ReviewComponent/TourReview";
 const Reviews = ({ pageContext, data }) => {
-  const [reviews, setReviews] = useState(pageContext.tourReviews[0]);
+  const [reviews, setReviews] = useState(pageContext.tourReviews?.[0] ?? []);
   const [sortedBy, setSortedBy] = useState("Highest Rated");
   const [imageArray, setImageArray] = useState([]);
   const {
@@ -201,7 +201,7 @@ export const myQuery = graphql`
           slug
           backgroundImage {
             id
-            gatsbyImage(width: 300, placeholder: BLURRED, formats: WEBP)
+            gatsbyImage(width: 300, placeholder: DOMINANT_COLOR, formats: WEBP)
           }
         }
         images {
@@ -227,7 +227,7 @@ export const myQuery = graphql`
           description
           slug
           backgroundImage {
-            gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 400)
+            gatsbyImage(formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
           }
         }
       }

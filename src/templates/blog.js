@@ -126,7 +126,7 @@ export const query = graphql`
         category
         backgroundImage {
           title
-          gatsbyImage(width: 2000, placeholder: BLURRED, formats: WEBP)
+          gatsbyImage(width: 2000, placeholder: DOMINANT_COLOR, formats: WEBP)
           url
         }
         reference {
@@ -159,7 +159,7 @@ export const query = graphql`
               file {
                 url
               }
-              gatsbyImage(placeholder: BLURRED, formats: WEBP, width: 2000)
+              gatsbyImage(placeholder: DOMINANT_COLOR, formats: WEBP, width: 2000)
             }
           }
         }

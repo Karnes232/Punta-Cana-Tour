@@ -147,7 +147,7 @@ export const query = graphql`
           slug
           backgroundImage {
             id
-            gatsbyImage(width: 300, placeholder: BLURRED, formats: WEBP)
+            gatsbyImage(width: 300, placeholder: DOMINANT_COLOR, formats: WEBP)
           }
         }
         images {
@@ -173,7 +173,7 @@ export const query = graphql`
           description
           slug
           backgroundImage {
-            gatsbyImage(formats: WEBP, placeholder: BLURRED, width: 400)
+            gatsbyImage(formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
           }
         }
       }

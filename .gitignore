@@ -60,6 +60,9 @@ typings/
 .cache/
 public
 
+# netlify adapter build output
+.netlify/
+
 # Mac files
 .DS_Store
 
