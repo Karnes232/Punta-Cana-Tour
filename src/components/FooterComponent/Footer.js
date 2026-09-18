@@ -32,10 +32,10 @@ const Footer = ({ facebook, instagram, whatsApp, email }) => (
           <h2 className="text-sm font-bold uppercase tracking-widest text-primary-color mb-5">
             Talk to us
           </h2>
-          <div className="grid gap-3 text-sm text-slate-200 break-words">
+          <div className="grid min-w-0 gap-3 text-sm text-slate-200 break-words">
             <Link to="/contact/">Contact our team</Link>
             <Link to="/about/">About Punta Cana Tour Store</Link>
-            {email && <a href={"mailto:" + email}>{email}</a>}
+            {email && <a className="break-all" href={"mailto:" + email}>{email}</a>}
             {whatsApp && (
               <a
                 href={
