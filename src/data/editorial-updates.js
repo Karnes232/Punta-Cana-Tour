@@ -5,6 +5,7 @@ const h = text => ({ type: 'heading-2', content: [text] });
 const source = (name, href) => p(link(name, href));
 const checked = '2026-09-18';
 module.exports = {
+  ...require('./specialist-support-updates'),
   ...require('./travel-planning-updates'),
   'Saona-Island-travel-guide': {
     title: 'Saona Island Travel Guide: Boats, Beach Stops and What to Pack',

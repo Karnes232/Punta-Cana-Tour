@@ -53,6 +53,9 @@ function relatedGuides(posts, current, limit = 6) {
     .slice(0, limit).map(({post}) => post);
 }
 function serviceLinks(post) {
+  // Reviewed support articles send their commercial enquiry to the specialist.
+  if (post.specialistService === 'proposal') return [{href:'https://sertuinevents.com/proposal/',label:'Plan your proposal with Sertuin Events',description:'Discuss your dates, location and current arrangements directly with the planning team.'}];
+  if (post.specialistService === 'wedding') return [{href:'https://sertuinevents.com/puntacana-wedding-planner/',label:'Wedding planning with Sertuin Events',description:'Discuss venue planning and coordination directly with the specialist team.'}];
   const ids = topicIds(post), links = [];
   const add = (href, label, description) => {
     if (!links.some(link => link.href === href)) links.push({href,label,description});

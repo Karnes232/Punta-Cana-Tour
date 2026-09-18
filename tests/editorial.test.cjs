@@ -155,6 +155,30 @@ test('editorial photographs retain CMS media, resolve on disk, and have responsi
   assert.match(assets.find(a=>a.group==='party').caption,/Illustrative/);
 });
 
+test('specialist support articles replace commercial metadata and route enquiries to Sertuin', () => {
+  const support = require('../src/data/specialist-support-updates');
+  const Body = load('src/components/BlogComponents/BlogBody.js').default;
+  const Links = load('src/components/BlogComponents/EditorialLinks.js').default;
+  const Card = load('src/components/BlogComponents/RecommendationCard.js').default;
+  assert.equal(Object.keys(support).length, 16);
+  for (const [slug, update] of Object.entries(support)) {
+    const original = {...post, slug, title:'Old Proposal Packages 2026 – 2027', tags:['old package'], reference:{url:'old-proposal-package'}, body:{raw:JSON.stringify({nodeType:'document',data:{},content:[block('paragraph','Book now for 10% off')]})}};
+    const revised = applyEditorialUpdate(original);
+    assert.equal(revised.slug, slug);
+    assert.equal(revised.publishedDate, original.publishedDate);
+    assert.equal(revised.reference, null);
+    assert.doesNotMatch(update.title+' '+update.description, /packages|best choice|biggest|2026|2027|10%/i);
+    const services = linking.serviceLinks(revised);
+    assert.equal(services.length, 1);
+    assert.equal(services[0].href, update.specialistService === 'proposal' ? 'https://sertuinevents.com/proposal/' : 'https://sertuinevents.com/puntacana-wedding-planner/');
+    const html = renderToStaticMarkup(React.createElement(React.Fragment,null,React.createElement(Body,{context:revised.body,title:revised.title}),React.createElement(Links,{post:revised})));
+    assert.ok(html.includes(`href="${services[0].href}"`));
+    assert.doesNotMatch(html,/nofollow|10% off|old-proposal-package|NewbornArt|Kevin Harris/);
+    assert.ok(renderToStaticMarkup(React.createElement(Card,{blog:original})).includes(update.title));
+    assert.equal(e.articleSchema(revised,breadcrumbsFor(revised))['@graph'][0].headline, update.title);
+  }
+});
+
 test('reviewed recommendations only resolve existing targets and exclude missing/self/duplicate routes', () => {
   const current={...post,relatedSlugs:['missing',post.slug,'target','target']};
   const target={...post,id:'target-id',slug:'target',title:'Relevant guide'};
