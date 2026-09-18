@@ -161,6 +161,9 @@ test('specialist support articles replace commercial metadata and route enquirie
   const Links = load('src/components/BlogComponents/EditorialLinks.js').default;
   const Card = load('src/components/BlogComponents/RecommendationCard.js').default;
   assert.equal(Object.keys(support).length, 16);
+  const spaced = applyEditorialUpdate({...post, slug:' sertuin-events-the-definitive-leader-in-premium-wedding-experiences-in-punta-cana'});
+  assert.equal(spaced.title, support['sertuin-events-the-definitive-leader-in-premium-wedding-experiences-in-punta-cana'].title);
+  assert.equal(e.blogPath(spaced.slug), '/blog/sertuin-events-the-definitive-leader-in-premium-wedding-experiences-in-punta-cana/');
   for (const [slug, update] of Object.entries(support)) {
     const original = {...post, slug, title:'Old Proposal Packages 2026 – 2027', tags:['old package'], reference:{url:'old-proposal-package'}, body:{raw:JSON.stringify({nodeType:'document',data:{},content:[block('paragraph','Book now for 10% off')]})}};
     const revised = applyEditorialUpdate(original);

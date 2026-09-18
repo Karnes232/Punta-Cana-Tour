@@ -1,5 +1,6 @@
 const updates = require('../data/editorial-updates');
 const { withEditorialMedia } = require('./editorial-media');
+const { blogPath } = require('./editorial');
 function text(value) { return {nodeType:'text',value,marks:[],data:{}}; }
 function toDocument(blocks) {
   return {nodeType:'document',data:{},content:blocks.map(block=>({
@@ -10,7 +11,7 @@ function toDocument(blocks) {
 }
 function applyEditorialUpdate(post, includeBody = true) {
   post = withEditorialMedia(post);
-  const key = String(post.slug || '').replace(/^\/+|\/+$/g,'');
+  const key = blogPath(post.slug).slice('/blog/'.length, -1);
   const update = updates[key];
   if (!update) return post;
   const {blocks,...metadata} = update;
