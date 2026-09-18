@@ -1,4 +1,5 @@
 const path = require("path");
+const { blogPath, relatedPosts } = require("./src/utils/editorial");
 require("dotenv").config();
 
 exports.createPages = async ({ graphql, actions }) => {
@@ -67,6 +68,13 @@ exports.createPages = async ({ graphql, actions }) => {
   `);
 
   const tourTemplate = path.resolve(`src/templates/tour.js`);
+  if (queryResults.errors) {
+    throw new Error(
+      `Contentful page query failed: ${queryResults.errors
+        .map((error) => error.message)
+        .join("; ")}`,
+    );
+  }
   const travelAgentTemplate = path.resolve(`src/templates/travelAgent.js`);
   const blogTemplate = path.resolve(`src/templates/blog.js`);
   const propertyTemplate = path.resolve(`src/templates/property.js`);
@@ -144,15 +152,24 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
   });
+  const blogPaths = new Set();
   queryResults.data.allContentfulBlogPost.nodes.forEach((node) => {
+    if (!node.slug?.trim()) throw new Error(`Blog ${node.id} is missing its slug`);
+    const route = blogPath(node.slug);
+    const key = new URL(route, "https://puntacanatourstore.com").pathname;
+    if (blogPaths.has(key)) throw new Error(`Duplicate blog route: ${key}`);
+    blogPaths.add(key);
     createPage({
-      path: `/blog/${node.slug?.trim()}`,
+      path: route,
       component: blogTemplate,
       context: {
         id: node.id,
         blog: node,
         layout: queryResults.data.allContentfulLayout.edges[0].node,
-        blogList: queryResults.data.allContentfulBlogPost.nodes,
+        blogList: relatedPosts(
+          queryResults.data.allContentfulBlogPost.nodes,
+          node,
+        ),
       },
     });
   });

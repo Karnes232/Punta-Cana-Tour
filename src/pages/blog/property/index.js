@@ -1,4 +1,5 @@
 import React from "react";
+import { categoryBySlug } from "../../../data/blog-categories";
 import Layout from "../../../components/layout";
 import Seo from "../../../components/seo";
 import { graphql } from "gatsby";
@@ -98,14 +99,10 @@ export const query = graphql`
 `;
 
 export const Head = ({ data }) => {
-  const { title, description, keywords } = data.allContentfulSeo.nodes[0];
+  const { title, description } = categoryBySlug("property");
   return (
     <>
-      <Seo
-        title={title}
-        description={description.description}
-        keywords={keywords.join(", ")}
-      />
+      <Seo title={title} description={description} />
       <link
         rel="canonical"
         href="https://puntacanatourstore.com/blog/property/"

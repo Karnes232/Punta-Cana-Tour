@@ -230,7 +230,7 @@ export const Head = ({ data }) => {
       />
       <link
         rel="canonical"
-        href={`https://puntacanatourstore.com/tours/${data.allContentfulTours.nodes[0].url?.trim()}`}
+        href={`https://puntacanatourstore.com/tours/${data.allContentfulTours.nodes[0].url?.trim()}/`}
       />
     </>
   );

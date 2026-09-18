@@ -5,7 +5,9 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import { monokai } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import TextComponent from "./TextComponent";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-const BlogBody = ({ context }) => {
+import { normalizeBody } from "../../utils/editorial";
+const BlogBody = ({ context, title }) => {
+  if (!context?.raw) return null;
   const options = {
     renderMark: {
       [MARKS.CODE]: (text) => {
@@ -26,7 +28,7 @@ const BlogBody = ({ context }) => {
       [BLOCKS.HEADING_1]: (node, children) => (
         <TextComponent
           title={children}
-          heading="h1"
+          heading="h2"
           className="my-5 2xl:mb-2 2xl:mt-10 text-3xl md:text-4xl text-center"
         />
       ),
@@ -91,17 +93,19 @@ const BlogBody = ({ context }) => {
       ),
       [BLOCKS.EMBEDDED_ASSET]: (node, children) => {
         let image = null;
-        context.references.map((imageData) => {
+        (context.references || []).forEach((imageData) => {
           if (imageData.contentful_id === node.data.target.sys.id) {
             image = imageData;
           }
         });
-        const imageGatsby = getImage(image.gatsbyImage);
+        const imageGatsby = image && getImage(image.gatsbyImage);
+        if (!imageGatsby) return null;
         return (
           <div className="flex justify-center items-center lg:justify-start">
             <GatsbyImage
               image={imageGatsby}
-              alt={image.title}
+              alt={image.title || ""}
+              loading="lazy"
               className="rounded-lg w-[20rem] mb-4 lg:w-[30rem]"
             />
           </div>
@@ -117,7 +121,7 @@ const BlogBody = ({ context }) => {
     },
   };
   const blogDocument = documentToReactComponents(
-    JSON.parse(context.raw),
+    normalizeBody(JSON.parse(context.raw), title),
     options,
   );
   return (

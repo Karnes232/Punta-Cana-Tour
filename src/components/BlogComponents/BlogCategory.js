@@ -30,18 +30,18 @@ const BlogCategory = ({ title, gImage, url }) => {
   }
   return (
     <>
-      <Link to={`/blog/${url}`}>
+      <Link to={`/blog/${url}/`}>
         <div className="w-80 h-60 mx-auto my-5 rounded-lg overflow-hidden shadow-lg">
           <div
             className={`h-full bg-center bg-no-repeat bg-cover`}
             style={HeroStyles}
           >
-            <h1
+            <h2
               translate="no"
               className="relative inline-block text-center text-white z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-yellowtail tracking-widest text-4xl md:text-5xl"
             >
               {title}
-            </h1>
+            </h2>
           </div>
         </div>
       </Link>

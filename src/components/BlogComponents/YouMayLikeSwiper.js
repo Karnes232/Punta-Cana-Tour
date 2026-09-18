@@ -12,6 +12,7 @@ const YouMayLikeSwiper = ({ list }) => {
   useEffect(() => {
     setWindowWidth(window.innerWidth);
     window.addEventListener("resize", handleResize, false);
+    return () => window.removeEventListener("resize", handleResize, false);
   }, []);
   let slidesPerView = 1;
   if (windowWidth < 680) {
@@ -27,7 +28,7 @@ const YouMayLikeSwiper = ({ list }) => {
     <>
       <Swiper
         effect={"fade"}
-        loop={true}
+        loop={list.length > slidesPerView}
         slidesPerView={slidesPerView}
         spaceBetween={30}
         autoplay={{

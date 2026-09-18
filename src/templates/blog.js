@@ -4,6 +4,14 @@ import Layout from "../components/layout";
 import BlogBody from "../components/BlogComponents/BlogBody";
 import HeroImage from "../components/BlogComponents/HeroImage";
 import Seo from "../components/seo";
+import ArticleHeader from "../components/BlogComponents/ArticleHeader";
+import {
+  articleSchema,
+  blogPath,
+  canonicalUrl,
+  relatedPosts,
+} from "../utils/editorial";
+import { breadcrumbsFor } from "../data/blog-categories";
 import Recommendations from "../components/BlogComponents/Recommendations";
 import ActivityLink from "../components/BlogComponents/ActivityLink";
 import TransferLink from "../components/BlogComponents/TransferLink";
@@ -12,18 +20,8 @@ import PropertyLink from "../components/BlogComponents/PropertyLink";
 import HotelLink from "../components/BlogComponents/HotelLink";
 import { graphql } from "gatsby";
 const blog = ({ pageContext, data }) => {
-  let recommendationList = [];
-  pageContext.blogList.forEach((blog) => {
-    if (blog.category === "Tours") {
-      if (pageContext.blog.category === blog.category) {
-        recommendationList.push(blog);
-      }
-    } else {
-      if (pageContext.blog.category !== "Tours") {
-        recommendationList.push(blog);
-      }
-    }
-  });
+  const post = data.allContentfulBlogPost.nodes[0];
+  const recommendationList = relatedPosts(pageContext.blogList, post);
   return (
     <Layout
       logo={pageContext.layout.logo}
@@ -38,7 +36,8 @@ const blog = ({ pageContext, data }) => {
       <HeroImage
         backgroundImages={data?.allContentfulBlogPost?.nodes[0].backgroundImage}
       />
-      <BlogBody context={data?.allContentfulBlogPost?.nodes[0].body} />
+      <ArticleHeader post={post} />
+      <BlogBody context={post.body} title={post.title} />
 
       {data?.allContentfulBlogPost?.nodes[0].category === "Tours" &&
         data?.allContentfulBlogPost?.nodes[0].reference !== null && (
@@ -96,17 +95,19 @@ const blog = ({ pageContext, data }) => {
 };
 
 export const Head = ({ data }) => {
+  const post = data.allContentfulBlogPost.nodes[0];
+  const canonical = canonicalUrl(blogPath(post.slug));
   return (
     <>
       <Seo
         title={data?.allContentfulBlogPost?.nodes[0].title}
         description={data?.allContentfulBlogPost?.nodes[0].description}
         keywords={data?.allContentfulBlogPost?.nodes[0]?.tags?.join(", ")}
+        type="article"
+        canonical={canonical}
+        schemaMarkup={articleSchema(post, breadcrumbsFor(post))}
       />
-      <link
-        rel="canonical"
-        href={`https://puntacanatourstore.com/blog/${data?.allContentfulBlogPost?.nodes[0].slug?.trim()}`}
-      />
+      <link rel="canonical" href={canonical} />
     </>
   );
 };
@@ -121,7 +122,7 @@ export const query = graphql`
         id
         title
         tags
-        publishedDate(formatString: "MMMM do, YYYY")
+        publishedDate
         description
         category
         backgroundImage {
@@ -159,7 +160,11 @@ export const query = graphql`
               file {
                 url
               }
-              gatsbyImage(placeholder: DOMINANT_COLOR, formats: WEBP, width: 2000)
+              gatsbyImage(
+                placeholder: DOMINANT_COLOR
+                formats: WEBP
+                width: 2000
+              )
             }
           }
         }
