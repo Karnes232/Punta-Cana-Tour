@@ -13,7 +13,7 @@ const TextComponent = ({ title, paragraph, className, pClassName, heading }) => 
         }}
         className="flex flex-col items-center justify-center text-center max-w-5xl mx-5 lg:p-2 xl:mx-auto"
       >
-         {heading === "h1"  || heading === undefined ? (
+         {title && (heading === "h1" || heading === undefined) ? (
           <h1
             className={`font-lato tracking-wider font-semibold  ${className}`}
           >
@@ -22,7 +22,7 @@ const TextComponent = ({ title, paragraph, className, pClassName, heading }) => 
         ) : (
           <></>
         )}
-        {heading === "h2" ? (
+        {title && heading === "h2" ? (
           <h2
             className={`font-lato tracking-wider font-semibold  ${className}`}
           >
@@ -31,7 +31,7 @@ const TextComponent = ({ title, paragraph, className, pClassName, heading }) => 
         ) : (
           <></>
         )}
-        {heading === "h3" ? (
+        {title && heading === "h3" ? (
           <h3
             className={`font-lato tracking-wider font-semibold  ${className}`}
           >
@@ -40,7 +40,7 @@ const TextComponent = ({ title, paragraph, className, pClassName, heading }) => 
         ) : (
           <></>
         )}
-        {heading === "h4" ? (
+        {title && heading === "h4" ? (
           <h4
             className={`font-lato tracking-wider font-semibold  ${className}`}
           >
@@ -49,7 +49,7 @@ const TextComponent = ({ title, paragraph, className, pClassName, heading }) => 
         ) : (
           <></>
         )}
-        {heading === "h5" ? (
+        {title && heading === "h5" ? (
           <h5
             className={`font-lato tracking-wider font-semibold  ${className}`}
           >
@@ -58,7 +58,7 @@ const TextComponent = ({ title, paragraph, className, pClassName, heading }) => 
         ) : (
           <></>
         )}
-        {heading === "h6" ? (
+        {title && heading === "h6" ? (
           <h6
             className={`font-lato tracking-wider font-semibold  ${className}`}
           >
