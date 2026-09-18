@@ -1,6 +1,6 @@
 import React from "react";
 import PhotoAlbum from "react-photo-album";
-const PhotoGrid = ({ tourPhotos }) => {
+const PhotoGrid = ({ tourPhotos, stable = false }) => {
   let photoList = [];
   tourPhotos.forEach((image, key) => {
     const photoObject = {
@@ -11,12 +11,12 @@ const PhotoGrid = ({ tourPhotos }) => {
     };
     photoList.push(photoObject);
   });
-  photoList = photoList.sort(() => Math.random() - 0.5);
+  if (!stable) photoList = photoList.sort(() => Math.random() - 0.5);
   return (
-    <div className="max-w-6xl min-w-[1080px] w-max">
+    <div className={stable ? "max-w-6xl w-full" : "max-w-6xl min-w-[1080px] w-max"}>
       <PhotoAlbum
         layout="columns"
-        photos={photoList.slice(0, 6)}
+        photos={stable ? photoList : photoList.slice(0, 6)}
         containerWidth={1152}
         columns={3}
         padding={0}

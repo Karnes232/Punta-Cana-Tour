@@ -8,6 +8,8 @@ const { renderToStaticMarkup } = require("react-dom/server");
 const { transformSync } = require("@babel/core");
 const e = require("../src/utils/editorial");
 const linking = require("../src/utils/interlinking");
+const { applyEditorialUpdate } = require('../src/utils/editorial-updates');
+const updates = require('../src/data/editorial-updates');
 const {
   breadcrumbsFor,
   categories,
@@ -71,6 +73,43 @@ const post = {
   publishedDate: "2025-02-27T04:00:00Z",
   backgroundImage: [],
 };
+
+test('reviewed content preserves historical URLs, publication dates and media while updating every visible field', () => {
+  const asset={nodeType:'embedded-asset-block',data:{target:{sys:{id:'original-photo'}}},content:[]};
+  const old={...post,slug:'punta-cana-seaweed-season',body:{raw:JSON.stringify({nodeType:'document',content:[asset]}),references:[{contentful_id:'original-photo'}]}};
+  const rewritten=applyEditorialUpdate(old);
+  assert.equal(rewritten.slug,old.slug);
+  assert.equal(rewritten.publishedDate,old.publishedDate);
+  assert.equal(rewritten.backgroundImage,old.backgroundImage);
+  assert.deepEqual(rewritten.body.references,old.body.references);
+  assert.ok(JSON.parse(rewritten.body.raw).content.some(n=>n.nodeType==='embedded-asset-block'));
+  assert.equal(JSON.parse(old.body.raw).content.length,1);
+  assert.equal(e.articleSchema(rewritten,breadcrumbsFor(rewritten))['@graph'][0].dateModified,'2026-09-18T00:00:00.000Z');
+  const Header=load('src/components/BlogComponents/ArticleHeader.js').default;
+  const Card=load('src/components/BlogComponents/RecommendationCard.js').default;
+  assert.match(renderToStaticMarkup(React.createElement(Header,{post:rewritten})),/Last verified/);
+  assert.ok(renderToStaticMarkup(React.createElement(Card,{blog:old})).includes(rewritten.title));
+});
+test('all four existing-page rewrites render one H1 and visible primary-source links', () => {
+  const Header=load('src/components/BlogComponents/ArticleHeader.js').default;
+  const Body=load('src/components/BlogComponents/BlogBody.js').default;
+  for(const slug of Object.keys(updates)) {
+    const updated=applyEditorialUpdate({...post,slug});
+    const html=renderToStaticMarkup(React.createElement(React.Fragment,null,React.createElement(Header,{post:updated}),React.createElement(Body,{title:updated.title,context:updated.body})));
+    assert.equal((html.match(/<h1\b/g)||[]).length,1);
+    assert.match(html,/Sources \/ Official Sources/);
+    assert.match(html,/href="https:\/\//);
+    assert.doesNotMatch(html,/href="(?:undefined|#)"/);
+  }
+  const eticket=applyEditorialUpdate({...post,slug:'dominicanrepubliceticket'});
+  assert.equal(linking.serviceLinks(eticket)[0].href,'/transfers/punta-cana/');
+});
+
+test('reviewed recommendations only resolve existing targets and exclude missing/self/duplicate routes', () => {
+  const current={...post,relatedSlugs:['missing',post.slug,'target','target']};
+  const target={...post,id:'target-id',slug:'target',title:'Relevant guide'};
+  assert.deepEqual(linking.relatedGuides([post,target],current),[target]);
+});
 
 test('topical links cross categories, rank destination first, and remain stable without duplicates', () => {
   const current = {...post, title:'Saona Island photography spots'};

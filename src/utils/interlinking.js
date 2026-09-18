@@ -35,6 +35,13 @@ function isCommercialOverlap(post) {
 }
 function relatedGuides(posts, current, limit = 6) {
   const own = topicIds(current), seen = new Set([routeKey(current)]);
+  if (Array.isArray(current.relatedSlugs)) {
+    return current.relatedSlugs.map(slug => posts.find(post => routeKey(post) === routeKey({slug})))
+      .filter(post => {
+        if (!post?.title || seen.has(routeKey(post))) return false;
+        seen.add(routeKey(post)); return true;
+      }).slice(0, limit);
+  }
   return posts.map(post => {
     const shared = topicIds(post).filter(id => own.includes(id));
     const score = shared.reduce((total, id) => total + (['saona','catalina','samana'].includes(id) ? 10 : 4), 0);

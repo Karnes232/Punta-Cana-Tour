@@ -1,6 +1,7 @@
 const path = require("path");
 const { blogPath } = require("./src/utils/editorial");
 const { relatedGuides } = require("./src/utils/interlinking");
+const { applyEditorialUpdate } = require("./src/utils/editorial-updates");
 require("dotenv").config();
 
 exports.createPages = async ({ graphql, actions }) => {
@@ -155,7 +156,8 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
   const blogPaths = new Set();
-  queryResults.data.allContentfulBlogPost.nodes.forEach((node) => {
+  const blogPosts = queryResults.data.allContentfulBlogPost.nodes.map(node => applyEditorialUpdate(node, false));
+  blogPosts.forEach((node) => {
     if (!node.slug?.trim()) throw new Error(`Blog ${node.id} is missing its slug`);
     const route = blogPath(node.slug);
     const key = new URL(route, "https://puntacanatourstore.com").pathname;
@@ -169,7 +171,7 @@ exports.createPages = async ({ graphql, actions }) => {
         blog: node,
         layout: queryResults.data.allContentfulLayout.edges[0].node,
         blogList: relatedGuides(
-          queryResults.data.allContentfulBlogPost.nodes,
+          blogPosts,
           node,
         ),
       },

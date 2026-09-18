@@ -28,7 +28,7 @@ export default function ArticleHeader({ post }) {
           ))}
         </ol>
       </nav>
-      <h1 className="font-semibold text-3xl md:text-4xl my-5">{post.title}</h1>
+      <h1 className="font-montserrat tracking-wider font-semibold text-secondary-color text-3xl md:text-4xl my-5">{post.title}</h1>
       {date && (
         <p>
           Published:{" "}
@@ -42,6 +42,10 @@ export default function ArticleHeader({ post }) {
           </time>
         </p>
       )}
+      {[['Updated', post.updatedDate], ['Last verified', post.verifiedDate]].map(([label, value]) => {
+        const verified = publicationDate(value);
+        return verified ? <p key={label} className="font-montserrat text-sm text-gray-700">{label}: <time dateTime={verified}>{new Intl.DateTimeFormat('en-US', {year:'numeric',month:'long',day:'numeric',timeZone:'UTC'}).format(new Date(verified))}</time></p> : null;
+      })}
     </header>
   );
 }

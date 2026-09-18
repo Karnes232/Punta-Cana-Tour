@@ -12,9 +12,10 @@ import {
 } from "../utils/editorial";
 import { breadcrumbsFor } from "../data/blog-categories";
 import EditorialLinks from "../components/BlogComponents/EditorialLinks";
+import { applyEditorialUpdate } from "../utils/editorial-updates";
 import { graphql } from "gatsby";
 const blog = ({ pageContext, data }) => {
-  const post = data.allContentfulBlogPost.nodes[0];
+  const post = applyEditorialUpdate(data.allContentfulBlogPost.nodes[0]);
   const recommendationList = (pageContext.blogList || []);
   return (
     <Layout
@@ -38,14 +39,14 @@ const blog = ({ pageContext, data }) => {
 };
 
 export const Head = ({ data }) => {
-  const post = data.allContentfulBlogPost.nodes[0];
+  const post = applyEditorialUpdate(data.allContentfulBlogPost.nodes[0], false);
   const canonical = canonicalUrl(blogPath(post.slug));
   return (
     <>
       <Seo
-        title={data?.allContentfulBlogPost?.nodes[0].title}
-        description={data?.allContentfulBlogPost?.nodes[0].description}
-        keywords={data?.allContentfulBlogPost?.nodes[0]?.tags?.join(", ")}
+        title={post.title}
+        description={post.description}
+        keywords={post.tags?.join(", ")}
         type="article"
         canonical={canonical}
         schemaMarkup={articleSchema(post, breadcrumbsFor(post))}

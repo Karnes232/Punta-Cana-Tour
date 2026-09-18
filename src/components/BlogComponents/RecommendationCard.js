@@ -2,7 +2,9 @@ import { Link } from "gatsby";
 import React from "react";
 import { blogPath } from "../../utils/editorial";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-const RecommendationCard = ({ blog }) => {
+import { applyEditorialUpdate } from "../../utils/editorial-updates";
+const RecommendationCard = ({ blog: original }) => {
+  const blog = applyEditorialUpdate(original, false);
   const image = getImage(blog.backgroundImage?.[0]?.gatsbyImage);
   return (
     <>

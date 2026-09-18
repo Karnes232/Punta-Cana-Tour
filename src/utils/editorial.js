@@ -104,6 +104,7 @@ function articleSchema(post, breadcrumbs) {
         description: post.description,
         ...(images.length ? { image: images } : {}),
         ...(date ? { datePublished: date } : {}),
+        ...(publicationDate(post.updatedDate) ? { dateModified: publicationDate(post.updatedDate) } : {}),
         publisher: {
           "@type": "Organization",
           name: "Punta Cana Tour Store",

@@ -1,25 +1,20 @@
 import React from "react";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import PhotoGrid from "../TourPageComponents/PhotoGrid";
 const HeroImage = ({ backgroundImages = [] }) => {
   const images = (backgroundImages || [])
     .map((item) => ({ item, image: getImage(item?.gatsbyImage) }))
     .filter(({ image }) => image);
   if (!images.length) return null;
   return (
-    <div className="max-w-6xl mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-        {images.map(({ item, image }, index) => (
-          <GatsbyImage
-            key={item.id || index}
-            image={image}
-            alt={item.title || ""}
-            loading={index === 0 ? "eager" : "lazy"}
-            className={`w-full max-h-[60vh] ${index === 0 ? "md:col-span-2" : ""}`}
-            objectFit="cover"
-          />
-        ))}
+    <>
+      <div className="md:hidden">
+        <GatsbyImage image={images[0].image} alt={images[0].item.title || ''} loading="eager" className="w-full h-[50vh]" objectFit="cover" />
       </div>
-    </div>
+      <div className="hidden md:flex max-w-6xl w-full mx-auto">
+        <PhotoGrid tourPhotos={images.map(({item})=>item)} stable />
+      </div>
+    </>
   );
 };
 export default HeroImage;
