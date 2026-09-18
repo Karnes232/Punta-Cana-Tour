@@ -2,6 +2,7 @@
   width: 72px !important;
 }
 .home-navigation .navLinks {
+  font-family: Montserrat, Arial, sans-serif;
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.035em;
@@ -318,6 +319,9 @@
   }
 }
 @media (max-width: 800px) {
+  .home-hero h1 {
+    font-size: clamp(2.1rem, 8.8vw, 2.7rem);
+  }
   .home-hero {
     grid-template-columns: 1fr;
   }

@@ -6,7 +6,7 @@ const Footer = ({ facebook, instagram, whatsApp, email }) => (
     <div className="max-w-6xl mx-6 md:mx-10 xl:mx-auto py-12">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 pb-10">
         <div>
-          <Link to="/" className="font-lato font-bold text-2xl">
+          <Link to="/" className="font-montserrat font-bold text-2xl">
             Punta Cana Tour Store
           </Link>
           <p className="text-sm leading-7 text-slate-300 mt-4 max-w-sm">
