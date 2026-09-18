@@ -14,6 +14,7 @@ const HeroImage = ({ backgroundImages = [] }) => {
       <div className="hidden md:flex max-w-6xl w-full mx-auto">
         <PhotoGrid tourPhotos={images.map(({item})=>item)} stable />
       </div>
+      {images.filter(({item})=>item.caption).map(({item})=><p key={item.id} className="max-w-6xl mx-5 xl:mx-auto mt-2 text-sm text-gray-700">{item.caption}</p>)}
     </>
   );
 };

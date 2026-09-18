@@ -104,7 +104,7 @@ export const query = graphql`
           }
           indexHero {
             url
-            gatsbyImage(width: 1920, formats: WEBP)
+            gatsbyImage(quality: 85, width: 1920, formats: WEBP)
           }
           heroText1
           heroText2
@@ -116,7 +116,7 @@ export const query = graphql`
         node {
           photoList {
             title
-            gatsbyImage(width: 1920, formats: WEBP)
+            gatsbyImage(quality: 85, width: 1920, formats: WEBP)
             url
           }
         }
@@ -126,11 +126,11 @@ export const query = graphql`
       edges {
         node {
           logo {
-            gatsbyImage(width: 150, formats: WEBP)
+            gatsbyImage(quality: 80, width: 150, formats: WEBP)
           }
           footerBackground {
             url
-            gatsbyImage(width: 1920, formats: WEBP)
+            gatsbyImage(quality: 85, width: 1920, formats: WEBP)
           }
           email
           facebook
@@ -147,7 +147,7 @@ export const query = graphql`
           price
           category
           mainImage {
-            gatsbyImage(width: 400, formats: WEBP)
+            gatsbyImage(quality: 80, width: 400, formats: WEBP)
             file {
               url
             }
@@ -193,21 +193,21 @@ export const query = graphql`
             step1Description
           }
           step1Image {
-            gatsbyImage(width: 150, formats: WEBP)
+            gatsbyImage(quality: 80, width: 150, formats: WEBP)
           }
           step2Title
           step2Description {
             step2Description
           }
           step2Image {
-            gatsbyImage(width: 150, formats: WEBP)
+            gatsbyImage(quality: 80, width: 150, formats: WEBP)
           }
           step3Title
           step3Description {
             step3Description
           }
           step3Image {
-            gatsbyImage(width: 150, formats: WEBP)
+            gatsbyImage(quality: 80, width: 150, formats: WEBP)
           }
         }
       }

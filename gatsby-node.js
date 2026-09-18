@@ -17,7 +17,7 @@ exports.createPages = async ({ graphql, actions }) => {
           category
           mainImage {
             url
-            gatsbyImage(width: 400, placeholder: DOMINANT_COLOR, formats: WEBP)
+            gatsbyImage(quality: 80, width: 400, placeholder: DOMINANT_COLOR, formats: WEBP)
           }
           description1 {
             description1
@@ -40,11 +40,11 @@ exports.createPages = async ({ graphql, actions }) => {
         edges {
           node {
             logo {
-              gatsbyImage(width: 150, formats: WEBP)
+              gatsbyImage(quality: 80, width: 150, formats: WEBP)
             }
             footerBackground {
               url
-              gatsbyImage(width: 1920, formats: WEBP)
+              gatsbyImage(quality: 85, width: 1920, formats: WEBP)
             }
             email
             facebook
@@ -62,7 +62,7 @@ exports.createPages = async ({ graphql, actions }) => {
           category
           tags
           backgroundImage {
-            gatsbyImage(width: 400, placeholder: DOMINANT_COLOR, formats: WEBP)
+            gatsbyImage(quality: 80, width: 400, placeholder: DOMINANT_COLOR, formats: WEBP)
             url
           }
         }

@@ -92,7 +92,8 @@ function articleSchema(post, breadcrumbs) {
   const date = publicationDate(post.publishedDate);
   const images = (post.backgroundImage || [])
     .map((image) => image.url)
-    .filter(Boolean);
+    .filter(Boolean)
+    .map(image => new URL(image, SITE_URL).href);
   return {
     "@context": "https://schema.org",
     "@graph": [

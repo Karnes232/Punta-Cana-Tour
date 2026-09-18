@@ -198,13 +198,13 @@ export const query = graphql`
         hotelType
         generalLocation
         mainImage {
-          gatsbyImage(width: 2000, formats: WEBP, placeholder: DOMINANT_COLOR)
+          gatsbyImage(quality: 85, width: 2000, formats: WEBP, placeholder: DOMINANT_COLOR)
           title
           url
         }
         images {
           title
-          gatsbyImage(width: 2000, placeholder: DOMINANT_COLOR, formats: WEBP)
+          gatsbyImage(quality: 85, width: 2000, placeholder: DOMINANT_COLOR, formats: WEBP)
           url
           width
           height
@@ -221,7 +221,7 @@ export const query = graphql`
           roomName
           dormRoom
           images {
-            gatsbyImage(width: 400, placeholder: DOMINANT_COLOR, formats: WEBP)
+            gatsbyImage(quality: 80, width: 400, placeholder: DOMINANT_COLOR, formats: WEBP)
             title
           }
           description

@@ -29,7 +29,7 @@ const blog = ({ pageContext, data }) => {
       color="black"
     >
       <HeroImage
-        backgroundImages={data?.allContentfulBlogPost?.nodes[0].backgroundImage}
+        backgroundImages={post.backgroundImage}
       />
       <ArticleHeader post={post} />
       <BlogBody context={post.body} title={post.title} relatedGuides={recommendationList.slice(0, 2)} />
@@ -71,7 +71,7 @@ export const query = graphql`
         category
         backgroundImage {
           title
-          gatsbyImage(width: 2000, placeholder: DOMINANT_COLOR, formats: WEBP)
+          gatsbyImage(width: 2400, quality: 85, placeholder: DOMINANT_COLOR, formats: WEBP)
           url
         }
         reference {
@@ -104,7 +104,7 @@ export const query = graphql`
               file {
                 url
               }
-              gatsbyImage(
+              gatsbyImage(quality: 85,
                 placeholder: DOMINANT_COLOR
                 formats: WEBP
                 width: 2000

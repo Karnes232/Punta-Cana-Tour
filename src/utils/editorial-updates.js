@@ -1,4 +1,5 @@
 const updates = require('../data/editorial-updates');
+const { withEditorialMedia } = require('./editorial-media');
 function text(value) { return {nodeType:'text',value,marks:[],data:{}}; }
 function toDocument(blocks) {
   return {nodeType:'document',data:{},content:blocks.map(block=>({
@@ -8,6 +9,7 @@ function toDocument(blocks) {
   }))};
 }
 function applyEditorialUpdate(post, includeBody = true) {
+  post = withEditorialMedia(post);
   const key = String(post.slug || '').replace(/^\/+|\/+$/g,'');
   const update = updates[key];
   if (!update) return post;

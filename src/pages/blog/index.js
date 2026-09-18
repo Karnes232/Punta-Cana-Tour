@@ -98,11 +98,11 @@ export const query = graphql`
       edges {
         node {
           logo {
-            gatsbyImage(width: 150, formats: WEBP)
+            gatsbyImage(quality: 80, width: 150, formats: WEBP)
           }
           footerBackground {
             url
-            gatsbyImage(width: 1920, formats: WEBP)
+            gatsbyImage(quality: 85, width: 1920, formats: WEBP)
           }
           email
           facebook
@@ -118,37 +118,37 @@ export const query = graphql`
           mainDescription
         }
         mainImage {
-          gatsbyImage(formats: WEBP, placeholder: DOMINANT_COLOR, width: 2000)
+          gatsbyImage(quality: 85, formats: WEBP, placeholder: DOMINANT_COLOR, width: 2000)
         }
         tourBlogImage {
-          gatsbyImage(formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
+          gatsbyImage(quality: 80, formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
         }
         transferBlogImage {
-          gatsbyImage(formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
+          gatsbyImage(quality: 80, formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
         }
         hotelBlogImage {
-          gatsbyImage(formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
+          gatsbyImage(quality: 80, formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
         }
         carRentalBlogImage {
-          gatsbyImage(formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
+          gatsbyImage(quality: 80, formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
         }
         flightsBlogImage {
-          gatsbyImage(formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
+          gatsbyImage(quality: 80, formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
         }
         propertyBlogImage {
-          gatsbyImage(formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
+          gatsbyImage(quality: 80, formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
         }
         attractionsBlogImage {
-          gatsbyImage(formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
+          gatsbyImage(quality: 80, formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
         }
         resturantBlogImage {
-          gatsbyImage(formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
+          gatsbyImage(quality: 80, formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
         }
         famousDominicanPlacesImage {
-          gatsbyImage(formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
+          gatsbyImage(quality: 80, formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
         }
         localBusinessImage {
-          gatsbyImage(formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
+          gatsbyImage(quality: 80, formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
         }
       }
     }

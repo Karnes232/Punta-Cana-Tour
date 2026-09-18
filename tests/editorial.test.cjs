@@ -90,7 +90,7 @@ test('reviewed content preserves historical URLs, publication dates and media wh
   assert.match(renderToStaticMarkup(React.createElement(Header,{post:rewritten})),/Last verified/);
   assert.ok(renderToStaticMarkup(React.createElement(Card,{blog:old})).includes(rewritten.title));
 });
-test('all four existing-page rewrites render one H1 and visible primary-source links', () => {
+test('existing-page rewrites render one H1 and visible primary-source links', () => {
   const Header=load('src/components/BlogComponents/ArticleHeader.js').default;
   const Body=load('src/components/BlogComponents/BlogBody.js').default;
   for(const slug of Object.keys(updates)) {
@@ -103,6 +103,23 @@ test('all four existing-page rewrites render one H1 and visible primary-source l
   }
   const eticket=applyEditorialUpdate({...post,slug:'dominicanrepubliceticket'});
   assert.equal(linking.serviceLinks(eticket)[0].href,'/transfers/punta-cana/');
+});
+
+test('editorial photographs retain CMS media, resolve on disk, and have responsive dimensions', () => {
+  const assets=require('../src/data/editorial-media.json');
+  const {withEditorialMedia}=require('../src/utils/editorial-media');
+  const existing={url:'https://example.com/original.jpg'};
+  const saona=withEditorialMedia({slug:'Saona-Island-travel-guide',backgroundImage:[existing]});
+  assert.equal(saona.backgroundImage.at(-1),existing);
+  assert.equal(withEditorialMedia(saona).backgroundImage.length,saona.backgroundImage.length);
+  assert.equal(withEditorialMedia({slug:'punta-cana-seaweed-season',backgroundImage:[existing]}).backgroundImage[0],existing);
+  for(const asset of assets){
+    assert.ok(fs.existsSync(path.resolve(__dirname,'../static'+asset.url)));
+    assert.ok(asset.gatsbyImage.width>0&&asset.gatsbyImage.height>0);
+    assert.match(asset.gatsbyImage.images.fallback.srcSet,/480w/);
+    assert.ok(asset.title);
+  }
+  assert.match(assets.find(a=>a.group==='party').caption,/Illustrative/);
 });
 
 test('reviewed recommendations only resolve existing targets and exclude missing/self/duplicate routes', () => {

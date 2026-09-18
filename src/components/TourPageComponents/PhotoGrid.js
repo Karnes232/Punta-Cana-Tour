@@ -2,12 +2,17 @@ import React from "react";
 import PhotoAlbum from "react-photo-album";
 const PhotoGrid = ({ tourPhotos, stable = false }) => {
   let photoList = [];
-  tourPhotos.forEach((image, key) => {
+  (tourPhotos || []).filter(image => image?.gatsbyImage?.width && image?.gatsbyImage?.height).forEach((image) => {
+    const fallback = image.gatsbyImage.images?.fallback;
+    const ratio = image.gatsbyImage.height / image.gatsbyImage.width;
+    const srcSet = [...(fallback?.srcSet || '').matchAll(/(.+?)\s+(\d+)w(?:,\s*|$)/g)]
+      .map(([,src,width])=>({src:src.trim(),width:Number(width),height:Math.round(Number(width)*ratio)}));
     const photoObject = {
-      src: image.url,
+      src: fallback?.src || image.url,
       width: image.gatsbyImage.width,
       height: image.gatsbyImage.height,
       alt: image.title,
+      ...(srcSet.length ? {srcSet} : {}),
     };
     photoList.push(photoObject);
   });
