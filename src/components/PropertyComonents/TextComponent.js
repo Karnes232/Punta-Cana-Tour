@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
-const TextComponent = ({ title, paragraph, className, pClassName }) => {
+const TextComponent = ({ title, paragraph, className, pClassName, heading = "h2" }) => {
+  const Heading = /^h[2-6]$/.test(heading) ? heading : "h2";
   return (
     <div className="relative">
       <motion.div
@@ -14,11 +15,11 @@ const TextComponent = ({ title, paragraph, className, pClassName }) => {
         className="flex flex-col justify-center max-w-6xl xl:mx-auto"
       >
         {title ? (
-          <h1
+          <Heading
             className={`font-lato tracking-wider font-semibold  ${className}`}
           >
             {title}
-          </h1>
+          </Heading>
         ) : (
           <></>
         )}

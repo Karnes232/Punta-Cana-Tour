@@ -1,3 +1,5 @@
+import { absoluteImage } from "../utils/service-schema";
+import { canonicalUrl } from "../utils/editorial";
 import React, { useState } from "react";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
@@ -41,8 +43,8 @@ const Hotel = ({ pageContext, data }) => {
     >
       <div className="lg:hidden">
         <HeroComponent
-          imageUrl={data?.allContentfulHotelsOrHostel?.nodes[0]?.url}
-          gImage={data?.allContentfulHotelsOrHostel?.nodes[0]?.gatsbyImage}
+          imageUrl={data?.allContentfulHotelsOrHostel?.nodes[0]?.mainImage?.url}
+          gImage={data?.allContentfulHotelsOrHostel?.nodes[0]?.mainImage?.gatsbyImage}
           heroText=""
           heroText2=""
           button={false}
@@ -164,6 +166,8 @@ const Hotel = ({ pageContext, data }) => {
 export default Hotel;
 
 export const Head = ({ data }) => {
+  const entry = data.allContentfulHotelsOrHostel.nodes[0];
+  const canonical = canonicalUrl('/hotels/' + entry.urlSlug?.trim());
   return (
     <>
       <Seo
@@ -172,18 +176,17 @@ export const Head = ({ data }) => {
         keywords={data?.allContentfulHotelsOrHostel?.nodes[0].seoKeywords?.join(
           ", ",
         )}
+        canonical={canonical}
+        image={absoluteImage(entry.mainImage?.url)}
         schemaMarkup={{
-          "@context": "https://schema.org/",
-          "@type": "Product",
-          name: data?.allContentfulHotelsOrHostel?.nodes[0].title,
-          image: `https://www.puntacanatourstore.com${data?.allContentfulHotelsOrHostel?.nodes[0].mainImage.gatsbyImage.images.fallback.src}`,
-          description:
-            data?.allContentfulHotelsOrHostel?.nodes[0].seoDescription,
+          "@context": "https://schema.org", "@type": "LodgingBusiness",
+          name: entry.title, url: canonical, description: entry.seoDescription,
+          image: absoluteImage(entry.mainImage?.url),
         }}
       />
       <link
         rel="canonical"
-        href={`https://puntacanatourstore.com/hotels/${data?.allContentfulHotelsOrHostel?.nodes[0].urlSlug?.trim()}/`}
+        href={canonical}
       />
     </>
   );

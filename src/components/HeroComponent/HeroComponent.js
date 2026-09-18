@@ -3,7 +3,7 @@ import useWindowWidth from "../../customHooks/useWindowWidth";
 import { Link } from "gatsby";
 const HeroComponent = ({ imageUrl, gImage, heroText, heroText2, button }) => {
   const windowWidth = useWindowWidth();
-  let image = gImage?.images?.fallback?.srcSet.split(",");
+  let image = gImage?.images?.fallback?.srcSet?.split(",");
   const imageSrc = [];
 
   image?.forEach((element) => {
@@ -16,14 +16,14 @@ const HeroComponent = ({ imageUrl, gImage, heroText, heroText2, button }) => {
     HeroStyles = {
       backgroundImage:
         "linear-gradient(45deg, rgba(245, 246, 252, 0.2), rgba(0, 0, 0, 0.6)), url(" +
-        imageSrc[1]?.imageSrc +
+        (imageSrc[1]?.imageSrc || gImage?.images?.fallback?.src || imageUrl) +
         ")",
     };
   } else {
     HeroStyles = {
       backgroundImage:
         "linear-gradient(45deg, rgba(245, 246, 252, 0.52), rgba(0, 0, 0, 0.53)), url(" +
-        imageSrc[2]?.imageSrc +
+        (imageSrc[2]?.imageSrc || gImage?.images?.fallback?.src || imageUrl) +
         ")",
     };
   }
@@ -34,12 +34,12 @@ const HeroComponent = ({ imageUrl, gImage, heroText, heroText2, button }) => {
           className={`h-full bg-center bg-no-repeat bg-cover`}
           style={HeroStyles}
         >
-          <h1
+          {heroText && <h1
             translate="no"
             className="relative inline-block text-white z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-yellowtail tracking-widest text-4xl md:text-6xl lg:text-7xl xl:text-8xl text-center"
           >
             {heroText}
-          </h1>
+          </h1>}
           <br />
           {heroText2 && (
             <h2

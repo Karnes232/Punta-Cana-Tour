@@ -64,6 +64,54 @@ const block = (type, value) => ({
   data: {},
   content: [{ nodeType: "text", value, marks: [], data: {} }],
 });
+
+test('travel planning renders crawlable service and arrival links in server HTML', () => {
+  const { services } = require('../src/data/travel-services');
+  const Planning = load('src/components/TravelPlanning.js');
+  const html = renderToStaticMarkup(React.createElement(Planning.default));
+  assert.equal(new Set(Object.values(services).map(s => s.title)).size, 6);
+  for (const [key, item] of Object.entries(services)) {
+    assert.ok(html.includes(`href="${item.path}"`));
+    const category = renderToStaticMarkup(React.createElement(Planning.ServicePlanning, { service: key }));
+    assert.ok(category.includes(item.question));
+    assert.ok(category.includes(item.answer));
+    assert.ok(category.includes(`href="${item.guide}"`));
+    assert.ok(fs.existsSync(path.resolve(__dirname, '../src/pages', item.path.slice(1), 'index.js')));
+  }
+  assert.ok(html.includes('href="/blog/dominicanrepubliceticket/"'));
+  assert.ok(html.includes('href="/blog/punta-cana-seaweed-season/"'));
+});
+
+test('service detail titles are H1 and lodging body headings remain subordinate', () => {
+  for (const [file, props] of [
+    ['TourPageComponents/TourInfo', { name: 'Excursion title', category: ['Boat'] }],
+    ['HotelComponents/HotelInfo', { title: 'Hotel title' }],
+    ['PropertyComonents/PropertyInfo', { title: 'Property title', price: 100, sqFeet: 1000 }],
+  ]) {
+    const Component = load('src/components/' + file + '.js').default;
+    const html = renderToStaticMarkup(React.createElement(Component, props));
+    assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  }
+  const Text = load('src/components/PropertyComonents/TextComponent.js').default;
+  const html = renderToStaticMarkup(React.createElement(Text, { title: 'Amenities', heading: 'h3' }));
+  assert.ok(html.includes('<h3'));
+  assert.ok(!html.includes('<h1'));
+});
+
+test('tour offers are objects with valid prices and canonical images, never invented availability', () => {
+  const { tourSchema, absoluteImage, homeSchema } = require('../src/utils/service-schema');
+  const fixture = { name: 'Example excursion', url: ' example ', price: '75', description1: { description1: 'An excursion' }, mainImage: { url: '//images.ctfassets.net/example.jpg' } };
+  const schema = JSON.parse(JSON.stringify(tourSchema(fixture)));
+  assert.deepEqual(schema.offers, { '@type': 'Offer', url: 'https://puntacanatourstore.com/tours/example/', priceCurrency: 'USD', price: 75 });
+  assert.equal(schema.image, 'https://images.ctfassets.net/example.jpg');
+  for (const price of [null, '', 'request quote', -1, 0]) assert.equal(tourSchema({ ...fixture, price }).offers, undefined);
+  assert.equal(absoluteImage('/image.webp'), 'https://puntacanatourstore.com/image.webp');
+  assert.equal(absoluteImage('javascript:alert(1)'), undefined);
+  const graph = homeSchema({ email: 'contact@example.com', logo: { url: '//example.com/logo.png' }, facebook: 'https://facebook.com/example' })['@graph'];
+  assert.equal(graph[0].email, 'contact@example.com');
+  assert.equal(graph[0].telephone, undefined);
+  assert.equal(graph[1].publisher['@id'], graph[0]['@id']);
+});
 const post = {
   id: "one",
   slug: "Saona%20Island",

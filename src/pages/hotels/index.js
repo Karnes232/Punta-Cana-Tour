@@ -1,3 +1,5 @@
+import { services } from "../../data/travel-services";
+import { ServicePlanning } from "../../components/TravelPlanning";
 import React, { useState } from "react";
 import Layout from "../../components/layout";
 import Seo from "../../components/seo";
@@ -10,7 +12,7 @@ import RichTextComponent from "../../components/TextComponent/RichTextComponent"
 const Index = ({ data }) => {
   const backendHotelList = data?.allContentfulHotelsOrHostel?.edges;
   const [hotelList, setHotelList] = useState(
-    data.allContentfulHotelsOrHostel.edges.sort(() => Math.random() - 0.5),
+    [...data.allContentfulHotelsOrHostel.edges],
   );
   const [selectedCategory, setSelectedCategory] = useState("All Hotels");
   const categories = [
@@ -59,10 +61,11 @@ const Index = ({ data }) => {
         button={false}
       />{" "}
       <TextComponent
-        title={data.allContentfulPageContent.edges[0].node.title}
+        title={services.hotels.title}
         heading="h1"
         className="my-5 2xl:my-2 text-3xl md:text-4xl"
       />
+      <ServicePlanning service="hotels" />
       <RichTextComponent
         context={data.allContentfulPageContent.edges[0].node.body}
       />
@@ -166,15 +169,15 @@ export const query = graphql`
 `;
 
 export const Head = ({ data }) => {
-  const { title, description, keywords } = data.allContentfulSeo.nodes[0];
+
   return (
     <>
       <Seo
-        title={title}
-        description={description.description}
-        keywords={keywords.join(", ")}
+        title={services.hotels.title}
+        description={services.hotels.description}
+        canonical={"https://puntacanatourstore.com" + services.hotels.path}
       />
-      <link rel="canonical" href="https://puntacanatourstore.com/properties/" />
+      <link rel="canonical" href="https://puntacanatourstore.com/hotels/" />
     </>
   );
 };

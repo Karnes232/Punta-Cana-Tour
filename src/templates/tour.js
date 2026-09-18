@@ -1,3 +1,5 @@
+import { tourSchema, absoluteImage } from "../utils/service-schema";
+import { canonicalUrl } from "../utils/editorial";
 import React, { useEffect, useState } from "react";
 import Layout from "../components/layout";
 import HeroComponent from "../components/HeroComponent/HeroComponent";
@@ -206,31 +208,21 @@ const Tour = ({ pageContext, data }) => {
 export default Tour;
 
 export const Head = ({ data }) => {
-  const urlHref = `https://puntacanatourstore.com/tours/${data.allContentfulTours.nodes[0].url?.trim()}`;
+  const tour = data.allContentfulTours.nodes[0];
+  const urlHref = canonicalUrl(`/tours/${tour.url?.trim()}`);
   return (
     <>
       <Seo
         title={data.allContentfulTours.nodes[0].name}
         description={data.allContentfulTours.nodes[0].description1.description1}
         keywords={data.allContentfulTours.nodes[0].keywords?.join(", ")}
-        schemaMarkup={{
-          "@context": "https://schema.org/",
-          "@type": "Product",
-          name: data.allContentfulTours.nodes[0].name,
-          image: `https://www.puntacanatourstore.com${data.allContentfulTours.nodes[0].mainImage.gatsbyImage.images.fallback.src}`,
-          description:
-            data.allContentfulTours.nodes[0].description1.description1,
-          offers: `{
-            "@type": "Offer",
-            "url": "${urlHref}",
-            "priceCurrency": "USD",
-            "price": "${data.allContentfulTours.nodes[0].price.toString()}",
-          }`,
-        }}
+        canonical={urlHref}
+        image={absoluteImage(tour.mainImage?.url)}
+        schemaMarkup={tourSchema(tour)}
       />
       <link
         rel="canonical"
-        href={`https://puntacanatourstore.com/tours/${data.allContentfulTours.nodes[0].url?.trim()}/`}
+        href={urlHref}
       />
     </>
   );
