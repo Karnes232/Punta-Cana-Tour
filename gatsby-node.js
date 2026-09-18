@@ -156,11 +156,9 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
   const blogPaths = new Set();
-  // Preserve the entry serving this URL in production while the CMS contains
-  // two posts with the same slug. Unexpected collisions still fail below.
-  const publishedEntries = {
-    "/blog/iberostar-grand-bavaro/": "51f31cff-250d-50fe-b2c4-a1204f01ee0f",
-  };
+  // Preserve entries verified against production page-data on 2026-09-18
+  // for known duplicate CMS slugs. Unexpected collisions still fail below.
+  const publishedEntries = require("./src/data/published-blog-entries.json");
   const sourcePosts = queryResults.data.allContentfulBlogPost.nodes;
   const blogPosts = sourcePosts.filter(node => {
     const preferred = publishedEntries[blogPath(node.slug)];
