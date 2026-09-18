@@ -1,55 +1,33 @@
 import React from "react";
 import { graphql } from "gatsby";
 import Layout from "../../components/layout";
-import HeroComponent from "../../components/HeroComponent/HeroComponent";
-import ContactForm from "../../components/ContactFormComponent/ContactForm";
+import TripPlanner from "../../components/ContactFormComponent/TripPlanner";
 import Seo from "../../components/seo";
-const index = ({ data }) => {
+import "../../components/home-experience.css";
+
+export default function ContactPage({ data }) {
+  const layout = data.allContentfulLayout.edges[0].node;
   return (
     <Layout
-      logo={data.allContentfulLayout.edges[0].node.logo.gatsbyImage}
-      footerBackground={
-        data.allContentfulLayout.edges[0].node.footerBackground.url
-      }
-      facebook={data.allContentfulLayout.edges[0].node.facebook}
-      instagram={data.allContentfulLayout.edges[0].node.instagram}
-      email={data.allContentfulLayout.edges[0].node.email}
-      whatsApp={data.allContentfulLayout.edges[0].node.whatsApp}
-      gImage={
-        data.allContentfulLayout.edges[0].node.footerBackground.gatsbyImage
-      }
+      logo={layout.logo.gatsbyImage}
+      facebook={layout.facebook}
+      instagram={layout.instagram}
+      email={layout.email}
+      whatsApp={layout.whatsApp}
       color="black"
+      compactHeader
     >
-      <div className="xl:hidden">
-        <HeroComponent
-          imageUrl={
-            data.allContentfulAboutPageContent.edges[0].node.aboutHero.file.url
-          }
-          gImage={
-            data.allContentfulAboutPageContent.edges[0].node.aboutHero
-              .gatsbyImage
-          }
-          heroText=""
-          heroText2=""
-          button={false}
-        />
-      </div>
-      <ContactForm formName="contact" url="/contact/thankyou/?name=" />
+      <TripPlanner email={layout.email} whatsApp={layout.whatsApp} />
     </Layout>
   );
-};
-
+}
 export const query = graphql`
-  query MyQuery {
+  query ContactPlannerQuery {
     allContentfulLayout {
       edges {
         node {
           logo {
             gatsbyImage(quality: 80, width: 150, formats: WEBP)
-          }
-          footerBackground {
-            url
-            gatsbyImage(quality: 85, width: 1920, formats: WEBP)
           }
           email
           facebook
@@ -58,42 +36,15 @@ export const query = graphql`
         }
       }
     }
-    allContentfulAboutPageContent {
-      edges {
-        node {
-          aboutHero {
-            gatsbyImage(quality: 85, width: 1920, formats: WEBP)
-            file {
-              url
-            }
-          }
-        }
-      }
-    }
-    allContentfulSeo(filter: { page: { eq: "Contact Page" } }) {
-      nodes {
-        title
-        keywords
-        description {
-          description
-        }
-      }
-    }
   }
 `;
-
-export const Head = ({ data }) => {
-  const { title, description, keywords } = data.allContentfulSeo.nodes[0];
-  return (
-    <>
-      <Seo
-        title={title}
-        description={description.description}
-        keywords={keywords.join(", ")}
-      />
-      <link rel="canonical" href="https://puntacanatourstore.com/contact/" />
-    </>
-  );
-};
-
-export default index;
+export const Head = () => (
+  <>
+    <Seo
+      title="Contact & Plan Your Punta Cana Trip"
+      description="Tell us about your Punta Cana plans. Enquire about tours, airport transfers, hotels, hostels, car rentals and helicopter travel with our trip planning form."
+      canonical="https://puntacanatourstore.com/contact/"
+    />
+    <link rel="canonical" href="https://puntacanatourstore.com/contact/" />
+  </>
+);
