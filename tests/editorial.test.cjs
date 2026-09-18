@@ -83,6 +83,39 @@ test('travel planning renders crawlable service and arrival links in server HTML
   assert.ok(html.includes('href="/blog/punta-cana-seaweed-season/"'));
 });
 
+test('contact planner registers every service field for Netlify and preserves existing contact names', () => {
+  const Planner = load('src/components/ContactFormComponent/TripPlanner.js').default;
+  const { parse } = require('node-html-parser');
+  const { services, groups } = require('../src/data/contact-planner');
+  const dom = parse(renderToStaticMarkup(React.createElement(Planner, { email: 'hello@example.com' })));
+  const form = dom.querySelector('form');
+  assert.equal(form.getAttribute('name'), 'contact');
+  assert.equal(form.getAttribute('data-netlify'), 'true');
+  assert.equal(form.getAttribute('action'), '/contact/thankyou/');
+  for (const name of ['name', 'email', 'telphone', 'additional', 'form-name', 'bot-field']) assert.ok(form.querySelector(`[name="${name}"]`));
+  assert.equal(form.querySelectorAll('[name="service"]').length, services.length);
+  for (const group of groups) for (const [name] of group.fields) assert.ok(form.querySelector(`[name="${name}"]`), name);
+  for (const group of form.querySelectorAll('.contact-specific')) {
+    assert.ok(group.hasAttribute('hidden'));
+    assert.ok(group.hasAttribute('disabled'));
+  }
+  assert.equal(dom.querySelectorAll('h1').length, 1);
+});
+
+test('contact transport URL-encodes details and surfaces HTTP and network failures', async () => {
+  const { sendContactRequest } = require('../src/utils/contact-request');
+  const values = new FormData();
+  values.set('form-name', 'contact'); values.set('name', 'A & B'); values.set('service', 'tours');
+  let captured;
+  await sendContactRequest(values, async (url, options) => { captured = { url, ...options }; return { ok: true }; });
+  assert.equal(captured.url, '/');
+  assert.equal(captured.method, 'POST');
+  assert.equal(new URLSearchParams(captured.body).get('name'), 'A & B');
+  assert.equal(new URLSearchParams(captured.body).get('form-name'), 'contact');
+  await assert.rejects(sendContactRequest(values, async () => ({ ok: false })), /Unable to send/);
+  await assert.rejects(sendContactRequest(values, async () => { throw new Error('offline'); }), /offline/);
+});
+
 test('redesigned English home renders one title, working tour routes and meaningful guide links without decorative icons', () => {
   const Home = load('src/components/HomeExperience.js').default;
   const tours = [{ node: { url: ' saona ', name: 'Saona Island', price: 89, description1: { description1: 'Island itinerary' } } }];
