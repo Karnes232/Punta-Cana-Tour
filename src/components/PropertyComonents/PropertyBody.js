@@ -27,36 +27,42 @@ const PropertyBody = ({ context }) => {
     renderNode: {
       [BLOCKS.HEADING_1]: (node, children) => (
         <TextComponent
+          heading="h2"
           title={children}
           className="my-5 2xl:mb-2 2xl:mt-10 text-3xl md:text-4xl text-center"
         />
       ),
       [BLOCKS.HEADING_2]: (node, children) => (
         <TextComponent
+          heading="h2"
           title={children}
           className="my-5 2xl:mb-2 2xl:mt-10 text-2xl md:text-3xl"
         />
       ),
       [BLOCKS.HEADING_3]: (node, children) => (
         <TextComponent
+          heading="h3"
           title={children}
           className="my-5 2xl:mb-2 2xl:mt-10 text-2xl md:text-3xl"
         />
       ),
       [BLOCKS.HEADING_4]: (node, children) => (
         <TextComponent
+          heading="h4"
           title={children}
           className="my-5 2xl:mb-2 2xl:mt-10 text-xl md:text-2xl"
         />
       ),
       [BLOCKS.HEADING_5]: (node, children) => (
         <TextComponent
+          heading="h5"
           title={children}
           className="my-5 2xl:mb-2 2xl:mt-10 text-xl md:text-2xl"
         />
       ),
       [BLOCKS.HEADING_6]: (node, children) => (
         <TextComponent
+          heading="h6"
           title={children}
           className="my-5 2xl:mb-2 2xl:mt-10 text-lg md:text-xl"
         />

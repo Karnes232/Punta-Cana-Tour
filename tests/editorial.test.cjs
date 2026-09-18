@@ -82,6 +82,22 @@ test('travel planning renders crawlable service and arrival links in server HTML
   assert.ok(html.includes('href="/blog/punta-cana-seaweed-season/"'));
 });
 
+test('service detail titles are H1 and lodging body headings remain subordinate', () => {
+  for (const [file, props] of [
+    ['TourPageComponents/TourInfo', { name: 'Excursion title', category: ['Boat'] }],
+    ['HotelComponents/HotelInfo', { title: 'Hotel title' }],
+    ['PropertyComonents/PropertyInfo', { title: 'Property title', price: 100 }],
+  ]) {
+    const Component = load('src/components/' + file + '.js').default;
+    const html = renderToStaticMarkup(React.createElement(Component, props));
+    assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  }
+  const Text = load('src/components/PropertyComonents/TextComponent.js').default;
+  const html = renderToStaticMarkup(React.createElement(Text, { title: 'Amenities', heading: 'h3' }));
+  assert.ok(html.includes('<h3'));
+  assert.ok(!html.includes('<h1'));
+});
+
 test('tour offers are objects with valid prices and canonical images, never invented availability', () => {
   const { tourSchema, absoluteImage, homeSchema } = require('../src/utils/service-schema');
   const fixture = { name: 'Example excursion', url: ' example ', price: '75', description1: { description1: 'An excursion' }, mainImage: { url: '//images.ctfassets.net/example.jpg' } };

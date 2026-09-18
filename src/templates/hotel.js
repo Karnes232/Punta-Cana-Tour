@@ -43,8 +43,8 @@ const Hotel = ({ pageContext, data }) => {
     >
       <div className="lg:hidden">
         <HeroComponent
-          imageUrl={data?.allContentfulHotelsOrHostel?.nodes[0]?.url}
-          gImage={data?.allContentfulHotelsOrHostel?.nodes[0]?.gatsbyImage}
+          imageUrl={data?.allContentfulHotelsOrHostel?.nodes[0]?.mainImage?.url}
+          gImage={data?.allContentfulHotelsOrHostel?.nodes[0]?.mainImage?.gatsbyImage}
           heroText=""
           heroText2=""
           button={false}

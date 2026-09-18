@@ -24,9 +24,9 @@ const PropertyInfo = ({
   });
   return (
     <div className="xl:w-[72rem]">
-      <h4 className="font-light text-3xl md:text-4xl tracking-wide mb-1">
+      <h1 className="font-light text-3xl md:text-4xl tracking-wide mb-1">
         {title}
-      </h4>
+      </h1>
       <div className="flex flex-col">
         <p className="font-extralight my-2 text-base md:text-lg tracking-wide flex items-end flex-wrap">
           <span className="flex justify-center items-center h-7 min-w-fit bg-gray-200 rounded-full px-3 py-1 text-xs md:text-sm font-light text-gray-700 mr-2">

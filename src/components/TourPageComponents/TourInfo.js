@@ -3,9 +3,9 @@ import React from "react";
 const TourInfo = ({ name, category }) => {
   return (
     <>
-      <h4 className="font-light text-3xl md:text-4xl tracking-wide mb-1">
+      <h1 className="font-light text-3xl md:text-4xl tracking-wide mb-1">
         {name}
-      </h4>
+      </h1>
       <div className="flex flex-col md:flex-row md:justify-between">
         <p className="font-extralight my-2 text-base md:text-lg tracking-wide flex items-end flex-wrap">
           {category.map((category, index) => (
