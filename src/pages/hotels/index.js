@@ -102,11 +102,11 @@ export const query = graphql`
       edges {
         node {
           logo {
-            gatsbyImage(width: 150, formats: WEBP)
+            gatsbyImage(quality: 80, width: 150, formats: WEBP)
           }
           footerBackground {
             url
-            gatsbyImage(width: 1920, formats: WEBP)
+            gatsbyImage(quality: 85, width: 1920, formats: WEBP)
           }
           email
           facebook
@@ -123,13 +123,13 @@ export const query = graphql`
           hotelType
           generalLocation
           mainImage {
-            gatsbyImage(width: 2000, formats: WEBP, placeholder: DOMINANT_COLOR)
+            gatsbyImage(quality: 85, width: 2000, formats: WEBP, placeholder: DOMINANT_COLOR)
             title
             url
           }
           images {
             title
-            gatsbyImage(width: 400, formats: WEBP, placeholder: DOMINANT_COLOR)
+            gatsbyImage(quality: 80, width: 400, formats: WEBP, placeholder: DOMINANT_COLOR)
           }
           hotel_room {
             price
@@ -145,7 +145,7 @@ export const query = graphql`
             raw
           }
           mainImage {
-            gatsbyImage(width: 1920, formats: WEBP, placeholder: DOMINANT_COLOR)
+            gatsbyImage(quality: 85, width: 1920, formats: WEBP, placeholder: DOMINANT_COLOR)
             file {
               url
             }

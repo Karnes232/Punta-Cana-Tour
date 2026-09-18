@@ -1,4 +1,7 @@
 const path = require("path");
+const { blogPath } = require("./src/utils/editorial");
+const { relatedGuides } = require("./src/utils/interlinking");
+const { applyEditorialUpdate } = require("./src/utils/editorial-updates");
 require("dotenv").config();
 
 exports.createPages = async ({ graphql, actions }) => {
@@ -14,7 +17,7 @@ exports.createPages = async ({ graphql, actions }) => {
           category
           mainImage {
             url
-            gatsbyImage(width: 400, placeholder: DOMINANT_COLOR, formats: WEBP)
+            gatsbyImage(quality: 80, width: 400, placeholder: DOMINANT_COLOR, formats: WEBP)
           }
           description1 {
             description1
@@ -37,11 +40,11 @@ exports.createPages = async ({ graphql, actions }) => {
         edges {
           node {
             logo {
-              gatsbyImage(width: 150, formats: WEBP)
+              gatsbyImage(quality: 80, width: 150, formats: WEBP)
             }
             footerBackground {
               url
-              gatsbyImage(width: 1920, formats: WEBP)
+              gatsbyImage(quality: 85, width: 1920, formats: WEBP)
             }
             email
             facebook
@@ -57,8 +60,9 @@ exports.createPages = async ({ graphql, actions }) => {
           title
           description
           category
+          tags
           backgroundImage {
-            gatsbyImage(width: 400, placeholder: DOMINANT_COLOR, formats: WEBP)
+            gatsbyImage(quality: 80, width: 400, placeholder: DOMINANT_COLOR, formats: WEBP)
             url
           }
         }
@@ -67,6 +71,13 @@ exports.createPages = async ({ graphql, actions }) => {
   `);
 
   const tourTemplate = path.resolve(`src/templates/tour.js`);
+  if (queryResults.errors) {
+    throw new Error(
+      `Contentful page query failed: ${queryResults.errors
+        .map((error) => error.message)
+        .join("; ")}`,
+    );
+  }
   const travelAgentTemplate = path.resolve(`src/templates/travelAgent.js`);
   const blogTemplate = path.resolve(`src/templates/blog.js`);
   const propertyTemplate = path.resolve(`src/templates/property.js`);
@@ -144,15 +155,32 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
   });
-  queryResults.data.allContentfulBlogPost.nodes.forEach((node) => {
+  const blogPaths = new Set();
+  // Preserve entries verified against production page-data on 2026-09-18
+  // for known duplicate CMS slugs. Unexpected collisions still fail below.
+  const publishedEntries = require("./src/data/published-blog-entries.json");
+  const sourcePosts = queryResults.data.allContentfulBlogPost.nodes;
+  const blogPosts = sourcePosts.filter(node => {
+    const preferred = publishedEntries[blogPath(node.slug)];
+    return !preferred || node.id === preferred || !sourcePosts.some(post => post.id === preferred);
+  }).map(node => applyEditorialUpdate(node, false));
+  blogPosts.forEach((node) => {
+    if (!node.slug?.trim()) throw new Error(`Blog ${node.id} is missing its slug`);
+    const route = blogPath(node.slug);
+    const key = new URL(route, "https://puntacanatourstore.com").pathname;
+    if (blogPaths.has(key)) throw new Error(`Duplicate blog route: ${key}`);
+    blogPaths.add(key);
     createPage({
-      path: `/blog/${node.slug?.trim()}`,
+      path: route,
       component: blogTemplate,
       context: {
         id: node.id,
         blog: node,
         layout: queryResults.data.allContentfulLayout.edges[0].node,
-        blogList: queryResults.data.allContentfulBlogPost.nodes,
+        blogList: relatedGuides(
+          blogPosts,
+          node,
+        ),
       },
     });
   });

@@ -7,6 +7,18 @@
 /**
  * @type {import('gatsby').GatsbySSR['onRenderBody']}
  */
-exports.onRenderBody = ({ setHtmlAttributes }) => {
+const React = require("react");
+const { isPrivatePath } = require("./src/utils/editorial");
+
+exports.onRenderBody = ({ setHtmlAttributes, setHeadComponents, pathname }) => {
   setHtmlAttributes({ lang: `en` });
+  if (isPrivatePath(pathname || "")) {
+    setHeadComponents([
+      React.createElement("meta", {
+        key: "private-page-robots",
+        name: "robots",
+        content: "noindex, follow",
+      }),
+    ]);
+  }
 };

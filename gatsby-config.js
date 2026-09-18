@@ -3,7 +3,9 @@
  */
 require("dotenv").config();
 const adapter = require("gatsby-adapter-netlify").default;
+const { isIndexablePath, canonicalUrl } = require("./src/utils/editorial");
 module.exports = {
+  trailingSlash: "always",
   adapter: adapter(),
   siteMetadata: {
     title: `Punta Cana Tour Store`,
@@ -16,12 +18,19 @@ module.exports = {
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     "gatsby-plugin-postcss",
-    "gatsby-plugin-sitemap",
+    {
+      resolve: "gatsby-plugin-sitemap",
+      options: {
+        resolvePages: ({ allSitePage: { nodes } }) =>
+          nodes.filter(({ path }) => isIndexablePath(path)),
+        serialize: ({ path }) => ({ url: canonicalUrl(path) }),
+      },
+    },
     {
       resolve: "gatsby-plugin-robots-txt",
       options: {
         host: "https://puntacanatourstore.com/",
-        sitemap: "https://puntacanatourstore.com/sitemap-0.xml",
+        sitemap: "https://puntacanatourstore.com/sitemap-index.xml",
         policy: [{ userAgent: "*", allow: "/" }],
       },
     },

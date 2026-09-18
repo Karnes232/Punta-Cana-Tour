@@ -1,10 +1,12 @@
 import React from "react";
+import { categoryBySlug } from "../../data/blog-categories";
 import Layout from "../../components/layout";
 import { graphql } from "gatsby";
 import Seo from "../../components/seo";
 import HeroComponent from "../../components/HeroComponent/HeroComponent";
 import BlogCategory from "../../components/BlogComponents/BlogCategory";
 import TextComponent from "../../components/BlogComponents/TextComponent";
+import TravelTopics from "../../components/BlogComponents/TravelTopics";
 
 const index = ({ data }) => {
   return (
@@ -24,7 +26,7 @@ const index = ({ data }) => {
     >
       <HeroComponent
         gImage={data.allContentfulBlogLayout.nodes[0].mainImage.gatsbyImage}
-        heroText="Blog Posts"
+        heroText="Punta Cana Travel Guides"
         button={false}
       />
       <TextComponent
@@ -33,6 +35,7 @@ const index = ({ data }) => {
         }
         pClassName="my-2 2xl:my-10"
       />
+      <TravelTopics />
       <div className="flex flex-col xl:mt-5 md:flex-row md:flex-wrap md:justify-evenly  max-w-5xl xl:max-w-6xl mx-auto md:gap-5">
         <BlogCategory
           title="Tour Blogs"
@@ -70,7 +73,7 @@ const index = ({ data }) => {
           url="attractions"
         />
         <BlogCategory
-          title="Resturants Blogs"
+          title="Restaurant Guides"
           gImage={data.allContentfulBlogLayout.nodes[0].resturantBlogImage}
           url="restaurants"
         />
@@ -97,11 +100,11 @@ export const query = graphql`
       edges {
         node {
           logo {
-            gatsbyImage(width: 150, formats: WEBP)
+            gatsbyImage(quality: 80, width: 150, formats: WEBP)
           }
           footerBackground {
             url
-            gatsbyImage(width: 1920, formats: WEBP)
+            gatsbyImage(quality: 85, width: 1920, formats: WEBP)
           }
           email
           facebook
@@ -117,37 +120,37 @@ export const query = graphql`
           mainDescription
         }
         mainImage {
-          gatsbyImage(formats: WEBP, placeholder: DOMINANT_COLOR, width: 2000)
+          gatsbyImage(quality: 85, formats: WEBP, placeholder: DOMINANT_COLOR, width: 2000)
         }
         tourBlogImage {
-          gatsbyImage(formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
+          gatsbyImage(quality: 80, formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
         }
         transferBlogImage {
-          gatsbyImage(formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
+          gatsbyImage(quality: 80, formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
         }
         hotelBlogImage {
-          gatsbyImage(formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
+          gatsbyImage(quality: 80, formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
         }
         carRentalBlogImage {
-          gatsbyImage(formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
+          gatsbyImage(quality: 80, formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
         }
         flightsBlogImage {
-          gatsbyImage(formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
+          gatsbyImage(quality: 80, formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
         }
         propertyBlogImage {
-          gatsbyImage(formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
+          gatsbyImage(quality: 80, formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
         }
         attractionsBlogImage {
-          gatsbyImage(formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
+          gatsbyImage(quality: 80, formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
         }
         resturantBlogImage {
-          gatsbyImage(formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
+          gatsbyImage(quality: 80, formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
         }
         famousDominicanPlacesImage {
-          gatsbyImage(formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
+          gatsbyImage(quality: 80, formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
         }
         localBusinessImage {
-          gatsbyImage(formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
+          gatsbyImage(quality: 80, formats: WEBP, placeholder: DOMINANT_COLOR, width: 400)
         }
       }
     }
@@ -164,14 +167,10 @@ export const query = graphql`
 `;
 
 export const Head = ({ data }) => {
-  const { title, description, keywords } = data.allContentfulSeo.nodes[0];
+  const { title, description } = categoryBySlug("");
   return (
     <>
-      <Seo
-        title={title}
-        description={description.description}
-        keywords={keywords.join(", ")}
-      />
+      <Seo title={title} description={description} />
       <link rel="canonical" href="https://puntacanatourstore.com/blog/" />
     </>
   );

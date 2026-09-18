@@ -4,26 +4,20 @@ import Layout from "../components/layout";
 import BlogBody from "../components/BlogComponents/BlogBody";
 import HeroImage from "../components/BlogComponents/HeroImage";
 import Seo from "../components/seo";
-import Recommendations from "../components/BlogComponents/Recommendations";
-import ActivityLink from "../components/BlogComponents/ActivityLink";
-import TransferLink from "../components/BlogComponents/TransferLink";
-import CarRentalLink from "../components/BlogComponents/CarRentalLink";
-import PropertyLink from "../components/BlogComponents/PropertyLink";
-import HotelLink from "../components/BlogComponents/HotelLink";
+import ArticleHeader from "../components/BlogComponents/ArticleHeader";
+import {
+  articleSchema,
+  blogPath,
+  canonicalUrl,
+} from "../utils/editorial";
+import { breadcrumbsFor } from "../data/blog-categories";
+import EditorialLinks from "../components/BlogComponents/EditorialLinks";
+import TravelTopics from "../components/BlogComponents/TravelTopics";
+import { applyEditorialUpdate } from "../utils/editorial-updates";
 import { graphql } from "gatsby";
 const blog = ({ pageContext, data }) => {
-  let recommendationList = [];
-  pageContext.blogList.forEach((blog) => {
-    if (blog.category === "Tours") {
-      if (pageContext.blog.category === blog.category) {
-        recommendationList.push(blog);
-      }
-    } else {
-      if (pageContext.blog.category !== "Tours") {
-        recommendationList.push(blog);
-      }
-    }
-  });
+  const post = applyEditorialUpdate(data.allContentfulBlogPost.nodes[0]);
+  const recommendationList = (pageContext.blogList || []);
   return (
     <Layout
       logo={pageContext.layout.logo}
@@ -36,77 +30,30 @@ const blog = ({ pageContext, data }) => {
       color="black"
     >
       <HeroImage
-        backgroundImages={data?.allContentfulBlogPost?.nodes[0].backgroundImage}
+        backgroundImages={post.backgroundImage}
       />
-      <BlogBody context={data?.allContentfulBlogPost?.nodes[0].body} />
-
-      {data?.allContentfulBlogPost?.nodes[0].category === "Tours" &&
-        data?.allContentfulBlogPost?.nodes[0].reference !== null && (
-          <ActivityLink
-            name={data?.allContentfulBlogPost?.nodes[0]?.reference?.name}
-            url={`/${data?.allContentfulBlogPost?.nodes[0]?.category
-              .toLowerCase()
-              .replaceAll(
-                /\s/g,
-                "",
-              )}/${data?.allContentfulBlogPost?.nodes[0]?.reference?.url?.trim()}`}
-            page={data?.allContentfulBlogPost?.nodes[0]?.reference?.page}
-          />
-        )}
-      {data?.allContentfulBlogPost?.nodes[0].category === "Transfer" &&
-        data?.allContentfulBlogPost?.nodes[0].reference !== null && (
-          <TransferLink
-            name={data?.allContentfulBlogPost?.nodes[0]?.reference?.page}
-          />
-        )}
-      {data?.allContentfulBlogPost?.nodes[0].category === "Flights" &&
-        data?.allContentfulBlogPost?.nodes[0].reference !== null && (
-          <TransferLink
-            name={data?.allContentfulBlogPost?.nodes[0]?.reference?.page}
-          />
-        )}
-      {data?.allContentfulBlogPost?.nodes[0].category === "Car Rental" &&
-        data?.allContentfulBlogPost?.nodes[0].reference !== null && (
-          <CarRentalLink
-            name={data?.allContentfulBlogPost?.nodes[0]?.reference?.page}
-          />
-        )}
-      {data?.allContentfulBlogPost?.nodes[0].category === "Property" &&
-        data?.allContentfulBlogPost?.nodes[0].reference !== null && (
-          <PropertyLink
-            name={data?.allContentfulBlogPost?.nodes[0]?.reference?.title}
-            url={data?.allContentfulBlogPost?.nodes[0]?.reference?.urlSlug?.trim()}
-            page={data?.allContentfulBlogPost?.nodes[0]?.reference?.page}
-          />
-        )}
-      {data?.allContentfulBlogPost?.nodes[0].category === "Hotel" &&
-        data?.allContentfulBlogPost?.nodes[0].reference !== null && (
-          <HotelLink
-            name={data?.allContentfulBlogPost?.nodes[0]?.reference?.title}
-            url={data?.allContentfulBlogPost?.nodes[0]?.reference?.urlSlug?.trim()}
-            page={data?.allContentfulBlogPost?.nodes[0]?.reference?.page}
-          />
-        )}
-      <Recommendations
-        list={recommendationList}
-        title={"You Might Also Like"}
-      />
+      <ArticleHeader post={post} />
+      {post.slug === 'punta-cana' && <TravelTopics />}
+      <BlogBody context={post.body} title={post.title} relatedGuides={recommendationList.slice(0, 2)} />
+      <EditorialLinks post={post} guides={recommendationList.slice(2)} />
     </Layout>
   );
 };
 
 export const Head = ({ data }) => {
+  const post = applyEditorialUpdate(data.allContentfulBlogPost.nodes[0], false);
+  const canonical = canonicalUrl(blogPath(post.slug));
   return (
     <>
       <Seo
-        title={data?.allContentfulBlogPost?.nodes[0].title}
-        description={data?.allContentfulBlogPost?.nodes[0].description}
-        keywords={data?.allContentfulBlogPost?.nodes[0]?.tags?.join(", ")}
+        title={post.title}
+        description={post.description}
+        keywords={post.tags?.join(", ")}
+        type="article"
+        canonical={canonical}
+        schemaMarkup={articleSchema(post, breadcrumbsFor(post))}
       />
-      <link
-        rel="canonical"
-        href={`https://puntacanatourstore.com/blog/${data?.allContentfulBlogPost?.nodes[0].slug?.trim()}`}
-      />
+      <link rel="canonical" href={canonical} />
     </>
   );
 };
@@ -121,12 +68,12 @@ export const query = graphql`
         id
         title
         tags
-        publishedDate(formatString: "MMMM do, YYYY")
+        publishedDate
         description
         category
         backgroundImage {
           title
-          gatsbyImage(width: 2000, placeholder: DOMINANT_COLOR, formats: WEBP)
+          gatsbyImage(width: 2400, quality: 85, placeholder: DOMINANT_COLOR, formats: WEBP)
           url
         }
         reference {
@@ -159,7 +106,11 @@ export const query = graphql`
               file {
                 url
               }
-              gatsbyImage(placeholder: DOMINANT_COLOR, formats: WEBP, width: 2000)
+              gatsbyImage(quality: 85,
+                placeholder: DOMINANT_COLOR
+                formats: WEBP
+                width: 2000
+              )
             }
           }
         }

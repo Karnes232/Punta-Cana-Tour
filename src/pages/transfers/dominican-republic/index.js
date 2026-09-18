@@ -71,11 +71,11 @@ export const query = graphql`
       edges {
         node {
           logo {
-            gatsbyImage(width: 150, formats: WEBP)
+            gatsbyImage(quality: 80, width: 150, formats: WEBP)
           }
           footerBackground {
             url
-            gatsbyImage(width: 1920, formats: WEBP)
+            gatsbyImage(quality: 85, width: 1920, formats: WEBP)
           }
           email
           facebook
@@ -104,7 +104,7 @@ export const query = graphql`
           zone4Price
           zone5Price
           vehiclePhoto {
-            gatsbyImage(formats: WEBP, width: 400, placeholder: DOMINANT_COLOR)
+            gatsbyImage(quality: 80, formats: WEBP, width: 400, placeholder: DOMINANT_COLOR)
             file {
               url
             }
@@ -124,7 +124,7 @@ export const query = graphql`
           }
           airportPhoto {
             title
-            gatsbyImage(width: 620, formats: WEBP, placeholder: DOMINANT_COLOR)
+            gatsbyImage(quality: 80, width: 620, formats: WEBP, placeholder: DOMINANT_COLOR)
           }
         }
       }

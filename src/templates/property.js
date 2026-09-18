@@ -95,7 +95,7 @@ export const Head = ({ data }) => {
       />
       <link
         rel="canonical"
-        href={`https://puntacanatourstore.com/properties/${data?.allContentfulProperty?.nodes[0].urlSlug?.trim()}`}
+        href={`https://puntacanatourstore.com/properties/${data?.allContentfulProperty?.nodes[0].urlSlug?.trim()}/`}
       />
     </>
   );
@@ -123,14 +123,14 @@ export const query = graphql`
         seoDescription
         seoKeywords
         mainImage {
-          gatsbyImage(width: 2000, formats: WEBP, placeholder: DOMINANT_COLOR)
+          gatsbyImage(quality: 85, width: 2000, formats: WEBP, placeholder: DOMINANT_COLOR)
           title
           url
         }
         squareFeet
         images {
           title
-          gatsbyImage(width: 2000, placeholder: DOMINANT_COLOR, formats: WEBP)
+          gatsbyImage(quality: 85, width: 2000, placeholder: DOMINANT_COLOR, formats: WEBP)
           url
           width
           height

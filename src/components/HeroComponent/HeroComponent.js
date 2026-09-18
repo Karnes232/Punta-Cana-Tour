@@ -41,12 +41,14 @@ const HeroComponent = ({ imageUrl, gImage, heroText, heroText2, button }) => {
             {heroText}
           </h1>
           <br />
-          <h2
-            translate="no"
-            className="relative inline-block text-white z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-yellowtail tracking-wider text-3xl md:text-5xl lg:text-6xl xl:text-7xl"
-          >
-            {heroText2}
-          </h2>
+          {heroText2 && (
+            <h2
+              translate="no"
+              className="relative inline-block text-white z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-yellowtail tracking-wider text-3xl md:text-5xl lg:text-6xl xl:text-7xl"
+            >
+              {heroText2}
+            </h2>
+          )}
           <br />
           {button && (
             <button className="relative inline-block z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-28 md:w-28 lg:w-32 text-sm bg-white opacity-75 hover:opacity-100 text-black py-2 px-2 md:px-3 rounded-md mt-5 md:mt-12 tracking-wider font-lato font-bold">

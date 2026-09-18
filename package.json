@@ -8,6 +8,7 @@
     "gatsby"
   ],
   "scripts": {
+    "test:seo": "node --test tests/editorial.test.cjs",
     "develop": "gatsby develop",
     "start": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css}\"",

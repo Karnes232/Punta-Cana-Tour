@@ -1,0 +1,59 @@
+[
+  {
+    "id": "saona-canto-de-la-playa",
+    "title": "Palm-lined beach and turquoise water at Canto de la Playa, Saona Island",
+    "group": "saona",
+    "caption": null,
+    "url": "/images/editorial/saona-canto-de-la-playa-2560.webp",
+    "gatsbyImage": {
+      "layout": "constrained",
+      "width": 2560,
+      "height": 1920,
+      "images": {
+        "fallback": {
+          "src": "/images/editorial/saona-canto-de-la-playa-2560.webp",
+          "srcSet": "/images/editorial/saona-canto-de-la-playa-480.webp 480w, /images/editorial/saona-canto-de-la-playa-960.webp 960w, /images/editorial/saona-canto-de-la-playa-1440.webp 1440w, /images/editorial/saona-canto-de-la-playa-1920.webp 1920w, /images/editorial/saona-canto-de-la-playa-2560.webp 2560w",
+          "sizes": "(min-width: 2560px) 2560px, 100vw"
+        }
+      }
+    }
+  },
+  {
+    "id": "party-boat-atmosphere",
+    "title": "Guests celebrating on the deck of a party boat",
+    "group": "party",
+    "caption": "Illustrative party-boat photograph supplied by the site owner; not a verified image of a specific Punta Cana departure.",
+    "url": "/images/editorial/party-boat-atmosphere-1920.webp",
+    "gatsbyImage": {
+      "layout": "constrained",
+      "width": 1920,
+      "height": 1080,
+      "images": {
+        "fallback": {
+          "src": "/images/editorial/party-boat-atmosphere-1920.webp",
+          "srcSet": "/images/editorial/party-boat-atmosphere-480.webp 480w, /images/editorial/party-boat-atmosphere-960.webp 960w, /images/editorial/party-boat-atmosphere-1440.webp 1440w, /images/editorial/party-boat-atmosphere-1920.webp 1920w",
+          "sizes": "(min-width: 1920px) 1920px, 100vw"
+        }
+      }
+    }
+  },
+  {
+    "id": "saona-palm-lined-shore",
+    "title": "Palm trees along the sandy shore of Saona Island",
+    "group": "saona",
+    "caption": null,
+    "url": "/images/editorial/saona-palm-lined-shore-2560.webp",
+    "gatsbyImage": {
+      "layout": "constrained",
+      "width": 2560,
+      "height": 1707,
+      "images": {
+        "fallback": {
+          "src": "/images/editorial/saona-palm-lined-shore-2560.webp",
+          "srcSet": "/images/editorial/saona-palm-lined-shore-480.webp 480w, /images/editorial/saona-palm-lined-shore-960.webp 960w, /images/editorial/saona-palm-lined-shore-1440.webp 1440w, /images/editorial/saona-palm-lined-shore-1920.webp 1920w, /images/editorial/saona-palm-lined-shore-2560.webp 2560w",
+          "sizes": "(min-width: 2560px) 2560px, 100vw"
+        }
+      }
+    }
+  }
+]
