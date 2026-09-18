@@ -50,8 +50,8 @@ const services = {
 };
 
 const home = {
-  title: 'Punta Cana Tours, Travel Guide & Transport',
-  description: 'Plan Punta Cana with practical travel guides, tours, hotels and hostels, car rentals, airport transfers and helicopter transport. Choose what fits your trip.',
+  title: 'Punta Cana Tours & Excursions',
+  description: 'Explore Punta Cana tours, Saona Island trips and boat excursions. Compare itineraries, arrange airport transfers and plan your stay with practical travel guides.',
 };
 
 const homeFaqs = {

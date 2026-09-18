@@ -1,58 +1,89 @@
 import React from "react";
-import Copyright from "./Copyright";
-import Sitemap from "./Sitemap";
-import SocialMedia from "./SocialMedia";
-import useWindowWidth from "../../customHooks/useWindowWidth";
-import Signature from "./Signature";
-const Footer = ({
-  footerBackground,
-  facebook,
-  instagram,
-  whatsApp,
-  email,
-  gImage,
-}) => {
-  const windowWidth = useWindowWidth();
-  let image = gImage?.images.fallback.srcSet.split(",");
-  const imageSrc = [];
+import { Link } from "gatsby";
 
-  image?.forEach((element) => {
-    const image = element.split(" ");
-    const imageObject = { imageSrc: image[0], imageWidth: image[1] };
-    imageSrc.push(imageObject);
-  });
-  let FooterStyles = {};
-
-  if (windowWidth < 1500) {
-    FooterStyles = {
-      backgroundImage: "url(" + imageSrc[1]?.imageSrc + ")",
-    };
-  } else {
-    FooterStyles = {
-      backgroundImage: "url(" + imageSrc[2]?.imageSrc + ")",
-    };
-  }
-  return (
-    <footer
-      style={FooterStyles}
-      className="bg-cover bg-left-bottom md:bg-bottom bg-no-repeat"
-    >
-      <div className="mx-5 mt-5 flex max-w-6xl flex-col justify-between xl:mx-auto">
-        <SocialMedia
-          classes="border-b border-gray-500 md:border-none"
-          facebook={facebook}
-          instagram={instagram}
-          email={email}
-          whatsApp={whatsApp}
-        />
-        <Sitemap />
-        <div className="flex flex-col justify-between md:flex-row">
-          <Copyright />
+const Footer = ({ facebook, instagram, whatsApp, email }) => (
+  <footer className="site-footer bg-secondary-color text-white border-t border-white/20">
+    <div className="max-w-6xl mx-6 md:mx-10 xl:mx-auto py-12">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 pb-10">
+        <div>
+          <Link to="/" className="font-montserrat font-bold text-2xl">
+            Punta Cana Tour Store
+          </Link>
+          <p className="text-sm leading-7 text-slate-300 mt-4 max-w-sm">
+            Tours, travel planning and transport in Punta Cana, Dominican
+            Republic. Information to help you choose. Services to help you get
+            there.
+          </p>
+        </div>
+        <nav aria-label="Footer travel services">
+          <h2 className="text-sm font-bold uppercase tracking-widest text-primary-color mb-5">
+            Explore & plan
+          </h2>
+          <div className="grid gap-3 text-sm text-slate-200">
+            <Link to="/tours/">Tours & excursions</Link>
+            <Link to="/transfers/punta-cana/">Airport transfers</Link>
+            <Link to="/hotels/">Hotels & hostels</Link>
+            <Link to="/carrental/">Car rental</Link>
+            <Link to="/transfers/flights/">Helicopter transfers</Link>
+            <Link to="/blog/">Punta Cana travel guide</Link>
+          </div>
+        </nav>
+        <div>
+          <h2 className="text-sm font-bold uppercase tracking-widest text-primary-color mb-5">
+            Talk to us
+          </h2>
+          <div className="grid min-w-0 gap-3 text-sm text-slate-200 break-words">
+            <Link to="/contact/">Contact our team</Link>
+            <Link to="/about/">About Punta Cana Tour Store</Link>
+            {email && <a className="break-all" href={"mailto:" + email}>{email}</a>}
+            {whatsApp && (
+              <a
+                href={
+                  "https://api.whatsapp.com/send?phone=" +
+                  encodeURIComponent(whatsApp)
+                }
+              >
+                WhatsApp enquiries
+              </a>
+            )}
+            <div className="flex gap-5 pt-2">
+              {facebook && (
+                <a href={facebook} target="_blank" rel="noopener noreferrer">
+                  Facebook
+                </a>
+              )}
+              {instagram && (
+                <a href={instagram} target="_blank" rel="noopener noreferrer">
+                  Instagram
+                </a>
+              )}
+            </div>
+          </div>
         </div>
       </div>
-      <Signature />
-    </footer>
-  );
-};
-
+      <div className="border-t border-white/20 pt-6 flex flex-col md:flex-row justify-between gap-5 text-xs text-slate-300">
+        <p>© {new Date().getFullYear()} Punta Cana Tour Store</p>
+        <nav
+          aria-label="Legal information"
+          className="flex flex-wrap gap-x-5 gap-y-3"
+        >
+          <Link to="/information/cancellation/">Cancellation policy</Link>
+          <Link to="/information/privacy/">Privacy</Link>
+          <Link to="/information/termsconditions/">Terms & conditions</Link>
+        </nav>
+      </div>
+      <p className="text-xs text-slate-400 mt-5">
+        Built by{" "}
+        <a
+          href="https://dr-webstudio.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline underline-offset-4"
+        >
+          DR Web Studio
+        </a>
+      </p>
+    </div>
+  </footer>
+);
 export default Footer;

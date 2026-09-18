@@ -6,13 +6,33 @@ Investigación: 18 de septiembre de 2026. Mercado inicial: viajeros que buscan e
 
 Una guía para decidir y reservar el viaje: actividades, alojamiento y transporte unidos por información práctica. El Home presenta el conjunto; cada categoría resuelve una necesidad comercial concreta; los artículos responden preguntas y enlazan al servicio cuando resulta pertinente. Evitar páginas casi idénticas por hotel o palabra clave, superlativos sin evidencia y contenido masivo sin utilidad.
 
-## Competidores relevantes por intención
+## Competidores directos principales confirmados por el negocio
+
+El propietario confirmó estos tres competidores el 18 de septiembre de 2026. Son la referencia principal para comparar Home, catálogo, fichas de excursiones, contenidos y recorrido de reserva:
+
+1. [Punta Cana Tours](https://puntacanatours.com/).
+2. [Punta Cana Adventures](https://www.puntacanaadventures.com/).
+3. [Excursiones Punta Cana](https://www.excursionespuntacana.com/).
+
+La selección principal anterior queda sustituida por este grupo. Las empresas de las demás categorías se mantienen como referencias especializadas de búsqueda, sin equipararlas a los competidores directos confirmados.
+
+La página de Excursiones Punta Cana muestra un catálogo en español con duración y precio, variantes de Saona, party boat, buggys, snorkel y visitas culturales, además de agrupaciones por mar, tierra, buceo y traslados. La oportunidad propuesta es facilitar la comparación de itinerarios e inclusiones y conectar cada decisión con una guía útil. Esta observación no prueba su volumen de búsquedas, tráfico ni posicionamiento.
+
+### Ajuste de prioridades
+
+- Mantener como núcleo comercial `Punta Cana tours` y `Punta Cana excursions`, con fichas específicas para Saona, party boat, buggys y snorkel que realmente estén disponibles en nuestro catálogo.
+- Dar prioridad a investigar la demanda en español de `excursiones en Punta Cana`, `excursión Isla Saona`, `party boat Punta Cana`, `buggys Punta Cana` y `excursiones en Bávaro`. Su presencia en la oferta competidora identifica temas de comparación, no demuestra posiciones orgánicas.
+- Preparar una futura versión española completa y revisada; no insertar palabras españolas de forma artificial en páginas inglesas ni generar páginas duplicadas por sinónimo.
+- Comparar cada ficha equivalente por itinerario, recogida, tiempo total, inclusiones, restricciones, cancelación y claridad de reserva. Priorizar diferencias útiles al viajero, sin copiar textos, precios ni garantías ajenas.
+- Conservar la diferenciación del Home como guía y punto de acceso a todos los servicios. Sargazo y E-Ticket siguen siendo contenidos de preparación que apoyan el viaje y las reservas.
+
+## Referencias especializadas por intención
 
 Selección cualitativa de negocios presentes en las búsquedas consultadas; no implica que sean los mayores por ventas ni los primeros para todos los países.
 
 | Categoría | Competidores y páginas consultadas | Oportunidad para nuestro sitio |
 | --- | --- | --- |
-| Excursiones | [Punta Cana Adventures](https://www.puntacanaadventures.com/), [Punta Cana Tours](https://puntacanatours.com/), [Cana Excursion](https://canaexcursion.com/) | Explicar duración total, recogida, restricciones e inclusiones junto a la actividad; conectar comparativas y fichas. |
+| Excursiones: competidores directos | [Punta Cana Tours](https://puntacanatours.com/), [Punta Cana Adventures](https://www.puntacanaadventures.com/), [Excursiones Punta Cana](https://www.excursionespuntacana.com/) | Explicar duración total, recogida, restricciones e inclusiones junto a la actividad; conectar comparativas y fichas. |
 | Traslados | [Dominican Airport Transfers](https://dominicanairporttransfers.com/transfers/puntacanatransfers.aspx), [Punta Cana Transfer](https://www.puntacanatransfer.com.do/en/transfers/from-punta-cana-airport) | Separar aeropuerto–hotel de rutas interurbanas; aclarar direcciones, equipaje, punto de encuentro y presupuesto. |
 | Autos | [Sixt PUJ](https://www.sixt.com/car-rental/dominican-republic/punta-cana/punta-cana-airport/), [Europcar Punta Cana](https://www.europcar.com/en-us/places/car-rental-dominican-republic/punta-cana), [Vroom](https://vroom.do/) | Ayudar a comparar costo total y necesidades reales sin anunciar seguros o depósitos que no estén confirmados. |
 | Hostales y alojamiento | [Hostelworld Punta Cana](https://www.hostelworld.com/es/albergues/america-del-norte/republica-dominicana/punta-cana/), [Booking: casas de huéspedes](https://www.booking.com/guest-house/city/do/punta-cana.es.html) | Contexto del barrio, habitación compartida/privada, llegada y acceso a actividades. |

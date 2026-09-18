@@ -26,6 +26,7 @@ function load(relative) {
   mod.paths = Module._nodeModulePaths(path.dirname(filename));
   const nativeRequire = mod.require.bind(mod);
   mod.require = (name) => {
+    if (name.endsWith('.css')) return {};
     if (name === "gatsby")
       return {
         Link: ({ to, children, ...props }) =>
@@ -80,6 +81,27 @@ test('travel planning renders crawlable service and arrival links in server HTML
   }
   assert.ok(html.includes('href="/blog/dominicanrepubliceticket/"'));
   assert.ok(html.includes('href="/blog/punta-cana-seaweed-season/"'));
+});
+
+test('redesigned English home renders one title, working tour routes and meaningful guide links without decorative icons', () => {
+  const Home = load('src/components/HomeExperience.js').default;
+  const tours = [{ node: { url: ' saona ', name: 'Saona Island', price: 89, description1: { description1: 'Island itinerary' } } }];
+  const html = renderToStaticMarkup(React.createElement(Home, { tours }));
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  assert.ok(html.includes('href="/tours/saona/"'));
+  assert.ok(html.includes('From US$89'));
+  assert.ok(html.includes('href="/blog/punta-cana-seaweed-season/"'));
+  assert.ok(html.includes('href="/blog/dominicanrepubliceticket/"'));
+  assert.equal((html.match(/<details/g) || []).length, 3);
+  assert.ok(!html.includes('<svg'));
+  assert.equal(tours.length, 1);
+  const Footer = load('src/components/FooterComponent/Footer.js').default;
+  const footer = renderToStaticMarkup(React.createElement(Footer, { email: 'hello@example.com', whatsApp: '+18090000000' }));
+  assert.ok(!footer.includes('<img'));
+  assert.ok(!footer.includes('background-image'));
+  assert.ok(footer.includes('mailto:hello@example.com'));
+  assert.ok(footer.includes('phone=%2B18090000000'));
+  for (const url of ['/information/privacy/', '/information/termsconditions/', '/information/cancellation/']) assert.ok(footer.includes(url));
 });
 
 test('service detail titles are H1 and lodging body headings remain subordinate', () => {
