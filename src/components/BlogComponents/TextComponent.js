@@ -6,9 +6,10 @@ const TextComponent = ({
   paragraph,
   className,
   pClassName,
+  id,
 }) => {
   return (
-    <div className="relative">
+    <div id={id} className="relative scroll-mt-28">
       <div className="flex flex-col justify-center max-w-5xl mx-5 lg:p-2 xl:mx-auto">
         {title && heading === "h1" ? (
           <h1

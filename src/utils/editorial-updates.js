@@ -3,7 +3,7 @@ const { withEditorialMedia } = require('./editorial-media');
 function text(value) { return {nodeType:'text',value,marks:[],data:{}}; }
 function toDocument(blocks) {
   return {nodeType:'document',data:{},content:blocks.map(block=>({
-    nodeType:block.type,data:{},content:block.content.map(part=>typeof part==='string' ? text(part) : {
+    nodeType:block.type,data:block.id ? {id:block.id} : {},content:block.content.map(part=>typeof part==='string' ? text(part) : {
       nodeType:'hyperlink',data:{uri:part.href},content:[text(part.text)],
     }),
   }))};

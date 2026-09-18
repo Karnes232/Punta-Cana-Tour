@@ -35,6 +35,7 @@ const BlogBody = ({ context, title, relatedGuides = [] }) => {
       ),
       [BLOCKS.HEADING_2]: (node, children) => (
         <TextComponent
+          id={node.data?.id}
           title={children}
           heading="h2"
           className="my-5 2xl:mb-2 2xl:mt-10 text-2xl md:text-3xl"

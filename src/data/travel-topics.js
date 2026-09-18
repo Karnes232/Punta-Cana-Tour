@@ -1,0 +1,23 @@
+// One preferred destination per planning intent; existing URLs retain their spelling.
+module.exports = [
+  ['A', 'Free Dominican Republic e-ticket', 'dominicanrepubliceticket'],
+  ['B', 'Passports, visas and entry requirements', 'do-you-need-a-passport-for-punta-cana'],
+  ['C', 'Sargassum and beach conditions', 'punta-cana-seaweed-season'],
+  ['D', 'Drinking age and alcohol rules', 'punta-cana-drinking-age'],
+  ['E', 'What Punta Cana means', 'what-does-punta-cana-mean-in-english'],
+  ['F', 'Areas, language and destination basics', 'punta-cana', 'areas'],
+  ['G', 'PUJ airport and arrivals', 'airportshuttle'],
+  ['H', 'Money, cards and ATMs', 'atmsinpuntacana'],
+  ['I', 'Tipping and service charges', 'puntacanalocalcustoms'],
+  ['J', 'Weather and travel seasons', 'besttimetovisitpuntacana'],
+  ['K', 'Safety and emergency planning', 'is-punta-cana-safe-to-visit'],
+  ['L', 'Health, water and mosquitoes', 'punta-cana', 'health'],
+  ['M', 'What to pack', 'punta-cana', 'packing'],
+  ['N', 'Electricity, internet and phone service', 'punta-cana', 'connectivity'],
+  ['O', 'All-inclusive resort questions', 'allinclusivepuntacana'],
+  ['P', 'Customs, drones and tourist rules', 'punta-cana', 'rules'],
+  ['Q', 'Practical travel questions', 'punta-cana', 'essentials'],
+  ['R', 'Hotel transfers and pickup planning', 'transfer/hotel'],
+  ['S', 'Car rental and driving', 'carrental/car-rental'],
+  ['T', 'Planning from your resort', 'punta-cana', 'hotels'],
+].map(([id,label,slug,anchor]) => ({id,label,slug,anchor}));

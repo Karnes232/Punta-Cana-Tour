@@ -12,6 +12,7 @@ import {
 } from "../utils/editorial";
 import { breadcrumbsFor } from "../data/blog-categories";
 import EditorialLinks from "../components/BlogComponents/EditorialLinks";
+import TravelTopics from "../components/BlogComponents/TravelTopics";
 import { applyEditorialUpdate } from "../utils/editorial-updates";
 import { graphql } from "gatsby";
 const blog = ({ pageContext, data }) => {
@@ -32,6 +33,7 @@ const blog = ({ pageContext, data }) => {
         backgroundImages={post.backgroundImage}
       />
       <ArticleHeader post={post} />
+      {post.slug === 'punta-cana' && <TravelTopics />}
       <BlogBody context={post.body} title={post.title} relatedGuides={recommendationList.slice(0, 2)} />
       <EditorialLinks post={post} guides={recommendationList.slice(2)} />
     </Layout>

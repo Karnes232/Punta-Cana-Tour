@@ -10,6 +10,7 @@ const topics = [
   ['beaches', /\bbeach(?:es)?\b|\bsargassum\b|\bsnorkel(?:ing)?\b/],
   ['arrival', /\bairport\b|\btransfer(?:s)?\b|\bflight(?:s)?\b|\be ticket\b|\bentry requirements\b/],
   ['driving', /\bcar rental\b|\brent(?:ing)? a car\b|\bdriv(?:e|ing)\b|\broad trip\b/],
+  ['planning', /\btravel planning\b|\bpacking\b|\bconnectivity\b|\bhealth\b|\bsafety\b|\bmoney\b|\batms?\b|\btipping\b|\bweather\b/],
   ['hotels', /\bhotel(?:s)?\b|\bresort(?:s)?\b|\bwhere to stay\b/],
   ['proposal', /\bmarriage proposal(?:s)?\b|\bpropos(?:e|ing)\b|\bproposal packages?\b/],
   ['wedding', /\bwedding(?:s)?\b|\belopement\b|\bvow renewal\b/],
@@ -62,6 +63,7 @@ function serviceLinks(post) {
   if (ref?.urlSlug?.trim() && ['Hotel','Property'].includes(post.category)) add(`/${post.category==='Hotel'?'hotels':'properties'}/${ref.urlSlug.trim().replace(/^\/+|\/+$/g,'')}/`,ref.title || 'View accommodation','Explore the accommodation referenced in this guide.');
   if (ids.includes('arrival') || ['Transfer','Flights','Hotel'].includes(post.category)) add('/transfers/punta-cana/','Punta Cana airport transfers','Plan transportation between the airport and your accommodation.');
   if (ids.includes('driving') || post.category==='Car Rental') add('/carrental/','Car rental in Punta Cana','Explore rental options for independent travel.');
+  if (ids.includes('planning')) add('/transfers/punta-cana/','Plan your airport transfer','Confirm arrival transport before your trip.');
   if (['saona','catalina','samana','adventure','beaches'].some(id=>ids.includes(id)) || ['Tours','Attractions'].includes(post.category)) add('/tours/','Explore Punta Cana excursions','Compare activities for your trip.');
   const internal = links.slice(0,2);
   // A single specialist destination avoids blanket cross-site linking.

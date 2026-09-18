@@ -5,6 +5,7 @@ const h = text => ({ type: 'heading-2', content: [text] });
 const source = (name, href) => p(link(name, href));
 const checked = '2026-09-18';
 module.exports = {
+  ...require('./travel-planning-updates'),
   'Saona-Island-travel-guide': {
     title: 'Saona Island Travel Guide: Boats, Beach Stops and What to Pack',
     description: 'Plan a Saona Island day trip from Punta Cana. Compare boat itineraries, confirm beach stops and transfers, and prepare for weather and sea conditions.',

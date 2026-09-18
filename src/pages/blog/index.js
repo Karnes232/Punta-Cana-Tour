@@ -6,6 +6,7 @@ import Seo from "../../components/seo";
 import HeroComponent from "../../components/HeroComponent/HeroComponent";
 import BlogCategory from "../../components/BlogComponents/BlogCategory";
 import TextComponent from "../../components/BlogComponents/TextComponent";
+import TravelTopics from "../../components/BlogComponents/TravelTopics";
 
 const index = ({ data }) => {
   return (
@@ -25,7 +26,7 @@ const index = ({ data }) => {
     >
       <HeroComponent
         gImage={data.allContentfulBlogLayout.nodes[0].mainImage.gatsbyImage}
-        heroText="Blog Posts"
+        heroText="Punta Cana Travel Guides"
         button={false}
       />
       <TextComponent
@@ -34,6 +35,7 @@ const index = ({ data }) => {
         }
         pClassName="my-2 2xl:my-10"
       />
+      <TravelTopics />
       <div className="flex flex-col xl:mt-5 md:flex-row md:flex-wrap md:justify-evenly  max-w-5xl xl:max-w-6xl mx-auto md:gap-5">
         <BlogCategory
           title="Tour Blogs"

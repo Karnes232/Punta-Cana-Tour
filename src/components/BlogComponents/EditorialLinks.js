@@ -21,7 +21,7 @@ export default function EditorialLinks({ post, guides = [] }) {
   const hub = guideHub(post), services = serviceLinks(post);
   return <div className="max-w-5xl mx-5 xl:mx-auto my-8">
     <GuideLinks guides={guides} />
-    <nav aria-label="More travel guides" className="my-5"><Link to={hub.href} className="underline text-secondary-color">{hub.label}</Link></nav>
+    <nav aria-label="More travel guides" className="my-5 flex flex-wrap gap-5"><Link to={hub.href} className="underline text-secondary-color">{hub.label}</Link><Link to="/blog/" className="underline text-secondary-color">All travel planning topics</Link><Link to="/blog/punta-cana/" className="underline text-secondary-color">Punta Cana practical guide</Link></nav>
     {!!services.length && <section aria-label="Services for your trip" className="rounded-lg border border-primary-color p-5">
       <h2 className="font-montserrat text-2xl font-semibold text-secondary-color mb-4">Services for your trip</h2>
       <ul className="grid gap-5 md:grid-cols-2">{services.map(service => <li key={service.href}>

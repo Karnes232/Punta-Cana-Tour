@@ -74,6 +74,39 @@ const post = {
   backgroundImage: [],
 };
 
+test('all twenty planning topics lead to existing articles and rendered anchors', () => {
+  const topics = require('../src/data/travel-topics');
+  const paths = new Set(require('./fixtures/editorial-paths.json'));
+  const Topics = load('src/components/BlogComponents/TravelTopics.js').default;
+  const Body = load('src/components/BlogComponents/BlogBody.js').default;
+  const navigation = renderToStaticMarkup(React.createElement(Topics));
+  assert.equal(topics.length,20);
+  assert.equal(new Set(topics.map(t=>t.id)).size,20);
+  for(const topic of topics) {
+    assert.ok(paths.has(e.blogPath(topic.slug)),topic.slug);
+    const href=e.blogPath(topic.slug)+(topic.anchor ? '#'+topic.anchor : '');
+    assert.ok(navigation.includes(`href="${href}"`),href);
+    if(topic.anchor) {
+      const updated=applyEditorialUpdate({...post,slug:topic.slug});
+      const html=renderToStaticMarkup(React.createElement(Body,{title:updated.title,context:updated.body}));
+      assert.ok(html.includes(`id="${topic.anchor}"`),href);
+      const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
+      assert.equal(new Set(ids).size,ids.length);
+    }
+  }
+});
+
+test('expanded article links and preferred recommendations retain historical route targets', () => {
+  const paths=new Set([...require('./fixtures/editorial-paths.json'),'/blog/']);
+  for(const [slug,article] of Object.entries(updates)) {
+    assert.ok(paths.has(e.blogPath(slug)),slug);
+    for(const related of article.relatedSlugs||[]) assert.ok(paths.has(e.blogPath(related)),`${slug} -> ${related}`);
+    for(const block of article.blocks) for(const part of block.content) {
+      if(part.href?.startsWith('/blog/')) assert.ok(paths.has(part.href.split('#')[0]),`${slug} -> ${part.href}`);
+    }
+  }
+});
+
 test('reviewed content preserves historical URLs, publication dates and media while updating every visible field', () => {
   const asset={nodeType:'embedded-asset-block',data:{target:{sys:{id:'original-photo'}}},content:[]};
   const old={...post,slug:'punta-cana-seaweed-season',body:{raw:JSON.stringify({nodeType:'document',content:[asset]}),references:[{contentful_id:'original-photo'}]}};
