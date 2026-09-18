@@ -156,7 +156,16 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
   const blogPaths = new Set();
-  const blogPosts = queryResults.data.allContentfulBlogPost.nodes.map(node => applyEditorialUpdate(node, false));
+  // Preserve the entry serving this URL in production while the CMS contains
+  // two posts with the same slug. Unexpected collisions still fail below.
+  const publishedEntries = {
+    "/blog/iberostar-grand-bavaro/": "51f31cff-250d-50fe-b2c4-a1204f01ee0f",
+  };
+  const sourcePosts = queryResults.data.allContentfulBlogPost.nodes;
+  const blogPosts = sourcePosts.filter(node => {
+    const preferred = publishedEntries[blogPath(node.slug)];
+    return !preferred || node.id === preferred || !sourcePosts.some(post => post.id === preferred);
+  }).map(node => applyEditorialUpdate(node, false));
   blogPosts.forEach((node) => {
     if (!node.slug?.trim()) throw new Error(`Blog ${node.id} is missing its slug`);
     const route = blogPath(node.slug);

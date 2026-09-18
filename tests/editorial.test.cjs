@@ -392,6 +392,13 @@ test("Gatsby page generation rejects collisions and only embeds relevant recomme
   assert.equal(pages[0].path, "/blog/Saona%20Island/");
   assert.equal(pages[0].context.blogList.length, 1);
   assert.equal(pages[0].context.blogList[0].id, "two");
+  const duplicatePages = [];
+  await createPages({ graphql: async () => fixture([
+    { ...post, id: "duplicate-cms-entry", slug: "iberostar-grand-bavaro" },
+    { ...post, id: "51f31cff-250d-50fe-b2c4-a1204f01ee0f", slug: "iberostar-grand-bavaro" },
+  ]), actions: { createPage: page => duplicatePages.push(page) } });
+  assert.equal(duplicatePages.length, 1);
+  assert.equal(duplicatePages[0].context.id, "51f31cff-250d-50fe-b2c4-a1204f01ee0f");
   await assert.rejects(createPages({ graphql: async () => fixture([post, { ...post, id: "two" }]),
     actions: { createPage: () => {} } }), /Duplicate blog route/);
   await assert.rejects(createPages({ graphql: async () => ({ errors: [{ message: "Missing CMS" }] }),
