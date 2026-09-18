@@ -6,7 +6,8 @@ import { monokai } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import TextComponent from "./TextComponent";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { normalizeBody } from "../../utils/editorial";
-const BlogBody = ({ context, title }) => {
+import { GuideLinks } from "./EditorialLinks";
+const BlogBody = ({ context, title, relatedGuides = [] }) => {
   if (!context?.raw) return null;
   const options = {
     renderMark: {
@@ -120,14 +121,17 @@ const BlogBody = ({ context, title }) => {
       },
     },
   };
-  const blogDocument = documentToReactComponents(
-    normalizeBody(JSON.parse(context.raw), title),
-    options,
-  );
+  const normalized = normalizeBody(JSON.parse(context.raw), title);
+  // Insert at a block boundary after the introduction; never alter authored links.
+  const firstParagraph = normalized.content.findIndex(node => node.nodeType === BLOCKS.PARAGRAPH);
+  const split = firstParagraph < 0 ? normalized.content.length : firstParagraph + 1;
+  const render = content => documentToReactComponents({ ...normalized, content }, options);
   return (
     <>
       <div className="flex flex-col max-w-5xl mx-5 lg:p-2 xl:mx-auto">
-        {blogDocument}
+        {render(normalized.content.slice(0, split))}
+        <GuideLinks guides={relatedGuides} compact />
+        {render(normalized.content.slice(split))}
       </div>
     </>
   );

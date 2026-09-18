@@ -7,6 +7,7 @@ const React = require("react");
 const { renderToStaticMarkup } = require("react-dom/server");
 const { transformSync } = require("@babel/core");
 const e = require("../src/utils/editorial");
+const linking = require("../src/utils/interlinking");
 const {
   breadcrumbsFor,
   categories,
@@ -70,6 +71,42 @@ const post = {
   publishedDate: "2025-02-27T04:00:00Z",
   backgroundImage: [],
 };
+
+test('topical links cross categories, rank destination first, and remain stable without duplicates', () => {
+  const current = {...post, title:'Saona Island photography spots'};
+  const candidates = [
+    {...post,id:'photo',slug:'photo',category:'Local Business',title:'What to wear for vacation photos'},
+    {...post,id:'saona',slug:'saona-guide',category:'Famous Places',title:'Saona Island travel tips'},
+    {...post,id:'unrelated',slug:'cars',title:'Car rental tips'},
+    {...post,id:'commercial',slug:'packages',title:'Saona Island proposal packages'},
+  ];
+  assert.deepEqual(linking.relatedGuides(candidates,current).map(p=>p.id),['saona','photo']);
+  assert.deepEqual(linking.relatedGuides([...candidates].reverse(),current),linking.relatedGuides(candidates,current));
+  assert.equal(linking.relatedGuides([...candidates,candidates[0]],current).length,2);
+  assert.equal(linking.relatedGuides([current],current).length,0);
+});
+test('service links respect specialist ownership, explicit CMS references and empty references', () => {
+  assert.equal(linking.serviceLinks({...post,title:'Where to propose in Punta Cana'}).at(-1).href,'https://sertuinevents.com/proposal/');
+  assert.equal(linking.serviceLinks({...post,title:'What to wear for vacation photos'}).at(-1).href,'https://puntacanaphotoedition.com/photoshoots');
+  assert.equal(linking.serviceLinks({...post,title:'Corporate conference planning'}).at(-1).href,'https://puntacanavenuecollection.com/');
+  const links=linking.serviceLinks({...post,reference:{url:' saona/ ',name:'Saona excursion'}});
+  assert.equal(links[0].href,'/tours/saona/');
+  assert.ok(links.every(link=>link.href&&!link.href.includes('undefined')));
+  assert.equal(linking.serviceLinks({...post,title:'Airport arrival guide',category:'Flights',reference:{}})[0].href,'/transfers/punta-cana/');
+});
+test('interlinking renders crawlable links within and after the article without changing authored text', () => {
+  const Body=load('src/components/BlogComponents/BlogBody.js').default;
+  const Links=load('src/components/BlogComponents/EditorialLinks.js').default;
+  const guides=[{...post,id:'two',slug:'saona-guide',title:'Saona travel tips'}];
+  const html=renderToStaticMarkup(React.createElement(React.Fragment,null,
+    React.createElement(Body,{title:post.title,context:{raw:JSON.stringify({nodeType:'document',data:{},content:[block('paragraph','Original introduction'),block('heading-2','What to pack')]})},relatedGuides:guides}),
+    React.createElement(Links,{post,guides:[]})));
+  assert.match(html,/href="\/blog\/saona-guide\/"/);
+  assert.ok(html.indexOf('Original introduction')<html.indexOf('Related reading'));
+  assert.ok(html.indexOf('Related reading')<html.indexOf('What to pack'));
+  assert.match(html,/href="\/tours\/"/);
+  assert.match(html,/href="\/blog\/tours\/"/);
+});
 
 test("one visible H1, no empty headings, preserved paragraphs and no skipped heading levels", () => {
   const body = {

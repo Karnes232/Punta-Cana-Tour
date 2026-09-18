@@ -1,5 +1,6 @@
 const path = require("path");
-const { blogPath, relatedPosts } = require("./src/utils/editorial");
+const { blogPath } = require("./src/utils/editorial");
+const { relatedGuides } = require("./src/utils/interlinking");
 require("dotenv").config();
 
 exports.createPages = async ({ graphql, actions }) => {
@@ -58,6 +59,7 @@ exports.createPages = async ({ graphql, actions }) => {
           title
           description
           category
+          tags
           backgroundImage {
             gatsbyImage(width: 400, placeholder: DOMINANT_COLOR, formats: WEBP)
             url
@@ -166,7 +168,7 @@ exports.createPages = async ({ graphql, actions }) => {
         id: node.id,
         blog: node,
         layout: queryResults.data.allContentfulLayout.edges[0].node,
-        blogList: relatedPosts(
+        blogList: relatedGuides(
           queryResults.data.allContentfulBlogPost.nodes,
           node,
         ),

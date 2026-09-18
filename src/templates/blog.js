@@ -9,19 +9,13 @@ import {
   articleSchema,
   blogPath,
   canonicalUrl,
-  relatedPosts,
 } from "../utils/editorial";
 import { breadcrumbsFor } from "../data/blog-categories";
-import Recommendations from "../components/BlogComponents/Recommendations";
-import ActivityLink from "../components/BlogComponents/ActivityLink";
-import TransferLink from "../components/BlogComponents/TransferLink";
-import CarRentalLink from "../components/BlogComponents/CarRentalLink";
-import PropertyLink from "../components/BlogComponents/PropertyLink";
-import HotelLink from "../components/BlogComponents/HotelLink";
+import EditorialLinks from "../components/BlogComponents/EditorialLinks";
 import { graphql } from "gatsby";
 const blog = ({ pageContext, data }) => {
   const post = data.allContentfulBlogPost.nodes[0];
-  const recommendationList = relatedPosts(pageContext.blogList, post);
+  const recommendationList = (pageContext.blogList || []);
   return (
     <Layout
       logo={pageContext.layout.logo}
@@ -37,59 +31,8 @@ const blog = ({ pageContext, data }) => {
         backgroundImages={data?.allContentfulBlogPost?.nodes[0].backgroundImage}
       />
       <ArticleHeader post={post} />
-      <BlogBody context={post.body} title={post.title} />
-
-      {data?.allContentfulBlogPost?.nodes[0].category === "Tours" &&
-        data?.allContentfulBlogPost?.nodes[0].reference !== null && (
-          <ActivityLink
-            name={data?.allContentfulBlogPost?.nodes[0]?.reference?.name}
-            url={`/${data?.allContentfulBlogPost?.nodes[0]?.category
-              .toLowerCase()
-              .replaceAll(
-                /\s/g,
-                "",
-              )}/${data?.allContentfulBlogPost?.nodes[0]?.reference?.url?.trim()}`}
-            page={data?.allContentfulBlogPost?.nodes[0]?.reference?.page}
-          />
-        )}
-      {data?.allContentfulBlogPost?.nodes[0].category === "Transfer" &&
-        data?.allContentfulBlogPost?.nodes[0].reference !== null && (
-          <TransferLink
-            name={data?.allContentfulBlogPost?.nodes[0]?.reference?.page}
-          />
-        )}
-      {data?.allContentfulBlogPost?.nodes[0].category === "Flights" &&
-        data?.allContentfulBlogPost?.nodes[0].reference !== null && (
-          <TransferLink
-            name={data?.allContentfulBlogPost?.nodes[0]?.reference?.page}
-          />
-        )}
-      {data?.allContentfulBlogPost?.nodes[0].category === "Car Rental" &&
-        data?.allContentfulBlogPost?.nodes[0].reference !== null && (
-          <CarRentalLink
-            name={data?.allContentfulBlogPost?.nodes[0]?.reference?.page}
-          />
-        )}
-      {data?.allContentfulBlogPost?.nodes[0].category === "Property" &&
-        data?.allContentfulBlogPost?.nodes[0].reference !== null && (
-          <PropertyLink
-            name={data?.allContentfulBlogPost?.nodes[0]?.reference?.title}
-            url={data?.allContentfulBlogPost?.nodes[0]?.reference?.urlSlug?.trim()}
-            page={data?.allContentfulBlogPost?.nodes[0]?.reference?.page}
-          />
-        )}
-      {data?.allContentfulBlogPost?.nodes[0].category === "Hotel" &&
-        data?.allContentfulBlogPost?.nodes[0].reference !== null && (
-          <HotelLink
-            name={data?.allContentfulBlogPost?.nodes[0]?.reference?.title}
-            url={data?.allContentfulBlogPost?.nodes[0]?.reference?.urlSlug?.trim()}
-            page={data?.allContentfulBlogPost?.nodes[0]?.reference?.page}
-          />
-        )}
-      <Recommendations
-        list={recommendationList}
-        title={"You Might Also Like"}
-      />
+      <BlogBody context={post.body} title={post.title} relatedGuides={recommendationList.slice(0, 2)} />
+      <EditorialLinks post={post} guides={recommendationList.slice(2)} />
     </Layout>
   );
 };
