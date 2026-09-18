@@ -86,7 +86,7 @@ test('service detail titles are H1 and lodging body headings remain subordinate'
   for (const [file, props] of [
     ['TourPageComponents/TourInfo', { name: 'Excursion title', category: ['Boat'] }],
     ['HotelComponents/HotelInfo', { title: 'Hotel title' }],
-    ['PropertyComonents/PropertyInfo', { title: 'Property title', price: 100 }],
+    ['PropertyComonents/PropertyInfo', { title: 'Property title', price: 100, sqFeet: 1000 }],
   ]) {
     const Component = load('src/components/' + file + '.js').default;
     const html = renderToStaticMarkup(React.createElement(Component, props));
