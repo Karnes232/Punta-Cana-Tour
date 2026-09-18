@@ -54,4 +54,13 @@ const home = {
   description: 'Plan Punta Cana with practical travel guides, tours, hotels and hostels, car rentals, airport transfers and helicopter transport. Choose what fits your trip.',
 };
 
-module.exports = { services, home };
+const homeFaqs = {
+  question1: 'How do I choose a suitable Punta Cana excursion?',
+  answer1: { answer1: 'Read the itinerary, transport arrangements and activity restrictions. Ask about age limits, swimming requirements, accessibility and the equipment provided when they matter to your group. Choose an experience that matches your needs and follow the operator\'s instructions.' },
+  question2: 'Should I book excursions before arriving?',
+  answer2: { answer2: 'Booking ahead can help you organize preferred dates and pickup arrangements, especially when your schedule is limited. Compare the full price and cancellation terms first. Booking online does not automatically mean the lowest price, and availability needs to be confirmed for your selected date.' },
+  question3: 'How do I arrange activities and transport?',
+  answer3: { answer3: 'Open the tour or transport page, review the details and follow its booking or enquiry steps. Provide your dates, accommodation and passenger information. Keep the confirmation and check the meeting point or pickup instructions before the service.' },
+};
+
+module.exports = { services, home, homeFaqs };

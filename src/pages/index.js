@@ -6,13 +6,12 @@ import { graphql } from "gatsby";
 import FeaturedTours from "../components/FeaturedToursComponent/FeaturedTours";
 import HeroComponent from "../components/HeroComponent/HeroComponent";
 import { homeSchema } from "../utils/service-schema";
-import { home } from "../data/travel-services";
+import { home, homeFaqs } from "../data/travel-services";
 import TravelPlanning from "../components/TravelPlanning";
 import Seo from "../components/seo";
 import CtaButton from "../components/CtaButton/CtaButton";
 import FaqsComponent from "../components/FaqsComponent/FaqsComponent";
 import HowItWorks from "../components/HowItWorksComponent/HowItWorks";
-import RichTextComponent from "../components/TextComponent/RichTextComponent";
 
 const IndexPage = ({ data }) => {
   const tourList = Array.from(data.allContentfulTours.edges, (x) => x);
@@ -44,12 +43,12 @@ const IndexPage = ({ data }) => {
       />
       <TravelPlanning />
       <TextComponent
-        title={data.allContentfulIndexPageContent.edges[0].node.title}
+        title="Find things to do that fit your itinerary"
         heading="h2"
         className="my-5 2xl:mb-2 2xl:mt-10 text-3xl md:text-4xl"
       />
-      <RichTextComponent
-        context={data.allContentfulIndexPageContent.edges[0].node.body1}
+      <TextComponent
+        paragraph="Explore island trips, boat outings, snorkeling, buggy adventures and cultural visits. Choose the experience first, then check travel time from your accommodation, the activity requirements and the full itinerary. Leave room in your schedule for arrival, departure and changes in weather."
       />
 
       <SwiperCarousel
@@ -58,25 +57,21 @@ const IndexPage = ({ data }) => {
           data.allContentfulSwiperPhotoCarousel.edges[0].node.photoList
         }
       />
-      <RichTextComponent
-        context={data.allContentfulIndexPageContent.edges[0].node.body2}
+      <TextComponent
+        paragraph="Browse the featured excursions below and open each trip for its details. Compare what is included and confirm your pickup location before booking. If you are still deciding, the travel guides explain how different experiences fit into a Punta Cana visit."
       />
 
       <FeaturedTours tours={tourList} link="/tours/" />
       <TextComponent
-        paragraph={
-          data.allContentfulIndexPageContent.edges[0].node.paragraph7.paragraph7
-        }
+        paragraph="Your accommodation and transport shape the rest of your holiday. Check the location of a hotel or hostel, your arrival time and the journeys you expect to make before deciding between arranged transfers and a rental car. For a longer stay, ask about the specific rental terms of any property you are considering."
         className="mt-5"
         pClassName="mb-4 lg:mb-0"
       />
-      <FaqsComponent faqs={data.allContentfulFaqsComponent.edges[0].node} />
+      <FaqsComponent faqs={homeFaqs} />
       <TextComponent
-        title={data.allContentfulIndexPageContent.edges[0].node.whyUs}
+        title="Make informed choices before you travel"
         heading="h2"
-        paragraph={
-          data.allContentfulIndexPageContent.edges[0].node.paragraph8.paragraph8
-        }
+        paragraph="Use our guides to understand your options, then review the details of the service you want to book. For questions about your itinerary, contact Punta Cana Tour Store with your travel dates, accommodation and group requirements so we can help you identify the next step."
         className="mt-5 mb-2 text-2xl md:text-3xl"
         pClassName="mb-4 2xl:mb-10"
       />
