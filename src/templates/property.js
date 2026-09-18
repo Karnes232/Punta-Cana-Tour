@@ -1,3 +1,5 @@
+import { absoluteImage } from "../utils/service-schema";
+import { canonicalUrl } from "../utils/editorial";
 import React from "react";
 import Layout from "../components/layout";
 import HeroComponent from "../components/HeroComponent/HeroComponent";
@@ -79,23 +81,25 @@ const Property = ({ pageContext, data }) => {
 export default Property;
 
 export const Head = ({ data }) => {
+  const entry = data.allContentfulProperty.nodes[0];
+  const canonical = canonicalUrl('/properties/' + entry.urlSlug?.trim());
   return (
     <>
       <Seo
         title={data?.allContentfulProperty?.nodes[0].seoTitle}
         description={data?.allContentfulProperty?.nodes[0].seoDescription}
         keywords={data?.allContentfulProperty?.nodes[0].seoKeywords?.join(", ")}
+        canonical={canonical}
+        image={absoluteImage(entry.mainImage?.url)}
         schemaMarkup={{
-          "@context": "https://schema.org/",
-          "@type": "Product",
-          name: data?.allContentfulProperty?.nodes[0].title,
-          image: `https://www.puntacanatourstore.com${data?.allContentfulProperty?.nodes[0].mainImage.gatsbyImage.images.fallback.src}`,
-          description: data?.allContentfulProperty?.nodes[0].seoDescription,
+          "@context": "https://schema.org", "@type": "WebPage",
+          name: entry.title, url: canonical, description: entry.seoDescription,
+          image: absoluteImage(entry.mainImage?.url),
         }}
       />
       <link
         rel="canonical"
-        href={`https://puntacanatourstore.com/properties/${data?.allContentfulProperty?.nodes[0].urlSlug?.trim()}/`}
+        href={canonical}
       />
     </>
   );

@@ -1,3 +1,5 @@
+import { services } from "../../../data/travel-services";
+import { ServicePlanning } from "../../../components/TravelPlanning";
 import React, { useState } from "react";
 import Seo from "../../../components/seo";
 import { graphql } from "gatsby";
@@ -42,8 +44,8 @@ const Index = ({ data }) => {
       color="black"
     >
       <TextComponent
-        title={data.allContentfulTransferPageContent.edges[0].node.title}
-        heading="h2"
+        title={services.airport.title}
+        heading="h1"
         paragraph={
           data.allContentfulTransferPageContent.edges[0].node.description
             .description
@@ -51,6 +53,7 @@ const Index = ({ data }) => {
         className="my-5 2xl:mb-2 2xl:mt-10 text-2xl md:text-4xl"
         pClassName="mb-4 lg:mb-0"
       />
+      <ServicePlanning service="airport" />
       <Form
         data={data.allContentfulTransferPageContent.edges[0].node.airportPhoto}
         formData={formData}
@@ -143,13 +146,13 @@ export const query = graphql`
 `;
 
 export const Head = ({ data }) => {
-  const { title, description, keywords } = data.allContentfulSeo.nodes[0];
+
   return (
     <>
       <Seo
-        title={title}
-        description={description.description}
-        keywords={keywords.join(", ")}
+        title={services.airport.title}
+        description={services.airport.description}
+        canonical={"https://puntacanatourstore.com" + services.airport.path}
       />
       <link
         rel="canonical"

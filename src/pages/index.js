@@ -5,7 +5,9 @@ import SwiperCarousel from "../components/BackgroundCarousel/SwiperCarousel";
 import { graphql } from "gatsby";
 import FeaturedTours from "../components/FeaturedToursComponent/FeaturedTours";
 import HeroComponent from "../components/HeroComponent/HeroComponent";
-import { schema } from "../data/schema";
+import { homeSchema } from "../utils/service-schema";
+import { home } from "../data/travel-services";
+import TravelPlanning from "../components/TravelPlanning";
 import Seo from "../components/seo";
 import CtaButton from "../components/CtaButton/CtaButton";
 import FaqsComponent from "../components/FaqsComponent/FaqsComponent";
@@ -36,10 +38,11 @@ const IndexPage = ({ data }) => {
         gImage={
           data.allContentfulIndexPageContent.edges[0].node.indexHero.gatsbyImage
         }
-        heroText={data.allContentfulIndexPageContent.edges[0].node.heroText1}
-        heroText2={data.allContentfulIndexPageContent.edges[0].node.heroText2}
+        heroText="Punta Cana Tours & Travel Guide"
+        heroText2="Discover. Plan. Explore."
         button={true}
       />
+      <TravelPlanning />
       <TextComponent
         title={data.allContentfulIndexPageContent.edges[0].node.title}
         heading="h2"
@@ -126,6 +129,7 @@ export const query = graphql`
       edges {
         node {
           logo {
+            url
             gatsbyImage(quality: 80, width: 150, formats: WEBP)
           }
           footerBackground {
@@ -216,14 +220,15 @@ export const query = graphql`
 `;
 
 export const Head = ({ data }) => {
-  const { title, description, keywords } = data.allContentfulSeo.nodes[0];
+
   return (
     <>
       <Seo
-        title={title}
-        description={description.description}
-        keywords={keywords.join(", ")}
-        schemaMarkup={schema}
+        title={home.title}
+        description={home.description}
+        canonical="https://puntacanatourstore.com/"
+        image={data.allContentfulIndexPageContent.edges[0].node.indexHero.url}
+        schemaMarkup={homeSchema(data.allContentfulLayout.edges[0].node)}
       />
       <link rel="canonical" href="https://puntacanatourstore.com/" />
     </>
