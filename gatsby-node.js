@@ -2,6 +2,7 @@ const path = require("path");
 const { blogPath } = require("./src/utils/editorial");
 const { relatedGuides } = require("./src/utils/interlinking");
 const { applyEditorialUpdate } = require("./src/utils/editorial-updates");
+const { isRetiredProposalBlog } = require("./src/utils/retired-proposal-blogs");
 require("dotenv").config();
 
 exports.createPages = async ({ graphql, actions }) => {
@@ -161,6 +162,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const publishedEntries = require("./src/data/published-blog-entries.json");
   const sourcePosts = queryResults.data.allContentfulBlogPost.nodes;
   const blogPosts = sourcePosts.filter(node => {
+    if (isRetiredProposalBlog(node.slug)) return false;
     const preferred = publishedEntries[blogPath(node.slug)];
     return !preferred || node.id === preferred || !sourcePosts.some(post => post.id === preferred);
   }).map(node => applyEditorialUpdate(node, false));

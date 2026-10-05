@@ -21,6 +21,7 @@ const cache = new Map();
 function load(relative) {
   const filename = path.resolve(__dirname, "..", relative);
   if (cache.has(filename)) return cache.get(filename);
+  if (filename.endsWith(".json")) return JSON.parse(fs.readFileSync(filename, "utf8"));
   const mod = new Module(filename, module);
   mod.filename = filename;
   mod.paths = Module._nodeModulePaths(path.dirname(filename));
@@ -280,7 +281,9 @@ test('specialist support articles replace commercial metadata and route enquirie
     const html = renderToStaticMarkup(React.createElement(React.Fragment,null,React.createElement(Body,{context:revised.body,title:revised.title}),React.createElement(Links,{post:revised})));
     assert.ok(html.includes(`href="${services[0].href}"`));
     assert.doesNotMatch(html,/nofollow|10% off|old-proposal-package|NewbornArt|Kevin Harris/);
-    assert.ok(renderToStaticMarkup(React.createElement(Card,{blog:original})).includes(update.title));
+    const card = renderToStaticMarkup(React.createElement(Card,{blog:original}));
+    if (require('../src/utils/retired-proposal-blogs').isRetiredProposalBlog(slug)) assert.equal(card, '');
+    else assert.ok(card.includes(update.title));
     assert.equal(e.articleSchema(revised,breadcrumbsFor(revised))['@graph'][0].headline, update.title);
   }
 });
@@ -533,4 +536,50 @@ test("Gatsby page generation rejects collisions and only embeds relevant recomme
     actions: { createPage: () => {} } }), /Duplicate blog route/);
   await assert.rejects(createPages({ graphql: async () => ({ errors: [{ message: "Missing CMS" }] }),
     actions: { createPage: () => {} } }), /Contentful page query failed/);
+});
+
+
+test('all 35 retired articles have exact forced 301s and never generate pages or recommendations', async () => {
+  const { slugs, destination, isRetiredProposalBlog, proposalRedirectFor } = require('../src/utils/retired-proposal-blogs');
+  assert.equal(slugs.length, 35);
+  assert.equal(new Set(slugs).size, 35);
+  const rules = fs.readFileSync(path.resolve(__dirname, '../static/_redirects'), 'utf8').split('\n').filter(line => line && !line.startsWith('#'));
+  assert.equal(rules.length, 70);
+  const retiredPosts = slugs.map((slug, i) => ({...post, slug, id: 'retired-'+i, title: 'Saona travel planning'}));
+  for (const slug of slugs) {
+    assert.equal(isRetiredProposalBlog(' '+slug+'/ '), true);
+    for (const suffix of ['', '/']) {
+      const route = '/blog/'+slug+suffix;
+      assert.ok(rules.includes(route+' '+destination+' 301!'));
+      assert.equal(e.isIndexablePath(route), false);
+      assert.equal(proposalRedirectFor(route+'?utm_source=test#details'), destination);
+    }
+    assert.equal(proposalRedirectFor('https://other.example/blog/'+slug+'/'), null);
+  }
+  assert.equal(proposalRedirectFor('/blog/unrelated-guide/'), null);
+  assert.equal(proposalRedirectFor(destination), null);
+  const active = {...post, id:'active', slug:'active-guide'};
+  const pages = [];
+  await require('../gatsby-node').createPages({graphql: async () => ({data:{
+    allContentfulTours:{nodes:[]}, allContentfulHotelsOrHostel:{nodes:[]}, allContentfulProperty:{nodes:[]},
+    allContentfulBlogPost:{nodes:[...retiredPosts, post, active]}, allContentfulLayout:{edges:[{node:{}}]},
+  }}), actions:{createPage: page => pages.push(page)}});
+  assert.equal(pages.length, 2);
+  assert.ok(pages.every(page => !isRetiredProposalBlog(page.context.blog.slug)));
+  assert.ok(pages.every(page => page.context.blogList.every(item => !isRetiredProposalBlog(item.slug))));
+  assert.deepEqual(linking.relatedGuides(retiredPosts, {...post, relatedSlugs: slugs}), []);
+  assert.deepEqual(e.relatedPosts(retiredPosts, post), []);
+});
+
+test('retired article cards disappear and inline links point straight to the specialist', () => {
+  const { slugs, destination } = require('../src/utils/retired-proposal-blogs');
+  const Card = load('src/components/BlogComponents/RecommendationCard.js').default;
+  for (const slug of slugs) assert.equal(renderToStaticMarkup(React.createElement(Card,{blog:{...post,slug}})), '');
+  const Body = load('src/components/BlogComponents/BlogBody.js').default;
+  const body = {nodeType:'document',data:{},content:[{nodeType:'paragraph',data:{},content:[
+    {nodeType:'hyperlink',data:{uri:'/blog/'+slugs[0]+'/'},content:[{nodeType:'text',value:'Plan a proposal',marks:[],data:{}}]},
+  ]}]};
+  const html=renderToStaticMarkup(React.createElement(Body,{title:'Guide',context:{raw:JSON.stringify(body)}}));
+  assert.ok(html.includes('href="'+destination+'"'));
+  assert.ok(!html.includes('/blog/'+slugs[0]));
 });
