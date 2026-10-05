@@ -1,5 +1,6 @@
 const { blogPath, canonicalUrl } = require('./editorial');
 const { categoryFor } = require('../data/blog-categories');
+const { isRetiredProposalBlog } = require('./retired-proposal-blogs');
 
 // Match editorial intent in titles/tags, not incidental mentions in boilerplate.
 const topics = [
@@ -35,6 +36,7 @@ function isCommercialOverlap(post) {
   return /\bproposal packages?\b|\bwedding planner\b|\b(?:wedding|family|couples|vacation|punta cana) photographer\b/i.test(post.title || '');
 }
 function relatedGuides(posts, current, limit = 6) {
+  posts = posts.filter(post => !isRetiredProposalBlog(post.slug));
   const own = topicIds(current), seen = new Set([routeKey(current)]);
   if (Array.isArray(current.relatedSlugs)) {
     return current.relatedSlugs.map(slug => posts.find(post => routeKey(post) === routeKey({slug})))

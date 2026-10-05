@@ -7,6 +7,7 @@ import TextComponent from "./TextComponent";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { normalizeBody } from "../../utils/editorial";
 import { GuideLinks } from "./EditorialLinks";
+import { proposalRedirectFor } from "../../utils/retired-proposal-blogs";
 const BlogBody = ({ context, title, relatedGuides = [] }) => {
   if (!context?.raw) return null;
   const options = {
@@ -115,7 +116,7 @@ const BlogBody = ({ context, title, relatedGuides = [] }) => {
       },
       [INLINES.HYPERLINK]: (node, children) => {
         return (
-          <a href={node.data.uri} className="italic underline text-blue-600">
+          <a href={proposalRedirectFor(node.data.uri) || node.data.uri} className="italic underline text-blue-600">
             {children}
           </a>
         );

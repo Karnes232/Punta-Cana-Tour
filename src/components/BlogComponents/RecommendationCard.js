@@ -3,7 +3,9 @@ import React from "react";
 import { blogPath } from "../../utils/editorial";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { applyEditorialUpdate } from "../../utils/editorial-updates";
+import { isRetiredProposalBlog } from "../../utils/retired-proposal-blogs";
 const RecommendationCard = ({ blog: original }) => {
+  if (isRetiredProposalBlog(original.slug)) return null;
   const blog = applyEditorialUpdate(original, false);
   const image = getImage(blog.backgroundImage?.[0]?.gatsbyImage);
   return (

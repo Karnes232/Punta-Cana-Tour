@@ -1,4 +1,5 @@
 const SITE_URL = "https://puntacanatourstore.com";
+const { proposalRedirectFor, isRetiredProposalBlog } = require("./retired-proposal-blogs");
 
 // Preserve historical spelling, case and encoding: this is not a slug migration.
 function blogPath(slug) {
@@ -24,6 +25,7 @@ function isPrivatePath(path) {
 function isIndexablePath(path) {
   return (
     !isPrivatePath(path) &&
+    !proposalRedirectFor(path) &&
     !/\[|\]|%5b|%5d/i.test(path) &&
     !/^\/(404|404.html|dev-404-page|offline-plugin-app-shell-fallback)(\/|$)/.test(
       path,
@@ -73,6 +75,7 @@ function relatedPosts(posts, current, limit = 6) {
       const path = blogPath(post.slug);
       if (
         !post.slug ||
+        isRetiredProposalBlog(post.slug) ||
         post.id === current.id ||
         post.category !== current.category ||
         seen.has(path)
